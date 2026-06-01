@@ -14,6 +14,7 @@
 - `npm run cf:preview`: Wrangler 기반 로컬 Pages preview
 - `npm run cf:deploy`: Wrangler direct deploy
 - `wrangler.toml`: Pages output을 `dist`로 지정
+- `wrangler.toml`의 `[assets]`: Cloudflare가 `npx wrangler deploy`를 실행하는 Workers static assets 경로도 `dist`로 지정
 - `public/_headers`: 기본 보안 헤더와 asset cache policy
 - `.github/workflows/cloudflare-pages.yml`: 수동 실행용 GitHub Actions direct upload fallback
 
@@ -113,6 +114,10 @@ name = "seocho-ai-college"
 compatibility_date = "2026-06-01"
 pages_build_output_dir = "./dist"
 send_metrics = false
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
 ```
 
 Pages Functions를 추가하기 전까지는 binding 설정이 없다.

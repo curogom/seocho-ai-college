@@ -4,3 +4,7 @@ name = "seocho-ai-college"
 compatibility_date = "2026-06-01"
 pages_build_output_dir = "./dist"
 send_metrics = false
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
