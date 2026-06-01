@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Logistic regression and sigmoid visual note</title>
+  <desc id="desc">A visual note explaining how a linear score is mapped to a probability through the sigmoid function.</desc>
+  <rect width="1280" height="720" fill="#f8faf7"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="#ffffff" stroke="#d8ded4" stroke-width="2"/>
+  <text x="96" y="126" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#172026">Logistic Regression과 Sigmoid</text>
+  <text x="98" y="166" font-family="Arial, sans-serif" font-size="18" fill="#5d6861">선형 점수 z를 0~1 사이 확률처럼 해석하는 흐름</text>
+
+  <g transform="translate(96 246)">
+    <rect width="248" height="92" rx="14" fill="#172026"/>
+    <text x="124" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#f8faf7">Input feature x</text>
+    <text x="124" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#d8ded4">GPA, network score...</text>
+    <path d="M270 46h118" stroke="#3f6f5c" stroke-width="7" stroke-linecap="round"/>
+    <path d="M376 26l32 20-32 20" fill="none" stroke="#3f6f5c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="420" width="258" height="92" rx="14" fill="#f8faf7" stroke="#d8ded4" stroke-width="2"/>
+    <text x="549" y="41" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#172026">z = w^T x + b</text>
+    <text x="549" y="69" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#5d6861">linear score</text>
+    <path d="M700 46h118" stroke="#3f6f5c" stroke-width="7" stroke-linecap="round"/>
+    <path d="M806 26l32 20-32 20" fill="none" stroke="#3f6f5c" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="850" width="248" height="92" rx="14" fill="#3f6f5c"/>
+    <text x="974" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff">sigmoid(z)</text>
+    <text x="974" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#eef7f1">probability-like value</text>
+  </g>
+
+  <g transform="translate(156 424)">
+    <line x1="0" y1="170" x2="500" y2="170" stroke="#172026" stroke-width="3"/>
+    <line x1="250" y1="20" x2="250" y2="190" stroke="#172026" stroke-width="3"/>
+    <path d="M20 160 C130 160 150 150 206 114 C244 90 254 90 294 66 C350 30 370 20 480 20" fill="none" stroke="#a75535" stroke-width="8" stroke-linecap="round"/>
+    <line x1="0" y1="95" x2="500" y2="95" stroke="#d8ded4" stroke-width="3" stroke-dasharray="8 8"/>
+    <text x="260" y="86" font-family="Arial, sans-serif" font-size="16" fill="#5d6861">0.5</text>
+    <text x="236" y="214" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#172026">z = 0</text>
+    <text x="10" y="214" font-family="Arial, sans-serif" font-size="16" fill="#5d6861">class 1 낮음</text>
+    <text x="390" y="214" font-family="Arial, sans-serif" font-size="16" fill="#5d6861">class 1 높음</text>
+  </g>
+
+  <g transform="translate(742 420)">
+    <rect width="376" height="184" rx="16" fill="#f8faf7" stroke="#d8ded4" stroke-width="2"/>
+    <text x="28" y="42" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#172026">학습자용 해석</text>
+    <text x="188" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#172026">z &lt; 0  -> class 1 낮음</text>
+    <text x="188" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#172026">z = 0  -> class 1 50%</text>
+    <text x="188" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#172026">z &gt; 0  -> class 1 높음</text>
+  </g>
+</svg>
