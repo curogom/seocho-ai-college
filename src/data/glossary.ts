@@ -14,6 +14,7 @@ export type GlossaryEntry = {
   category: GlossaryCategory;
   description: string;
   sessionIds: string[];
+  aliases?: string[];
 };
 
 export const glossary: GlossaryEntry[] = [
@@ -117,6 +118,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Feature Engineering',
     korean: '특징 설계',
     category: '기법',
+    aliases: ['feature engineering'],
     description:
       '원본 데이터에서 문제 해결에 도움이 되는 새로운 입력값을 설계하거나 계산하는 작업.',
     sessionIds: ['01'],
@@ -133,6 +135,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Binary Classification',
     korean: '이진 분류',
     category: '태스크',
+    aliases: ['binary classification'],
     description:
       '입력을 두 class 중 하나로 분류하는 문제. Logistic Regression을 설명할 때 대표적으로 사용된다.',
     sessionIds: ['01'],
@@ -149,6 +152,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Logistic Regression',
     korean: '로지스틱 회귀',
     category: '모델',
+    aliases: ['logistic regression'],
     description:
       '선형 점수 z를 sigmoid에 통과시켜 binary classification의 확률처럼 해석하는 대표 모델.',
     sessionIds: ['01'],
@@ -157,6 +161,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Linear Score z',
     korean: '선형 점수 z',
     category: '핵심 요소',
+    aliases: ['linear score', 'score z'],
     description:
       'z = w^T x + b로 계산되는 값. Sigmoid를 거치기 전의 raw score다.',
     sessionIds: ['01'],
@@ -181,6 +186,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Logit',
     korean: '로짓',
     category: '함수',
+    aliases: ['logit'],
     description:
       'Log odds. Logistic Regression에서는 log(P(C1) / P(C0))를 선형 점수 w^T x로 모델링한다.',
     sessionIds: ['01'],
@@ -189,6 +195,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Sigmoid',
     korean: '시그모이드',
     category: '함수',
+    aliases: ['sigmoid'],
     description:
       '임의의 실수값을 0과 1 사이 값으로 변환하는 함수. Binary classification에서 확률처럼 해석할 수 있다.',
     sessionIds: ['01'],
@@ -205,6 +212,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Representation Learning',
     korean: '표현 학습',
     category: '개념',
+    aliases: ['representation learning'],
     description:
       '모델이 입력 데이터를 task에 유용한 내부 표현으로 바꾸는 방법을 학습하는 접근.',
     sessionIds: ['01'],
@@ -213,6 +221,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Deep Neural Network',
     korean: '심층 신경망',
     category: '모델',
+    aliases: ['DNN', 'deep neural network'],
     description:
       '여러 hidden layer를 통해 입력을 단계적으로 변환하는 신경망. DNN이라고 줄여 부른다.',
     sessionIds: ['01'],
@@ -221,6 +230,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Hidden Layer',
     korean: '은닉층',
     category: '핵심 요소',
+    aliases: ['hidden layer'],
     description:
       '입력층과 출력층 사이에 있는 layer. 입력을 더 유용한 representation으로 바꾸는 역할을 한다.',
     sessionIds: ['01'],
@@ -237,6 +247,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Loss',
     korean: '손실',
     category: '핵심 요소',
+    aliases: ['loss'],
     description:
       '모델 예측과 실제 정답의 차이를 수치화한 값. 학습은 이 값을 줄이는 방향으로 진행된다.',
     sessionIds: ['01'],
@@ -245,6 +256,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Gradient',
     korean: '기울기',
     category: '핵심 요소',
+    aliases: ['gradient'],
     description:
       'Loss를 줄이기 위해 parameter를 어느 방향으로 얼마나 조정해야 하는지 알려주는 값.',
     sessionIds: ['01'],
@@ -285,6 +297,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'CNN',
     korean: '합성곱 신경망',
     category: '모델',
+    aliases: ['convolutional neural network'],
     description:
       '이미지처럼 주변 구조가 중요한 데이터에서 local pattern을 찾는 데 강한 신경망 구조.',
     sessionIds: ['01'],
@@ -309,6 +322,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'RNN',
     korean: '순환 신경망',
     category: '모델',
+    aliases: ['recurrent neural network'],
     description:
       '순서가 있는 데이터를 처리하기 위해 이전 상태를 다음 계산에 반영하는 신경망 구조.',
     sessionIds: ['01'],
@@ -317,6 +331,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Language Model',
     korean: '언어 모델',
     category: '모델',
+    aliases: ['language model'],
     description:
       'token sequence의 확률을 모델링하는 모델. 1차시에서는 순서 데이터 예시 수준으로만 다룬다.',
     sessionIds: ['01'],

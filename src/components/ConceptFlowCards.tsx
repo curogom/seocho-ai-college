@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { trackLearningEvent } from '../analytics/ga';
 import type { ConceptCard, ConceptFlowGroup } from '../data/sessions';
+import { GlossaryInlineText } from './GlossaryInlineText';
 
 type ConceptFlowCardsProps = {
   flow: string[];
@@ -150,11 +151,11 @@ export function ConceptFlowCards({
                 </span>
               </button>
               <p className="mt-4 text-sm leading-6 text-ink/70">
-                {concept.description}
+                <GlossaryInlineText text={concept.description} />
               </p>
               {isOpen && (
                 <div className="mt-4 border-l-4 border-gold bg-paper px-4 py-3 text-sm leading-6 text-ink/75">
-                  {concept.takeaway}
+                  <GlossaryInlineText text={concept.takeaway} />
                 </div>
               )}
             </article>

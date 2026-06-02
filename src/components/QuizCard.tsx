@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { trackLearningEvent } from '../analytics/ga';
 import type { Quiz } from '../data/quizzes';
+import { GlossaryInlineText } from './GlossaryInlineText';
 
 type QuizCardProps = {
   quiz: Quiz;
@@ -55,7 +56,7 @@ export function QuizCard({ quiz }: QuizCardProps) {
       </div>
       {answered && (
         <p className="mt-4 rounded-md bg-paper p-4 text-sm leading-6 text-ink/75">
-          {quiz.explanation}
+          <GlossaryInlineText text={quiz.explanation} />
         </p>
       )}
     </article>

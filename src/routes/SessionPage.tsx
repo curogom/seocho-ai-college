@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { trackLearningEvent } from '../analytics/ga';
 import { ConceptFlowCards } from '../components/ConceptFlowCards';
 import { ContactCTA } from '../components/ContactCTA';
+import { GlossaryInlineText } from '../components/GlossaryInlineText';
 import { InstructorCard } from '../components/InstructorCard';
 import { NextSessionPreview } from '../components/NextSessionPreview';
 import { QuizCard } from '../components/QuizCard';
@@ -161,7 +162,9 @@ export function SessionPage() {
                   <span className="grid size-7 shrink-0 place-items-center rounded-md bg-paper text-xs font-semibold text-ink">
                     {index + 1}
                   </span>
-                  <span>{line}</span>
+                  <span>
+                    <GlossaryInlineText text={line} />
+                  </span>
                 </li>
               ))}
             </ol>
@@ -197,7 +200,9 @@ export function SessionPage() {
                 className="rounded-md border border-line bg-white p-5"
               >
                 <h3 className="text-lg font-semibold text-ink">{note.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink/70">{note.body}</p>
+                <p className="mt-3 text-sm leading-6 text-ink/70">
+                  <GlossaryInlineText text={note.body} />
+                </p>
               </article>
             ))}
           </div>
@@ -215,7 +220,9 @@ export function SessionPage() {
                 className="rounded-md border border-line bg-white p-5"
               >
                 <h3 className="text-lg font-semibold text-ink">{note.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink/70">{note.body}</p>
+                <p className="mt-3 text-sm leading-6 text-ink/70">
+                  <GlossaryInlineText text={note.body} />
+                </p>
               </article>
             ))}
           </div>

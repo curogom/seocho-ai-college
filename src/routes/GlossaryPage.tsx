@@ -1,10 +1,11 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { glossary } from '../data/glossary';
 import { sessions } from '../data/sessions';
 
 export function GlossaryPage() {
-  const [query, setQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const [query, setQuery] = useState(() => searchParams.get('query') ?? '');
   const [sessionFilter, setSessionFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
 
@@ -12,6 +13,14 @@ export function GlossaryPage() {
     () => Array.from(new Set(glossary.map((entry) => entry.category))),
     [],
   );
+
+  useEffect(() => {
+    const queryParam = searchParams.get('query');
+
+    if (queryParam) {
+      setQuery(queryParam);
+    }
+  }, [searchParams]);
 
   const filteredEntries = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -22,6 +31,9 @@ export function GlossaryPage() {
         entry.term.toLowerCase().includes(normalizedQuery) ||
         entry.korean.toLowerCase().includes(normalizedQuery) ||
         entry.category.toLowerCase().includes(normalizedQuery) ||
+        (entry.aliases ?? []).some((alias) =>
+          alias.toLowerCase().includes(normalizedQuery),
+        ) ||
         entry.description.toLowerCase().includes(normalizedQuery);
       const matchesSession =
         sessionFilter === 'all' || entry.sessionIds.includes(sessionFilter);

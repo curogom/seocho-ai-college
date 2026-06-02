@@ -44,6 +44,14 @@ describe('learning content', () => {
     }
   });
 
+  it('keeps inline glossary aliases for technical terms', () => {
+    const sigmoid = glossary.find((entry) => entry.term === 'Sigmoid');
+    const dnn = glossary.find((entry) => entry.term === 'Deep Neural Network');
+
+    expect(sigmoid?.aliases).toContain('sigmoid');
+    expect(dnn?.aliases).toContain('DNN');
+  });
+
   it('classifies every glossary term by category and session', () => {
     const slotIds = new Set(sessionSlots.map((slot) => slot.id));
 
