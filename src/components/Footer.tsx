@@ -10,8 +10,8 @@ export function Footer() {
         <div>
           <p className="font-semibold text-ink">AI College Learning Notes</p>
           <p className="mt-2 max-w-2xl">
-            강의자료, 수업 노트, 전사문에서 학습에 필요한 개념만 정제해
-            차시별로 누적하는 개인 학습 노트입니다.
+            수업에서 다룬 핵심 흐름과 개념을 차시별로 누적하는 개인 학습
+            노트입니다.
           </p>
         </div>
         <div className="flex flex-wrap gap-3 md:justify-end">

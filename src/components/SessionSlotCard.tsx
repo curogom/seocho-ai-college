@@ -48,8 +48,7 @@ export function SessionSlotCard({ slot }: SessionSlotCardProps) {
             {slot.label} 자료 준비 전
           </h2>
           <p className="mt-3 min-h-18 text-sm leading-6 text-ink/60">
-            강의자료와 수업 노트가 들어오면 이 슬롯에 정제 콘텐츠를
-            추가합니다.
+            차시 자료가 준비되면 이 슬롯에 학습 노트를 추가합니다.
           </p>
         </>
       )}

@@ -79,15 +79,15 @@ export function HomePage() {
         )}
 
         <Section
-          eyebrow="Policy"
-          title="콘텐츠 정제 기준"
-          description="전사문은 원문 그대로 노출하지 않고, 개념 추출 후 중립적인 학습자용 문장으로 다시 작성합니다."
+          eyebrow="Study Pattern"
+          title="복습 방식"
+          description="각 차시는 흐름을 먼저 잡고, 개념 카드와 퀴즈로 이해도를 확인하는 방식으로 구성합니다."
         >
           <div className="grid gap-4 md:grid-cols-3">
             {[
-              '강의자료 PDF를 primary source로 둔다.',
-              '교수의 사견성 발화와 잡담은 사용자 화면에서 제외한다.',
-              'raw transcript와 정제된 summary를 분리한다.',
+              '전체 흐름을 먼저 보고 세부 개념으로 내려간다.',
+              '핵심 용어와 모델 구조를 같은 화면에서 연결한다.',
+              '퀴즈와 복습 질문으로 다음 차시 전에 이해도를 점검한다.',
             ].map((policy) => (
               <div
                 key={policy}

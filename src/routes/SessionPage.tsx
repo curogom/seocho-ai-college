@@ -188,7 +188,7 @@ export function SessionPage() {
         <Section
           eyebrow="Intuition"
           title="강의 설명에서 건질 직관"
-          description="사견성 발화나 잡담은 제외하고, 학습에 직접 도움이 되는 설명만 중립적으로 정리했습니다."
+          description="개념을 이해할 때 도움이 되는 설명을 짧은 메모로 정리했습니다."
         >
           <div className="grid gap-4 md:grid-cols-3">
             {session.intuitions.map((note) => (
