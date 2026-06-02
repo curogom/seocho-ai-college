@@ -1,5 +1,4 @@
 import { ContactCTA } from '../components/ContactCTA';
-import { PrivacyNotice } from '../components/PrivacyNotice';
 import { Section } from '../components/Section';
 
 const studyPrinciples = [
@@ -83,7 +82,6 @@ export function AboutPage() {
           </ol>
         </Section>
 
-        <PrivacyNotice />
         <div className="mt-8">
           <ContactCTA />
         </div>

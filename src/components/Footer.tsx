@@ -16,7 +16,7 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap gap-3 md:justify-end">
           <Link className="hover:text-ink" to="/about">
-            Analytics Notice
+            About
           </Link>
           <a
             className="hover:text-ink"
