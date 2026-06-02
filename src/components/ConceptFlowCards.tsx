@@ -124,7 +124,6 @@ export function ConceptFlowCards({
 
       <div className="grid gap-4 md:grid-cols-2">
         {sortedConcepts.map((concept) => {
-          const flowIndex = getFlowIndex(flow, concept);
           const isOpen = openTerm === concept.term;
 
           return (
@@ -139,10 +138,7 @@ export function ConceptFlowCards({
                 onClick={() => toggleConcept(concept)}
               >
                 <span>
-                  <span className="block text-xs font-semibold uppercase tracking-normal text-rust">
-                    {flowIndex ? `Flow ${flowIndex}` : 'Concept'}
-                  </span>
-                  <span className="mt-2 block text-lg font-semibold text-ink">
+                  <span className="block text-lg font-semibold text-ink">
                     {concept.term}
                   </span>
                   <span className="mt-1 block text-sm font-medium text-moss">
