@@ -58,7 +58,7 @@ export function ConceptFlowCards({
         <span className="grid size-6 shrink-0 place-items-center rounded bg-ink text-xs text-paper">
           {flowIndex}
         </span>
-        <span className="min-w-0 break-words">{item}</span>
+        <span className="min-w-0">{item}</span>
       </li>
     );
   }
