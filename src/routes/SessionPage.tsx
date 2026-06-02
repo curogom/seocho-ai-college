@@ -170,24 +170,19 @@ export function SessionPage() {
         </div>
 
         <Section
-          eyebrow="Visual Notes"
-          title="강의자료 기반 시각 노트"
-          description="원본 슬라이드를 그대로 재배포하지 않고, 강의자료의 핵심 구조를 복습용 도식으로 다시 그렸습니다."
-        >
-          <SessionVisuals visuals={session.visualNotes} />
-        </Section>
-
-        <Section
           eyebrow="Core Flow"
-          title="개념 흐름 카드"
-          description="핵심 흐름과 상세 개념 카드를 한 번에 보도록 합쳤습니다. 위쪽 흐름으로 전체 위치를 잡고, 아래 카드에서 takeaway를 확인합니다."
+          title="핵심 구조 복습"
+          description="수업에서 다룬 구조를 시각 노트와 개념 흐름 카드로 이어서 정리했습니다."
         >
-          <ConceptFlowCards
-            flow={session.coreFlow}
-            flowGroups={session.coreFlowGroups}
-            concepts={session.conceptCards}
-            sessionId={session.id}
-          />
+          <div className="grid gap-6">
+            <SessionVisuals visuals={session.visualNotes} />
+            <ConceptFlowCards
+              flow={session.coreFlow}
+              flowGroups={session.coreFlowGroups}
+              concepts={session.conceptCards}
+              sessionId={session.id}
+            />
+          </div>
         </Section>
 
         <Section

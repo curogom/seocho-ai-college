@@ -178,7 +178,7 @@ export const sessions: Session[] = [
         src: '/session-visuals/session-01-ml-to-dl-flow.svg',
         alt: 'Feature Engineering에서 Representation Learning으로 넘어가는 흐름을 설명하는 도식',
         caption:
-          '강의자료의 핵심 흐름을 원본 슬라이드 캡처가 아니라 학습용 도식으로 재구성했습니다.',
+          'Feature Engineering에서 Representation Learning으로 중심이 이동하는 흐름을 정리했습니다.',
       },
       {
         title: 'Logistic Regression과 Sigmoid',

@@ -22,7 +22,7 @@ AI -> Machine Learning -> Deep Learning / DNN -> Feature Engineering -> Logistic
 - `/session-visuals/session-01-ml-to-dl-flow.svg`
 - `/session-visuals/session-01-logistic-sigmoid.svg`
 
-원본 강의자료 이미지를 그대로 재배포하지 않고, 핵심 구조를 복습용 도식으로 재구성한다.
+수업에서 다룬 핵심 구조를 복습용 도식으로 정리한다.
 
 ## Notes
 

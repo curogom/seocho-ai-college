@@ -20,7 +20,7 @@ export function Section({ eyebrow, title, description, children }: SectionProps)
           {title}
         </h2>
         {description && (
-          <p className="mt-2 max-w-3xl text-base leading-7 text-ink/70">
+          <p className="mt-2 w-full text-base leading-7 text-ink/70">
             {description}
           </p>
         )}
