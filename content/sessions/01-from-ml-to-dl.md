@@ -15,7 +15,7 @@ School of Computing, KAIST
 
 ## Core Flow
 
-AI -> Machine Learning -> Deep Learning / DNN -> Feature Engineering -> Logistic Regression -> Sigmoid / Probability -> Representation Learning -> CNN / RNN
+AI -> Machine Learning -> Deep Learning -> Feature Engineering -> Logistic Regression -> Sigmoid / Probability -> Representation Learning -> DNN -> CNN -> RNN
 
 ## Visual Notes
 

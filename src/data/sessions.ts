@@ -97,18 +97,20 @@ export const sessions: Session[] = [
     coreFlow: [
       'AI',
       'Machine Learning',
-      'Deep Learning / DNN',
+      'Deep Learning',
       'Feature Engineering',
       'Logistic Regression',
       'Sigmoid / Probability',
       'Representation Learning',
-      'CNN / RNN',
+      'DNN',
+      'CNN',
+      'RNN',
     ],
     coreFlowGroups: [
       {
         label: '상위 범주',
         layout: 'hierarchy',
-        items: ['AI', 'Machine Learning', 'Deep Learning / DNN'],
+        items: ['AI', 'Machine Learning', 'Deep Learning'],
       },
       {
         label: '전통 ML 흐름',
@@ -122,7 +124,7 @@ export const sessions: Session[] = [
       {
         label: '딥러닝 계열',
         layout: 'branch',
-        items: ['Representation Learning', 'CNN / RNN'],
+        items: ['Representation Learning', 'DNN', 'CNN', 'RNN'],
       },
     ],
     conceptCards: [
@@ -153,7 +155,7 @@ export const sessions: Session[] = [
         description:
           '여러 hidden layer를 통해 입력 데이터를 더 분리하기 쉬운 표현 공간으로 바꾸는 모델이다.',
         takeaway: '사람이 공간 변환을 설계하면 feature engineering이고, 모델이 layer로 학습하면 representation learning이다.',
-        flowItem: 'Deep Learning / DNN',
+        flowItem: 'DNN',
       },
       {
         term: 'CNN',
@@ -161,7 +163,7 @@ export const sessions: Session[] = [
         description:
           '이미지에서 주변 픽셀의 local pattern을 찾는 구조다. 전통 이미지 처리의 filter 설계를 데이터 기반 학습으로 바꾼다.',
         takeaway: 'filter를 직접 고정하기보다 데이터로 유용한 filter를 학습한다.',
-        flowItem: 'CNN / RNN',
+        flowItem: 'CNN',
       },
       {
         term: 'RNN / Language Model',
@@ -169,7 +171,7 @@ export const sessions: Session[] = [
         description:
           '순서가 있는 데이터를 처리하고, 이전 token들을 조건으로 다음 token의 확률을 예측하는 관점으로 이어진다.',
         takeaway: '순서 정보가 중요한 문제에서는 이전 입력의 흐름을 반영해 다음 상태나 출력을 예측한다.',
-        flowItem: 'CNN / RNN',
+        flowItem: 'RNN',
       },
     ],
     visualNotes: [
