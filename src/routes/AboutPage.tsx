@@ -27,8 +27,8 @@ export function AboutPage() {
             문서형 학습 노트 소개
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-ink/70">
-            이 프로젝트는 웹게임이 아니라 서초 AI 칼리지 수업 내용을
-            차시별로 정리하고 복습하기 위한 React 기반 학습 노트입니다.
+            서초 AI 칼리지 수업의 핵심 흐름과 개념을 차시별로 정리해
+            복습에 활용할 수 있도록 구성한 학습 노트입니다.
           </p>
         </div>
       </section>
