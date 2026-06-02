@@ -122,7 +122,7 @@ export function ConceptFlowCards({
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4">
         {sortedConcepts.map((concept) => {
           const isOpen = openTerm === concept.term;
 
