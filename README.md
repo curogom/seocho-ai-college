@@ -6,8 +6,6 @@
 
 이 저장소는 Machine Learning, Deep Learning, Large Language Model 관련 수업 내용을 차시별로 요약하고, 주요 개념을 학습 카드와 퀴즈 형태로 정리하는 것을 목표로 합니다.
 
-웹게임형 구현은 지양하고, 차시별 학습 내용을 지속적으로 보강할 수 있는 문서형 웹앱을 지향합니다.
-
 ## Current Sessions
 
 전체 운영 기준은 16차시입니다. 상단 메뉴에는 개별 차시를 직접 추가하지 않고, `차시` 메뉴의 SelectBox와 `/sessions` 전체 차시 인덱스에서 관리합니다.
@@ -15,7 +13,7 @@
 | Session | Topic | Status |
 |---:|---|---|
 | 01 | From Machine Learning to Deep Learning | Published |
-| 02 | LLM, Transformer, Diffusion, and Qwen3-Next | Preview |
+| 02 | Large Language Models | Published |
 
 ## Core Features
 

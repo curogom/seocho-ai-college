@@ -1,0 +1,4 @@
+Raw transcript placeholder for session 02.
+
+2차시 원문 전사문은 별도 원자료로 보관한다.
+웹 페이지에는 전사문 원문이 아니라 정제된 차시 노트만 연결한다.

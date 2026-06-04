@@ -72,6 +72,14 @@ export type Session = {
 
 export const totalSessionCount = 16;
 
+const parkInstructor: Instructor = {
+  name: '박노성',
+  englishName: 'Noseong Park',
+  title: 'Tenured Associate Professor',
+  affiliationKo: 'KAIST 전산학부',
+  affiliationEn: 'School of Computing, KAIST',
+};
+
 export const sessions: Session[] = [
   {
     id: '01',
@@ -80,13 +88,7 @@ export const sessions: Session[] = [
     koreanTitle: '기계학습에서 딥러닝으로',
     subtitle: 'Feature Engineering에서 Representation Learning으로',
     status: 'published',
-    instructor: {
-      name: '박노성',
-      englishName: 'Noseong Park',
-      title: 'Tenured Associate Professor',
-      affiliationKo: 'KAIST 전산학부',
-      affiliationEn: 'School of Computing, KAIST',
-    },
+    instructor: parkInstructor,
     summary:
       '전통적인 Machine Learning에서 Deep Learning으로 넘어가는 흐름을 다룬다. 핵심은 사람이 feature를 직접 설계하던 방식에서, 모델이 여러 layer를 통해 feature representation을 학습하는 방식으로 전환된 것이다.',
     summaryLines: [
@@ -235,55 +237,212 @@ export const sessions: Session[] = [
       '사용자의 자연어 목적지 해석과 안내 문구 생성은 LLM으로 확장할 수 있다.',
     ],
     nextPreview: {
-      title: 'LLM, Transformer, Diffusion, and Qwen3-Next',
+      title: 'Large Language Models',
       summary:
-        '다음 차시에서는 GPT의 next token prediction, Transformer의 self-attention, 그리고 Qwen3-Next에서 보이는 Gated DeltaNet + masked self-attention hybrid 구조를 다룬다.',
+        '2차시에서는 RNN에서 Transformer로 넘어간 이유, BERT와 GPT의 차이, 그리고 Qwen3-Next의 hybrid architecture를 다룬다.',
       questions: [
-        'GPT는 왜 next token prediction만으로 reasoning처럼 보이는 능력을 갖게 되었는가?',
+        'BERT와 GPT는 구조적으로 무엇이 다른가?',
+        'GPT의 prefill과 decoding은 각각 어떤 역할을 하는가?',
         'Transformer의 attention은 긴 문맥에서 어떤 비용 문제가 있는가?',
-        'Qwen3-Next의 Gated DeltaNet은 masked self-attention과 어떤 역할을 나누는가?',
       ],
       keyPoints: [
+        'BERT는 encoder-only, GPT는 decoder-only 구조다.',
         'GPT는 decoder-only Transformer다.',
-        '긴 문맥이 길어질수록 attention 비용이 커진다.',
-        'Qwen3-Next는 Gated DeltaNet과 masked self-attention을 섞어 효율성과 reasoning 사이 균형을 노린다.',
+        'Qwen3-Next는 Gated DeltaNet과 masked self-attention을 섞는 hybrid architecture로 설명된다.',
       ],
     },
   },
   {
     id: '02',
     order: 2,
-    title: 'LLM, Transformer, Diffusion, and Qwen3-Next',
-    koreanTitle: '대형언어모델과 차세대 시퀀스 모델',
-    subtitle: 'Next Token Prediction에서 Hybrid Architecture로',
-    status: 'planned',
+    title: 'Large Language Models',
+    koreanTitle: '대형언어모델',
+    subtitle: 'BERT, GPT, Transformer, Qwen3-Next, Scientific Foundation Model',
+    status: 'published',
+    instructor: parkInstructor,
     summary:
-      '아직 진행되지 않은 차시입니다. 현재는 1차시에서 이어질 예고만 남겨두고, 실제 수업 후 학습 노트로 확장합니다.',
-    summaryLines: [],
-    coreFlow: [],
-    coreFlowGroups: [],
-    conceptCards: [],
+      '2차시는 RNN에서 Transformer로 넘어간 이유, BERT와 GPT의 차이, GPT의 prefill/decoding 구조, 그리고 State-Space Model과 Qwen3-Next 같은 Transformer 이후의 대안 구조를 다룬다.',
+    summaryLines: [
+      'RNN은 순차 처리 한계가 있고, Transformer는 self-attention으로 token 간 관계를 병렬 계산한다.',
+      'BERT는 encoder-only 구조로 문장 이해에 강하고, GPT는 decoder-only 구조로 이전 token을 조건으로 다음 token을 생성한다.',
+      '긴 context의 attention 비용 문제는 State-Space Model, Qwen3-Next, discrete diffusion 계열과 같은 대안 구조 논의로 이어진다.',
+    ],
+    coreFlow: [
+      'RNN',
+      'Token / Embedding',
+      'Transformer / Self-Attention',
+      'BERT',
+      'GPT',
+      'Prefill / Decoding',
+      'Autoregressive Generation',
+      'Prompt / In-context Learning',
+      'Chain-of-thought / Hallucination',
+      'AI Infrastructure',
+      'State-Space Model',
+      'Qwen3-Next',
+      'Discrete Diffusion Language Model',
+      'Scientific Foundation Model',
+    ],
+    coreFlowGroups: [
+      {
+        label: '시퀀스 모델 흐름',
+        layout: 'pipeline',
+        items: [
+          'RNN',
+          'Token / Embedding',
+          'Transformer / Self-Attention',
+        ],
+      },
+      {
+        label: 'LLM 구조',
+        layout: 'pipeline',
+        items: [
+          'BERT',
+          'GPT',
+          'Prefill / Decoding',
+          'Autoregressive Generation',
+          'Prompt / In-context Learning',
+          'Chain-of-thought / Hallucination',
+        ],
+      },
+      {
+        label: '차세대 구조와 응용',
+        layout: 'pipeline',
+        items: [
+          'AI Infrastructure',
+          'State-Space Model',
+          'Qwen3-Next',
+          'Discrete Diffusion Language Model',
+          'Scientific Foundation Model',
+        ],
+      },
+    ],
+    conceptCards: [
+      {
+        term: 'RNN',
+        korean: '순환 신경망',
+        description:
+          'RNN은 token을 순차적으로 읽으며 hidden state를 업데이트하는 구조다. 긴 sequence에서는 병렬화가 어렵고 오래된 정보가 희미해질 수 있다.',
+        takeaway: 'Transformer가 등장한 배경에는 긴 sequence 처리와 병렬화의 한계가 있다.',
+      },
+      {
+        term: 'Token / Embedding',
+        korean: '토큰 / 임베딩',
+        description:
+          '자연어를 모델이 계산할 수 있도록 token으로 나누고, 각 token을 vector space의 위치로 바꾸는 과정이다.',
+        takeaway: 'word와 token은 다르며, 하나의 word가 여러 subword token으로 쪼개질 수 있다.',
+      },
+      {
+        term: 'Transformer / Self-Attention',
+        korean: '트랜스포머 / 셀프 어텐션',
+        description:
+          'Transformer는 self-attention으로 token 간 관계를 병렬 계산하는 architecture다. 모든 Transformer가 양방향인 것은 아니다.',
+        takeaway: 'BERT는 encoder-only로 양방향 문맥 이해에 가깝고, GPT는 decoder-only로 이전 token만 본다.',
+      },
+      {
+        term: 'BERT',
+        korean: '버트',
+        description:
+          'BERT는 encoder-only Transformer 기반 language understanding model이다. 문장을 생성하기보다 문맥이 반영된 token representation을 만든다.',
+        takeaway: 'BERT의 output은 분류, QA, NLI, 감성 분석 같은 이해 task에 사용된다.',
+      },
+      {
+        term: 'GPT',
+        korean: '지피티',
+        description:
+          'GPT는 decoder-only Transformer다. 이전 token들을 조건으로 다음 token을 하나씩 예측하는 autoregressive generation model이다.',
+        takeaway: 'GPT에는 BERT식 encoder가 없으며, prompt 처리는 prefill 단계로 보는 것이 정확하다.',
+      },
+      {
+        term: 'Prefill / Decoding',
+        korean: '프리필 / 디코딩',
+        description:
+          'Prefill은 prompt를 먼저 처리해 KV cache를 준비하는 단계이고, decoding은 이전 token들을 조건으로 다음 token을 순차 생성하는 단계다.',
+        takeaway: 'Prompt 처리는 병렬화할 수 있지만, autoregressive generation은 이전 token 결과에 의존한다.',
+      },
+      {
+        term: 'Autoregressive Generation',
+        korean: '자기회귀 생성',
+        description:
+          'Autoregressive generation은 이미 생성된 token들을 조건으로 다음 token을 하나씩 생성하는 방식이다.',
+        takeaway: '한 token의 결과가 다음 token의 조건이 되므로 긴 답변에서는 생성 latency가 누적된다.',
+      },
+      {
+        term: 'Prompt / In-context Learning',
+        korean: '프롬프트 / 문맥 내 학습',
+        description:
+          'Prompt는 모델이 어떤 맥락에서 어떤 출력을 생성할지 결정하는 핵심 입력이다. In-context learning은 prompt 안의 예시와 문맥으로 latent concept을 추정하는 관점이다.',
+        takeaway: '좋은 prompt는 단순 질문이 아니라 모델이 문제를 해석할 조건을 제공한다.',
+      },
+      {
+        term: 'Chain-of-thought / Hallucination',
+        korean: '사고 과정 / 환각',
+        description:
+          'Chain-of-thought는 중간 추론 단계를 거치게 하는 방식이고, hallucination은 사실과 다른 내용을 그럴듯하게 생성하는 현상이다.',
+        takeaway: '추론 과정이 길어지면 성능이 좋아질 수 있지만 비용과 latency도 함께 늘어난다.',
+      },
+      {
+        term: 'Qwen3-Next',
+        korean: 'Qwen3-Next',
+        description:
+          '강의자료 기준 Qwen3-Next-80B는 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave하는 hybrid architecture로 설명된다.',
+        takeaway: '긴 token 의존성과 효율성은 Gated DeltaNet, 정밀한 token interaction은 masked self-attention이 나눠 맡는 방향이다.',
+      },
+      {
+        term: 'Scientific Foundation Model',
+        korean: '과학 파운데이션 모델',
+        description:
+          'Scientific Foundation Model은 foundation model 관점을 과학·공학 문제에 적용하려는 흐름이다. PDE 해, 시뮬레이션, 관측 데이터가 중요하다.',
+        takeaway: '자연어 token이 아니라 물리 현상과 관측 데이터를 다루며 forward/inverse problem과 연결된다.',
+      },
+    ],
     visualNotes: [],
-    intuitions: [],
-    modelNotes: [],
-    quizIds: [],
-    reflectionQuestions: [],
-    projectConnections: [],
-    preview: {
-      summary:
-        '다음 차시에서는 LLM의 핵심 구조인 Transformer와 GPT의 next token prediction을 다룰 예정입니다. Qwen3-Next의 Gated DeltaNet + masked self-attention hybrid 구조는 예고 수준으로만 남겨둡니다.',
-      keyPoints: [
-        'GPT의 next token prediction과 decoder-only Transformer를 다룰 예정입니다.',
-        '긴 문맥에서 self-attention 비용이 왜 문제가 되는지 살펴볼 예정입니다.',
-        'Qwen3-Next의 hybrid architecture는 Gated DeltaNet과 masked self-attention의 역할 분리 관점으로 다룰 예정입니다.',
-      ],
-      questions: [
-      'GPT가 next token prediction만으로 reasoning처럼 보이는 능력을 갖게 되는 이유는 무엇인가?',
-      'Transformer의 self-attention은 왜 긴 문맥에서 비용 문제가 생기는가?',
-      'Qwen3-Next의 Gated DeltaNet은 기존 attention과 어떤 역할 차이가 있는가?',
-      'Hybrid architecture는 Transformer를 대체하는가, 보완하는가?',
-      ],
-    },
+    intuitions: [
+      {
+        title: 'Transformer는 항상 양방향이 아니다',
+        body: 'Transformer는 self-attention으로 token 간 관계를 계산하는 architecture다. BERT와 GPT는 같은 계열의 구조를 쓰지만 attention mask와 사용 방식이 다르다.',
+      },
+      {
+        title: 'GPT의 prompt 처리는 encoder가 아니다',
+        body: 'GPT는 decoder-only 구조다. Prompt를 먼저 읽는 과정은 BERT식 encoder가 아니라 prefill 단계로 이해하는 것이 정확하다.',
+      },
+      {
+        title: '자연스러운 문장이 사실을 보장하지 않는다',
+        body: 'LLM은 자연스러운 문장을 생성하도록 학습되지만, 그럴듯한 문장과 사실성은 다르다. Hallucination은 이 차이에서 발생한다.',
+      },
+    ],
+    modelNotes: [
+      {
+        title: 'BERT와 GPT',
+        body: 'BERT는 encoder-only language understanding model이고, GPT는 decoder-only autoregressive generation model이다. BERT는 이해 task의 representation을 만들고, GPT는 이전 token을 조건으로 다음 token을 생성한다.',
+      },
+      {
+        title: 'GPT 추론 단계',
+        body: 'Prefill은 prompt를 처리해 KV cache를 준비하는 단계다. Decoding은 이전 token들을 조건으로 다음 token을 하나씩 생성하는 단계이며 autoregressive하다.',
+      },
+      {
+        title: 'Qwen3-Next 구조',
+        body: '강의자료 기준 Qwen3-Next-80B는 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave한다. 효율성과 정밀한 token interaction의 균형을 노린다.',
+      },
+      {
+        title: 'Scientific Foundation Model',
+        body: 'LLM이 자연어 prompt에서 latent concept을 추정하듯, Scientific Foundation Model은 관측 데이터에서 PDE나 물리 법칙을 추정하고 forward/inverse problem을 풀려는 방향으로 볼 수 있다.',
+      },
+    ],
+    quizIds: ['s02-q1', 's02-q2', 's02-q3', 's02-q4', 's02-q5'],
+    reflectionQuestions: [
+      'BERT와 GPT의 가장 큰 구조적 차이는 무엇인가?',
+      'GPT에서 prefill과 decoding은 각각 어떤 역할을 하는가?',
+      'Transformer self-attention이 긴 context에서 비용 문제가 생기는 이유는 무엇인가?',
+      'Qwen3-Next는 왜 Gated DeltaNet과 masked self-attention을 섞는가?',
+      'Scientific Foundation Model은 LLM과 무엇이 다른가?',
+    ],
+    projectConnections: [
+      '실내 안내 Agent에서 GPT류 LLM은 목적 해석과 안내 문장 생성에 활용할 수 있다.',
+      '긴 공간 문맥이나 운영 문서를 다루려면 긴 context 처리 비용과 검색 구조를 함께 고려해야 한다.',
+      'Qwen3-Next 같은 hybrid architecture는 온프렘 또는 로컬 추론 전략과 연결될 수 있다.',
+      'Scientific Foundation Model 개념은 실내 공간 상태 예측이나 시뮬레이션 기반 planning과 연결될 수 있다.',
+    ],
   },
 ];
 

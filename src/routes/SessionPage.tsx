@@ -175,7 +175,7 @@ export function SessionPage() {
         <Section
           eyebrow="Core Flow"
           title="핵심 구조 복습"
-          description="수업에서 다룬 구조를 시각 노트와 개념 흐름 카드로 이어서 정리했습니다."
+          description="수업에서 다룬 흐름과 핵심 개념을 이어서 정리했습니다."
         >
           <div className="grid gap-6">
             <SessionVisuals visuals={session.visualNotes} />

@@ -39,7 +39,7 @@ session/03-graph-ml
 
 ```text
 feat(session-01): add ML to DL learning notes
-feat(session-02): add LLM and Qwen Next preview
+feat(session-02): add LLM learning notes
 feat(analytics): add GA4 tracking
 docs: add transcript curation policy
 ```

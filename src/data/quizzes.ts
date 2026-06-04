@@ -78,6 +78,76 @@ export const quizzes: Quiz[] = [
     explanation:
       'Training은 데이터를 통해 weight와 bias 같은 parameter를 조정하는 과정이고, Inference는 이미 학습된 parameter를 사용해 새 입력의 결과를 계산하는 과정이다.',
   },
+  {
+    id: 's02-q1',
+    sessionId: '02',
+    question: 'BERT와 GPT의 가장 큰 구조적 차이로 맞는 것은?',
+    choices: [
+      'BERT는 decoder-only, GPT는 encoder-only다.',
+      'BERT는 encoder-only language understanding model이고, GPT는 decoder-only autoregressive generation model이다.',
+      'BERT와 GPT는 구조적으로 완전히 같다.',
+      'GPT는 token을 사용하지 않는다.',
+    ],
+    answerIndex: 1,
+    explanation:
+      'BERT는 encoder-only 구조로 문맥 이해에 강하고, GPT는 decoder-only 구조로 이전 token을 조건으로 다음 token을 생성한다.',
+  },
+  {
+    id: 's02-q2',
+    sessionId: '02',
+    question: 'GPT의 prefill 단계는 무엇을 의미하는가?',
+    choices: [
+      '모델 parameter를 새로 학습하는 과정',
+      '사용자의 prompt를 먼저 처리해 이후 생성을 위한 cache를 준비하는 과정',
+      '최종 답변을 사람이 검수하는 과정',
+      '미래 token을 미리 정답으로 넣어주는 과정',
+    ],
+    answerIndex: 1,
+    explanation:
+      'Prefill은 prompt를 먼저 처리해 KV cache 등을 준비하는 단계로, 이후 decoding에서 다음 token을 순차적으로 생성한다.',
+  },
+  {
+    id: 's02-q3',
+    sessionId: '02',
+    question: 'Transformer self-attention이 긴 context에서 비싸지는 이유는?',
+    choices: [
+      '모든 token을 삭제하기 때문에',
+      'token 간 pairwise 관계를 계산하기 때문에',
+      'embedding을 사용하지 않기 때문에',
+      'GPU를 전혀 쓰지 않기 때문에',
+    ],
+    answerIndex: 1,
+    explanation:
+      'Self-attention은 token들 사이의 관계를 계산하므로 sequence 길이가 길어질수록 비용이 크게 증가한다.',
+  },
+  {
+    id: 's02-q4',
+    sessionId: '02',
+    question: 'Qwen3-Next의 hybrid architecture 설명으로 가장 적절한 것은?',
+    choices: [
+      'CNN과 RNN만 섞은 구조다.',
+      'Gated DeltaNet과 masked self-attention을 섞어 효율성과 정밀한 token interaction의 균형을 노린다.',
+      'BERT만 사용하고 GPT 구조는 사용하지 않는다.',
+      'attention을 완전히 제거한다.',
+    ],
+    answerIndex: 1,
+    explanation:
+      '강의자료 기준 Qwen3-Next는 Gated DeltaNet과 masked self-attention을 섞는 hybrid 구조로 설명된다.',
+  },
+  {
+    id: 's02-q5',
+    sessionId: '02',
+    question: 'Scientific Foundation Model이 LLM과 다른 핵심 지점은?',
+    choices: [
+      'LLM은 데이터를 쓰지 않는다.',
+      'SFM은 자연어가 아니라 PDE 해, 시뮬레이션, 관측 데이터 등 과학·공학 데이터를 중심으로 다룬다.',
+      'SFM은 모델이 아니라 데이터베이스다.',
+      'LLM과 SFM은 완전히 같은 말이다.',
+    ],
+    answerIndex: 1,
+    explanation:
+      'SFM은 LLM의 foundation model 개념을 과학·공학 문제에 적용하려는 흐름이며, PDE 해와 관측 데이터 같은 과학 데이터를 중요하게 다룬다.',
+  },
 ];
 
 export const getQuizzesBySessionId = (sessionId: string) =>

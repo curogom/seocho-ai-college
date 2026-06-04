@@ -18,13 +18,32 @@ describe('learning content', () => {
     expect(session?.instructor?.affiliationEn).toBe('School of Computing, KAIST');
   });
 
-  it('keeps Qwen3-Next preview terms in the glossary', () => {
+  it('keeps session 02 LLM terms in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
-    expect(terms.has('Qwen3-Next')).toBe(true);
-    expect(terms.has('Gated DeltaNet')).toBe(true);
-    expect(terms.has('Masked Self-Attention')).toBe(true);
-    expect(terms.has('Hybrid Architecture')).toBe(true);
+    for (const term of [
+      'Token',
+      'Embedding',
+      'Transformer',
+      'Self-Attention',
+      'BERT',
+      'GPT',
+      'Prefill',
+      'Decoding',
+      'Autoregressive Generation',
+      'In-context Learning',
+      'Chain-of-thought',
+      'Hallucination',
+      'AI Infrastructure',
+      'Qwen3-Next',
+      'Gated DeltaNet',
+      'Masked Self-Attention',
+      'Hybrid Architecture',
+      'Discrete Diffusion Language Model',
+      'Scientific Foundation Model',
+    ]) {
+      expect(terms.has(term)).toBe(true);
+    }
   });
 
   it('keeps model core elements in the glossary', () => {
@@ -47,9 +66,13 @@ describe('learning content', () => {
   it('keeps inline glossary aliases for technical terms', () => {
     const sigmoid = glossary.find((entry) => entry.term === 'Sigmoid');
     const dnn = glossary.find((entry) => entry.term === 'Deep Neural Network');
+    const prefill = glossary.find((entry) => entry.term === 'Prefill');
+    const qwen = glossary.find((entry) => entry.term === 'Qwen3-Next');
 
     expect(sigmoid?.aliases).toContain('sigmoid');
     expect(dnn?.aliases).toContain('DNN');
+    expect(prefill?.aliases).toContain('prefill');
+    expect(qwen?.description).toContain('3:1');
   });
 
   it('classifies every glossary term by category and session', () => {
@@ -69,7 +92,7 @@ describe('learning content', () => {
     const handoff = readFileSync('docs/handoff.md', 'utf8');
     const sessionNote = readFileSync('content/sessions/01-from-ml-to-dl.md', 'utf8');
 
-    expect(JSON.stringify(getSessionById('01'))).not.toContain('noseong@');
+    expect(JSON.stringify(sessions)).not.toContain('noseong@');
     expect(handoff).not.toContain('noseong@');
     expect(sessionNote).not.toContain('noseong@');
   });
@@ -115,18 +138,21 @@ describe('learning content', () => {
     expect(sessionSlots[1].session?.id).toBe('02');
   });
 
-  it('keeps session 02 as preview-only until the class is held', () => {
+  it('publishes session 02 learning content', () => {
     const session = getSessionById('02');
 
-    expect(session?.status).toBe('planned');
-    expect(session?.summaryLines).toHaveLength(0);
-    expect(session?.coreFlow).toHaveLength(0);
-    expect(session?.coreFlowGroups).toHaveLength(0);
-    expect(session?.conceptCards).toHaveLength(0);
+    expect(session?.status).toBe('published');
+    expect(session?.instructor?.name).toBe('박노성');
+    expect(session?.summaryLines).toHaveLength(3);
+    expect(session?.coreFlow).toContain('BERT');
+    expect(session?.coreFlow).toContain('GPT');
+    expect(session?.coreFlow).toContain('Autoregressive Generation');
+    expect(session?.coreFlow).toContain('Qwen3-Next');
+    expect(session?.conceptCards.length).toBeGreaterThanOrEqual(10);
     expect(session?.visualNotes).toHaveLength(0);
-    expect(session?.intuitions).toHaveLength(0);
-    expect(session?.modelNotes).toHaveLength(0);
-    expect(session?.quizIds).toHaveLength(0);
-    expect(session?.preview?.questions.length).toBeGreaterThan(0);
+    expect(session?.intuitions.length).toBeGreaterThan(0);
+    expect(session?.modelNotes.length).toBeGreaterThan(0);
+    expect(session?.quizIds).toHaveLength(5);
+    expect(session?.preview).toBeUndefined();
   });
 });

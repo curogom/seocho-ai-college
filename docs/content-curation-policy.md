@@ -25,10 +25,25 @@
 - Loss / Gradient Descent / Local Minimum
 - CNN / Filter / Convolution
 - RNN / Language Modeling
-- Transformer / GPT / Next Token Prediction
+- Token / Embedding
+- Transformer / Self-Attention / Masked Self-Attention
+- BERT / GPT / Next Token Prediction
+- Prefill / Decoding / Autoregressive Generation
+- Prompt / In-context Learning
+- Chain-of-thought / Hallucination
+- AI Infrastructure
 - State-Space Model / Qwen3-Next
 - Discrete Diffusion Language Model
 - Scientific Foundation Model
+
+## 2차시 정리 기준
+
+- Transformer는 self-attention 기반 architecture로 설명하고, 모든 Transformer가 양방향이라고 쓰지 않는다.
+- Encoder self-attention은 문장 전체를 평균으로 압축하는 방식이 아니라 token별 context-aware representation을 만드는 과정으로 설명한다.
+- GPT는 decoder-only Transformer로 설명하고, prompt 처리는 encoder가 아니라 prefill 단계로 표현한다.
+- BERT output은 분류, QA, NLI, 감성 분석 같은 이해 task에 쓰이는 contextual representation으로 설명한다.
+- LPU는 NVIDIA 공식 대표 용어로 단정하지 않는다.
+- Qwen3-Next-80B는 강의자료 기준 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave하는 hybrid architecture로 정리한다.
 
 ## 제외할 내용
 

@@ -23,10 +23,25 @@
 - CNN: 이미지처럼 주변 구조가 중요한 데이터에서 local pattern을 찾는 데 강한 신경망 구조
 - RNN: 순서가 있는 데이터를 처리하기 위해 이전 상태를 다음 계산에 반영하는 신경망 구조
 
-## 2차시 예고 용어
+## 2차시 주요 용어
 
+- Token: 언어 모델이 처리하는 텍스트 단위
+- Embedding: token을 계산 가능한 vector representation으로 바꾼 표현
 - Transformer: Self-attention을 중심으로 token 간 관계를 계산하는 시퀀스 모델 구조
-- GPT: Decoder-only Transformer 기반 autoregressive language model 계열
+- Self-Attention: 같은 sequence 안의 token들이 서로를 참조해 관계를 계산하는 구조
+- BERT: Encoder-only Transformer 기반 language understanding model
+- GPT: Decoder-only Transformer 기반 autoregressive generation model
+- Prefill: prompt를 먼저 처리해 이후 token 생성을 위한 cache를 준비하는 단계
+- Decoding: 이전 token들을 조건으로 다음 token을 하나씩 생성하는 단계
+- Autoregressive Generation: 이미 생성된 token을 조건으로 다음 token을 순차 생성하는 방식
+- Prompt: 모델이 어떤 맥락에서 어떤 출력을 생성할지 결정하는 입력
+- In-context Learning: prompt 안의 예시와 문맥으로 문제 의도를 추정하는 방식
+- Chain-of-thought: 바로 답을 내기보다 중간 추론 단계를 거치게 하는 방식
+- Hallucination: 자연스럽지만 사실과 다른 내용을 생성하는 현상
+- AI Infrastructure: LLM 실행을 위한 GPU, CPU, 메모리, 네트워크, 데이터센터 등 운영 기반
+- State-Space Model: self-attention 비용 문제를 줄이려는 대안 시퀀스 모델 계열
 - Masked Self-Attention: 현재 token이 미래 token을 보지 못하도록 가리는 attention 구조
-- Qwen3-Next: Gated DeltaNet과 masked self-attention을 섞는 hybrid 구조
 - Gated DeltaNet: 긴 token 의존성과 효율성을 다루기 위한 sequence modeling 구조
+- Qwen3-Next: 강의자료 기준 Gated DeltaNet과 masked self-attention을 3:1 비율로 섞는 hybrid 구조
+- Discrete Diffusion Language Model: token sequence 같은 이산 데이터 생성을 diffusion 관점으로 다루려는 언어 모델 계열
+- Scientific Foundation Model: PDE 해, 시뮬레이션, 관측 데이터 등 과학·공학 데이터를 중심으로 하는 foundation model 흐름

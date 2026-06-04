@@ -325,7 +325,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['recurrent neural network'],
     description:
       '순서가 있는 데이터를 처리하기 위해 이전 상태를 다음 계산에 반영하는 신경망 구조.',
-    sessionIds: ['01'],
+    sessionIds: ['01', '02'],
   },
   {
     term: 'Language Model',
@@ -333,21 +333,59 @@ export const glossary: GlossaryEntry[] = [
     category: '모델',
     aliases: ['language model'],
     description:
-      'token sequence의 확률을 모델링하는 모델. 1차시에서는 순서 데이터 예시 수준으로만 다룬다.',
-    sessionIds: ['01'],
+      'token sequence의 확률을 모델링하는 모델. 2차시에서는 BERT와 GPT 같은 LLM 구조로 확장해 다룬다.',
+    sessionIds: ['01', '02'],
+  },
+  {
+    term: 'Token',
+    korean: '토큰',
+    category: '핵심 요소',
+    aliases: ['token'],
+    description:
+      '언어 모델이 처리하는 텍스트 단위. 단어 하나와 항상 일치하지 않으며 subword 단위로 나뉠 수 있다.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'Embedding',
+    korean: '임베딩',
+    category: '핵심 요소',
+    aliases: ['embedding'],
+    description:
+      'token을 모델이 계산할 수 있는 vector representation으로 바꾸는 표현.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'Prompt',
+    korean: '프롬프트',
+    category: '핵심 요소',
+    aliases: ['prompt'],
+    description:
+      'LLM이 어떤 맥락에서 어떤 출력을 생성할지 결정하는 입력 문맥.',
+    sessionIds: ['02'],
   },
   {
     term: 'Transformer',
     korean: '트랜스포머',
     category: '아키텍처',
+    aliases: ['transformer'],
     description:
       'Self-attention을 중심으로 token 간 관계를 계산하는 시퀀스 모델 구조. 현대 LLM의 핵심 기반이다.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'BERT',
+    korean: '버트',
+    category: '모델',
+    aliases: ['bert'],
+    description:
+      'Encoder-only Transformer 기반 language understanding model. 문맥이 반영된 token representation을 만들어 분류, QA, NLI, 감성 분석 같은 이해 task에 사용한다.',
     sessionIds: ['02'],
   },
   {
     term: 'GPT',
     korean: '생성형 사전학습 트랜스포머',
     category: '모델',
+    aliases: ['gpt'],
     description:
       'Decoder-only Transformer 기반 모델. 이전 token들을 조건으로 다음 token을 예측하는 autoregressive 방식으로 학습한다.',
     sessionIds: ['02'],
@@ -356,6 +394,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Self-Attention',
     korean: '셀프 어텐션',
     category: '아키텍처',
+    aliases: ['self-attention'],
     description:
       '한 sequence 안의 token들이 서로를 참조해 관계를 계산하는 구조.',
     sessionIds: ['02'],
@@ -364,6 +403,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Masked Self-Attention',
     korean: '마스크드 셀프 어텐션',
     category: '아키텍처',
+    aliases: ['masked self-attention'],
     description:
       '현재 token이 미래 token을 보지 못하도록 가린 self-attention. GPT류 autoregressive model에서 사용된다.',
     sessionIds: ['02'],
@@ -372,14 +412,25 @@ export const glossary: GlossaryEntry[] = [
     term: 'Autoregressive Model',
     korean: '자기회귀 모델',
     category: '모델',
+    aliases: ['autoregressive model'],
     description:
       '이전 출력을 조건으로 다음 출력을 순차적으로 예측하는 모델.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'Autoregressive Generation',
+    korean: '자기회귀 생성',
+    category: '기법',
+    aliases: ['autoregressive generation'],
+    description:
+      '이전 token들을 조건으로 다음 token을 하나씩 생성하는 방식. GPT류 모델의 decoding 과정과 연결된다.',
     sessionIds: ['02'],
   },
   {
     term: 'Next Token Prediction',
     korean: '다음 토큰 예측',
     category: '태스크',
+    aliases: ['next token prediction'],
     description:
       '이전 token들을 보고 다음 token의 확률분포를 맞히는 language model 학습 task.',
     sessionIds: ['02'],
@@ -388,22 +439,79 @@ export const glossary: GlossaryEntry[] = [
     term: 'Cross Entropy',
     korean: '교차 엔트로피',
     category: '학습 과정',
+    aliases: ['cross entropy'],
     description:
       '분류 또는 다음 token 예측에서 예측 분포와 정답 분포의 차이를 측정하는 대표 loss.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'Prefill',
+    korean: '프리필',
+    category: '학습 과정',
+    aliases: ['prefill'],
+    description:
+      'GPT류 모델에서 사용자의 prompt를 먼저 처리해 이후 token 생성을 위한 cache를 준비하는 단계.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'Decoding',
+    korean: '디코딩',
+    category: '학습 과정',
+    aliases: ['decoding'],
+    description:
+      '이전 token들을 조건으로 다음 token을 하나씩 생성하는 단계.',
     sessionIds: ['02'],
   },
   {
     term: 'KV Cache',
     korean: '키-값 캐시',
     category: '핵심 요소',
+    aliases: ['KV cache', 'kv cache'],
     description:
       'Transformer 추론에서 이전 token의 key/value를 저장해 반복 계산을 줄이는 기법.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'In-context Learning',
+    korean: '문맥 내 학습',
+    category: '기법',
+    aliases: ['in-context learning'],
+    description:
+      'prompt 안의 예시와 문맥을 보고 별도 parameter 업데이트 없이 문제 의도나 latent concept을 추정해 답하는 방식.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'Chain-of-thought',
+    korean: '사고 과정',
+    category: '기법',
+    aliases: ['chain-of-thought', 'CoT'],
+    description:
+      '모델이 바로 답을 내기보다 중간 추론 단계를 거치게 하는 prompting 또는 추론 방식.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'Hallucination',
+    korean: '환각',
+    category: '개념',
+    aliases: ['hallucination'],
+    description:
+      '언어 모델이 자연스럽지만 사실과 다른 내용을 생성하는 현상.',
+    sessionIds: ['02'],
+  },
+  {
+    term: 'AI Infrastructure',
+    korean: 'AI 인프라',
+    category: '개념',
+    aliases: ['AI infrastructure'],
+    description:
+      'LLM 서비스를 운영하기 위해 필요한 GPU, CPU, 메모리, 네트워크, 서버 랙, 데이터센터, latency 최적화까지 포함하는 실행 기반.',
     sessionIds: ['02'],
   },
   {
     term: 'State-Space Model',
     korean: '상태공간모델',
     category: '아키텍처',
+    aliases: ['state-space model', 'SSM'],
     description:
       '시퀀스 데이터를 상태 전이 관점에서 모델링하는 구조. Transformer의 긴 sequence 비용 문제를 보완하려는 대안 계열 중 하나다.',
     sessionIds: ['02'],
@@ -412,6 +520,7 @@ export const glossary: GlossaryEntry[] = [
     term: 'Gated DeltaNet',
     korean: '게이트드 델타넷',
     category: '아키텍처',
+    aliases: ['gated deltanet'],
     description:
       '긴 token 의존성과 효율성을 다루기 위한 sequence modeling 구조. Qwen3-Next에서는 masked self-attention과 함께 사용되는 것으로 소개된다.',
     sessionIds: ['02'],
@@ -420,14 +529,16 @@ export const glossary: GlossaryEntry[] = [
     term: 'Qwen3-Next',
     korean: 'Qwen3-Next',
     category: '모델',
+    aliases: ['qwen3-next'],
     description:
-      'Gated DeltaNet과 masked self-attention을 섞는 hybrid 구조를 사용한다. 긴 문맥 효율성과 정밀한 token interaction을 함께 노리는 접근으로 이해할 수 있다.',
+      '강의자료 기준 Gated DeltaNet과 masked self-attention을 3:1 비율로 섞는 hybrid architecture. 긴 문맥 효율성과 정밀한 token interaction의 균형을 노린다.',
     sessionIds: ['02'],
   },
   {
     term: 'Hybrid Architecture',
     korean: '하이브리드 아키텍처',
     category: '아키텍처',
+    aliases: ['hybrid architecture'],
     description:
       '하나의 모델 안에서 서로 다른 장점을 가진 구조를 섞는 접근. Qwen3-Next에서는 효율적인 sequence module과 attention을 혼합하는 방향으로 볼 수 있다.',
     sessionIds: ['02'],
@@ -436,16 +547,18 @@ export const glossary: GlossaryEntry[] = [
     term: 'Discrete Diffusion Language Model',
     korean: '이산 확산 언어 모델',
     category: '모델',
+    aliases: ['discrete diffusion language model', 'D3PM'],
     description:
-      '연속 이미지 확산 모델의 관점을 token sequence 같은 이산 데이터 생성 문제로 확장하려는 언어 모델 계열.',
+      '연속 이미지 확산 모델의 관점을 token sequence 같은 이산 데이터 생성 문제로 확장하려는 언어 모델 계열. BERT식 mask 복원 관점과도 연결해 볼 수 있다.',
     sessionIds: ['02'],
   },
   {
     term: 'Scientific Foundation Model',
     korean: '과학 파운데이션 모델',
     category: '모델',
+    aliases: ['scientific foundation model', 'SFM'],
     description:
-      '과학 데이터와 문제를 폭넓게 다루기 위해 사전학습되는 foundation model 계열. 이후 차시에서 확장될 수 있는 예정 용어다.',
+      'LLM의 foundation model 개념을 과학·공학 문제에 적용하려는 흐름. PDE 해, 시뮬레이션, 관측 데이터 등을 바탕으로 forward/inverse problem을 다루려 한다.',
     sessionIds: ['02'],
   },
 ];
