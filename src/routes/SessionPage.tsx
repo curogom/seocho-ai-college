@@ -167,16 +167,24 @@ export function SessionPage() {
                       ))}
                     </ul>
                     {assignment.example?.length ? (
-                      <div className="mt-4 border-l-4 border-gold bg-paper px-4 py-3">
-                        <p className="text-xs font-semibold text-rust">예시 답변 방향</p>
-                        <ul className="mt-2 space-y-1 text-sm leading-6 text-ink/75">
+                      <details className="group mt-4 rounded-md border border-line bg-paper">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-ink marker:hidden">
+                          <span>모범답안 보기</span>
+                          <span className="grid size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open:hidden">
+                            +
+                          </span>
+                          <span className="hidden size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open:grid">
+                            -
+                          </span>
+                        </summary>
+                        <ul className="border-t border-line px-4 py-3 space-y-2 text-sm leading-6 text-ink/75">
                           {assignment.example.map((item) => (
                             <li key={item}>
                               <GlossaryInlineText text={item} />
                             </li>
                           ))}
                         </ul>
-                      </div>
+                      </details>
                     ) : null}
                   </article>
                 ))}
