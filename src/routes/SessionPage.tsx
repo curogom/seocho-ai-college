@@ -44,6 +44,9 @@ export function SessionPage() {
     const previewHeading =
       session.preview?.heading ?? '아직 수업이 진행되지 않았습니다.';
     const hasPrestudyAssignments = !!session.preview?.assignments?.length;
+    const latestPublishedSession = sessions
+      .filter((item) => item.status === 'published')
+      .sort((left, right) => right.order - left.order)[0];
 
     return (
       <>
@@ -122,9 +125,15 @@ export function SessionPage() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   className="inline-flex rounded-md bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:bg-moss"
-                  to="/sessions/02"
+                  to={
+                    latestPublishedSession
+                      ? `/sessions/${latestPublishedSession.id}`
+                      : '/sessions'
+                  }
                 >
-                  2차시로 돌아가기
+                  {latestPublishedSession
+                    ? `${latestPublishedSession.order}차시로 돌아가기`
+                    : '전체 차시 보기'}
                 </Link>
                 <Link
                   className="inline-flex rounded-md border border-line px-4 py-2 text-sm font-semibold text-ink transition hover:border-moss hover:bg-paper"
