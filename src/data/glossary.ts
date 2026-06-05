@@ -561,4 +561,193 @@ export const glossary: GlossaryEntry[] = [
       'LLM의 foundation model 개념을 과학·공학 문제에 적용하려는 흐름. PDE 해, 시뮬레이션, 관측 데이터 등을 바탕으로 forward/inverse problem을 다루려 한다.',
     sessionIds: ['02'],
   },
+  {
+    term: 'Graph',
+    korean: '그래프',
+    category: '개념',
+    aliases: ['graph'],
+    description:
+      '개체를 node로, 개체 간 관계를 edge로 표현하는 데이터 구조.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Node',
+    korean: '노드',
+    category: '핵심 요소',
+    aliases: ['node'],
+    description:
+      '그래프에서 개체를 나타내는 단위. 사람, 장소, 상품, 문서, 매장 등이 node가 될 수 있다.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Edge',
+    korean: '엣지',
+    category: '핵심 요소',
+    aliases: ['edge'],
+    description:
+      '그래프에서 node와 node 사이의 연결 또는 관계를 나타내는 단위.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Relation',
+    korean: '관계 타입',
+    category: '핵심 요소',
+    aliases: ['relation'],
+    description:
+      'Edge가 어떤 의미의 연결인지 나타내는 타입. purchased, visited, connected_to 같은 관계명이 될 수 있다.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Graph Embedding',
+    korean: '그래프 임베딩',
+    category: '기법',
+    aliases: ['graph embedding'],
+    description:
+      'Graph의 구조 정보를 보존하면서 node, edge, subgraph, whole graph를 vector representation으로 변환하는 방법.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Node Embedding',
+    korean: '노드 임베딩',
+    category: '기법',
+    aliases: ['node embedding'],
+    description:
+      '각 node를 vector로 표현하는 방법. 비슷한 node가 embedding space에서도 가까워지도록 학습한다.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Edge Embedding',
+    korean: '엣지 임베딩',
+    category: '기법',
+    aliases: ['edge embedding'],
+    description:
+      'Node 사이의 연결 또는 relation 자체를 vector representation으로 표현하는 방법.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Subgraph Embedding',
+    korean: '부분 그래프 임베딩',
+    category: '기법',
+    aliases: ['subgraph embedding'],
+    description:
+      'Graph의 일부 구조를 하나의 vector representation으로 표현하는 방법.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Whole-Graph Embedding',
+    korean: '전체 그래프 임베딩',
+    category: '기법',
+    aliases: ['whole-graph embedding', 'whole graph embedding'],
+    description:
+      'Graph 전체를 하나의 vector representation으로 표현하는 방법.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Graph Representation Learning',
+    korean: '그래프 표현 학습',
+    category: '기법',
+    aliases: ['graph representation learning'],
+    description:
+      'Graph의 node, edge, relation, structure 정보를 downstream task에 유용한 representation으로 학습하는 접근.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Graph Neural Network',
+    korean: '그래프 신경망',
+    category: '모델',
+    aliases: ['GNN', 'graph neural network'],
+    description:
+      'Graph 위에서 동작하는 neural network. Node가 neighbor 정보를 모아 자신의 representation을 업데이트한다.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Graph Convolutional Network',
+    korean: '그래프 합성곱 신경망',
+    category: '모델',
+    aliases: ['GCN', 'graph convolutional network'],
+    description:
+      'Graph 구조에서 neighbor 정보를 집계해 node representation을 업데이트하는 GNN 계열 모델.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Message Passing',
+    korean: '메시지 패싱',
+    category: '기법',
+    aliases: ['message passing'],
+    description:
+      'GNN에서 node들이 edge를 따라 서로 정보를 주고받는 과정.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Neighborhood Aggregation',
+    korean: '이웃 집계',
+    category: '기법',
+    aliases: ['neighborhood aggregation'],
+    description:
+      'Target node 주변 neighbor들의 정보를 모아 node representation을 업데이트하는 과정.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Computation Graph',
+    korean: '계산 그래프',
+    category: '개념',
+    aliases: ['computation graph'],
+    description:
+      'Target node의 representation을 계산하기 위해 필요한 neighbor와 연산 의존 관계를 펼쳐 놓은 구조.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'k-hop Neighbor',
+    korean: 'k-hop 이웃',
+    category: '개념',
+    aliases: ['k-hop neighbor', 'k-hop'],
+    description:
+      'Graph에서 k개의 edge를 거쳐 도달할 수 있는 node.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Node Classification',
+    korean: '노드 분류',
+    category: '태스크',
+    aliases: ['node classification'],
+    description:
+      'Graph 안의 개별 node가 어떤 class에 속하는지 예측하는 task.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Link Prediction',
+    korean: '링크 예측',
+    category: '태스크',
+    aliases: ['link prediction'],
+    description:
+      '두 node 사이에 edge가 존재할 가능성이나 relation을 예측하는 task.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Graph Classification',
+    korean: '그래프 분류',
+    category: '태스크',
+    aliases: ['graph classification'],
+    description:
+      'Graph 전체가 어떤 class에 속하는지 예측하는 task.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Homophily',
+    korean: '동질성',
+    category: '개념',
+    aliases: ['homophily'],
+    description:
+      'Graph에서 서로 연결된 node들이 비슷한 속성이나 label을 갖는 경향.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Heterophily',
+    korean: '이질성',
+    category: '개념',
+    aliases: ['heterophily'],
+    description:
+      'Graph에서 서로 연결된 node들이 서로 다른 속성이나 label을 갖는 경향.',
+    sessionIds: ['03'],
+  },
 ];

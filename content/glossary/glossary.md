@@ -45,3 +45,21 @@
 - Qwen3-Next: 강의자료 기준 Gated DeltaNet과 masked self-attention을 3:1 비율로 섞는 hybrid 구조
 - Discrete Diffusion Language Model: token sequence 같은 이산 데이터 생성을 diffusion 관점으로 다루려는 언어 모델 계열
 - Scientific Foundation Model: PDE 해, 시뮬레이션, 관측 데이터 등 과학·공학 데이터를 중심으로 하는 foundation model 흐름
+
+## 3차시 예습 용어
+
+- Graph: 개체를 node로, 개체 간 관계를 edge로 표현하는 데이터 구조
+- Node: graph에서 개체를 나타내는 단위
+- Edge: graph에서 node와 node 사이의 연결 또는 관계
+- Relation: edge가 어떤 의미의 연결인지 나타내는 타입
+- Graph Embedding: graph 구조 정보를 보존하면서 vector representation으로 변환하는 방법
+- Node Embedding: 개별 node를 vector로 표현하는 방법
+- Edge Embedding: node 사이의 연결 또는 relation을 vector로 표현하는 방법
+- Subgraph Embedding: graph의 일부 구조를 vector로 표현하는 방법
+- Whole-Graph Embedding: graph 전체를 하나의 vector로 표현하는 방법
+- Graph Neural Network: graph 위에서 neighbor 정보를 모아 node representation을 업데이트하는 neural network
+- Message Passing: GNN에서 node들이 edge를 따라 정보를 주고받는 과정
+- Neighborhood Aggregation: target node 주변 neighbor 정보를 모으는 과정
+- k-hop Neighbor: k개의 edge를 거쳐 도달할 수 있는 node
+- Homophily: 연결된 node들이 비슷한 속성이나 label을 갖는 경향
+- Heterophily: 연결된 node들이 서로 다른 속성이나 label을 갖는 경향

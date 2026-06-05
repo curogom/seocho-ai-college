@@ -46,6 +46,27 @@ describe('learning content', () => {
     }
   });
 
+  it('keeps session 03 graph ML terms in the glossary', () => {
+    const terms = new Set(glossary.map((entry) => entry.term));
+
+    for (const term of [
+      'Graph',
+      'Node',
+      'Edge',
+      'Relation',
+      'Graph Embedding',
+      'Node Embedding',
+      'Graph Neural Network',
+      'Message Passing',
+      'Neighborhood Aggregation',
+      'k-hop Neighbor',
+      'Homophily',
+      'Heterophily',
+    ]) {
+      expect(terms.has(term)).toBe(true);
+    }
+  });
+
   it('keeps model core elements in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
@@ -157,6 +178,31 @@ describe('learning content', () => {
     expect(session?.modelNotes.length).toBeGreaterThan(0);
     expect(session?.quizIds).toHaveLength(5);
     expect(session?.preview).toBeUndefined();
-    expect(session?.nextPreview?.title).toBe('3차시 예습 준비');
+    expect(session?.nextPreview?.title).toBe('Graph Machine Learning');
+  });
+
+  it('adds session 03 graph ML as pre-study content', () => {
+    const session = getSessionById('03');
+    const prestudy = readFileSync(
+      'content/prestudy/03-graph-ml-prestudy.md',
+      'utf8',
+    );
+
+    expect(session?.status).toBe('planned');
+    expect(session?.title).toBe('Graph Machine Learning');
+    expect(session?.instructor?.name).toBe('황지영');
+    expect(session?.instructor?.englishName).toBe('Joyce Jiyoung Whang');
+    expect(session?.preview?.label).toBe('수업 전 예습');
+    expect(session?.preview?.assignments).toHaveLength(6);
+    expect(session?.preview?.questions).toHaveLength(10);
+    expect(session?.preview?.focusQuestions).toHaveLength(8);
+    expect(session?.preview?.excludedTopics).toContain('DRAG');
+    expect(session?.preview?.excludedTopics).toContain('Knowledge Graph');
+    expect(session?.preview?.resourcePath).toBe(
+      'content/prestudy/03-graph-ml-prestudy.md',
+    );
+    expect(prestudy).toContain('과제 6. Message Passing / Neighborhood Aggregation');
+    expect(prestudy).toContain('DRAG');
+    expect(prestudy).toContain('이번 예습 과제에서는 아래 항목을 깊게 다루지 않는다');
   });
 });

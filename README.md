@@ -14,7 +14,13 @@
 |---:|---|---|
 | 01 | From Machine Learning to Deep Learning | Published |
 | 02 | Large Language Models | Published |
-| 03 | 3차시 예습 준비 | Planned |
+| 03 | Graph Machine Learning | Planned |
+
+## Pre-study
+
+| Session | Topic | File |
+|---:|---|---|
+| 03 | Graph Machine Learning | `content/prestudy/03-graph-ml-prestudy.md` |
 
 ## Core Features
 

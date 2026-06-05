@@ -6,6 +6,7 @@ export type Instructor = {
   title?: string;
   affiliationKo: string;
   affiliationEn?: string;
+  lab?: string;
 };
 
 export type ConceptCard = {
@@ -42,9 +43,21 @@ export type NextPreview = {
 };
 
 export type SessionPreview = {
+  label?: string;
+  heading?: string;
   summary: string;
   keyPoints: string[];
   questions: string[];
+  resourcePath?: string;
+  assignments?: {
+    title: string;
+    goal: string;
+    body: string;
+    prompts: string[];
+    example?: string[];
+  }[];
+  focusQuestions?: string[];
+  excludedTopics?: string[];
 };
 
 export type Session = {
@@ -459,30 +472,38 @@ export const sessions: Session[] = [
       'Scientific Foundation Model 개념은 실내 공간 상태 예측이나 시뮬레이션 기반 planning과 연결될 수 있다.',
     ],
     nextPreview: {
-      title: '3차시 예습 준비',
+      title: 'Graph Machine Learning',
       summary:
-        '3차시 세부 주제를 읽기 전에 2차시의 LLM 구조, inference 단계, 긴 문맥 비용 문제를 먼저 복습한다.',
+        '3차시에서는 관계 데이터를 graph로 표현하고, graph embedding과 GNN을 통해 node representation을 학습하는 흐름을 다룬다.',
       questions: [
-        'BERT와 GPT의 구조 차이를 한 문장으로 설명할 수 있는가?',
-        'GPT의 prefill과 decoding이 각각 어디에서 비용을 만드는가?',
-        '긴 context에서 self-attention 비용을 줄이려는 대안 구조는 왜 필요한가?',
+        'Node, edge, relation은 각각 무엇인가?',
+        'Graph embedding과 node embedding은 무엇이 다른가?',
+        'GNN은 왜 target node의 neighbor 정보를 함께 보는가?',
       ],
       keyPoints: [
-        'Encoder-only와 decoder-only의 차이를 먼저 정리한다.',
-        'Prompt, KV cache, autoregressive decoding의 관계를 연결한다.',
-        'State-Space Model과 Qwen3-Next는 attention 비용 문제의 연장선에서 본다.',
+        'Graph는 node, edge, relation, structure로 관계 데이터를 표현한다.',
+        'Embedding은 graph 구조를 vector representation으로 바꾸는 과정이다.',
+        'Message passing은 neighbor 정보를 모아 node representation을 업데이트한다.',
       ],
     },
   },
   {
     id: '03',
     order: 3,
-    title: '3차시 예습 준비',
-    koreanTitle: '다음 차시 사전 점검',
-    subtitle: '2차시 LLM 구조를 다음 주제로 연결하기 전 복습 체크',
+    title: 'Graph Machine Learning',
+    koreanTitle: '그래프 기계학습',
+    subtitle: 'Graph, Embedding, GNN, Message Passing',
     status: 'planned',
+    instructor: {
+      name: '황지영',
+      englishName: 'Joyce Jiyoung Whang',
+      title: 'Professor',
+      affiliationKo: 'KAIST AI 컴퓨팅학과',
+      affiliationEn: 'KAIST Department of AI Computing',
+      lab: 'Big Data Intelligence Lab',
+    },
     summary:
-      '3차시 세부 자료를 읽기 전에 2차시의 핵심 구조와 용어를 먼저 점검한다.',
+      '3차시는 관계 데이터를 graph로 표현하고, graph embedding과 GNN을 통해 node와 graph representation을 학습하는 흐름을 다룬다.',
     summaryLines: [],
     coreFlow: [],
     coreFlowGroups: [],
@@ -494,17 +515,153 @@ export const sessions: Session[] = [
     reflectionQuestions: [],
     projectConnections: [],
     preview: {
+      label: '수업 전 예습',
+      heading: 'Graph Machine Learning 예습 과제',
       summary:
-        '3차시 예습에서는 2차시에서 다룬 LLM 구조, prefill/decoding, attention 비용, Qwen3-Next 흐름을 먼저 점검한다.',
+        '이번 예습의 목표는 GNN이 node 자신의 feature뿐 아니라 연결된 neighbor 정보까지 함께 보고 판단하는 모델이라는 관점을 이해하는 것이다.',
+      resourcePath: 'content/prestudy/03-graph-ml-prestudy.md',
       keyPoints: [
-        'BERT와 GPT의 차이를 encoder-only와 decoder-only 관점에서 복습한다.',
-        'Prefill, KV cache, decoding, autoregressive generation의 연결을 확인한다.',
-        'State-Space Model, Qwen3-Next, Scientific Foundation Model이 왜 2차시 후반에 이어졌는지 정리한다.',
+        'Graph = Node + Edge',
+        'Node / Edge / Relation',
+        'Graph Embedding',
+        'Node Embedding',
+        'GNN',
+        'Message Passing / Neighborhood Aggregation',
       ],
       questions: [
-        '다음 차시에서 새 개념이 나올 때 어떤 2차시 용어와 연결되는가?',
-        '긴 context 처리 비용은 제품 설계에서 어떤 제약으로 나타나는가?',
-        'LLM을 서비스에 붙일 때 모델 구조와 infrastructure를 함께 봐야 하는 이유는 무엇인가?',
+        'Graph에서 node와 edge는 각각 무엇인가?',
+        'Relation은 edge와 어떻게 다른가?',
+        'Graph embedding이 필요한 이유는 무엇인가?',
+        'Node embedding에서 비슷한 node는 embedding space에서도 가까워야 한다는 말은 무엇인가?',
+        'GNN은 왜 neighbor 정보를 사용하는가?',
+        'Message passing과 neighborhood aggregation은 어떤 관계인가?',
+        'k-hop neighbor는 무엇인가?',
+        '실내 내비게이션을 graph로 표현하면 node와 edge는 무엇이 될 수 있는가?',
+        'GNN layer가 깊어질수록 더 먼 정보를 볼 수 있다는 말은 무슨 뜻인가?',
+        '너무 먼 hop까지 정보를 섞으면 어떤 문제가 생길 수 있는가?',
+      ],
+      assignments: [
+        {
+          title: '과제 1. Graph = Node + Edge',
+          goal: '그래프가 무엇인지 이해한다.',
+          body:
+            'Graph는 객체와 객체 간 관계를 표현하는 데이터 구조다. Node는 개체이고, edge는 개체 간 연결 또는 관계다.',
+          prompts: [
+            '실내 내비게이션의 node와 edge를 정의한다.',
+            '쇼핑몰 추천 시스템의 node와 edge를 정의한다.',
+            '보험사기 탐지의 node와 edge를 정의한다.',
+          ],
+          example: [
+            '실내 내비게이션에서 node는 출입구, 복도, 매장, 계단, 엘리베이터, 화장실이 될 수 있다.',
+            'edge는 이동 가능한 경로, 같은 층에 있음, 가까이 있음, 휠체어 접근 가능 같은 관계가 될 수 있다.',
+            '실내 공간은 좌표보다 이동 가능 관계가 중요하므로 graph 표현이 자연스럽다.',
+          ],
+        },
+        {
+          title: '과제 2. Node / Edge / Relation',
+          goal: 'Node, edge, relation의 차이를 이해한다.',
+          body:
+            'Node는 개체이고 edge는 개체 간 연결이다. Relation은 edge가 어떤 의미의 연결인지 나타내는 타입이다.',
+          prompts: [
+            '실내 내비게이션 relation type을 5개 이상 정의한다.',
+            '각 relation이 왜 필요한지 한 줄로 설명한다.',
+            'connected_to, same_floor_as, nearby 같은 관계를 구분한다.',
+          ],
+          example: [
+            'connected_to는 두 장소 사이에 실제 이동 가능한 경로가 있는지 나타낸다.',
+            'accessible_by_wheelchair는 휠체어 접근 가능 경로인지 나타낸다.',
+            'requires_vertical_movement는 계단이나 엘리베이터처럼 층 이동이 필요한 관계를 나타낸다.',
+          ],
+        },
+        {
+          title: '과제 3. Graph Embedding',
+          goal: 'Graph embedding이 왜 필요한지 이해한다.',
+          body:
+            'Graph embedding은 graph의 구조 정보를 최대한 보존하면서 node, edge, subgraph, whole graph를 vector space로 바꾸는 것이다.',
+          prompts: [
+            '왜 graph를 vector로 바꿔야 하는가?',
+            'Node embedding과 whole-graph embedding은 무엇이 다른가?',
+            '실내 내비게이션 node embedding에는 어떤 정보가 반영되어야 하는가?',
+          ],
+          example: [
+            'ML/DL 모델은 숫자 vector를 입력으로 다루기 쉽기 때문에 graph 구조를 representation으로 바꿔야 한다.',
+            'Node embedding은 특정 매장 하나를 표현하고, whole-graph embedding은 쇼핑몰 전체 구조를 표현할 수 있다.',
+            '위치, 층, 장소 타입, 주변 장소, 이동 가능 경로, 혼잡도, 접근성, 방문 빈도가 반영될 수 있다.',
+          ],
+        },
+        {
+          title: '과제 4. Node Embedding',
+          goal: 'Node embedding의 목적을 이해한다.',
+          body:
+            'Node embedding은 각 node를 vector로 표현하는 것이다. 원래 graph에서 비슷한 node는 embedding space에서도 가깝게 위치해야 한다.',
+          prompts: [
+            '같은 층에 있는 엘리베이터와 계단은 가까워야 하는가?',
+            '같은 브랜드의 매장 두 개는 가까워야 하는가?',
+            '물리적으로 멀지만 같은 카테고리의 매장 두 개는 가까워야 하는가?',
+          ],
+          example: [
+            '같은 층의 엘리베이터와 계단은 vertical movement node라는 점에서 가까울 수 있다.',
+            '같은 브랜드 매장은 추천 task에서는 가까울 수 있지만 내비게이션 task에서는 멀 수 있다.',
+            'Embedding의 거리는 어떤 task를 위한 representation인지에 따라 달라진다.',
+          ],
+        },
+        {
+          title: '과제 5. GNN',
+          goal: 'GNN이 왜 필요한지 이해한다.',
+          body:
+            'GNN은 graph 위에서 동작하는 neural network다. Target node의 feature와 neighbor node들의 정보를 함께 사용해 node representation을 업데이트한다.',
+          prompts: [
+            '보험사기 탐지에서 graph가 왜 유용한지 설명한다.',
+            '가짜 리뷰 탐지에서 단일 feature table이 부족한 이유를 설명한다.',
+            '실내 혼잡도 예측과 쇼핑몰 개인화 추천을 graph 관점으로 설명한다.',
+          ],
+          example: [
+            '보험사기 탐지는 환자, 병원, 설계사, 청구 건 사이의 반복 연결 패턴을 봐야 한다.',
+            '가짜 리뷰 탐지는 리뷰 문장만이 아니라 사용자, 상품, 시점의 연결 패턴을 함께 봐야 한다.',
+            '실내 혼잡도는 연결된 복도, 입구, 엘리베이터, 이벤트 공간의 영향을 함께 볼 수 있다.',
+          ],
+        },
+        {
+          title: '과제 6. Message Passing / Neighborhood Aggregation',
+          goal: 'GNN의 핵심 연산을 이해한다.',
+          body:
+            'Message passing은 node들이 edge를 따라 정보를 주고받는 과정이고, neighborhood aggregation은 target node 주변 neighbor 정보를 모으는 과정이다.',
+          prompts: [
+            '현재 위치 node의 1-hop neighbor를 정의한다.',
+            '2-hop neighbor 정보가 필요한 상황을 설명한다.',
+            '너무 먼 hop까지 섞으면 어떤 문제가 생기는지 설명한다.',
+          ],
+          example: [
+            '1-hop neighbor는 바로 이동 가능한 복도, 매장, 엘리베이터, 계단, 출입구가 될 수 있다.',
+            '2-hop neighbor는 한 번 경유해야 하는 목적지나 곧 혼잡 영향을 줄 공간을 볼 때 필요하다.',
+            '너무 먼 hop까지 섞으면 node별 특성이 흐려지는 over-smoothing 문제가 생길 수 있다.',
+          ],
+        },
+      ],
+      focusQuestions: [
+        '이 강의에서 graph embedding과 GNN을 어떻게 구분하는가?',
+        'Node embedding은 downstream task에 어떻게 연결되는가?',
+        'GNN에서 aggregation 방식은 mean, sum, attention 중 무엇을 쓰는가?',
+        'Graph layer가 깊어질수록 어떤 장점과 문제가 생기는가?',
+        'Fraud detection 사례에서는 왜 relation-aware GNN이 필요한가?',
+        'Homophily와 heterophily는 어떤 차이인가?',
+        '실내 내비게이션이나 혼잡도 예측에 적용한다면 graph를 어떻게 설계해야 하는가?',
+        'Graph ML이 기존 ML/DL과 가장 크게 다른 지점은 무엇인가?',
+      ],
+      excludedTopics: [
+        'DRAG',
+        'SpoT-Mamba',
+        'FinePrompt',
+        'Graph Adversarial Attack',
+        'Knowledge Graph',
+        'Knowledge Graph Embedding',
+        'TransE',
+        'MRR',
+        'Hit@N',
+        'Hyper-relational Knowledge Graph',
+        'Visual-Textual Knowledge Graph',
+        'Inductive Inference',
+        'Fact Generation',
       ],
     },
   },
