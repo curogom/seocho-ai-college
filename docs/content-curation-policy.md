@@ -35,6 +35,11 @@
 - State-Space Model / Qwen3-Next
 - Discrete Diffusion Language Model
 - Scientific Foundation Model
+- Graph / Node / Edge / Relation
+- Graph Embedding / Node Embedding
+- Graph Neural Network
+- Message Passing / Neighborhood Aggregation
+- k-hop Neighbor
 
 ## 2차시 정리 기준
 
@@ -44,6 +49,13 @@
 - BERT output은 분류, QA, NLI, 감성 분석 같은 이해 task에 쓰이는 contextual representation으로 설명한다.
 - LPU는 NVIDIA 공식 대표 용어로 단정하지 않는다.
 - Qwen3-Next-80B는 강의자료 기준 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave하는 hybrid architecture로 정리한다.
+
+## 3차시 예습 정리 기준
+
+- 예습 범위는 Graph, Node, Edge, Relation, Graph Embedding, Node Embedding, GNN, Message Passing, Neighborhood Aggregation으로 제한한다.
+- DRAG, SpoT-Mamba, FinePrompt, Knowledge Graph, Hyper-relational KG 계열은 예습 단계에서 깊게 다루지 않는다.
+- 실내 내비게이션, 보험사기 탐지, 추천 시스템 예시를 통해 graph 데이터 형태를 먼저 이해하도록 정리한다.
+- 수업 후 복습 노트와 예습 과제는 구분한다.
 
 ## 제외할 내용
 

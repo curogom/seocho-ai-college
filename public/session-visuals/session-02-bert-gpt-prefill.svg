@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">BERT and GPT architecture comparison</title>
+  <desc id="desc">A visual note comparing BERT as an encoder-only understanding model and GPT as a decoder-only generation model with prefill and decoding stages.</desc>
+  <rect width="1280" height="720" fill="#f8faf7"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="#ffffff" stroke="#d8ded4" stroke-width="2"/>
+
+  <text x="96" y="126" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#172026">BERT와 GPT의 구조 차이</text>
+  <text x="98" y="166" font-family="Arial, sans-serif" font-size="18" fill="#5d6861">같은 Transformer 계열이라도 attention mask와 사용 목적이 다르다</text>
+
+  <g transform="translate(96 220)">
+    <rect width="500" height="336" rx="16" fill="#f8faf7" stroke="#d8ded4" stroke-width="2"/>
+    <text x="30" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#3f6f5c">BERT</text>
+    <text x="30" y="82" font-family="Arial, sans-serif" font-size="17" fill="#172026">Encoder-only language understanding model</text>
+
+    <g transform="translate(44 126)">
+      <rect width="82" height="54" rx="8" fill="#dbeafe" stroke="#86a6c8" stroke-width="2"/>
+      <text x="41" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#172026">[CLS]</text>
+      <rect x="108" width="82" height="54" rx="8" fill="#dbeafe" stroke="#86a6c8" stroke-width="2"/>
+      <text x="149" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#172026">Token</text>
+      <rect x="216" width="82" height="54" rx="8" fill="#dbeafe" stroke="#86a6c8" stroke-width="2"/>
+      <text x="257" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#172026">Token</text>
+      <rect x="324" width="82" height="54" rx="8" fill="#dbeafe" stroke="#86a6c8" stroke-width="2"/>
+      <text x="365" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#172026">[SEP]</text>
+    </g>
+
+    <path d="M158 244 C236 198 350 198 438 244" fill="none" stroke="#3f6f5c" stroke-width="5" stroke-linecap="round"/>
+    <path d="M438 244 C350 290 236 290 158 244" fill="none" stroke="#3f6f5c" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="158" cy="244" r="7" fill="#3f6f5c"/>
+    <circle cx="438" cy="244" r="7" fill="#3f6f5c"/>
+
+    <rect x="64" y="276" width="372" height="40" rx="8" fill="#ffffff" stroke="#d8ded4" stroke-width="2"/>
+    <text x="250" y="302" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#172026">문맥이 반영된 token representation</text>
+  </g>
+
+  <g transform="translate(684 220)">
+    <rect width="500" height="336" rx="16" fill="#f8faf7" stroke="#d8ded4" stroke-width="2"/>
+    <text x="30" y="48" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#a75535">GPT</text>
+    <text x="30" y="82" font-family="Arial, sans-serif" font-size="17" fill="#172026">Decoder-only autoregressive generation model</text>
+
+    <g transform="translate(44 126)">
+      <rect width="88" height="54" rx="8" fill="#172026"/>
+      <text x="44" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#f8faf7">Prompt</text>
+      <path d="M104 27h58" stroke="#a75535" stroke-width="6" stroke-linecap="round"/>
+      <path d="M150 12l22 15-22 15" fill="none" stroke="#a75535" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="184" width="88" height="54" rx="8" fill="#fde7d8" stroke="#d59a77" stroke-width="2"/>
+      <text x="228" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#172026">Prefill</text>
+      <path d="M288 27h58" stroke="#a75535" stroke-width="6" stroke-linecap="round"/>
+      <path d="M334 12l22 15-22 15" fill="none" stroke="#a75535" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="368" width="88" height="54" rx="8" fill="#fde7d8" stroke="#d59a77" stroke-width="2"/>
+      <text x="412" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#172026">Decode</text>
+    </g>
+
+    <g transform="translate(76 224)">
+      <rect width="348" height="44" rx="8" fill="#ffffff" stroke="#d8ded4" stroke-width="2"/>
+      <text x="174" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#172026">next token을 하나씩 생성</text>
+      <path d="M106 70h136" stroke="#b68a2c" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 10"/>
+      <path d="M230 55l22 15-22 15" fill="none" stroke="#b68a2c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="174" y="112" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#5d6861">미래 token은 보지 않는다</text>
+    </g>
+  </g>
+
+  <g transform="translate(96 596)">
+    <rect width="1088" height="44" rx="8" fill="#172026"/>
+    <text x="28" y="29" font-family="Arial, sans-serif" font-size="18" fill="#f8faf7">BERT: 이해 task의 contextual representation / GPT: prefill 후 autoregressive decoding</text>
+  </g>
+</svg>

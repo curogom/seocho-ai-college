@@ -40,6 +40,14 @@ export function SessionPage() {
   }
 
   if (session.status !== 'published') {
+    const previewLabel = session.preview?.label ?? '차시 예고';
+    const previewHeading =
+      session.preview?.heading ?? '아직 수업이 진행되지 않았습니다.';
+    const hasPrestudyAssignments = !!session.preview?.assignments?.length;
+    const latestPublishedSession = sessions
+      .filter((item) => item.status === 'published')
+      .sort((left, right) => right.order - left.order)[0];
+
     return (
       <>
         <section className="border-b border-line bg-white">
@@ -60,69 +68,200 @@ export function SessionPage() {
         </section>
 
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-          <section className="rounded-md border border-line bg-white p-6 shadow-soft">
-            <span className="rounded-md bg-paper px-2.5 py-1 text-xs font-semibold text-rust">
-              차시 예고
-            </span>
-            <h2 className="mt-4 text-2xl font-semibold text-ink">
-              아직 수업이 진행되지 않았습니다.
-            </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-ink/70">
-              {session.preview?.summary ?? session.summary}
-            </p>
+          <div className="grid gap-5 lg:grid-cols-[1fr_320px]">
+            <section className="rounded-md border border-line bg-white p-6 shadow-soft">
+              <span className="rounded-md bg-paper px-2.5 py-1 text-xs font-semibold text-rust">
+                {previewLabel}
+              </span>
+              <h2 className="mt-4 text-2xl font-semibold text-ink">
+                {previewHeading}
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-ink/70">
+                <GlossaryInlineText text={session.preview?.summary ?? session.summary} />
+              </p>
+              {session.preview?.resourcePath && (
+                <p className="mt-3 text-xs font-medium text-ink/55">
+                  자료 위치: {session.preview.resourcePath}
+                </p>
+              )}
 
-            {session.preview?.keyPoints.length ? (
-              <div className="mt-6">
-                <h3 className="text-sm font-semibold text-ink">예고 포인트</h3>
-                <ul className="mt-3 grid gap-3 md:grid-cols-3">
-                  {session.preview.keyPoints.map((point) => (
-                    <li
-                      key={point}
-                      className="rounded-md border border-line bg-paper p-4 text-sm leading-6 text-ink/75"
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+              {session.preview?.keyPoints.length ? (
+                <div className="mt-6">
+                  <h3 className="text-sm font-semibold text-ink">예습 범위</h3>
+                  <ul className="mt-3 grid gap-3 md:grid-cols-3">
+                    {session.preview.keyPoints.map((point) => (
+                      <li
+                        key={point}
+                        className="rounded-md border border-line bg-paper p-4 text-sm leading-6 text-ink/75"
+                      >
+                        <GlossaryInlineText text={point} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              {session.preview?.questions.length && !hasPrestudyAssignments ? (
+                <div className="mt-6">
+                  <h3 className="text-sm font-semibold text-ink">
+                    다음 수업에서 확인할 질문
+                  </h3>
+                  <ol className="mt-3 grid gap-3 md:grid-cols-2">
+                    {session.preview.questions.map((question, index) => (
+                      <li
+                        key={question}
+                        className="rounded-md border border-line bg-paper p-4 text-sm leading-6 text-ink/75"
+                      >
+                        <span className="mb-2 block text-xs font-semibold text-rust">
+                          Q{index + 1}
+                        </span>
+                        <GlossaryInlineText text={question} />
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ) : null}
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  className="inline-flex rounded-md bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:bg-moss"
+                  to={
+                    latestPublishedSession
+                      ? `/sessions/${latestPublishedSession.id}`
+                      : '/sessions'
+                  }
+                >
+                  {latestPublishedSession
+                    ? `${latestPublishedSession.order}차시로 돌아가기`
+                    : '전체 차시 보기'}
+                </Link>
+                <Link
+                  className="inline-flex rounded-md border border-line px-4 py-2 text-sm font-semibold text-ink transition hover:border-moss hover:bg-paper"
+                  to="/sessions"
+                >
+                  전체 차시 보기
+                </Link>
               </div>
-            ) : null}
+            </section>
+            {session.instructor && <InstructorCard instructor={session.instructor} />}
+          </div>
 
-            {session.preview?.questions.length ? (
-              <div className="mt-6">
-                <h3 className="text-sm font-semibold text-ink">
-                  다음 수업에서 확인할 질문
-                </h3>
-                <ol className="mt-3 grid gap-3 md:grid-cols-2">
-                  {session.preview.questions.map((question, index) => (
-                    <li
-                      key={question}
-                      className="rounded-md border border-line bg-paper p-4 text-sm leading-6 text-ink/75"
-                    >
-                      <span className="mb-2 block text-xs font-semibold text-rust">
-                        Q{index + 1}
-                      </span>
-                      {question}
-                    </li>
-                  ))}
-                </ol>
+          {session.preview?.assignments?.length ? (
+            <Section
+              eyebrow="Pre-study"
+              title="예습 과제"
+              description="수업 전에 관계 데이터를 그래프로 바라보는 감각을 먼저 잡습니다."
+            >
+              <div className="grid gap-4">
+                {session.preview.assignments.map((assignment) => (
+                  <article
+                    key={assignment.title}
+                    className="rounded-md border border-line bg-white p-5"
+                  >
+                    <p className="text-sm font-semibold text-rust">{assignment.goal}</p>
+                    <h3 className="mt-2 text-xl font-semibold text-ink">
+                      {assignment.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-ink/70">
+                      <GlossaryInlineText text={assignment.body} />
+                    </p>
+                    <ul className="mt-4 grid gap-2 md:grid-cols-3">
+                      {assignment.prompts.map((prompt) => (
+                        <li
+                          key={prompt}
+                          className="rounded-md border border-line bg-paper p-3 text-sm leading-6 text-ink/75"
+                        >
+                          <GlossaryInlineText text={prompt} />
+                        </li>
+                      ))}
+                    </ul>
+                    {assignment.example?.length ? (
+                      <details className="group mt-4 rounded-md border border-line bg-paper">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-ink marker:hidden">
+                          <span>모범답안 보기</span>
+                          <span className="grid size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open:hidden">
+                            +
+                          </span>
+                          <span className="hidden size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open:grid">
+                            -
+                          </span>
+                        </summary>
+                        <ul className="border-t border-line px-4 py-3 space-y-2 text-sm leading-6 text-ink/75">
+                          {assignment.example.map((item) => (
+                            <li key={item}>
+                              <GlossaryInlineText text={item} />
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ) : null}
+                  </article>
+                ))}
               </div>
-            ) : null}
+            </Section>
+          ) : null}
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                className="inline-flex rounded-md bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:bg-moss"
-                to="/sessions/01"
-              >
-                1차시로 돌아가기
-              </Link>
-              <Link
-                className="inline-flex rounded-md border border-line px-4 py-2 text-sm font-semibold text-ink transition hover:border-moss hover:bg-paper"
-                to="/sessions"
-              >
-                전체 차시 보기
-              </Link>
-            </div>
-          </section>
+          {hasPrestudyAssignments && session.preview?.questions.length ? (
+            <Section
+              eyebrow="Check"
+              title="최종 점검 퀴즈"
+              description="예습 과제를 끝낸 뒤 스스로 설명할 수 있는지 확인합니다."
+            >
+              <ol className="grid gap-3">
+                {session.preview.questions.map((question, index) => (
+                  <li
+                    key={question}
+                    className="rounded-md border border-line bg-white p-4 text-sm leading-6 text-ink/75"
+                  >
+                    <span className="mb-2 block text-xs font-semibold text-rust">
+                      Q{index + 1}
+                    </span>
+                    <GlossaryInlineText text={question} />
+                  </li>
+                ))}
+              </ol>
+            </Section>
+          ) : null}
+
+          {session.preview?.focusQuestions?.length ? (
+            <Section
+              eyebrow="Listening Guide"
+              title="수업 중 집중해서 들을 질문"
+            >
+              <ol className="grid gap-3 md:grid-cols-2">
+                {session.preview.focusQuestions.map((question, index) => (
+                  <li
+                    key={question}
+                    className="rounded-md border border-line bg-white p-4 text-sm leading-6 text-ink/75"
+                  >
+                    <span className="mb-2 block text-xs font-semibold text-rust">
+                      Q{index + 1}
+                    </span>
+                    <GlossaryInlineText text={question} />
+                  </li>
+                ))}
+              </ol>
+            </Section>
+          ) : null}
+
+          {session.preview?.excludedTopics?.length ? (
+            <Section
+              eyebrow="Scope"
+              title="이번 예습에서 깊게 다루지 않는 항목"
+              description="아래 항목은 이름만 확인하고, 수업 후 복습 또는 이후 차시에서 다룹니다."
+            >
+              <div className="flex flex-wrap gap-2">
+                {session.preview.excludedTopics.map((topic) => (
+                  <span
+                    key={topic}
+                    className="rounded-md border border-line bg-white px-3 py-2 text-sm font-medium text-ink/70"
+                  >
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            </Section>
+          ) : null}
         </div>
       </>
     );

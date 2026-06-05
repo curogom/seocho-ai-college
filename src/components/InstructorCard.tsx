@@ -20,6 +20,9 @@ export function InstructorCard({ instructor }: InstructorCardProps) {
       {instructor.affiliationEn && (
         <p className="text-sm text-ink/65">{instructor.affiliationEn}</p>
       )}
+      {instructor.lab && (
+        <p className="mt-2 text-sm font-medium text-moss">{instructor.lab}</p>
+      )}
     </section>
   );
 }

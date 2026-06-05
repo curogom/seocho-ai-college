@@ -11,6 +11,10 @@ export function NextSessionPreview({
   preview,
   nextSessionId,
 }: NextSessionPreviewProps) {
+  const nextSessionLabel = nextSessionId
+    ? `${Number.parseInt(nextSessionId, 10)}차시 미리보기`
+    : '다음 차시 미리보기';
+
   return (
     <section className="rounded-md border border-line bg-ink p-6 text-paper shadow-soft">
       <p className="text-sm font-semibold uppercase tracking-normal text-gold">
@@ -48,7 +52,7 @@ export function NextSessionPreview({
             })
           }
         >
-          2차시 미리보기
+          {nextSessionLabel}
         </Link>
       )}
     </section>
