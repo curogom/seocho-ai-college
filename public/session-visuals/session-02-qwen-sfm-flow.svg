@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Qwen3-Next and scientific foundation model flow</title>
+  <desc id="desc">A visual note showing long-context attention cost, Qwen3-Next hybrid architecture, and the connection to scientific foundation models.</desc>
+  <rect width="1280" height="720" fill="#f8faf7"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="#ffffff" stroke="#d8ded4" stroke-width="2"/>
+
+  <text x="96" y="126" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#172026">긴 문맥 비용에서 Hybrid Architecture로</text>
+  <text x="98" y="166" font-family="Arial, sans-serif" font-size="18" fill="#5d6861">attention 비용 문제를 Qwen3-Next와 Scientific Foundation Model 흐름으로 연결한다</text>
+
+  <g transform="translate(96 226)">
+    <rect width="300" height="284" rx="16" fill="#f8faf7" stroke="#d8ded4" stroke-width="2"/>
+    <text x="28" y="44" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#172026">Self-Attention 비용</text>
+    <text x="28" y="78" font-family="Arial, sans-serif" font-size="16" fill="#5d6861">token pairwise 관계 계산</text>
+    <g transform="translate(58 112)">
+      <rect width="34" height="34" fill="#3f6f5c"/>
+      <rect x="40" width="34" height="34" fill="#dbeafe"/>
+      <rect x="80" width="34" height="34" fill="#dbeafe"/>
+      <rect x="120" width="34" height="34" fill="#dbeafe"/>
+      <rect y="40" width="34" height="34" fill="#dbeafe"/>
+      <rect x="40" y="40" width="34" height="34" fill="#3f6f5c"/>
+      <rect x="80" y="40" width="34" height="34" fill="#dbeafe"/>
+      <rect x="120" y="40" width="34" height="34" fill="#dbeafe"/>
+      <rect y="80" width="34" height="34" fill="#dbeafe"/>
+      <rect x="40" y="80" width="34" height="34" fill="#dbeafe"/>
+      <rect x="80" y="80" width="34" height="34" fill="#3f6f5c"/>
+      <rect x="120" y="80" width="34" height="34" fill="#dbeafe"/>
+      <rect y="120" width="34" height="34" fill="#dbeafe"/>
+      <rect x="40" y="120" width="34" height="34" fill="#dbeafe"/>
+      <rect x="80" y="120" width="34" height="34" fill="#dbeafe"/>
+      <rect x="120" y="120" width="34" height="34" fill="#3f6f5c"/>
+    </g>
+    <text x="150" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#a75535">context가 길수록 비용 증가</text>
+  </g>
+
+  <path d="M424 368h96" stroke="#b68a2c" stroke-width="8" stroke-linecap="round"/>
+  <path d="M502 344l36 24-36 24" fill="none" stroke="#b68a2c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(548 226)">
+    <rect width="340" height="284" rx="16" fill="#f8faf7" stroke="#d8ded4" stroke-width="2"/>
+    <text x="28" y="44" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#3f6f5c">Qwen3-Next</text>
+    <text x="28" y="78" font-family="Arial, sans-serif" font-size="16" fill="#5d6861">Gated DeltaNet : Masked Self-Attention = 3 : 1</text>
+    <g transform="translate(42 110)">
+      <rect width="250" height="36" rx="8" fill="#3f6f5c"/>
+      <text x="125" y="24" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Gated DeltaNet</text>
+      <rect y="48" width="250" height="36" rx="8" fill="#3f6f5c"/>
+      <text x="125" y="72" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Gated DeltaNet</text>
+      <rect y="96" width="250" height="36" rx="8" fill="#3f6f5c"/>
+      <text x="125" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Gated DeltaNet</text>
+      <rect y="144" width="250" height="36" rx="8" fill="#a75535"/>
+      <text x="125" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff">Masked Self-Attention</text>
+    </g>
+    <text x="170" y="254" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#172026">효율성과 정밀한 token interaction의 균형</text>
+  </g>
+
+  <path d="M916 368h96" stroke="#b68a2c" stroke-width="8" stroke-linecap="round"/>
+  <path d="M994 344l36 24-36 24" fill="none" stroke="#b68a2c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(1040 226)">
+    <rect width="144" height="284" rx="16" fill="#f8faf7" stroke="#d8ded4" stroke-width="2"/>
+    <text x="72" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#172026">SFM</text>
+    <text x="72" y="76" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#5d6861">과학 데이터</text>
+    <circle cx="72" cy="124" r="30" fill="#dbeafe" stroke="#86a6c8" stroke-width="2"/>
+    <text x="72" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#172026">PDE</text>
+    <circle cx="72" cy="184" r="30" fill="#fde7d8" stroke="#d59a77" stroke-width="2"/>
+    <text x="72" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#172026">Simulation</text>
+    <circle cx="72" cy="244" r="30" fill="#e7efd8" stroke="#9bb578" stroke-width="2"/>
+    <text x="72" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#172026">Observation</text>
+  </g>
+
+  <g transform="translate(96 596)">
+    <rect width="1088" height="44" rx="8" fill="#172026"/>
+    <text x="28" y="29" font-family="Arial, sans-serif" font-size="18" fill="#f8faf7">긴 sequence 비용 -> hybrid sequence module -> 과학·공학 데이터 기반 foundation model</text>
+  </g>
+</svg>

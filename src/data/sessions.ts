@@ -396,7 +396,22 @@ export const sessions: Session[] = [
         takeaway: '자연어 token이 아니라 물리 현상과 관측 데이터를 다루며 forward/inverse problem과 연결된다.',
       },
     ],
-    visualNotes: [],
+    visualNotes: [
+      {
+        title: 'BERT와 GPT의 구조 차이',
+        src: '/session-visuals/session-02-bert-gpt-prefill.svg',
+        alt: 'BERT는 encoder-only 이해 모델이고 GPT는 decoder-only 생성 모델이며 prefill과 decoding으로 나뉘는 흐름을 설명하는 도식',
+        caption:
+          'BERT의 contextual representation과 GPT의 prefill/decoding 흐름을 분리해 정리했습니다.',
+      },
+      {
+        title: '긴 문맥 비용과 Hybrid Architecture',
+        src: '/session-visuals/session-02-qwen-sfm-flow.svg',
+        alt: 'Self-attention 비용 문제에서 Qwen3-Next의 Gated DeltaNet과 masked self-attention 3대1 구조, Scientific Foundation Model로 이어지는 흐름을 설명하는 도식',
+        caption:
+          'Self-attention 비용 문제를 Qwen3-Next hybrid architecture와 Scientific Foundation Model 흐름으로 연결했습니다.',
+      },
+    ],
     intuitions: [
       {
         title: 'Transformer는 항상 양방향이 아니다',
@@ -443,6 +458,55 @@ export const sessions: Session[] = [
       'Qwen3-Next 같은 hybrid architecture는 온프렘 또는 로컬 추론 전략과 연결될 수 있다.',
       'Scientific Foundation Model 개념은 실내 공간 상태 예측이나 시뮬레이션 기반 planning과 연결될 수 있다.',
     ],
+    nextPreview: {
+      title: '3차시 예습 준비',
+      summary:
+        '3차시 세부 주제를 읽기 전에 2차시의 LLM 구조, inference 단계, 긴 문맥 비용 문제를 먼저 복습한다.',
+      questions: [
+        'BERT와 GPT의 구조 차이를 한 문장으로 설명할 수 있는가?',
+        'GPT의 prefill과 decoding이 각각 어디에서 비용을 만드는가?',
+        '긴 context에서 self-attention 비용을 줄이려는 대안 구조는 왜 필요한가?',
+      ],
+      keyPoints: [
+        'Encoder-only와 decoder-only의 차이를 먼저 정리한다.',
+        'Prompt, KV cache, autoregressive decoding의 관계를 연결한다.',
+        'State-Space Model과 Qwen3-Next는 attention 비용 문제의 연장선에서 본다.',
+      ],
+    },
+  },
+  {
+    id: '03',
+    order: 3,
+    title: '3차시 예습 준비',
+    koreanTitle: '다음 차시 사전 점검',
+    subtitle: '2차시 LLM 구조를 다음 주제로 연결하기 전 복습 체크',
+    status: 'planned',
+    summary:
+      '3차시 세부 자료를 읽기 전에 2차시의 핵심 구조와 용어를 먼저 점검한다.',
+    summaryLines: [],
+    coreFlow: [],
+    coreFlowGroups: [],
+    conceptCards: [],
+    visualNotes: [],
+    intuitions: [],
+    modelNotes: [],
+    quizIds: [],
+    reflectionQuestions: [],
+    projectConnections: [],
+    preview: {
+      summary:
+        '3차시 예습에서는 2차시에서 다룬 LLM 구조, prefill/decoding, attention 비용, Qwen3-Next 흐름을 먼저 점검한다.',
+      keyPoints: [
+        'BERT와 GPT의 차이를 encoder-only와 decoder-only 관점에서 복습한다.',
+        'Prefill, KV cache, decoding, autoregressive generation의 연결을 확인한다.',
+        'State-Space Model, Qwen3-Next, Scientific Foundation Model이 왜 2차시 후반에 이어졌는지 정리한다.',
+      ],
+      questions: [
+        '다음 차시에서 새 개념이 나올 때 어떤 2차시 용어와 연결되는가?',
+        '긴 context 처리 비용은 제품 설계에서 어떤 제약으로 나타나는가?',
+        'LLM을 서비스에 붙일 때 모델 구조와 infrastructure를 함께 봐야 하는 이유는 무엇인가?',
+      ],
+    },
   },
 ];
 

@@ -14,6 +14,7 @@
 |---:|---|---|
 | 01 | From Machine Learning to Deep Learning | Published |
 | 02 | Large Language Models | Published |
+| 03 | 3차시 예습 준비 | Planned |
 
 ## Core Features
 

@@ -134,8 +134,11 @@ describe('learning content', () => {
     expect(sessionSlots).toHaveLength(16);
     expect(sessionSlots[0].id).toBe('01');
     expect(sessionSlots[1].id).toBe('02');
+    expect(sessionSlots[2].id).toBe('03');
     expect(sessionSlots[15].id).toBe('16');
     expect(sessionSlots[1].session?.id).toBe('02');
+    expect(sessionSlots[2].session?.id).toBe('03');
+    expect(sessionSlots[2].status).toBe('planned');
   });
 
   it('publishes session 02 learning content', () => {
@@ -149,10 +152,11 @@ describe('learning content', () => {
     expect(session?.coreFlow).toContain('Autoregressive Generation');
     expect(session?.coreFlow).toContain('Qwen3-Next');
     expect(session?.conceptCards.length).toBeGreaterThanOrEqual(10);
-    expect(session?.visualNotes).toHaveLength(0);
+    expect(session?.visualNotes).toHaveLength(2);
     expect(session?.intuitions.length).toBeGreaterThan(0);
     expect(session?.modelNotes.length).toBeGreaterThan(0);
     expect(session?.quizIds).toHaveLength(5);
     expect(session?.preview).toBeUndefined();
+    expect(session?.nextPreview?.title).toBe('3차시 예습 준비');
   });
 });
