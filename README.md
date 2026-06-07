@@ -44,9 +44,17 @@ npm run dev
 ## Test and Build
 
 ```bash
+npm run ci
 npm test
 npm run build
 ```
+
+`npm run build`는 TypeScript/Vite 빌드 이후 AI 수집과 SEO용 산출물을 생성하고 검증합니다.
+
+- `crawl:generate`: 정적 route HTML, `sitemap.xml`, `llms.txt`, `llms-full.txt` 생성
+- `crawl:check`: `src/data/sessions.ts` 기준으로 차시별 정적 HTML, canonical URL, robots meta, sitemap, LLM 수집 파일, robots.txt 검증
+
+GitHub Actions는 PR과 `main` push에서 `npm run ci`를 실행합니다.
 
 ## Cloudflare Pages
 
