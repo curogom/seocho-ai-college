@@ -141,13 +141,13 @@ function renderGlossaryLink(matchText: string, entry: GlossaryEntry, key: string
   return (
     <Link
       key={key}
-      className="group relative inline-flex rounded-sm border-b border-dotted border-moss font-medium text-ink decoration-moss underline-offset-4 hover:text-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+      className="group/glossary relative inline-flex rounded-sm border-b border-dotted border-moss font-medium text-ink decoration-moss underline-offset-4 hover:text-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-white"
       to={`/glossary?query=${encodeURIComponent(entry.term)}`}
       aria-label={`${matchText}: ${entry.korean}. ${entry.description}`}
     >
       {matchText}
       <span
-        className="pointer-events-none absolute left-0 top-full z-30 mt-2 hidden w-72 max-w-[calc(100vw-2rem)] rounded-md border border-line bg-white p-3 text-left text-xs leading-5 text-ink shadow-soft group-hover:block group-focus-visible:block"
+        className="pointer-events-none absolute left-0 top-full z-30 mt-2 hidden w-72 max-w-[calc(100vw-2rem)] rounded-md border border-line bg-white p-3 text-left text-xs leading-5 text-ink shadow-soft group-hover/glossary:block group-focus-visible/glossary:block"
         role="tooltip"
       >
         <span className="block font-semibold text-ink">
