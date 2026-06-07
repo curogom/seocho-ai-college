@@ -176,13 +176,13 @@ export function SessionPage() {
                       ))}
                     </ul>
                     {assignment.example?.length ? (
-                      <details className="group mt-4 rounded-md border border-line bg-paper">
+                      <details className="group/answer mt-4 rounded-md border border-line bg-paper">
                         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-ink marker:hidden">
                           <span>모범답안 보기</span>
-                          <span className="grid size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open:hidden">
+                          <span className="grid size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open/answer:hidden">
                             +
                           </span>
-                          <span className="hidden size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open:grid">
+                          <span className="hidden size-7 shrink-0 place-items-center rounded-md border border-line bg-white text-rust group-open/answer:grid">
                             -
                           </span>
                         </summary>
