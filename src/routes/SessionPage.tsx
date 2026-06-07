@@ -144,7 +144,7 @@ export function SessionPage() {
           {session.preview?.assignments?.length ? (
             <Section
               eyebrow="Pre-study"
-              title="예습 과제"
+              title="예습 노트"
               description="수업 전에 관계 데이터를 그래프로 바라보는 감각을 먼저 잡습니다."
             >
               <div className="grid gap-4">
