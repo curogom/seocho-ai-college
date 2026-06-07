@@ -79,11 +79,6 @@ export function SessionPage() {
               <p className="mt-3 max-w-3xl text-sm leading-7 text-ink/70">
                 <GlossaryInlineText text={session.preview?.summary ?? session.summary} />
               </p>
-              {session.preview?.resourcePath && (
-                <p className="mt-3 text-xs font-medium text-ink/55">
-                  자료 위치: {session.preview.resourcePath}
-                </p>
-              )}
 
               {session.preview?.keyPoints.length ? (
                 <div className="mt-6">

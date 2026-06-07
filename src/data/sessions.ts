@@ -53,7 +53,6 @@ export type SessionPreview = {
   summary: string;
   keyPoints: string[];
   questions: string[];
-  resourcePath?: string;
   assignments?: {
     title: string;
     goal: string;
@@ -555,7 +554,6 @@ export const sessions: Session[] = [
       heading: 'Graph Machine Learning 예습 과제',
       summary:
         '이번 예습의 목표는 GNN이 node 자신의 feature뿐 아니라 연결된 neighbor 정보까지 함께 보고 판단하는 모델이라는 관점을 이해하는 것이다.',
-      resourcePath: 'content/prestudy/03-graph-ml-prestudy.md',
       keyPoints: [
         'Graph = Node + Edge',
         'Node / Edge / Relation',
