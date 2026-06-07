@@ -116,12 +116,68 @@ function flushParagraph(paragraph, html) {
   paragraph.length = 0;
 }
 
+function splitTableCells(line) {
+  return line
+    .trim()
+    .replace(/^\|/, '')
+    .replace(/\|$/, '')
+    .split('|')
+    .map((cell) => cell.trim());
+}
+
+function isTableSeparator(line) {
+  const cells = splitTableCells(line);
+
+  return (
+    cells.length > 0 &&
+    cells.every((cell) => /^:?-{3,}:?$/.test(cell))
+  );
+}
+
+function isTableStart(lines, index) {
+  return (
+    index + 1 < lines.length &&
+    lines[index].trim().startsWith('|') &&
+    isTableSeparator(lines[index + 1].trim())
+  );
+}
+
+function renderTable(lines, startIndex) {
+  const headers = splitTableCells(lines[startIndex]);
+  const rows = [];
+  let index = startIndex + 2;
+
+  while (index < lines.length && lines[index].trim().startsWith('|')) {
+    rows.push(splitTableCells(lines[index]));
+    index += 1;
+  }
+
+  const head = headers
+    .map((header) => `<th>${escapeHtml(header)}</th>`)
+    .join('');
+  const body = rows
+    .map((row) => {
+      const cells = row
+        .map((cell) => `<td>${escapeHtml(cell)}</td>`)
+        .join('');
+      return `<tr>${cells}</tr>`;
+    })
+    .join('\n');
+
+  return {
+    html: `<table>\n<thead><tr>${head}</tr></thead>\n<tbody>\n${body}\n</tbody>\n</table>`,
+    nextIndex: index,
+  };
+}
+
 function markdownToHtml(markdown) {
   const html = [];
   const state = { list: null, code: false };
   const paragraph = [];
+  const lines = markdown.split(/\r?\n/);
 
-  for (const rawLine of markdown.split(/\r?\n/)) {
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const rawLine = lines[lineIndex];
     const line = rawLine.trimEnd();
     const trimmed = line.trim();
 
@@ -147,6 +203,15 @@ function markdownToHtml(markdown) {
     if (!trimmed) {
       flushParagraph(paragraph, html);
       closeList(state, html);
+      continue;
+    }
+
+    if (isTableStart(lines, lineIndex)) {
+      flushParagraph(paragraph, html);
+      closeList(state, html);
+      const table = renderTable(lines, lineIndex);
+      html.push(table.html);
+      lineIndex = table.nextIndex - 1;
       continue;
     }
 

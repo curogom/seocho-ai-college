@@ -26,6 +26,11 @@ export type ConceptFlowGroup = {
 export type NoteBlock = {
   title: string;
   body: string;
+  highlight?: string;
+  table?: {
+    headers: string[];
+    rows: string[][];
+  };
 };
 
 export type VisualNote = {
@@ -399,14 +404,14 @@ export const sessions: Session[] = [
         korean: 'Qwen3-Next',
         description:
           '강의자료 기준 Qwen3-Next-80B는 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave하는 hybrid architecture로 설명된다.',
-        takeaway: '긴 token 의존성과 효율성은 Gated DeltaNet, 정밀한 token interaction은 masked self-attention이 나눠 맡는 방향이다.',
+        takeaway: 'Gated DeltaNet : Masked Self-Attention = 3 : 1. Attention을 완전히 버리기보다 비용이 큰 부분을 효율적인 sequence module로 분산시키는 방향이다.',
       },
       {
         term: 'Scientific Foundation Model',
         korean: '과학 파운데이션 모델',
         description:
-          'Scientific Foundation Model은 foundation model 관점을 과학·공학 문제에 적용하려는 흐름이다. PDE 해, 시뮬레이션, 관측 데이터가 중요하다.',
-        takeaway: '자연어 token이 아니라 물리 현상과 관측 데이터를 다루며 forward/inverse problem과 연결된다.',
+          'Scientific Foundation Model은 LLM처럼 대규모 데이터를 학습하지만, 자연어가 아니라 PDE 해, 시뮬레이션, 관측 데이터, 실험 데이터 같은 과학·공학 데이터를 중심으로 forward problem과 inverse problem을 다루려는 흐름이다.',
+        takeaway: '자연어 token보다 물리 현상 예측, 설계, forward/inverse problem이 중심이다.',
       },
     ],
     visualNotes: [
@@ -450,11 +455,42 @@ export const sessions: Session[] = [
       },
       {
         title: 'Qwen3-Next 구조',
-        body: '강의자료 기준 Qwen3-Next-80B는 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave한다. 효율성과 정밀한 token interaction의 균형을 노린다.',
+        body: '강의자료 기준 Qwen3-Next-80B는 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave한다. 모든 layer를 attention으로만 구성하는 Transformer-only 접근과 다르게, attention의 장점은 유지하면서 비용이 큰 부분을 더 효율적인 sequence module로 분산시키는 hybrid architecture로 이해할 수 있다.',
+        highlight: 'Gated DeltaNet : Masked Self-Attention = 3 : 1',
+        table: {
+          headers: ['Component', '역할'],
+          rows: [
+            ['Gated DeltaNet', '긴 token 의존성, 긴 문맥 처리, 효율성 담당'],
+            [
+              'Masked Self-Attention',
+              '정밀한 reasoning, token 간 세밀한 상호작용 담당',
+            ],
+          ],
+        },
       },
       {
         title: 'Scientific Foundation Model',
-        body: 'LLM이 자연어 prompt에서 latent concept을 추정하듯, Scientific Foundation Model은 관측 데이터에서 PDE나 물리 법칙을 추정하고 forward/inverse problem을 풀려는 방향으로 볼 수 있다.',
+        body: 'Scientific Foundation Model은 LLM처럼 대규모 데이터를 학습하지만, 자연어가 아니라 PDE 해, 시뮬레이션, 관측 데이터, 실험 데이터 같은 과학·공학 데이터를 중심으로 forward problem과 inverse problem을 다루려는 흐름이다.',
+        table: {
+          headers: ['구분', 'LLM', 'Scientific Foundation Model'],
+          rows: [
+            [
+              '주요 데이터',
+              '텍스트, 코드, 논문, 웹 문서',
+              'PDE 해, 시뮬레이션, 관측 데이터, 실험 데이터',
+            ],
+            [
+              '주요 목표',
+              '언어 이해, 생성, reasoning 보조',
+              '물리 현상 예측, 설계, forward/inverse problem',
+            ],
+            [
+              '주요 리스크',
+              'hallucination, reasoning 한계',
+              '데이터 부족, 물리 법칙 미지, 고비용 시뮬레이션',
+            ],
+          ],
+        },
       },
     ],
     quizIds: ['s02-q1', 's02-q2', 's02-q3', 's02-q4', 's02-q5'],
