@@ -386,8 +386,8 @@ export function SessionPage() {
                         </tr>
                       </thead>
                       <tbody>
-                        {note.table.rows.map((row) => (
-                          <tr key={row.join('|')} className="border-t border-line">
+                        {note.table.rows.map((row, rowIndex) => (
+                          <tr key={rowIndex} className="border-t border-line">
                             {row.map((cell, cellIndex) => (
                               <td
                                 key={`${row[0]}-${cellIndex}`}
