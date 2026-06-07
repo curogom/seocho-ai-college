@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://seocho-ai.curogom.com/sitemap.xml
