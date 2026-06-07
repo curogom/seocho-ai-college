@@ -36,6 +36,7 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Agentic AI, P
   {
     path: '/sessions/01',
     title: '1차시 From Machine Learning to Deep Learning',
+    koreanTitle: '기계학습에서 딥러닝으로',
     description:
       '전통적인 Machine Learning에서 Deep Learning, DNN, CNN, RNN으로 이어지는 흐름을 정리합니다.',
     sourcePath: 'content/sessions/01-from-ml-to-dl.md',
@@ -43,6 +44,7 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Agentic AI, P
   {
     path: '/sessions/02',
     title: '2차시 Large Language Models',
+    koreanTitle: '대형언어모델',
     description:
       'RNN에서 Transformer로 넘어간 이유, BERT와 GPT의 차이, GPT의 prefill과 decoding, Qwen3-Next와 Scientific Foundation Model 흐름을 정리합니다.',
     sourcePath: 'content/sessions/02-llm-transformer-qwen-next.md',
@@ -50,6 +52,7 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Agentic AI, P
   {
     path: '/sessions/03',
     title: '3차시 Graph Machine Learning 예습 과제',
+    koreanTitle: '그래프 기계학습',
     description:
       'Graph, Node, Edge, Relation, Graph Embedding, Node Embedding, GNN, Message Passing을 중심으로 3차시 예습 내용을 정리합니다.',
     sourcePath: 'content/prestudy/03-graph-ml-prestudy.md',
@@ -246,10 +249,13 @@ function renderRouteHtml(indexHtml, route) {
   const crawlContent = [
     '<main class="static-crawl-content" data-crawl-content="true">',
     `<h1>${escapeHtml(route.title)}</h1>`,
+    route.koreanTitle ? `<p>${escapeHtml(route.koreanTitle)}</p>` : '',
     `<p>${escapeHtml(route.description)}</p>`,
     markdownToHtml(content),
     '</main>',
-  ].join('\n');
+  ]
+    .filter(Boolean)
+    .join('\n');
 
   return injectHead(indexHtml, route).replace(
     '<div id="root"></div>',
@@ -304,9 +310,13 @@ function writeLlmsFiles() {
   const fullText = routeDefinitions
     .map((route) => {
       const content = readRouteContent(route);
+      const koreanTitle = route.koreanTitle
+        ? `\nKorean title: ${route.koreanTitle}\n`
+        : '';
       return `# ${route.title}
 
 URL: ${siteOrigin}${route.path}
+${koreanTitle}
 
 ${route.description}
 
