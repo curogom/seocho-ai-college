@@ -551,7 +551,7 @@ export const sessions: Session[] = [
     projectConnections: [],
     preview: {
       label: '수업 전 예습',
-      heading: 'Graph Machine Learning 예습 과제',
+      heading: 'Graph Machine Learning 예습 노트',
       summary:
         '이번 예습의 목표는 GNN이 node 자신의 feature뿐 아니라 연결된 neighbor 정보까지 함께 보고 판단하는 모델이라는 관점을 이해하는 것이다.',
       keyPoints: [
@@ -565,7 +565,7 @@ export const sessions: Session[] = [
       questions: [],
       assignments: [
         {
-          title: '과제 1. Graph = Node + Edge',
+          title: '노트 1. Graph = Node + Edge',
           goal: '그래프가 무엇인지 이해한다.',
           body:
             'Graph는 객체와 객체 간 관계를 표현하는 데이터 구조다. Node는 개체이고, edge는 개체 간 연결 또는 관계다.',
@@ -581,7 +581,7 @@ export const sessions: Session[] = [
           ],
         },
         {
-          title: '과제 2. Node / Edge / Relation',
+          title: '노트 2. Node / Edge / Relation',
           goal: 'Node, edge, relation의 차이를 이해한다.',
           body:
             'Node는 개체이고 edge는 개체 간 연결이다. Relation은 edge가 어떤 의미의 연결인지 나타내는 타입이다.',
@@ -597,7 +597,7 @@ export const sessions: Session[] = [
           ],
         },
         {
-          title: '과제 3. Graph Embedding',
+          title: '노트 3. Graph Embedding',
           goal: 'Graph embedding이 왜 필요한지 이해한다.',
           body:
             'Graph embedding은 graph의 구조 정보를 최대한 보존하면서 node, edge, subgraph, whole graph를 vector space로 바꾸는 것이다.',
@@ -613,7 +613,7 @@ export const sessions: Session[] = [
           ],
         },
         {
-          title: '과제 4. Node Embedding',
+          title: '노트 4. Node Embedding',
           goal: 'Node embedding의 목적을 이해한다.',
           body:
             'Node embedding은 각 node를 vector로 표현하는 것이다. 원래 graph에서 비슷한 node는 embedding space에서도 가깝게 위치해야 한다.',
@@ -629,7 +629,7 @@ export const sessions: Session[] = [
           ],
         },
         {
-          title: '과제 5. GNN',
+          title: '노트 5. GNN',
           goal: 'GNN이 왜 필요한지 이해한다.',
           body:
             'GNN은 graph 위에서 동작하는 neural network다. Target node의 feature와 neighbor node들의 정보를 함께 사용해 node representation을 업데이트한다.',
@@ -645,7 +645,7 @@ export const sessions: Session[] = [
           ],
         },
         {
-          title: '과제 6. Message Passing / Neighborhood Aggregation',
+          title: '노트 6. Message Passing / Neighborhood Aggregation',
           goal: 'GNN의 핵심 연산을 이해한다.',
           body:
             'Message passing은 node들이 edge를 따라 정보를 주고받는 과정이고, neighborhood aggregation은 target node 주변 neighbor 정보를 모으는 과정이다.',

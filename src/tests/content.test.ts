@@ -244,9 +244,10 @@ describe('learning content', () => {
     expect(session?.preview?.focusQuestions).toHaveLength(8);
     expect(session?.preview?.excludedTopics).toContain('DRAG');
     expect(session?.preview?.excludedTopics).toContain('Knowledge Graph');
-    expect(prestudy).toContain('과제 6. Message Passing / Neighborhood Aggregation');
+    expect(session?.preview?.heading).toBe('Graph Machine Learning 예습 노트');
+    expect(prestudy).toContain('노트 6. Message Passing / Neighborhood Aggregation');
     expect(prestudy).not.toContain('## 최종 점검 퀴즈');
     expect(prestudy).toContain('DRAG');
-    expect(prestudy).toContain('이번 예습 과제에서는 아래 항목을 깊게 다루지 않는다');
+    expect(prestudy).toContain('이번 예습 노트에서는 아래 항목을 깊게 다루지 않는다');
   });
 });
