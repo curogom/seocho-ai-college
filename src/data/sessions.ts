@@ -562,18 +562,7 @@ export const sessions: Session[] = [
         'GNN',
         'Message Passing / Neighborhood Aggregation',
       ],
-      questions: [
-        'Graph에서 node와 edge는 각각 무엇인가?',
-        'Relation은 edge와 어떻게 다른가?',
-        'Graph embedding이 필요한 이유는 무엇인가?',
-        'Node embedding에서 비슷한 node는 embedding space에서도 가까워야 한다는 말은 무엇인가?',
-        'GNN은 왜 neighbor 정보를 사용하는가?',
-        'Message passing과 neighborhood aggregation은 어떤 관계인가?',
-        'k-hop neighbor는 무엇인가?',
-        '실내 내비게이션을 graph로 표현하면 node와 edge는 무엇이 될 수 있는가?',
-        'GNN layer가 깊어질수록 더 먼 정보를 볼 수 있다는 말은 무슨 뜻인가?',
-        '너무 먼 hop까지 정보를 섞으면 어떤 문제가 생길 수 있는가?',
-      ],
+      questions: [],
       assignments: [
         {
           title: '과제 1. Graph = Node + Edge',

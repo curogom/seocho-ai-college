@@ -167,19 +167,6 @@ Message passing은 node들이 서로 정보를 주고받는 과정이다. Neighb
 3. 너무 먼 hop까지 섞으면 어떤 문제가 생길 수 있는가?
 4. 혼잡도 예측에서는 몇 hop 정도가 적당할 것 같은가?
 
-## 최종 점검 퀴즈
-
-1. Graph에서 node와 edge는 각각 무엇인가?
-2. Relation은 edge와 어떻게 다른가?
-3. Graph embedding이 필요한 이유는 무엇인가?
-4. Node embedding에서 비슷한 node는 embedding space에서도 가까워야 한다는 말의 의미는 무엇인가?
-5. GNN은 왜 neighbor 정보를 사용하는가?
-6. Message passing과 neighborhood aggregation은 어떤 관계인가?
-7. k-hop neighbor는 무엇인가?
-8. 실내 내비게이션을 graph로 표현하면 node와 edge는 무엇이 될 수 있는가?
-9. GNN layer가 깊어질수록 더 먼 정보를 볼 수 있다는 말은 무슨 뜻인가?
-10. 너무 먼 hop까지 정보를 섞으면 어떤 문제가 생길 수 있는가?
-
 ## 수업 중 집중해서 들을 질문
 
 1. 이 강의에서 graph embedding과 GNN을 어떻게 구분하는가?

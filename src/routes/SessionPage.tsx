@@ -196,28 +196,6 @@ export function SessionPage() {
             </Section>
           ) : null}
 
-          {hasPrestudyAssignments && session.preview?.questions.length ? (
-            <Section
-              eyebrow="Check"
-              title="최종 점검 퀴즈"
-              description="예습 과제를 끝낸 뒤 스스로 설명할 수 있는지 확인합니다."
-            >
-              <ol className="grid gap-3">
-                {session.preview.questions.map((question, index) => (
-                  <li
-                    key={question}
-                    className="rounded-md border border-line bg-white p-4 text-sm leading-6 text-ink/75"
-                  >
-                    <span className="mb-2 block text-xs font-semibold text-rust">
-                      Q{index + 1}
-                    </span>
-                    <GlossaryInlineText text={question} />
-                  </li>
-                ))}
-              </ol>
-            </Section>
-          ) : null}
-
           {session.preview?.focusQuestions?.length ? (
             <Section
               eyebrow="Listening Guide"

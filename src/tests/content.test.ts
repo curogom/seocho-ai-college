@@ -240,11 +240,12 @@ describe('learning content', () => {
     expect(session?.instructor?.englishName).toBe('Joyce Jiyoung Whang');
     expect(session?.preview?.label).toBe('수업 전 예습');
     expect(session?.preview?.assignments).toHaveLength(6);
-    expect(session?.preview?.questions).toHaveLength(10);
+    expect(session?.preview?.questions).toHaveLength(0);
     expect(session?.preview?.focusQuestions).toHaveLength(8);
     expect(session?.preview?.excludedTopics).toContain('DRAG');
     expect(session?.preview?.excludedTopics).toContain('Knowledge Graph');
     expect(prestudy).toContain('과제 6. Message Passing / Neighborhood Aggregation');
+    expect(prestudy).not.toContain('## 최종 점검 퀴즈');
     expect(prestudy).toContain('DRAG');
     expect(prestudy).toContain('이번 예습 과제에서는 아래 항목을 깊게 다루지 않는다');
   });
