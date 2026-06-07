@@ -356,12 +356,52 @@ export function SessionPage() {
             {session.modelNotes.map((note) => (
               <article
                 key={note.title}
-                className="rounded-md border border-line bg-white p-5"
+                className={`rounded-md border border-line bg-white p-5 ${
+                  note.table && note.table.headers.length > 2 ? 'md:col-span-2' : ''
+                }`}
               >
                 <h3 className="text-lg font-semibold text-ink">{note.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-ink/70">
                   <GlossaryInlineText text={note.body} />
                 </p>
+                {note.highlight && (
+                  <p className="mt-4 break-words rounded-md bg-paper px-3 py-2 font-mono text-sm leading-6 text-ink">
+                    {note.highlight}
+                  </p>
+                )}
+                {note.table && (
+                  <div className="mt-4 overflow-x-auto rounded-md border border-line">
+                    <table className="min-w-full border-collapse text-left text-sm">
+                      <thead className="bg-paper">
+                        <tr>
+                          {note.table.headers.map((header) => (
+                            <th
+                              key={header}
+                              scope="col"
+                              className="whitespace-nowrap border-b border-line px-3 py-2 font-semibold text-ink"
+                            >
+                              {header}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {note.table.rows.map((row) => (
+                          <tr key={row.join('|')} className="border-t border-line">
+                            {row.map((cell, cellIndex) => (
+                              <td
+                                key={`${row[0]}-${cellIndex}`}
+                                className="min-w-40 align-top px-3 py-3 leading-6 text-ink/70"
+                              >
+                                <GlossaryInlineText text={cell} />
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </article>
             ))}
           </div>

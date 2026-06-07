@@ -164,6 +164,12 @@ describe('learning content', () => {
 
   it('publishes session 02 learning content', () => {
     const session = getSessionById('02');
+    const qwenNote = session?.modelNotes.find(
+      (note) => note.title === 'Qwen3-Next 구조',
+    );
+    const sfmNote = session?.modelNotes.find(
+      (note) => note.title === 'Scientific Foundation Model',
+    );
 
     expect(session?.status).toBe('published');
     expect(session?.instructor?.name).toBe('박노성');
@@ -179,6 +185,46 @@ describe('learning content', () => {
     expect(session?.quizIds).toHaveLength(5);
     expect(session?.preview).toBeUndefined();
     expect(session?.nextPreview?.title).toBe('Graph Machine Learning');
+    expect(qwenNote?.body).toContain('강의자료 기준');
+    expect(qwenNote?.highlight).toBe(
+      'Gated DeltaNet : Masked Self-Attention = 3 : 1',
+    );
+    expect(qwenNote?.table?.rows).toEqual([
+      ['Gated DeltaNet', '긴 token 의존성, 긴 문맥 처리, 효율성 담당'],
+      [
+        'Masked Self-Attention',
+        '정밀한 reasoning, token 간 세밀한 상호작용 담당',
+      ],
+    ]);
+    expect(sfmNote?.table?.headers).toEqual([
+      '구분',
+      'LLM',
+      'Scientific Foundation Model',
+    ]);
+  });
+
+  it('keeps session 02 crawl source aligned with Qwen and SFM notes', () => {
+    const sessionNote = readFileSync(
+      'content/sessions/02-llm-transformer-qwen-next.md',
+      'utf8',
+    );
+
+    expect(sessionNote).toContain(
+      '강의자료 기준으로 Qwen3-Next-80B는 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave한다.',
+    );
+    expect(sessionNote).toContain(
+      'Gated DeltaNet : Masked Self-Attention = 3 : 1',
+    );
+    expect(sessionNote).toContain('| Gated DeltaNet | 긴 token 의존성');
+    expect(sessionNote).toContain(
+      'Scientific Foundation Model은 LLM처럼 대규모 데이터를 학습하지만',
+    );
+    expect(sessionNote).toContain(
+      '| 주요 리스크 | hallucination, reasoning 한계 | 데이터 부족',
+    );
+    expect(sessionNote).not.toContain('NVIDIA LPU');
+    expect(sessionNote).not.toContain('Language Progress Unit');
+    expect(sessionNote).not.toContain('GPU에서 LPU로 바뀐다');
   });
 
   it('adds session 03 graph ML as pre-study content', () => {
