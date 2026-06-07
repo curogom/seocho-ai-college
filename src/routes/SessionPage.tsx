@@ -79,11 +79,6 @@ export function SessionPage() {
               <p className="mt-3 max-w-3xl text-sm leading-7 text-ink/70">
                 <GlossaryInlineText text={session.preview?.summary ?? session.summary} />
               </p>
-              {session.preview?.resourcePath && (
-                <p className="mt-3 text-xs font-medium text-ink/55">
-                  자료 위치: {session.preview.resourcePath}
-                </p>
-              )}
 
               {session.preview?.keyPoints.length ? (
                 <div className="mt-6">
@@ -198,28 +193,6 @@ export function SessionPage() {
                   </article>
                 ))}
               </div>
-            </Section>
-          ) : null}
-
-          {hasPrestudyAssignments && session.preview?.questions.length ? (
-            <Section
-              eyebrow="Check"
-              title="최종 점검 퀴즈"
-              description="예습 과제를 끝낸 뒤 스스로 설명할 수 있는지 확인합니다."
-            >
-              <ol className="grid gap-3">
-                {session.preview.questions.map((question, index) => (
-                  <li
-                    key={question}
-                    className="rounded-md border border-line bg-white p-4 text-sm leading-6 text-ink/75"
-                  >
-                    <span className="mb-2 block text-xs font-semibold text-rust">
-                      Q{index + 1}
-                    </span>
-                    <GlossaryInlineText text={question} />
-                  </li>
-                ))}
-              </ol>
             </Section>
           ) : null}
 
