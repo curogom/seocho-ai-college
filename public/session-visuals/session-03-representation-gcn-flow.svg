@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
   <title id="title">Graph representation learning and GCN flow</title>
-  <desc id="desc">A discrete graph is converted into vector embeddings through graph representation learning, then GCN aggregates neighbor information for graph tasks.</desc>
+  <desc id="desc">A graph is converted into vector embeddings, then GCN aggregates neighbor information to support graph tasks.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f6f5c" />
@@ -9,6 +9,7 @@
       .bg { fill: #f8faf7; }
       .card { fill: #ffffff; stroke: #d7ded2; stroke-width: 2; }
       .soft { fill: #eef3ec; stroke: #d7ded2; stroke-width: 2; }
+      .chip { fill: #f8faf7; stroke: #d7ded2; stroke-width: 2; }
       .ink { fill: #172026; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
       .muted { fill: #5f676d; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
       .rust { fill: #a6573b; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
@@ -22,48 +23,50 @@
 
   <rect class="bg" width="1200" height="675" />
   <text x="70" y="78" class="rust" font-size="24" font-weight="700">GRAPH REPRESENTATION LEARNING</text>
-  <text x="70" y="124" class="ink" font-size="36" font-weight="800">Graph를 숫자 표현으로 바꾸는 흐름</text>
-  <text x="70" y="160" class="muted" font-size="20">이산적인 관계 구조를 vector space로 옮긴 뒤 task를 풉니다.</text>
+  <text x="70" y="124" class="ink" font-size="34" font-weight="800">Graph를 숫자 표현으로 바꾸는 흐름</text>
+  <text x="70" y="158" class="muted" font-size="19">구조 정보를 보존한 vector를 만든 뒤 task를 풉니다.</text>
 
-  <rect x="70" y="220" width="260" height="290" rx="8" class="card" />
-  <text x="100" y="262" class="ink" font-size="24" font-weight="800">Discrete Graph</text>
-  <text x="100" y="292" class="muted" font-size="17">Node와 edge의 구조</text>
-  <circle cx="150" cy="365" r="30" class="target" />
-  <circle cx="240" cy="315" r="27" class="node" />
-  <circle cx="245" cy="420" r="27" class="node" />
-  <circle cx="145" cy="455" r="27" class="node" />
-  <path d="M176 350 L216 329" class="edge" />
-  <path d="M178 381 L221 408" class="edge" />
-  <path d="M149 395 L146 428" class="edge" />
-  <text x="132" y="373" fill="#ffffff" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="16" font-weight="800">target</text>
-  <text x="100" y="482" class="muted" font-size="16">관계는 있지만 바로 계산하기 어려움</text>
+  <rect x="70" y="215" width="300" height="292" rx="8" class="card" />
+  <text x="100" y="258" class="ink" font-size="24" font-weight="800">Discrete Graph</text>
+  <text x="100" y="290" class="muted" font-size="17">바로 계산하기 어려운 관계 구조</text>
+  <circle cx="157" cy="370" r="30" class="target" />
+  <circle cx="255" cy="322" r="27" class="node" />
+  <circle cx="260" cy="430" r="27" class="node" />
+  <circle cx="155" cy="460" r="27" class="node" />
+  <path d="M184 356 L231 334" class="edge" />
+  <path d="M185 385 L235 417" class="edge" />
+  <path d="M157 401 L156 433" class="edge" />
+  <text x="145" y="377" fill="#ffffff" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="14" font-weight="800">v</text>
 
-  <path d="M355 365 L445 365" class="line" />
+  <path d="M395 362 L465 362" class="line" />
 
-  <rect x="470" y="220" width="260" height="290" rx="8" class="soft" />
-  <text x="500" y="262" class="ink" font-size="24" font-weight="800">Embedding Space</text>
-  <text x="500" y="292" class="muted" font-size="17">Feature vector로 변환</text>
-  <circle cx="545" cy="365" r="10" fill="#3f6f5c" />
-  <circle cx="590" cy="340" r="10" fill="#3f6f5c" />
-  <circle cx="617" cy="390" r="10" fill="#3f6f5c" />
-  <circle cx="662" cy="325" r="10" fill="#a6573b" />
-  <circle cx="680" cy="375" r="10" fill="#a6573b" />
-  <path d="M520 430 H690" stroke="#d7ded2" stroke-width="2" />
-  <path d="M540 450 V315" stroke="#d7ded2" stroke-width="2" />
-  <text x="500" y="482" class="muted" font-size="16">구조 정보가 보존되도록 mapping</text>
+  <rect x="490" y="215" width="270" height="292" rx="8" class="soft" />
+  <text x="520" y="258" class="ink" font-size="24" font-weight="800">Embedding</text>
+  <text x="520" y="290" class="muted" font-size="17">Feature vector로 변환</text>
+  <path d="M525 430 H710" stroke="#d7ded2" stroke-width="2" />
+  <path d="M545 452 V320" stroke="#d7ded2" stroke-width="2" />
+  <circle cx="560" cy="365" r="10" fill="#3f6f5c" />
+  <circle cx="604" cy="340" r="10" fill="#3f6f5c" />
+  <circle cx="632" cy="390" r="10" fill="#3f6f5c" />
+  <circle cx="677" cy="326" r="10" fill="#a6573b" />
+  <circle cx="696" cy="377" r="10" fill="#a6573b" />
+  <text x="520" y="482" class="moss" font-size="17" font-weight="800">구조 정보 보존</text>
 
-  <path d="M755 365 L845 365" class="line" />
+  <path d="M785 362 L855 362" class="line" />
 
-  <rect x="870" y="220" width="260" height="290" rx="8" class="card" />
-  <text x="900" y="262" class="ink" font-size="24" font-weight="800">GCN</text>
-  <text x="900" y="292" class="muted" font-size="17">Neighbor aggregation</text>
-  <rect x="900" y="326" width="190" height="42" rx="6" fill="#f8faf7" stroke="#d7ded2" stroke-width="2" />
-  <text x="918" y="353" class="ink" font-size="16">Layer-0: own feature</text>
-  <rect x="900" y="382" width="190" height="42" rx="6" fill="#f8faf7" stroke="#d7ded2" stroke-width="2" />
-  <text x="918" y="409" class="ink" font-size="16">Layer-1: 1-hop info</text>
-  <rect x="900" y="438" width="190" height="42" rx="6" fill="#f8faf7" stroke="#d7ded2" stroke-width="2" />
-  <text x="918" y="465" class="ink" font-size="16">Layer-k: k-hop info</text>
+  <rect x="880" y="215" width="250" height="292" rx="8" class="card" />
+  <text x="910" y="258" class="ink" font-size="24" font-weight="800">GCN</text>
+  <text x="910" y="290" class="muted" font-size="17">Neighbor aggregation</text>
+  <rect x="910" y="332" width="190" height="42" rx="6" class="chip" />
+  <text x="930" y="359" class="ink" font-size="16" font-weight="700">Layer-0 · own feature</text>
+  <rect x="910" y="388" width="190" height="42" rx="6" class="chip" />
+  <text x="930" y="415" class="ink" font-size="16" font-weight="700">Layer-1 · 1-hop</text>
+  <rect x="910" y="444" width="190" height="42" rx="6" class="chip" />
+  <text x="930" y="471" class="ink" font-size="16" font-weight="700">Layer-k · k-hop</text>
 
-  <rect x="165" y="555" width="870" height="62" rx="8" fill="#172026" />
-  <text x="220" y="594" fill="#f8faf7" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="21" font-weight="800">Embedding을 바탕으로 node classification, link prediction, graph classification 수행</text>
+  <rect x="185" y="555" width="830" height="64" rx="8" fill="#172026" />
+  <text x="240" y="585" fill="#f8faf7" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="18" font-weight="800">Node classification</text>
+  <text x="500" y="585" fill="#f8faf7" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="18" font-weight="800">Link prediction</text>
+  <text x="740" y="585" fill="#f8faf7" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="18" font-weight="800">Graph classification</text>
+  <text x="240" y="606" fill="#cfd9ca" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="15">Embedding을 downstream task에 연결</text>
 </svg>
