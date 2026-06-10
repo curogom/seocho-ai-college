@@ -148,6 +148,76 @@ export const quizzes: Quiz[] = [
     explanation:
       'SFM은 LLM의 foundation model 개념을 과학·공학 문제에 적용하려는 흐름이며, PDE 해와 관측 데이터 같은 과학 데이터를 중요하게 다룬다.',
   },
+  {
+    id: 's03-q1',
+    sessionId: '03',
+    question: '컴퓨터 과학과 AI에서 말하는 graph의 설명으로 가장 적절한 것은?',
+    choices: [
+      'x-y 축 위에 숫자를 그리는 chart만 의미한다.',
+      '객체를 node로, 객체 간 관계를 edge로 표현하는 자료 구조다.',
+      '이미지 pixel을 항상 정사각형 grid로만 표현하는 구조다.',
+      '언어 모델의 token vocabulary만 의미한다.',
+    ],
+    answerIndex: 1,
+    explanation:
+      '3차시에서 graph는 객체와 객체 사이의 관계성을 node와 edge로 표현하는 자료 구조로 정리한다.',
+  },
+  {
+    id: 's03-q2',
+    sessionId: '03',
+    question: 'Knowledge Graph를 쓰는 이유로 가장 적절한 것은?',
+    choices: [
+      '모든 데이터를 text file로만 저장하기 위해',
+      '사람의 지식을 entity와 relation으로 구조화하고 관계를 따라 reasoning하기 위해',
+      'GPU 없이 deep learning을 금지하기 위해',
+      'node와 edge를 모두 삭제하기 위해',
+    ],
+    answerIndex: 1,
+    explanation:
+      'Knowledge Graph는 사람의 지식을 graph로 표현해 질문 응답, 검색, 추천, missing relation 추론에 활용할 수 있다.',
+  },
+  {
+    id: 's03-q3',
+    sessionId: '03',
+    question: 'Graph Representation Learning이 필요한 주된 이유는?',
+    choices: [
+      'graph는 이산적인 관계 구조라 그대로 ML/DL 모델이 계산하기 어렵기 때문에',
+      'graph에는 node가 전혀 없기 때문에',
+      '모델이 숫자 대신 그림만 처리하기 때문에',
+      'link prediction을 항상 사람이 직접 해야 하기 때문에',
+    ],
+    answerIndex: 0,
+    explanation:
+      '기계학습 모델은 숫자 vector를 계산하므로 graph의 구조 정보를 보존한 embedding이나 feature vector로 변환해야 한다.',
+  },
+  {
+    id: 's03-q4',
+    sessionId: '03',
+    question: 'GCN의 기본 아이디어로 맞는 것은?',
+    choices: [
+      'Target node가 neighbor 정보를 집계해 자신의 embedding을 업데이트한다.',
+      '모든 node를 독립적인 row로 보고 edge를 무시한다.',
+      '미래 token을 가려서 다음 token만 예측한다.',
+      '이미지 filter만 학습하고 graph 구조는 쓰지 않는다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      'GCN은 target node의 representation을 만들 때 주변 neighbor의 representation을 모아 계산한다.',
+  },
+  {
+    id: 's03-q5',
+    sessionId: '03',
+    question: 'Link Prediction task의 예로 가장 적절한 것은?',
+    choices: [
+      '두 node 사이에 생길 수 있는 친구 관계나 빠진 지식을 예측한다.',
+      '이미지를 고양이와 강아지로만 분류한다.',
+      'prompt를 prefill한 뒤 다음 token을 생성한다.',
+      '단일 graph 전체를 무조건 하나의 숫자로 압축한다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      'Link Prediction은 missing link를 예측하는 task로, 친구 추천이나 knowledge graph completion과 연결된다.',
+  },
 ];
 
 export const getQuizzesBySessionId = (sessionId: string) =>

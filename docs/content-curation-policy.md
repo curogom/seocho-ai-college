@@ -36,10 +36,15 @@
 - Discrete Diffusion Language Model
 - Scientific Foundation Model
 - Graph / Node / Edge / Relation
+- Knowledge Graph / Ontology / Triplet
+- Knowledge Graph Completion
+- Graph Representation Learning
 - Graph Embedding / Node Embedding
-- Graph Neural Network
+- Graph Neural Network / Graph Convolutional Network
 - Message Passing / Neighborhood Aggregation
 - k-hop Neighbor
+- Node Classification / Link Prediction / Graph Classification
+- Fraud Detection / Spatio-Temporal Graph
 
 ## 2차시 정리 기준
 
@@ -50,12 +55,14 @@
 - LPU는 NVIDIA 공식 대표 용어로 단정하지 않는다.
 - Qwen3-Next-80B는 강의자료 기준 Gated DeltaNet과 masked self-attention을 3:1 비율로 interleave하는 hybrid architecture로 정리한다.
 
-## 3차시 예습 정리 기준
+## 3차시 정리 기준
 
-- 예습 범위는 Graph, Node, Edge, Relation, Graph Embedding, Node Embedding, GNN, Message Passing, Neighborhood Aggregation으로 제한한다.
-- DRAG, SpoT-Mamba, FinePrompt, Knowledge Graph, Hyper-relational KG 계열은 예습 단계에서 깊게 다루지 않는다.
-- 실내 내비게이션, 보험사기 탐지, 추천 시스템 예시를 통해 graph 데이터 형태를 먼저 이해하도록 정리한다.
-- 수업 후 복습 노트와 예습 과제는 구분한다.
+- Graph는 x-y chart가 아니라 객체 간 관계성을 표현하는 자료 구조로 설명한다.
+- Knowledge Graph는 사람의 지식을 graph로 표현한 것이며, ontology와 relation schema 관점까지 함께 정리한다.
+- Graph Representation Learning은 이산적인 graph 구조를 feature vector로 바꾸는 흐름으로 설명한다.
+- GCN은 target node가 neighbor representation을 aggregate해 node embedding을 업데이트하는 구조로 설명한다.
+- 3차시 복습 범위는 GCN 기본 구조, graph task, fraud detection, spatio-temporal graph, financial domain applications까지로 둔다.
+- Knowledge Graph Embedding 상세는 다음 범위로 남기고, 3차시에서는 concept-level 연결만 제공한다.
 
 ## 제외할 내용
 

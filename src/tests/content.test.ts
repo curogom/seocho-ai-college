@@ -54,12 +54,25 @@ describe('learning content', () => {
       'Node',
       'Edge',
       'Relation',
+      'Knowledge Graph',
+      'Ontology',
+      'Triplet',
+      'Knowledge Graph Completion',
       'Graph Embedding',
       'Node Embedding',
+      'Graph Representation Learning',
+      'Graph Mining',
       'Graph Neural Network',
+      'Graph Convolutional Network',
+      'Computation Graph',
       'Message Passing',
       'Neighborhood Aggregation',
       'k-hop Neighbor',
+      'Node Classification',
+      'Link Prediction',
+      'Graph Classification',
+      'Fraud Detection',
+      'Spatio-Temporal Graph',
       'Homophily',
       'Heterophily',
     ]) {
@@ -159,7 +172,7 @@ describe('learning content', () => {
     expect(sessionSlots[15].id).toBe('16');
     expect(sessionSlots[1].session?.id).toBe('02');
     expect(sessionSlots[2].session?.id).toBe('03');
-    expect(sessionSlots[2].status).toBe('planned');
+    expect(sessionSlots[2].status).toBe('published');
   });
 
   it('publishes session 02 learning content', () => {
@@ -227,27 +240,37 @@ describe('learning content', () => {
     expect(sessionNote).not.toContain('GPU에서 LPU로 바뀐다');
   });
 
-  it('adds session 03 graph ML as pre-study content', () => {
+  it('publishes session 03 graph ML learning content', () => {
     const session = getSessionById('03');
-    const prestudy = readFileSync(
-      'content/prestudy/03-graph-ml-prestudy.md',
+    const sessionNote = readFileSync(
+      'content/sessions/03-graph-machine-learning.md',
       'utf8',
     );
 
-    expect(session?.status).toBe('planned');
+    expect(session?.status).toBe('published');
     expect(session?.title).toBe('Graph Machine Learning');
     expect(session?.instructor?.name).toBe('황지영');
     expect(session?.instructor?.englishName).toBe('Joyce Jiyoung Whang');
-    expect(session?.preview?.label).toBe('수업 전 예습');
-    expect(session?.preview?.assignments).toHaveLength(6);
-    expect(session?.preview?.questions).toHaveLength(0);
-    expect(session?.preview?.focusQuestions).toHaveLength(8);
-    expect(session?.preview?.excludedTopics).toContain('DRAG');
-    expect(session?.preview?.excludedTopics).toContain('Knowledge Graph');
-    expect(session?.preview?.heading).toBe('Graph Machine Learning 예습 노트');
-    expect(prestudy).toContain('노트 6. Message Passing / Neighborhood Aggregation');
-    expect(prestudy).not.toContain('## 최종 점검 퀴즈');
-    expect(prestudy).toContain('DRAG');
-    expect(prestudy).toContain('이번 예습 노트에서는 아래 항목을 깊게 다루지 않는다');
+    expect(session?.preview).toBeUndefined();
+    expect(session?.summaryLines).toHaveLength(3);
+    expect(session?.coreFlow).toContain('Knowledge Graph');
+    expect(session?.coreFlow).toContain('Graph Representation Learning');
+    expect(session?.coreFlow).toContain('Graph Convolutional Network');
+    expect(session?.coreFlow).toContain('Fraud Detection');
+    expect(session?.conceptCards.length).toBeGreaterThanOrEqual(12);
+    expect(session?.visualNotes).toHaveLength(2);
+    expect(session?.intuitions.length).toBeGreaterThan(0);
+    expect(session?.modelNotes.length).toBeGreaterThan(0);
+    expect(session?.quizIds).toHaveLength(5);
+    expect(session?.nextPreview?.title).toBe('Knowledge Graph Embedding');
+    expect(sessionNote).toContain('Graph Representation Learning');
+    expect(sessionNote).toContain('Graph Convolutional Network');
+    expect(sessionNote).toContain('Node Classification');
+    expect(sessionNote).toContain('Link Prediction');
+    expect(sessionNote).toContain('Knowledge Graph Embedding의 세부 구조는 다음 범위');
+    expect(sessionNote).not.toContain('예습 노트');
+    const sessionJson = JSON.stringify(session);
+    expect(sessionJson).not.toContain('resourcePath');
+    expect(sessionJson).not.toContain('.pdf');
   });
 });

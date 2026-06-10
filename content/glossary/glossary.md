@@ -46,20 +46,33 @@
 - Discrete Diffusion Language Model: token sequence 같은 이산 데이터 생성을 diffusion 관점으로 다루려는 언어 모델 계열
 - Scientific Foundation Model: PDE 해, 시뮬레이션, 관측 데이터 등 과학·공학 데이터를 중심으로 하는 foundation model 흐름
 
-## 3차시 예습 용어
+## 3차시 주요 용어
 
 - Graph: 개체를 node로, 개체 간 관계를 edge로 표현하는 데이터 구조
 - Node: graph에서 개체를 나타내는 단위
 - Edge: graph에서 node와 node 사이의 연결 또는 관계
 - Relation: edge가 어떤 의미의 연결인지 나타내는 타입
+- Knowledge Graph: 사람의 지식을 entity와 relation의 graph로 표현한 구조
+- Ontology: 도메인에서 어떤 entity와 relation을 둘 것인지 정의하는 구조
+- Triplet: head entity, relation, tail entity로 이루어진 하나의 지식 단위
+- Knowledge Graph Completion: graph에 빠진 head, relation, tail을 예측하는 task
 - Graph Embedding: graph 구조 정보를 보존하면서 vector representation으로 변환하는 방법
 - Node Embedding: 개별 node를 vector로 표현하는 방법
 - Edge Embedding: node 사이의 연결 또는 relation을 vector로 표현하는 방법
 - Subgraph Embedding: graph의 일부 구조를 vector로 표현하는 방법
 - Whole-Graph Embedding: graph 전체를 하나의 vector로 표현하는 방법
+- Graph Representation Learning: graph 정보를 downstream task에 유용한 representation으로 학습하는 접근
+- Graph Mining: graph에서 community, cluster, pattern, anomaly 같은 구조적 신호를 찾는 접근
 - Graph Neural Network: graph 위에서 neighbor 정보를 모아 node representation을 업데이트하는 neural network
+- Graph Convolutional Network: neighbor 정보를 집계해 node representation을 업데이트하는 GNN 계열 모델
 - Message Passing: GNN에서 node들이 edge를 따라 정보를 주고받는 과정
 - Neighborhood Aggregation: target node 주변 neighbor 정보를 모으는 과정
+- Computation Graph: target node의 representation 계산에 필요한 neighbor와 연산 의존 관계
 - k-hop Neighbor: k개의 edge를 거쳐 도달할 수 있는 node
+- Node Classification: graph 안의 개별 node class를 예측하는 task
+- Link Prediction: 두 node 사이에 edge가 존재할 가능성이나 relation을 예측하는 task
+- Graph Classification: graph 전체의 class를 예측하는 task
+- Fraud Detection: 관계 패턴을 이용해 정상과 이상 또는 사기를 구분하는 task
+- Spatio-Temporal Graph: 공간적 연결과 시간 변화를 함께 표현하는 graph
 - Homophily: 연결된 node들이 비슷한 속성이나 label을 갖는 경향
 - Heterophily: 연결된 node들이 서로 다른 속성이나 label을 갖는 경향

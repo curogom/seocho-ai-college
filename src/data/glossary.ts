@@ -352,7 +352,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['embedding'],
     description:
       'token을 모델이 계산할 수 있는 vector representation으로 바꾸는 표현.',
-    sessionIds: ['02'],
+    sessionIds: ['02', '03'],
   },
   {
     term: 'Prompt',
@@ -598,6 +598,42 @@ export const glossary: GlossaryEntry[] = [
     sessionIds: ['03'],
   },
   {
+    term: 'Knowledge Graph',
+    korean: '지식 그래프',
+    category: '개념',
+    aliases: ['knowledge graph', 'KG'],
+    description:
+      '사람의 지식을 entity와 relation의 graph로 표현한 구조. 질문 응답, 검색, 추천, reasoning에 활용된다.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Ontology',
+    korean: '온톨로지',
+    category: '개념',
+    aliases: ['ontology'],
+    description:
+      '도메인에서 어떤 entity, relation, rule을 둘 것인지 정의하는 구조. Knowledge Graph를 설계할 때 기반이 될 수 있다.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Triplet',
+    korean: '트리플렛',
+    category: '핵심 요소',
+    aliases: ['triple', 'triplet'],
+    description:
+      'Knowledge Graph에서 하나의 fact를 head entity, relation, tail entity의 세 요소로 표현한 단위.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Knowledge Graph Completion',
+    korean: '지식 그래프 완성',
+    category: '태스크',
+    aliases: ['knowledge graph completion', 'KG completion'],
+    description:
+      '이미 있는 entity와 relation을 바탕으로 graph에 빠진 head, relation, tail을 예측하는 task.',
+    sessionIds: ['03'],
+  },
+  {
     term: 'Graph Embedding',
     korean: '그래프 임베딩',
     category: '기법',
@@ -649,6 +685,15 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['graph representation learning'],
     description:
       'Graph의 node, edge, relation, structure 정보를 downstream task에 유용한 representation으로 학습하는 접근.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Graph Mining',
+    korean: '그래프 마이닝',
+    category: '기법',
+    aliases: ['graph mining'],
+    description:
+      'Graph에서 community, cluster, pattern, anomaly 같은 구조적 신호를 찾는 데이터 마이닝 접근.',
     sessionIds: ['03'],
   },
   {
@@ -730,6 +775,24 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['graph classification'],
     description:
       'Graph 전체가 어떤 class에 속하는지 예측하는 task.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Fraud Detection',
+    korean: '사기 탐지',
+    category: '태스크',
+    aliases: ['fraud detection'],
+    description:
+      '리뷰, 거래, 계정, 보험 청구 건 사이의 관계 패턴을 이용해 정상과 이상 또는 사기를 구분하는 task.',
+    sessionIds: ['03'],
+  },
+  {
+    term: 'Spatio-Temporal Graph',
+    korean: '시공간 그래프',
+    category: '개념',
+    aliases: ['spatio-temporal graph', 'STG'],
+    description:
+      '공간적 연결과 시간에 따른 변화를 함께 표현하는 graph. 교통, 날씨, 센서 예측 같은 문제에 활용된다.',
     sessionIds: ['03'],
   },
   {

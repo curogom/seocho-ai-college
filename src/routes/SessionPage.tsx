@@ -329,7 +329,7 @@ export function SessionPage() {
             {session.modelNotes.map((note) => (
               <article
                 key={note.title}
-                className={`rounded-md border border-line bg-white p-5 ${
+                className={`min-w-0 rounded-md border border-line bg-white p-5 ${
                   note.table && note.table.headers.length > 2 ? 'md:col-span-2' : ''
                 }`}
               >
