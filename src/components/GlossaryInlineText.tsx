@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { glossary, type GlossaryEntry } from '../data/glossary';
 
@@ -9,6 +10,12 @@ type GlossaryInlineTextProps = {
 type InlineGlossaryTarget = {
   alias: string;
   entry: GlossaryEntry;
+};
+
+type TooltipPosition = {
+  left: number;
+  top: number;
+  above: boolean;
 };
 
 const inlineTerms = new Set([
@@ -51,12 +58,17 @@ const inlineTerms = new Set([
   'Node',
   'Edge',
   'Relation',
+  'Knowledge Graph',
+  'Ontology',
+  'Triplet',
+  'Knowledge Graph Completion',
   'Graph Embedding',
   'Node Embedding',
   'Edge Embedding',
   'Subgraph Embedding',
   'Whole-Graph Embedding',
   'Graph Representation Learning',
+  'Graph Mining',
   'Graph Neural Network',
   'Graph Convolutional Network',
   'Message Passing',
@@ -66,6 +78,8 @@ const inlineTerms = new Set([
   'Node Classification',
   'Link Prediction',
   'Graph Classification',
+  'Fraud Detection',
+  'Spatio-Temporal Graph',
   'Homophily',
   'Heterophily',
 ]);
@@ -137,27 +151,89 @@ function findNextTarget(text: string, startIndex: number) {
   return bestMatch;
 }
 
+function getTooltipPosition(target: HTMLElement): TooltipPosition {
+  const rect = target.getBoundingClientRect();
+  const tooltipWidth = Math.min(288, window.innerWidth - 32);
+  const left = Math.min(
+    Math.max(rect.left, 16),
+    Math.max(16, window.innerWidth - tooltipWidth - 16),
+  );
+  const estimatedHeight = 176;
+  const shouldOpenAbove = rect.bottom + estimatedHeight > window.innerHeight;
+
+  return {
+    left,
+    top: shouldOpenAbove ? rect.top - 8 : rect.bottom + 8,
+    above: shouldOpenAbove,
+  };
+}
+
+function GlossaryTooltipLink({
+  matchText,
+  entry,
+}: {
+  matchText: string;
+  entry: GlossaryEntry;
+}) {
+  const [tooltipPosition, setTooltipPosition] =
+    useState<TooltipPosition | null>(null);
+  const tooltipId = `glossary-${entry.term.replace(/[^A-Za-z0-9_-]/g, '-')}`;
+
+  function showTooltip(target: HTMLElement) {
+    setTooltipPosition(getTooltipPosition(target));
+  }
+
+  function hideTooltip() {
+    setTooltipPosition(null);
+  }
+
+  return (
+    <>
+      <Link
+        className="inline-flex rounded-sm border-b border-dotted border-moss font-medium text-ink decoration-moss underline-offset-4 hover:text-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+        to={`/glossary?query=${encodeURIComponent(entry.term)}`}
+        aria-label={`${matchText}: ${entry.korean}. ${entry.description}`}
+        aria-describedby={tooltipPosition ? tooltipId : undefined}
+        onBlur={hideTooltip}
+        onFocus={(event) => showTooltip(event.currentTarget)}
+        onMouseEnter={(event) => showTooltip(event.currentTarget)}
+        onMouseLeave={hideTooltip}
+      >
+        {matchText}
+      </Link>
+      {tooltipPosition
+        ? createPortal(
+            <span
+              className="pointer-events-none fixed z-50 block w-72 max-w-[calc(100vw-2rem)] rounded-md border border-line bg-white p-3 text-left text-xs leading-5 text-ink shadow-soft"
+              id={tooltipId}
+              role="tooltip"
+              style={{
+                left: tooltipPosition.left,
+                top: tooltipPosition.top,
+                transform: tooltipPosition.above
+                  ? 'translateY(-100%)'
+                  : undefined,
+              }}
+            >
+              <span className="block font-semibold text-ink">
+                {entry.term}
+                <span className="ml-1 font-medium text-moss">
+                  {entry.korean}
+                </span>
+              </span>
+              <span className="mt-1 block text-ink/70">{entry.description}</span>
+              <span className="mt-2 block text-rust">용어 사전에서 보기</span>
+            </span>,
+            document.body,
+          )
+        : null}
+    </>
+  );
+}
+
 function renderGlossaryLink(matchText: string, entry: GlossaryEntry, key: string) {
   return (
-    <Link
-      key={key}
-      className="group/glossary relative inline-flex rounded-sm border-b border-dotted border-moss font-medium text-ink decoration-moss underline-offset-4 hover:text-moss focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-      to={`/glossary?query=${encodeURIComponent(entry.term)}`}
-      aria-label={`${matchText}: ${entry.korean}. ${entry.description}`}
-    >
-      {matchText}
-      <span
-        className="pointer-events-none absolute left-0 top-full z-30 mt-2 hidden w-72 max-w-[calc(100vw-2rem)] rounded-md border border-line bg-white p-3 text-left text-xs leading-5 text-ink shadow-soft group-hover/glossary:block group-focus-visible/glossary:block"
-        role="tooltip"
-      >
-        <span className="block font-semibold text-ink">
-          {entry.term}
-          <span className="ml-1 font-medium text-moss">{entry.korean}</span>
-        </span>
-        <span className="mt-1 block text-ink/70">{entry.description}</span>
-        <span className="mt-2 block text-rust">용어 사전에서 보기</span>
-      </span>
-    </Link>
+    <GlossaryTooltipLink key={key} matchText={matchText} entry={entry} />
   );
 }
 

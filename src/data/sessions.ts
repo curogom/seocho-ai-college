@@ -527,8 +527,8 @@ export const sessions: Session[] = [
     order: 3,
     title: 'Graph Machine Learning',
     koreanTitle: '그래프 기계학습',
-    subtitle: 'Graph, Embedding, GNN, Message Passing',
-    status: 'planned',
+    subtitle: 'Graphs, Knowledge Graphs, Graph Representation Learning, GCN',
+    status: 'published',
     instructor: {
       name: '황지영',
       englishName: 'Joyce Jiyoung Whang',
@@ -538,153 +538,281 @@ export const sessions: Session[] = [
       lab: 'Big Data Intelligence Lab',
     },
     summary:
-      '3차시는 관계 데이터를 graph로 표현하고, graph embedding과 GNN을 통해 node와 graph representation을 학습하는 흐름을 다룬다.',
-    summaryLines: [],
-    coreFlow: [],
-    coreFlowGroups: [],
-    conceptCards: [],
-    visualNotes: [],
-    intuitions: [],
-    modelNotes: [],
-    quizIds: [],
-    reflectionQuestions: [],
-    projectConnections: [],
-    preview: {
-      label: '수업 전 예습',
-      heading: 'Graph Machine Learning 예습 노트',
+      '3차시는 컴퓨터 과학에서의 graph를 관계 데이터 구조로 정의하고, Knowledge Graph, Graph Representation Learning, Graph Embedding, GCN으로 이어지는 그래프 기계학습의 기본 흐름을 다룬다.',
+    summaryLines: [
+      '컴퓨터 과학과 AI에서 graph는 x-y chart가 아니라 객체 간 관계성을 node와 edge로 표현하는 자료 구조다.',
+      'Knowledge Graph는 사람의 지식을 graph로 표현한 것이며, 관계를 따라가며 추론하는 인간의 사고 방식과 연결된다.',
+      '기계학습 모델이 graph를 다루려면 이산적인 관계 구조를 숫자 vector로 바꾸는 Graph Representation Learning과 Graph Embedding이 필요하다.',
+    ],
+    coreFlow: [
+      'AI / ML / Deep Learning',
+      'Graph',
+      'Node / Edge / Relation',
+      'Knowledge Graph',
+      'Knowledge Graph Completion',
+      'Graph Representation Learning',
+      'Graph Embedding',
+      'Node Embedding',
+      'Graph Neural Network',
+      'Graph Convolutional Network',
+      'Computation Graph',
+      'Neighborhood Aggregation',
+      'k-hop Neighbor',
+      'Node Classification',
+      'Link Prediction',
+      'Graph Classification',
+      'Fraud Detection',
+      'Spatio-Temporal Graph',
+      'Financial Domain Applications',
+    ],
+    coreFlowGroups: [
+      {
+        label: '상위 맥락',
+        layout: 'hierarchy',
+        items: ['AI / ML / Deep Learning', 'Graph'],
+      },
+      {
+        label: '관계와 지식 모델링',
+        layout: 'pipeline',
+        items: [
+          'Node / Edge / Relation',
+          'Knowledge Graph',
+          'Knowledge Graph Completion',
+        ],
+      },
+      {
+        label: '숫자 표현으로 변환',
+        layout: 'pipeline',
+        items: [
+          'Graph Representation Learning',
+          'Graph Embedding',
+          'Node Embedding',
+        ],
+      },
+      {
+        label: 'GNN 기본 구조',
+        layout: 'pipeline',
+        items: [
+          'Graph Neural Network',
+          'Graph Convolutional Network',
+          'Computation Graph',
+          'Neighborhood Aggregation',
+          'k-hop Neighbor',
+        ],
+      },
+      {
+        label: '대표 task와 활용',
+        layout: 'pipeline',
+        items: [
+          'Node Classification',
+          'Link Prediction',
+          'Graph Classification',
+          'Fraud Detection',
+          'Spatio-Temporal Graph',
+          'Financial Domain Applications',
+        ],
+      },
+    ],
+    conceptCards: [
+      {
+        term: 'Graph',
+        korean: '그래프',
+        description:
+          '컴퓨터 과학에서 graph는 객체와 객체 사이의 관계를 node와 edge로 표현하는 자료 구조다. 일반적인 x-y chart와는 다른 의미로 사용한다.',
+        takeaway: '핵심은 값 하나가 아니라 객체 사이의 연결과 관계성이다.',
+      },
+      {
+        term: 'Knowledge Graph',
+        korean: '지식 그래프',
+        description:
+          '사람이 알고 있는 지식을 entity와 relation의 graph로 표현한 구조다. Palantir식 ontology 논의도 도메인의 객체와 관계를 명시적으로 구조화한다는 점에서 맞닿아 있다.',
+        takeaway: '관계가 정리되면 질문 응답, 검색, 추천, reasoning을 같은 구조 위에서 다룰 수 있다.',
+      },
+      {
+        term: 'Knowledge Graph Completion',
+        korean: '지식 그래프 완성',
+        description:
+          '이미 있는 entity와 relation을 바탕으로 graph에 빠진 head, relation, tail을 예측하는 task다.',
+        takeaway: '명시적으로 적혀 있지 않은 관계를 추론하는 것이 knowledge graph를 학습하는 중요한 이유다.',
+      },
+      {
+        term: 'Graph Representation Learning',
+        korean: '그래프 표현 학습',
+        description:
+          '이산적인 graph 구조를 machine learning이 계산할 수 있는 feature vector나 embedding으로 바꾸는 접근이다.',
+        takeaway: 'Graph를 바로 모델에 넣기 어렵기 때문에 구조 정보를 보존한 숫자 표현이 필요하다.',
+      },
+      {
+        term: 'Graph Embedding',
+        korean: '그래프 임베딩',
+        description:
+          'Graph의 구조적 특성과 관계 정보를 최대한 보존하면서 node, edge, subgraph, whole graph를 low-dimensional vector space로 옮기는 방법이다.',
+        takeaway: 'Embedding이 잘 되면 원래 graph에서 가까운 node가 vector space에서도 가깝게 놓인다.',
+      },
+      {
+        term: 'Node Embedding',
+        korean: '노드 임베딩',
+        description:
+          '개별 node를 숫자 vector로 표현한다. Node 사이의 유사도가 원래 graph에서의 연결 구조와 역할을 반영해야 한다.',
+        takeaway: 'Node classification, clustering, link prediction 같은 downstream task의 기본 재료가 된다.',
+      },
+      {
+        term: 'Graph Neural Network',
+        korean: '그래프 신경망',
+        description:
+          'Graph 위에서 동작하는 neural network다. Target node가 자기 feature만 보는 것이 아니라 neighbor 정보를 함께 모아 representation을 업데이트한다.',
+        takeaway: 'Graph ML에서 deep learning 아이디어를 적용하는 대표 계열이다.',
+      },
+      {
+        term: 'Graph Convolutional Network',
+        korean: '그래프 합성곱 신경망',
+        description:
+          'GCN은 node representation을 계산할 때 주변 neighbor의 representation을 참조하고 집계하는 대표적인 GNN 구조다.',
+        takeaway: 'Image grid의 convolution 직관을 불규칙한 graph neighborhood로 옮겨온 것으로 볼 수 있다.',
+      },
+      {
+        term: 'Computation Graph',
+        korean: '계산 그래프',
+        description:
+          '특정 target node의 representation을 계산하기 위해 어떤 neighbor와 몇 hop까지 참고할지 펼쳐 놓은 연산 구조다.',
+        takeaway: 'Node마다 필요한 이웃 구조가 다르므로 각 node는 자기 neighborhood 기반의 computation graph를 가진다.',
+      },
+      {
+        term: 'Neighborhood Aggregation',
+        korean: '이웃 집계',
+        description:
+          'Target node 주변 neighbor들의 embedding을 평균, 합, attention, neural network 등으로 모아 target node 표현을 갱신하는 과정이다.',
+        takeaway: 'Layer가 깊어질수록 더 먼 k-hop neighbor의 정보가 들어온다.',
+      },
+      {
+        term: 'Graph Tasks',
+        korean: '그래프 task',
+        description:
+          '대표 task는 node classification, link prediction, graph classification이다. 무엇을 예측하느냐에 따라 node, edge, whole graph 수준의 representation이 필요하다.',
+        takeaway: '문제가 node 수준인지, 관계 수준인지, graph 전체 수준인지 먼저 구분해야 한다.',
+        flowItem: 'Node Classification',
+      },
+      {
+        term: 'Fraud Detection',
+        korean: '사기 탐지',
+        description:
+          '리뷰, 계정, 거래, 보험 청구 건 사이의 반복 관계를 graph로 만들고, node나 edge가 정상인지 이상인지 분류하는 대표 응용이다.',
+        takeaway: '개별 feature만으로 약한 신호도 관계 패턴으로 보면 더 잘 드러날 수 있다.',
+      },
+    ],
+    visualNotes: [
+      {
+        title: '관계 데이터를 Graph로 보는 관점',
+        src: '/session-visuals/session-03-graph-knowledge-flow.svg',
+        alt: '객체와 관계를 graph로 표현하고 knowledge graph와 reasoning으로 연결하는 흐름을 설명하는 도식',
+        caption:
+          '객체, 관계, 지식 그래프, reasoning을 하나의 관계 중심 흐름으로 다시 그렸습니다.',
+      },
+      {
+        title: 'Graph를 Vector로 바꾸는 학습 흐름',
+        src: '/session-visuals/session-03-representation-gcn-flow.svg',
+        alt: '이산적인 graph 구조를 graph representation learning과 embedding으로 변환하고 GCN이 neighbor 정보를 집계하는 흐름을 설명하는 도식',
+        caption:
+          'Graph representation learning, graph embedding, GCN의 neighborhood aggregation을 한 번에 복습할 수 있도록 정리했습니다.',
+      },
+    ],
+    intuitions: [
+      {
+        title: 'Graph는 관계를 먼저 본다',
+        body: 'Table은 row 하나를 독립적으로 보기 쉽지만 graph는 객체 사이의 연결을 함께 본다. 그래서 추천, 보험사기, 보안, bioinformatics처럼 관계 자체가 신호인 문제에 잘 맞는다.',
+      },
+      {
+        title: '사람도 관계를 따라 추론한다',
+        body: 'Knowledge Graph는 지식을 entity와 relation으로 묶는다. 질문 응답이나 검색에서 답을 찾을 때도 관계를 따라가며 reasoning하는 구조가 중요해진다.',
+      },
+      {
+        title: '모델은 결국 숫자를 계산한다',
+        body: 'Graph는 node와 edge로 된 이산 구조라 그대로 ML/DL 모델에 넣기 어렵다. Graph representation learning은 이 구조를 vector representation으로 바꾸는 접점이다.',
+      },
+      {
+        title: 'DL이 항상 정답은 아니다',
+        body: '일반적으로 deep learning의 표현력은 강하지만 특정 task에서는 전통 ML이나 규칙 기반 접근이 더 나을 수 있다. 문제의 데이터 구조와 비용을 보고 선택해야 한다.',
+      },
+    ],
+    modelNotes: [
+      {
+        title: 'Graph 기본 단위',
+        body: 'Graph는 G = (V, E)처럼 볼 수 있다. V는 node, vertex, entity처럼 관계를 표현하고 싶은 대상이고, E는 대상 사이의 edge 또는 relation이다.',
+        table: {
+          headers: ['단위', '의미', '예시'],
+          rows: [
+            ['Node / Entity', '관계를 표현하고 싶은 객체', '사람, 상품, 문서, 보험 청구 건'],
+            ['Edge / Relation', '객체 사이의 연결 또는 의미 있는 관계', '친구, 구매, 인용, 같은 작성자'],
+            ['Direction / Label', '관계의 방향성과 타입', 'A follows B, User purchased Product'],
+          ],
+        },
+      },
+      {
+        title: 'Knowledge Graph와 Ontology',
+        body: 'Knowledge Graph는 사람의 지식을 graph로 표현한다. Ontology는 어떤 entity와 relation을 둘 것인지 정하는 도메인 구조에 가깝고, 그 구조 위에서 knowledge graph를 만들 수 있다.',
+        highlight: '(head entity, relation, tail entity)',
+      },
+      {
+        title: 'Graph Representation Learning',
+        body: '기계학습 모델은 숫자 vector를 계산한다. 따라서 graph의 이산적인 구조를 feature vector로 바꾸되, 원래 graph의 structural information과 graph properties를 최대한 보존해야 한다.',
+      },
+      {
+        title: 'GCN과 k-hop 정보',
+        body: 'Graph Convolutional Network는 target node를 표현할 때 neighbor representation을 모아 자기 embedding을 업데이트한다. Layer-0은 자기 feature이고, layer-k는 k-hop distant node의 정보를 반영한다.',
+        table: {
+          headers: ['Layer', '들어오는 정보'],
+          rows: [
+            ['Layer-0', 'Target node 자신의 input feature'],
+            ['Layer-1', '직접 연결된 1-hop neighbor 정보'],
+            ['Layer-k', 'k개의 edge를 거쳐 닿는 k-hop neighbor 정보'],
+          ],
+        },
+      },
+      {
+        title: '대표 Graph Task',
+        body: 'Graph embedding은 task-independent feature learning으로 시작할 수 있지만, 실제 평가는 downstream task 성능으로 확인한다.',
+        table: {
+          headers: ['Task', '예측 대상', '예시'],
+          rows: [
+            ['Node Classification', '개별 node의 class', '리뷰가 fake인지, 보험 청구가 suspicious한지'],
+            ['Link Prediction', '두 node 사이의 missing link', '친구 추천, 관계 추천, 빠진 지식 발견'],
+            ['Graph Classification', 'Graph 전체의 class', '분자 구조가 약 후보인지 분류'],
+          ],
+        },
+      },
+      {
+        title: '3차시 진행 범위',
+        body: '이번 복습 범위는 Graph Models, Graph Representation Learning, Graph Embedding, Node Embedding, GCN 기본 구조, fraud detection, spatio-temporal graph, financial domain applications까지다. Knowledge Graph Embedding 상세는 다음 범위로 남긴다.',
+      },
+    ],
+    quizIds: ['s03-q1', 's03-q2', 's03-q3', 's03-q4', 's03-q5'],
+    reflectionQuestions: [
+      '컴퓨터 과학에서 graph는 일반적인 x-y chart와 무엇이 다른가?',
+      'Knowledge Graph가 사람의 reasoning 방식과 연결되는 이유는 무엇인가?',
+      'Graph를 바로 machine learning 모델에 넣기 어려운 이유는 무엇인가?',
+      'Graph embedding이 보존해야 하는 구조 정보는 무엇인가?',
+      'GCN에서 target node가 neighbor 정보를 집계하는 이유는 무엇인가?',
+      'Node classification, link prediction, graph classification은 각각 어떤 예측 문제인가?',
+    ],
+    projectConnections: [
+      '실내 내비게이션은 장소를 node로, 이동 가능 경로를 edge로 두면 graph 문제로 정리할 수 있다.',
+      '매장, 편의시설, 층, 접근성, 운영 정책을 knowledge graph로 묶으면 LLM 안내와 검색의 grounding에 활용할 수 있다.',
+      '방문 로그와 장소 관계를 함께 보면 추천이나 혼잡도 예측에서 단순 table feature보다 풍부한 신호를 얻을 수 있다.',
+      '이상 이동 패턴이나 비정상 리뷰·피드백 탐지는 fraud detection과 유사한 graph classification 관점으로 확장할 수 있다.',
+    ],
+    nextPreview: {
+      title: 'Knowledge Graph Embedding',
       summary:
-        '이번 예습의 목표는 GNN이 node 자신의 feature뿐 아니라 연결된 neighbor 정보까지 함께 보고 판단하는 모델이라는 관점을 이해하는 것이다.',
+        '다음 범위에서는 Knowledge Graph를 triplet으로 표현하고, entity와 relation을 continuous feature space에 embedding해 missing relation을 예측하는 흐름을 더 자세히 다룬다.',
+      questions: [
+        'Knowledge Graph에서 head entity, relation, tail entity는 각각 무엇인가?',
+        'Knowledge Graph Completion은 어떤 missing information을 예측하는가?',
+        'Entity와 relation을 vector로 옮길 때 relation의 의미를 어떻게 보존할 수 있는가?',
+      ],
       keyPoints: [
-        'Graph = Node + Edge',
-        'Node / Edge / Relation',
-        'Graph Embedding',
-        'Node Embedding',
-        'GNN',
-        'Message Passing / Neighborhood Aggregation',
-      ],
-      questions: [],
-      assignments: [
-        {
-          title: '노트 1. Graph = Node + Edge',
-          goal: '그래프가 무엇인지 이해한다.',
-          body:
-            'Graph는 객체와 객체 간 관계를 표현하는 데이터 구조다. Node는 개체이고, edge는 개체 간 연결 또는 관계다.',
-          prompts: [
-            '실내 내비게이션의 node와 edge를 정의한다.',
-            '쇼핑몰 추천 시스템의 node와 edge를 정의한다.',
-            '보험사기 탐지의 node와 edge를 정의한다.',
-          ],
-          example: [
-            '실내 내비게이션에서 node는 출입구, 복도, 매장, 계단, 엘리베이터, 화장실이 될 수 있다.',
-            'edge는 이동 가능한 경로, 같은 층에 있음, 가까이 있음, 휠체어 접근 가능 같은 관계가 될 수 있다.',
-            '실내 공간은 좌표보다 이동 가능 관계가 중요하므로 graph 표현이 자연스럽다.',
-          ],
-        },
-        {
-          title: '노트 2. Node / Edge / Relation',
-          goal: 'Node, edge, relation의 차이를 이해한다.',
-          body:
-            'Node는 개체이고 edge는 개체 간 연결이다. Relation은 edge가 어떤 의미의 연결인지 나타내는 타입이다.',
-          prompts: [
-            '실내 내비게이션 relation type을 5개 이상 정의한다.',
-            '각 relation이 왜 필요한지 한 줄로 설명한다.',
-            'connected_to, same_floor_as, nearby 같은 관계를 구분한다.',
-          ],
-          example: [
-            'connected_to는 두 장소 사이에 실제 이동 가능한 경로가 있는지 나타낸다.',
-            'accessible_by_wheelchair는 휠체어 접근 가능 경로인지 나타낸다.',
-            'requires_vertical_movement는 계단이나 엘리베이터처럼 층 이동이 필요한 관계를 나타낸다.',
-          ],
-        },
-        {
-          title: '노트 3. Graph Embedding',
-          goal: 'Graph embedding이 왜 필요한지 이해한다.',
-          body:
-            'Graph embedding은 graph의 구조 정보를 최대한 보존하면서 node, edge, subgraph, whole graph를 vector space로 바꾸는 것이다.',
-          prompts: [
-            '왜 graph를 vector로 바꿔야 하는가?',
-            'Node embedding과 whole-graph embedding은 무엇이 다른가?',
-            '실내 내비게이션 node embedding에는 어떤 정보가 반영되어야 하는가?',
-          ],
-          example: [
-            'ML/DL 모델은 숫자 vector를 입력으로 다루기 쉽기 때문에 graph 구조를 representation으로 바꿔야 한다.',
-            'Node embedding은 특정 매장 하나를 표현하고, whole-graph embedding은 쇼핑몰 전체 구조를 표현할 수 있다.',
-            '위치, 층, 장소 타입, 주변 장소, 이동 가능 경로, 혼잡도, 접근성, 방문 빈도가 반영될 수 있다.',
-          ],
-        },
-        {
-          title: '노트 4. Node Embedding',
-          goal: 'Node embedding의 목적을 이해한다.',
-          body:
-            'Node embedding은 각 node를 vector로 표현하는 것이다. 원래 graph에서 비슷한 node는 embedding space에서도 가깝게 위치해야 한다.',
-          prompts: [
-            '같은 층에 있는 엘리베이터와 계단은 가까워야 하는가?',
-            '같은 브랜드의 매장 두 개는 가까워야 하는가?',
-            '물리적으로 멀지만 같은 카테고리의 매장 두 개는 가까워야 하는가?',
-          ],
-          example: [
-            '같은 층의 엘리베이터와 계단은 vertical movement node라는 점에서 가까울 수 있다.',
-            '같은 브랜드 매장은 추천 task에서는 가까울 수 있지만 내비게이션 task에서는 멀 수 있다.',
-            'Embedding의 거리는 어떤 task를 위한 representation인지에 따라 달라진다.',
-          ],
-        },
-        {
-          title: '노트 5. GNN',
-          goal: 'GNN이 왜 필요한지 이해한다.',
-          body:
-            'GNN은 graph 위에서 동작하는 neural network다. Target node의 feature와 neighbor node들의 정보를 함께 사용해 node representation을 업데이트한다.',
-          prompts: [
-            '보험사기 탐지에서 graph가 왜 유용한지 설명한다.',
-            '가짜 리뷰 탐지에서 단일 feature table이 부족한 이유를 설명한다.',
-            '실내 혼잡도 예측과 쇼핑몰 개인화 추천을 graph 관점으로 설명한다.',
-          ],
-          example: [
-            '보험사기 탐지는 환자, 병원, 설계사, 청구 건 사이의 반복 연결 패턴을 봐야 한다.',
-            '가짜 리뷰 탐지는 리뷰 문장만이 아니라 사용자, 상품, 시점의 연결 패턴을 함께 봐야 한다.',
-            '실내 혼잡도는 연결된 복도, 입구, 엘리베이터, 이벤트 공간의 영향을 함께 볼 수 있다.',
-          ],
-        },
-        {
-          title: '노트 6. Message Passing / Neighborhood Aggregation',
-          goal: 'GNN의 핵심 연산을 이해한다.',
-          body:
-            'Message passing은 node들이 edge를 따라 정보를 주고받는 과정이고, neighborhood aggregation은 target node 주변 neighbor 정보를 모으는 과정이다.',
-          prompts: [
-            '현재 위치 node의 1-hop neighbor를 정의한다.',
-            '2-hop neighbor 정보가 필요한 상황을 설명한다.',
-            '너무 먼 hop까지 섞으면 어떤 문제가 생기는지 설명한다.',
-          ],
-          example: [
-            '1-hop neighbor는 바로 이동 가능한 복도, 매장, 엘리베이터, 계단, 출입구가 될 수 있다.',
-            '2-hop neighbor는 한 번 경유해야 하는 목적지나 곧 혼잡 영향을 줄 공간을 볼 때 필요하다.',
-            '너무 먼 hop까지 섞으면 node별 특성이 흐려지는 over-smoothing 문제가 생길 수 있다.',
-          ],
-        },
-      ],
-      focusQuestions: [
-        '이 강의에서 graph embedding과 GNN을 어떻게 구분하는가?',
-        'Node embedding은 downstream task에 어떻게 연결되는가?',
-        'GNN에서 aggregation 방식은 mean, sum, attention 중 무엇을 쓰는가?',
-        'Graph layer가 깊어질수록 어떤 장점과 문제가 생기는가?',
-        'Fraud detection 사례에서는 왜 relation-aware GNN이 필요한가?',
-        'Homophily와 heterophily는 어떤 차이인가?',
-        '실내 내비게이션이나 혼잡도 예측에 적용한다면 graph를 어떻게 설계해야 하는가?',
-        'Graph ML이 기존 ML/DL과 가장 크게 다른 지점은 무엇인가?',
-      ],
-      excludedTopics: [
-        'DRAG',
-        'SpoT-Mamba',
-        'FinePrompt',
-        'Graph Adversarial Attack',
-        'Knowledge Graph',
-        'Knowledge Graph Embedding',
-        'TransE',
-        'MRR',
-        'Hit@N',
-        'Hyper-relational Knowledge Graph',
-        'Visual-Textual Knowledge Graph',
-        'Inductive Inference',
-        'Fact Generation',
+        '각 fact는 (head entity, relation, tail entity) triplet으로 표현된다.',
+        'Knowledge Graph Embedding은 entity와 relation을 continuous feature space로 옮긴다.',
+        'Completion task는 빠진 tail, head, relation을 예측하는 문제로 볼 수 있다.',
       ],
     },
   },
