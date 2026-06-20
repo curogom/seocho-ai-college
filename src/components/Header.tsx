@@ -148,7 +148,11 @@ export function Header() {
                     value={slot.id}
                     disabled={!slot.session}
                   >
-                    {slot.id}. {slot.session?.koreanTitle ?? '자료 준비 전'}
+                    {slot.id}.{' '}
+                    {slot.session?.koreanTitle ??
+                      (slot.status === 'deferred'
+                        ? '추후 보강 예정'
+                        : '자료 준비 전')}
                   </option>
                 ))}
               </select>

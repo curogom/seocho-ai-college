@@ -218,6 +218,76 @@ export const quizzes: Quiz[] = [
     explanation:
       'Link Prediction은 missing link를 예측하는 task로, 친구 추천이나 knowledge graph completion과 연결된다.',
   },
+  {
+    id: 's04-q1',
+    sessionId: '04',
+    question: 'Knowledge Graph의 기본 fact 단위인 triplet 구성으로 맞는 것은?',
+    choices: [
+      'head entity, relation, tail entity',
+      'input token, hidden layer, output token',
+      'image, filter, pooling',
+      'prompt, answer, temperature',
+    ],
+    answerIndex: 0,
+    explanation:
+      'Knowledge Graph의 하나의 fact는 보통 head entity, relation, tail entity로 표현한다.',
+  },
+  {
+    id: 's04-q2',
+    sessionId: '04',
+    question: 'Knowledge Graph Embedding에서 scoring function의 역할은?',
+    choices: [
+      'SVG 이미지를 압축한다.',
+      'Triplet이 그럴듯한 fact인지 점수로 계산한다.',
+      '모든 entity를 삭제한다.',
+      'LLM의 temperature만 조정한다.',
+    ],
+    answerIndex: 1,
+    explanation:
+      'Scoring function은 entity와 relation representation을 이용해 triplet plausibility를 계산한다.',
+  },
+  {
+    id: 's04-q3',
+    sessionId: '04',
+    question: 'Translational distance model의 핵심 직관으로 가장 적절한 것은?',
+    choices: [
+      'head + relation이 tail과 가까워지도록 학습한다.',
+      '모든 relation을 텍스트로만 저장한다.',
+      '정답 ranking을 무작위로 섞는다.',
+      'LLM이 graph를 보지 못하게 한다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      'TransE 계열의 대표 직관은 h + r이 t와 가까워지는 방향으로 embedding을 학습하는 것이다.',
+  },
+  {
+    id: 's04-q4',
+    sessionId: '04',
+    question: 'Hits@K metric의 의미로 맞는 것은?',
+    choices: [
+      '정답 후보가 상위 K개 안에 들어간 비율',
+      '모델 parameter의 개수',
+      '문서 chunk의 평균 길이',
+      'graph에 있는 node의 색상 수',
+    ],
+    answerIndex: 0,
+    explanation:
+      'Hits@K는 정답이 ranking 상위 K개 후보 안에 포함되는 비율을 본다.',
+  },
+  {
+    id: 's04-q5',
+    sessionId: '04',
+    question: 'GraphRAG 설명으로 가장 적절한 것은?',
+    choices: [
+      'RAG에서 관련 text chunk만 금지하는 방식이다.',
+      '질문과 관련된 node, edge, triplet, subgraph를 검색해 LLM 답변에 함께 제공하는 접근이다.',
+      'Knowledge Graph를 항상 이미지 파일로만 저장하는 방식이다.',
+      'LLM이 외부 정보를 전혀 보지 않게 하는 방식이다.',
+    ],
+    answerIndex: 1,
+    explanation:
+      'GraphRAG는 retrieval 대상을 graph structure로 확장해 grounding과 explainability를 높이려는 접근이다.',
+  },
 ];
 
 export const getQuizzesBySessionId = (sessionId: string) =>

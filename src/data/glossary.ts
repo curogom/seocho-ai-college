@@ -604,7 +604,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['knowledge graph', 'KG'],
     description:
       '사람의 지식을 entity와 relation의 graph로 표현한 구조. 질문 응답, 검색, 추천, reasoning에 활용된다.',
-    sessionIds: ['03'],
+    sessionIds: ['03', '04'],
   },
   {
     term: 'Ontology',
@@ -613,7 +613,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['ontology'],
     description:
       '도메인에서 어떤 entity, relation, rule을 둘 것인지 정의하는 구조. Knowledge Graph를 설계할 때 기반이 될 수 있다.',
-    sessionIds: ['03'],
+    sessionIds: ['03', '04'],
   },
   {
     term: 'Triplet',
@@ -622,7 +622,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['triple', 'triplet'],
     description:
       'Knowledge Graph에서 하나의 fact를 head entity, relation, tail entity의 세 요소로 표현한 단위.',
-    sessionIds: ['03'],
+    sessionIds: ['03', '04'],
   },
   {
     term: 'Knowledge Graph Completion',
@@ -631,7 +631,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['knowledge graph completion', 'KG completion'],
     description:
       '이미 있는 entity와 relation을 바탕으로 graph에 빠진 head, relation, tail을 예측하는 task.',
-    sessionIds: ['03'],
+    sessionIds: ['03', '04'],
   },
   {
     term: 'Graph Embedding',
@@ -766,7 +766,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['link prediction'],
     description:
       '두 node 사이에 edge가 존재할 가능성이나 relation을 예측하는 task.',
-    sessionIds: ['03'],
+    sessionIds: ['03', '04'],
   },
   {
     term: 'Graph Classification',
@@ -812,5 +812,284 @@ export const glossary: GlossaryEntry[] = [
     description:
       'Graph에서 서로 연결된 node들이 서로 다른 속성이나 label을 갖는 경향.',
     sessionIds: ['03'],
+  },
+  {
+    term: 'Knowledge Graph Embedding',
+    korean: '지식 그래프 임베딩',
+    category: '기법',
+    aliases: ['KGE', 'knowledge graph embedding'],
+    description:
+      'Knowledge Graph의 entity와 relation을 vector representation으로 바꿔 구조와 관계 의미를 계산 가능한 공간에 옮기는 기법.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Sparse Graph',
+    korean: '희소 그래프',
+    category: '개념',
+    aliases: ['sparse graph', 'sparse'],
+    description:
+      '가능한 연결 조합에 비해 실제 관찰되거나 기록된 edge가 적은 graph. Knowledge Graph는 대개 sparse하다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Entity Embedding',
+    korean: '엔티티 임베딩',
+    category: '기법',
+    aliases: ['entity embedding'],
+    description:
+      'Knowledge Graph의 entity를 vector representation으로 표현한 값.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Relation Embedding',
+    korean: '관계 임베딩',
+    category: '기법',
+    aliases: ['relation embedding'],
+    description:
+      'Knowledge Graph의 relation type을 vector, matrix, complex value 등 계산 가능한 representation으로 표현한 값.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Scoring Function',
+    korean: '스코어링 함수',
+    category: '기법',
+    aliases: ['scoring function', 'score function'],
+    description:
+      'Triplet이 그럴듯한 fact인지 점수로 계산하는 함수. Positive triplet은 높은 score, negative triplet은 낮은 score가 되도록 학습한다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Translational Distance Model',
+    korean: '거리 기반 변환 모델',
+    category: '모델',
+    aliases: ['translational distance model', 'distance model'],
+    description:
+      'Head entity와 relation의 embedding을 더하거나 변환했을 때 tail entity embedding과 가까워지도록 학습하는 Knowledge Graph Embedding 계열.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'TransE',
+    korean: 'TransE',
+    category: '모델',
+    aliases: ['transe'],
+    description:
+      '대표적인 translational distance model. h + r이 t와 가까워지는 방향으로 entity와 relation embedding을 학습한다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Semantic Matching Model',
+    korean: '의미 매칭 모델',
+    category: '모델',
+    aliases: ['semantic matching model', 'matching model'],
+    description:
+      'Head, relation, tail 사이의 compatibility 또는 similarity를 높이는 방향으로 fact plausibility를 계산하는 Knowledge Graph Embedding 계열.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'RESCAL',
+    korean: 'RESCAL',
+    category: '모델',
+    aliases: ['rescal'],
+    description:
+      'Relation을 matrix로 보고 head와 tail embedding 사이의 상호작용을 계산하는 semantic matching 계열 KGE 모델.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'DistMult',
+    korean: 'DistMult',
+    category: '모델',
+    aliases: ['distmult'],
+    description:
+      'RESCAL의 상호작용을 단순화한 semantic matching 계열 KGE 모델. 같은 차원끼리의 곱을 중심으로 score를 계산한다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'ComplEx',
+    korean: 'ComplEx',
+    category: '모델',
+    aliases: ['complex'],
+    description:
+      'Embedding을 complex space로 확장해 relation pattern을 표현하려는 Knowledge Graph Embedding 모델.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Mean Rank',
+    korean: '평균 순위',
+    category: '태스크',
+    aliases: ['mean rank', 'MR'],
+    description:
+      'Link Prediction에서 정답 후보가 ranking에서 평균 몇 등인지 측정하는 metric. 낮을수록 좋다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'MRR',
+    korean: '평균 역순위',
+    category: '태스크',
+    aliases: ['mean reciprocal rank'],
+    description:
+      'Mean Reciprocal Rank. 정답 순위 역수의 평균으로, 정답이 ranking 상위권에 있을수록 높아진다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Hits@K',
+    korean: 'Hits@K',
+    category: '태스크',
+    aliases: ['hits@k', 'hits at k', 'Hits@10', 'Hits@1'],
+    description:
+      '정답 후보가 ranking 상위 K개 안에 포함되는 비율. 검색이나 추천처럼 상위 결과가 중요한 문제에서 자주 본다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Hyper-relational Knowledge Graph',
+    korean: '초관계형 지식 그래프',
+    category: '개념',
+    aliases: ['hyper-relational knowledge graph', 'hyper-relational KG'],
+    description:
+      'Main triplet에 qualifier를 붙여 연도, 수상자, 수치 같은 부가 정보를 표현하는 Knowledge Graph.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Qualifier',
+    korean: '한정자',
+    category: '핵심 요소',
+    aliases: ['qualifier'],
+    description:
+      'Hyper-relational Knowledge Graph에서 main triplet에 붙는 부가 정보. 연도, 출처, 수상자, 수치 등이 qualifier가 될 수 있다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Numerical Knowledge Graph',
+    korean: '수치형 지식 그래프',
+    category: '개념',
+    aliases: ['numerical knowledge graph', 'numerical KG'],
+    description:
+      'Entity와 relation에 수치 속성이나 측정값을 함께 표현하는 Knowledge Graph.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Multimodal Knowledge Graph',
+    korean: '멀티모달 지식 그래프',
+    category: '개념',
+    aliases: ['multimodal knowledge graph', 'multimodal KG'],
+    description:
+      'Graph structure와 함께 image, text, numerical feature 같은 여러 modality를 다루는 Knowledge Graph.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Temporal Knowledge Graph',
+    korean: '시계열 지식 그래프',
+    category: '개념',
+    aliases: ['temporal knowledge graph', 'temporal KG'],
+    description:
+      '시간에 따라 바뀌는 fact와 relation을 표현하는 Knowledge Graph.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Inductive Reasoning',
+    korean: '귀납적 추론',
+    category: '기법',
+    aliases: ['inductive reasoning', 'inductive inference', 'inductive learning'],
+    description:
+      'Training time에 보지 못한 새로운 entity나 relation이 inference time에 들어와도 구조 정보를 이용해 추론하는 설정.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Transductive Reasoning',
+    korean: '전이적 추론 설정',
+    category: '기법',
+    aliases: ['transductive reasoning', 'transductive inference'],
+    description:
+      'Training time에 보았던 entity와 relation 집합 안에서 빠진 link나 label을 예측하는 설정.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Relation Graph',
+    korean: '관계 그래프',
+    category: '개념',
+    aliases: ['relation graph'],
+    description:
+      'Relation을 node로 보고 relation 사이의 구조적 유사성을 edge로 표현한 graph. 새로운 relation embedding에 활용될 수 있다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Knowledge Graph Construction',
+    korean: '지식 그래프 구축',
+    category: '기법',
+    aliases: ['KG construction', 'knowledge graph construction'],
+    description:
+      'Text나 raw data에서 entity와 relation을 추출하고, 정규화와 검증을 거쳐 Knowledge Graph를 만드는 과정.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Entity Extraction',
+    korean: '엔티티 추출',
+    category: '기법',
+    aliases: ['entity extraction', 'named entity recognition', 'NER'],
+    description:
+      '문서에서 사람, 장소, 조직, 제품처럼 graph의 entity 후보가 될 표현을 찾는 과정.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Entity Canonicalization',
+    korean: '엔티티 정규화',
+    category: '기법',
+    aliases: ['entity canonicalization', 'canonicalization'],
+    description:
+      '같은 대상을 가리키는 여러 표현을 하나의 canonical entity로 묶는 과정.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Relation Extraction',
+    korean: '관계 추출',
+    category: '기법',
+    aliases: ['relation extraction'],
+    description:
+      'Entity 사이에 어떤 relation이 있는지 text나 structured data에서 추출하는 과정.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'GraphRAG',
+    korean: '그래프 검색 증강 생성',
+    category: '기법',
+    aliases: ['graph rag', 'Graph RAG'],
+    description:
+      'RAG에서 retrieval 대상을 text chunk뿐 아니라 Knowledge Graph의 node, edge, triplet, path, subgraph로 확장하는 접근.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Retrieval-Augmented Generation',
+    korean: '검색 증강 생성',
+    category: '기법',
+    aliases: ['RAG', 'retrieval augmented generation'],
+    description:
+      'LLM이 답변을 생성할 때 외부 문서나 지식을 검색해 context로 함께 제공하는 방식.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Subgraph Retrieval',
+    korean: '부분 그래프 검색',
+    category: '기법',
+    aliases: ['subgraph retrieval'],
+    description:
+      '질문과 관련된 node, edge, path, triplet을 포함하는 부분 graph를 찾아 LLM 또는 downstream task에 제공하는 과정.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Graph Database',
+    korean: '그래프 데이터베이스',
+    category: '개념',
+    aliases: ['graph database', 'graph DB'],
+    description:
+      'Node와 edge 중심으로 데이터를 저장하고 탐색하기 위한 데이터베이스. Knowledge Graph 운영과 업데이트에 활용될 수 있다.',
+    sessionIds: ['04'],
+  },
+  {
+    term: 'Data Governance',
+    korean: '데이터 거버넌스',
+    category: '개념',
+    aliases: ['data governance'],
+    description:
+      '데이터의 보안, 품질, 접근 권한, 최신성, 책임 범위를 관리하는 원칙과 운영 체계.',
+    sessionIds: ['04'],
   },
 ];

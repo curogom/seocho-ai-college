@@ -16,7 +16,7 @@ const routeDefinitions = [
 
 Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Agentic AI, Physical AI까지 이어지는 흐름을 누적해서 복습합니다.
 
-현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning입니다.`,
+현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding입니다.`,
   },
   {
     path: '/sessions',
@@ -30,6 +30,8 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Agentic AI, P
 - 1차시: From Machine Learning to Deep Learning
 - 2차시: Large Language Models
 - 3차시: Graph Machine Learning
+- 4차시: Knowledge Graph Embedding
+- 5차시: 휴강, 추후 보강 예정
 
 새 차시는 같은 학습 구조에 맞춰 세션 데이터, 퀴즈, 용어, 시각 노트를 추가하는 방식으로 확장합니다.`,
   },
@@ -56,6 +58,14 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Agentic AI, P
     description:
       'Graph, Knowledge Graph, Graph Representation Learning, Graph Embedding, Node Embedding, GCN과 대표 graph task를 정리합니다.',
     sourcePath: 'content/sessions/03-graph-machine-learning.md',
+  },
+  {
+    path: '/sessions/04',
+    title: '4차시 Knowledge Graph Embedding',
+    koreanTitle: '지식 그래프 임베딩',
+    description:
+      'Knowledge Graph의 triplet, scoring function, link prediction metric, hyper-relational knowledge graph, inductive reasoning, GraphRAG 흐름을 정리합니다.',
+    sourcePath: 'content/sessions/04-knowledge-graph-embedding.md',
   },
   {
     path: '/glossary',

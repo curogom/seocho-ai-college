@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">GraphRAG retrieval flow</title>
+  <desc id="desc">Documents are converted into a knowledge graph, relevant subgraphs are retrieved for a question, and an LLM generates a grounded answer.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f6f5c" />
+    </marker>
+    <style>
+      .bg { fill: #f8faf7; }
+      .card { fill: #ffffff; stroke: #d7ded2; stroke-width: 2; }
+      .soft { fill: #eef3ec; stroke: #d7ded2; stroke-width: 2; }
+      .ink { fill: #172026; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .muted { fill: #5f676d; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .rust { fill: #a6573b; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .moss { fill: #3f6f5c; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .line { stroke: #3f6f5c; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .edge { stroke: #a6573b; stroke-width: 3; fill: none; }
+      .node { fill: #ffffff; stroke: #3f6f5c; stroke-width: 3; }
+      .chip { fill: #f8faf7; stroke: #d7ded2; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="675" />
+  <text x="70" y="78" class="rust" font-size="24" font-weight="700">GRAPH RAG</text>
+  <text x="70" y="124" class="ink" font-size="34" font-weight="800">답변에 필요한 Subgraph를 찾아 넣습니다</text>
+  <text x="70" y="158" class="muted" font-size="19">Text chunk뿐 아니라 node, edge, path, triplet을 함께 검색합니다.</text>
+
+  <rect x="70" y="220" width="230" height="270" rx="8" class="card" />
+  <text x="100" y="262" class="ink" font-size="23" font-weight="800">Documents</text>
+  <rect x="100" y="315" width="170" height="38" rx="6" class="chip" />
+  <text x="130" y="340" class="muted" font-size="16">텍스트 문서</text>
+  <rect x="100" y="369" width="170" height="38" rx="6" class="chip" />
+  <text x="128" y="394" class="muted" font-size="16">운영 기록</text>
+  <rect x="100" y="423" width="170" height="38" rx="6" class="chip" />
+  <text x="132" y="448" class="muted" font-size="16">도메인 자료</text>
+
+  <path d="M320 355 L380 355" class="line" />
+
+  <rect x="400" y="220" width="260" height="270" rx="8" class="soft" />
+  <text x="430" y="262" class="ink" font-size="23" font-weight="800">KG Construction</text>
+  <text x="430" y="300" class="muted" font-size="16">
+    <tspan x="430" dy="0">entity 추출</tspan>
+    <tspan x="430" dy="25">relation 추출</tspan>
+    <tspan x="430" dy="25">검증과 중복 제거</tspan>
+  </text>
+  <circle cx="475" cy="410" r="25" class="node" />
+  <circle cx="555" cy="380" r="25" class="node" />
+  <circle cx="575" cy="445" r="25" class="node" />
+  <path d="M499 402 L531 390" class="edge" />
+  <path d="M500 421 L551 436" class="edge" />
+
+  <path d="M680 355 L740 355" class="line" />
+
+  <rect x="760" y="220" width="230" height="270" rx="8" class="card" />
+  <text x="790" y="262" class="ink" font-size="23" font-weight="800">Retrieve</text>
+  <rect x="790" y="315" width="170" height="38" rx="6" class="chip" />
+  <text x="826" y="340" class="muted" font-size="16">node</text>
+  <rect x="790" y="369" width="170" height="38" rx="6" class="chip" />
+  <text x="825" y="394" class="muted" font-size="16">triplet</text>
+  <rect x="790" y="423" width="170" height="38" rx="6" class="chip" />
+  <text x="820" y="448" class="muted" font-size="16">subgraph</text>
+
+  <path d="M1010 355 L1065 355" class="line" />
+
+  <rect x="1075" y="250" width="85" height="210" rx="8" class="soft" />
+  <text x="1102" y="330" class="ink" font-size="22" font-weight="800">LLM</text>
+  <text x="1095" y="360" class="moss" font-size="16" font-weight="800">Answer</text>
+
+  <rect x="195" y="555" width="810" height="64" rx="8" fill="#172026" />
+  <text x="245" y="594" fill="#f8faf7" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="19" font-weight="800">Grounding</text>
+  <text x="430" y="594" fill="#f8faf7" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="19" font-weight="800">Explainability</text>
+  <text x="650" y="594" fill="#f8faf7" font-family="Pretendard, Apple SD Gothic Neo, sans-serif" font-size="19" font-weight="800">Token Efficiency</text>
+</svg>
