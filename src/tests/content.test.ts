@@ -80,6 +80,39 @@ describe('learning content', () => {
     }
   });
 
+  it('keeps session 04 knowledge graph embedding terms in the glossary', () => {
+    const terms = new Set(glossary.map((entry) => entry.term));
+
+    for (const term of [
+      'Knowledge Graph Embedding',
+      'Sparse Graph',
+      'Entity Embedding',
+      'Relation Embedding',
+      'Scoring Function',
+      'Translational Distance Model',
+      'TransE',
+      'Semantic Matching Model',
+      'RESCAL',
+      'DistMult',
+      'ComplEx',
+      'Mean Rank',
+      'MRR',
+      'Hits@K',
+      'Hyper-relational Knowledge Graph',
+      'Qualifier',
+      'Multimodal Knowledge Graph',
+      'Inductive Reasoning',
+      'Relation Graph',
+      'Knowledge Graph Construction',
+      'GraphRAG',
+      'Subgraph Retrieval',
+      'Graph Database',
+      'Data Governance',
+    ]) {
+      expect(terms.has(term)).toBe(true);
+    }
+  });
+
   it('keeps model core elements in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
@@ -102,11 +135,17 @@ describe('learning content', () => {
     const dnn = glossary.find((entry) => entry.term === 'Deep Neural Network');
     const prefill = glossary.find((entry) => entry.term === 'Prefill');
     const qwen = glossary.find((entry) => entry.term === 'Qwen3-Next');
+    const kge = glossary.find(
+      (entry) => entry.term === 'Knowledge Graph Embedding',
+    );
+    const graphRag = glossary.find((entry) => entry.term === 'GraphRAG');
 
     expect(sigmoid?.aliases).toContain('sigmoid');
     expect(dnn?.aliases).toContain('DNN');
     expect(prefill?.aliases).toContain('prefill');
     expect(qwen?.description).toContain('3:1');
+    expect(kge?.aliases).toContain('KGE');
+    expect(graphRag?.aliases).toContain('Graph RAG');
   });
 
   it('classifies every glossary term by category and session', () => {
@@ -169,10 +208,16 @@ describe('learning content', () => {
     expect(sessionSlots[0].id).toBe('01');
     expect(sessionSlots[1].id).toBe('02');
     expect(sessionSlots[2].id).toBe('03');
+    expect(sessionSlots[3].id).toBe('04');
+    expect(sessionSlots[4].id).toBe('05');
     expect(sessionSlots[15].id).toBe('16');
     expect(sessionSlots[1].session?.id).toBe('02');
     expect(sessionSlots[2].session?.id).toBe('03');
+    expect(sessionSlots[3].session?.id).toBe('04');
     expect(sessionSlots[2].status).toBe('published');
+    expect(sessionSlots[3].status).toBe('published');
+    expect(sessionSlots[4].status).toBe('deferred');
+    expect(sessionSlots[4].session).toBeUndefined();
   });
 
   it('publishes session 02 learning content', () => {
@@ -272,5 +317,36 @@ describe('learning content', () => {
     const sessionJson = JSON.stringify(session);
     expect(sessionJson).not.toContain('resourcePath');
     expect(sessionJson).not.toContain('.pdf');
+  });
+
+  it('publishes session 04 knowledge graph embedding learning content', () => {
+    const session = getSessionById('04');
+    const sessionNote = readFileSync(
+      'content/sessions/04-knowledge-graph-embedding.md',
+      'utf8',
+    );
+
+    expect(session?.status).toBe('published');
+    expect(session?.title).toBe('Knowledge Graph Embedding');
+    expect(session?.instructor?.name).toBe('황지영');
+    expect(session?.preview).toBeUndefined();
+    expect(session?.summaryLines).toHaveLength(3);
+    expect(session?.coreFlow).toContain('Knowledge Graph Embedding');
+    expect(session?.coreFlow).toContain('Scoring Function');
+    expect(session?.coreFlow).toContain('GraphRAG');
+    expect(session?.conceptCards.length).toBeGreaterThanOrEqual(12);
+    expect(session?.visualNotes).toHaveLength(2);
+    expect(session?.intuitions.length).toBeGreaterThan(0);
+    expect(session?.modelNotes.length).toBeGreaterThan(0);
+    expect(session?.quizIds).toHaveLength(5);
+    expect(sessionNote).toContain('Knowledge Graph Embedding');
+    expect(sessionNote).toContain('Scoring Function');
+    expect(sessionNote).toContain('Mean Rank');
+    expect(sessionNote).toContain('MRR');
+    expect(sessionNote).toContain('Hits@K');
+    expect(sessionNote).toContain('Hyper-relational Knowledge Graph');
+    expect(sessionNote).toContain('GraphRAG');
+    expect(sessionNote).not.toContain('resourcePath');
+    expect(sessionNote).not.toContain('.pdf');
   });
 });

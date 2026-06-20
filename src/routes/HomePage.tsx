@@ -15,8 +15,17 @@ const learningFlow = [
 ];
 
 export function HomePage() {
-  const currentSession = sessions.find((session) => session.status === 'published');
-  const nextPreview = currentSession?.nextPreview;
+  const latestPublishedSession = [...sessions]
+    .reverse()
+    .find((session) => session.status === 'published');
+  const nextPreview = latestPublishedSession?.nextPreview;
+  const nextPreviewSessionId = nextPreview
+    ? sessions.find(
+        (session) =>
+          session.title === nextPreview.title ||
+          session.koreanTitle === nextPreview.title,
+      )?.id
+    : undefined;
 
   return (
     <>
@@ -74,7 +83,10 @@ export function HomePage() {
 
         {nextPreview && (
           <Section title="다음 차시에서 이어질 질문">
-            <NextSessionPreview preview={nextPreview} nextSessionId="02" />
+            <NextSessionPreview
+              preview={nextPreview}
+              nextSessionId={nextPreviewSessionId}
+            />
           </Section>
         )}
 

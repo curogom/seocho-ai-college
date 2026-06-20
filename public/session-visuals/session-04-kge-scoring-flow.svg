@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Knowledge graph embedding scoring flow</title>
+  <desc id="desc">A knowledge graph triplet is embedded as vectors and scored to rank missing entity or relation candidates.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f6f5c" />
+    </marker>
+    <style>
+      .bg { fill: #f8faf7; }
+      .card { fill: #ffffff; stroke: #d7ded2; stroke-width: 2; }
+      .soft { fill: #eef3ec; stroke: #d7ded2; stroke-width: 2; }
+      .dark { fill: #172026; }
+      .ink { fill: #172026; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .muted { fill: #5f676d; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .rust { fill: #a6573b; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .moss { fill: #3f6f5c; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .paper { fill: #f8faf7; font-family: Pretendard, Apple SD Gothic Neo, sans-serif; }
+      .line { stroke: #3f6f5c; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .edge { stroke: #a6573b; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .node { fill: #ffffff; stroke: #3f6f5c; stroke-width: 3; }
+      .chip { fill: #f8faf7; stroke: #d7ded2; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="675" />
+  <text x="70" y="78" class="rust" font-size="24" font-weight="700">KNOWLEDGE GRAPH EMBEDDING</text>
+  <text x="70" y="124" class="ink" font-size="34" font-weight="800">Triplet을 점수화해 빠진 지식을 찾습니다</text>
+  <text x="70" y="158" class="muted" font-size="19">Entity와 relation을 vector로 바꾸고 scoring function으로 ranking합니다.</text>
+
+  <rect x="70" y="215" width="300" height="280" rx="8" class="card" />
+  <text x="100" y="258" class="ink" font-size="24" font-weight="800">Triplet</text>
+  <circle cx="135" cy="360" r="40" class="node" />
+  <circle cx="305" cy="360" r="40" class="node" />
+  <path d="M177 360 L260 360" class="edge" />
+  <text x="119" y="368" class="moss" font-size="20" font-weight="800">h</text>
+  <text x="291" y="368" class="moss" font-size="20" font-weight="800">t</text>
+  <rect x="187" y="331" width="62" height="40" rx="6" class="soft" />
+  <text x="209" y="358" class="rust" font-size="18" font-weight="800">r</text>
+  <text x="100" y="445" class="muted" font-size="17">
+    <tspan x="100" dy="0">head · relation · tail</tspan>
+    <tspan x="100" dy="25">하나의 fact 단위</tspan>
+  </text>
+
+  <path d="M395 355 L465 355" class="line" />
+
+  <rect x="490" y="215" width="270" height="280" rx="8" class="soft" />
+  <text x="520" y="258" class="ink" font-size="24" font-weight="800">Embedding</text>
+  <rect x="520" y="315" width="210" height="44" rx="6" class="chip" />
+  <text x="548" y="343" class="ink" font-size="17" font-weight="700">entity vector</text>
+  <rect x="520" y="375" width="210" height="44" rx="6" class="chip" />
+  <text x="542" y="403" class="ink" font-size="17" font-weight="700">relation vector</text>
+  <text x="520" y="460" class="muted" font-size="17">
+    <tspan x="520" dy="0">구조 정보를 보존해</tspan>
+    <tspan x="520" dy="25">계산 가능한 표현으로 변환</tspan>
+  </text>
+
+  <path d="M785 355 L855 355" class="line" />
+
+  <rect x="880" y="215" width="250" height="280" rx="8" class="card" />
+  <text x="910" y="258" class="ink" font-size="24" font-weight="800">Scoring</text>
+  <rect x="910" y="315" width="190" height="44" rx="6" class="chip" />
+  <text x="935" y="343" class="ink" font-size="17" font-weight="700">plausible = high</text>
+  <rect x="910" y="375" width="190" height="44" rx="6" class="chip" />
+  <text x="942" y="403" class="ink" font-size="17" font-weight="700">wrong = low</text>
+  <text x="910" y="460" class="muted" font-size="17">
+    <tspan x="910" dy="0">후보를 ranking해</tspan>
+    <tspan x="910" dy="25">missing link 예측</tspan>
+  </text>
+
+  <rect x="145" y="555" width="910" height="64" rx="8" class="dark" />
+  <text x="190" y="594" class="paper" font-size="19" font-weight="800">Distance</text>
+  <text x="345" y="594" class="paper" font-size="19" font-weight="800">Matching</text>
+  <text x="510" y="594" class="paper" font-size="19" font-weight="800">Mean Rank</text>
+  <text x="700" y="594" class="paper" font-size="19" font-weight="800">MRR</text>
+  <text x="825" y="594" class="paper" font-size="19" font-weight="800">Hits@K</text>
+</svg>

@@ -5,6 +5,7 @@ const statusLabel: Record<SessionSlot['status'], string> = {
   published: '공개',
   draft: '작성 중',
   planned: '예고',
+  deferred: '추후 보강',
   empty: '대기',
 };
 
@@ -41,6 +42,16 @@ export function SessionSlotCard({ slot }: SessionSlotCardProps) {
           >
             {session.status === 'published' ? '열기' : '예고 보기'}
           </Link>
+        </>
+      ) : slot.status === 'deferred' ? (
+        <>
+          <h2 className="mt-4 text-lg font-semibold text-ink">
+            {slot.label} 추후 보강 예정
+          </h2>
+          <p className="mt-3 min-h-18 text-sm leading-6 text-ink/60">
+            휴강 차시입니다. 별도 수업 자료가 생기면 이 슬롯에 학습 노트를
+            추가합니다.
+          </p>
         </>
       ) : (
         <>

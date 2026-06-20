@@ -97,6 +97,15 @@ const parkInstructor: Instructor = {
   affiliationEn: 'School of Computing, KAIST',
 };
 
+const whangInstructor: Instructor = {
+  name: '황지영',
+  englishName: 'Joyce Jiyoung Whang',
+  title: 'Professor',
+  affiliationKo: 'KAIST AI 컴퓨팅학과',
+  affiliationEn: 'KAIST Department of AI Computing',
+  lab: 'Big Data Intelligence Lab',
+};
+
 export const sessions: Session[] = [
   {
     id: '01',
@@ -116,10 +125,10 @@ export const sessions: Session[] = [
     coreFlow: [
       'AI',
       'Machine Learning',
-      'Deep Learning',
       'Feature Engineering',
       'Logistic Regression',
       'Sigmoid / Probability',
+      'Deep Learning',
       'Representation Learning',
       'DNN',
       'CNN',
@@ -129,7 +138,7 @@ export const sessions: Session[] = [
       {
         label: '상위 범주',
         layout: 'hierarchy',
-        items: ['AI', 'Machine Learning', 'Deep Learning'],
+        items: ['AI', 'Machine Learning'],
       },
       {
         label: '전통 ML 흐름',
@@ -143,7 +152,7 @@ export const sessions: Session[] = [
       {
         label: '딥러닝 계열',
         layout: 'branch',
-        items: ['Representation Learning', 'DNN', 'CNN', 'RNN'],
+        items: ['Deep Learning', 'Representation Learning', 'DNN', 'CNN', 'RNN'],
       },
     ],
     conceptCards: [
@@ -529,14 +538,7 @@ export const sessions: Session[] = [
     koreanTitle: '그래프 기계학습',
     subtitle: 'Graphs, Knowledge Graphs, Graph Representation Learning, GCN',
     status: 'published',
-    instructor: {
-      name: '황지영',
-      englishName: 'Joyce Jiyoung Whang',
-      title: 'Professor',
-      affiliationKo: 'KAIST AI 컴퓨팅학과',
-      affiliationEn: 'KAIST Department of AI Computing',
-      lab: 'Big Data Intelligence Lab',
-    },
+    instructor: whangInstructor,
     summary:
       '3차시는 컴퓨터 과학에서의 graph를 관계 데이터 구조로 정의하고, Knowledge Graph, Graph Representation Learning, Graph Embedding, GCN으로 이어지는 그래프 기계학습의 기본 흐름을 다룬다.',
     summaryLines: [
@@ -816,6 +818,330 @@ export const sessions: Session[] = [
       ],
     },
   },
+  {
+    id: '04',
+    order: 4,
+    title: 'Knowledge Graph Embedding',
+    koreanTitle: '지식 그래프 임베딩',
+    subtitle:
+      'Triplet, Scoring Function, Link Prediction, Inductive Reasoning, GraphRAG',
+    status: 'published',
+    instructor: whangInstructor,
+    summary:
+      '4차시는 Knowledge Graph를 triplet으로 표현하고, entity와 relation을 vector space로 옮겨 빠진 지식을 예측하는 Knowledge Graph Embedding의 기본 흐름을 다룬다. 후반부에서는 hyper-relational, multimodal knowledge graph와 GraphRAG까지 연결한다.',
+    summaryLines: [
+      'Knowledge Graph는 fact를 head entity, relation, tail entity로 이루어진 triplet으로 표현한다.',
+      'Knowledge Graph Embedding은 entity와 relation을 vector representation으로 바꾸고, scoring function으로 triplet의 plausibility를 계산한다.',
+      'GraphRAG는 질문과 관련된 node, edge, triplet, path, subgraph를 검색해 LLM 답변의 grounding과 explainability를 높이려는 접근이다.',
+    ],
+    coreFlow: [
+      'Knowledge Graph',
+      'Triplet',
+      'Sparse Graph',
+      'Knowledge Graph Embedding',
+      'Entity / Relation Embedding',
+      'Scoring Function',
+      'Translational Distance Model',
+      'Semantic Matching Model',
+      'Link Prediction',
+      'Mean Rank / MRR / Hits@K',
+      'Hyper-relational Knowledge Graph',
+      'Multimodal Knowledge Graph',
+      'Inductive Reasoning',
+      'Relation Graph',
+      'Knowledge Graph Construction',
+      'GraphRAG',
+      'Graph Database / Data Governance',
+    ],
+    coreFlowGroups: [
+      {
+        label: '지식 표현',
+        layout: 'pipeline',
+        items: ['Knowledge Graph', 'Triplet', 'Sparse Graph'],
+      },
+      {
+        label: 'Embedding과 scoring',
+        layout: 'pipeline',
+        items: [
+          'Knowledge Graph Embedding',
+          'Entity / Relation Embedding',
+          'Scoring Function',
+          'Translational Distance Model',
+          'Semantic Matching Model',
+        ],
+      },
+      {
+        label: '예측과 평가',
+        layout: 'pipeline',
+        items: ['Link Prediction', 'Mean Rank / MRR / Hits@K'],
+      },
+      {
+        label: '복잡한 지식 구조',
+        layout: 'pipeline',
+        items: [
+          'Hyper-relational Knowledge Graph',
+          'Multimodal Knowledge Graph',
+          'Inductive Reasoning',
+          'Relation Graph',
+        ],
+      },
+      {
+        label: 'LLM 활용 흐름',
+        layout: 'pipeline',
+        items: [
+          'Knowledge Graph Construction',
+          'GraphRAG',
+          'Graph Database / Data Governance',
+        ],
+      },
+    ],
+    conceptCards: [
+      {
+        term: 'Knowledge Graph',
+        korean: '지식 그래프',
+        description:
+          '사람의 지식을 entity와 relation의 graph로 표현한 구조다. 단순히 문서를 저장하는 것이 아니라, 객체와 객체 사이의 의미 있는 관계를 명시한다.',
+        takeaway:
+          '질문 응답, 검색, 추천, reasoning을 관계 구조 위에서 다룰 수 있게 한다.',
+      },
+      {
+        term: 'Triplet',
+        korean: '트리플렛',
+        description:
+          'Knowledge Graph에서 하나의 fact를 head entity, relation, tail entity로 표현한 단위다.',
+        takeaway:
+          'Barack Obama --born in--> Honolulu처럼 fact 하나를 graph의 edge로 바꾼다.',
+      },
+      {
+        term: 'Sparse Graph',
+        korean: '희소 그래프',
+        description:
+          '가능한 entity와 relation 조합은 많지만 실제로 관찰되거나 기록된 fact는 일부에 그치는 graph 상태다.',
+        takeaway:
+          'Knowledge Graph Completion이 필요한 이유는 현실 graph가 완전하지 않기 때문이다.',
+      },
+      {
+        term: 'Knowledge Graph Embedding',
+        korean: '지식 그래프 임베딩',
+        description:
+          'Entity와 relation을 vector representation으로 바꿔 graph 구조와 relation 의미를 계산 가능한 형태로 옮기는 기법이다.',
+        takeaway:
+          '이산적인 triplet 구조를 machine learning 모델이 다룰 수 있는 연속 공간으로 옮긴다.',
+      },
+      {
+        term: 'Scoring Function',
+        korean: '스코어링 함수',
+        description:
+          'Triplet이 그럴듯한 fact인지 점수로 계산하는 함수다. 맞는 fact는 높은 score, 틀린 fact는 낮은 score를 받도록 학습한다.',
+        takeaway:
+          '비어 있는 head, relation, tail 후보를 scoring하고 ranking해 missing link를 찾는다.',
+      },
+      {
+        term: 'Translational Distance Model',
+        korean: '거리 기반 변환 모델',
+        description:
+          'Head vector와 relation vector를 더했을 때 tail vector와 가까워지도록 학습하는 Knowledge Graph Embedding 계열이다.',
+        takeaway:
+          'TransE의 핵심 직관은 h + r이 t와 가까워져야 한다는 것이다.',
+      },
+      {
+        term: 'Semantic Matching Model',
+        korean: '의미 매칭 모델',
+        description:
+          '거리보다 head, relation, tail 사이의 compatibility 또는 similarity를 높이는 방향으로 fact plausibility를 계산하는 계열이다.',
+        takeaway:
+          'RESCAL, DistMult, ComplEx처럼 relation interaction을 어떻게 모델링하느냐가 중요하다.',
+      },
+      {
+        term: 'Link Prediction',
+        korean: '링크 예측',
+        description:
+          'Knowledge Graph에서 빠진 head, relation, tail을 예측하는 task다. Knowledge Graph Completion과 밀접하게 연결된다.',
+        takeaway:
+          '후보 entity나 relation을 넣어 score를 계산하고 높은 순위 후보를 정답으로 본다.',
+      },
+      {
+        term: 'Mean Rank / MRR / Hits@K',
+        korean: '랭킹 평가 지표',
+        description:
+          'Link Prediction에서 정답 후보가 ranking에서 얼마나 위에 있는지 평가하는 대표 metric 묶음이다.',
+        takeaway:
+          'Mean Rank는 낮을수록 좋고, MRR과 Hits@K는 높을수록 좋다.',
+      },
+      {
+        term: 'Hyper-relational Knowledge Graph',
+        korean: '초관계형 지식 그래프',
+        description:
+          'Main triplet에 qualifier를 붙여 연도, 수상자, 수치 같은 부가 정보를 표현하는 knowledge graph다.',
+        takeaway:
+          '현실의 지식은 triplet 하나보다 복잡하므로 qualifier를 함께 다룰 수 있어야 한다.',
+      },
+      {
+        term: 'Multimodal Knowledge Graph',
+        korean: '멀티모달 지식 그래프',
+        description:
+          'Graph structure뿐 아니라 image, text, numerical feature 같은 다양한 modality를 함께 다루는 knowledge graph다.',
+        takeaway:
+          '구조, 이미지, 텍스트를 균형 있게 학습해야 더 풍부한 representation을 얻을 수 있다.',
+      },
+      {
+        term: 'Inductive Reasoning',
+        korean: '귀납적 추론',
+        description:
+          'Training time에 보지 못한 새로운 entity나 relation이 inference time에 들어와도 구조 정보를 기반으로 추론하려는 설정이다.',
+        takeaway:
+          '실제 서비스에서는 data와 relation이 계속 바뀌므로 매번 재학습하지 않는 추론 구조가 중요하다.',
+      },
+      {
+        term: 'Relation Graph',
+        korean: '관계 그래프',
+        description:
+          'Relation을 node로 보고 relation끼리의 유사한 구조를 edge로 연결한 graph다. 두 relation이 entity를 많이 공유할수록 가까운 relation으로 볼 수 있다.',
+        takeaway:
+          '새로운 relation도 주변 relation 구조를 통해 embedding하고 추론할 수 있게 돕는다.',
+      },
+      {
+        term: 'Knowledge Graph Construction',
+        korean: '지식 그래프 구축',
+        description:
+          'Text에서 entity와 relation을 추출하고, canonicalization, validation, deduplication을 거쳐 knowledge graph를 만드는 과정이다.',
+        takeaway:
+          'LLM을 활용할 수 있지만 도메인별 relation schema와 검증 기준은 별도로 설계해야 한다.',
+      },
+      {
+        term: 'GraphRAG',
+        korean: '그래프 검색 증강 생성',
+        description:
+          'RAG에서 retrieval 대상을 text chunk뿐 아니라 관련 node, edge, triplet, path, subgraph로 확장하는 접근이다.',
+        takeaway:
+          'LLM 답변에 구조화된 근거를 넣어 grounding, explainability, token efficiency를 높이는 방향이다.',
+      },
+    ],
+    visualNotes: [
+      {
+        title: 'Knowledge Graph Embedding과 Scoring',
+        src: '/session-visuals/session-04-kge-scoring-flow.svg',
+        alt: 'Triplet을 entity와 relation vector로 embedding하고 scoring function으로 missing link 후보를 ranking하는 흐름을 설명하는 도식',
+        caption:
+          'Triplet, embedding, scoring function, ranking metric의 관계를 한 흐름으로 정리했습니다.',
+      },
+      {
+        title: 'GraphRAG의 Retrieval 흐름',
+        src: '/session-visuals/session-04-graphrag-flow.svg',
+        alt: '문서에서 knowledge graph를 만들고 질문에 맞는 subgraph를 검색해 LLM 답변에 넣는 GraphRAG 흐름을 설명하는 도식',
+        caption:
+          '문서에서 graph를 만들고 관련 subgraph를 LLM context로 가져오는 흐름을 복습용으로 정리했습니다.',
+      },
+    ],
+    intuitions: [
+      {
+        title: 'Knowledge Graph는 비어 있는 지식까지 다룬다',
+        body: '명시적으로 기록된 fact만 따라가는 것이 아니라, graph 구조와 relation 패턴을 이용해 빠져 있는 지식을 예측하는 것이 Knowledge Graph Embedding의 중요한 목적이다.',
+      },
+      {
+        title: '모델은 triplet을 점수로 본다',
+        body: 'Triplet이 맞는 fact인지 아닌지 사람이 직접 규칙으로 판단하기보다, entity와 relation representation을 scoring function에 넣어 plausibility를 계산한다.',
+      },
+      {
+        title: '현실 지식은 triplet보다 복잡하다',
+        body: '연도, 수상자, 수치, 이미지, 텍스트처럼 부가 정보가 붙으면 단순 Knowledge Graph Embedding보다 hyper-relational 또는 multimodal graph modeling이 필요해진다.',
+      },
+      {
+        title: 'GraphRAG는 graph를 그대로 많이 넣는 기술이 아니다',
+        body: '관련 subgraph를 잘 고르고 pruning해야 한다. LLM이 복잡한 graph를 항상 깊게 이해한다고 단정할 수 없기 때문이다.',
+      },
+    ],
+    modelNotes: [
+      {
+        title: 'Triplet과 sparse graph',
+        body: 'Knowledge Graph의 fact는 head entity, relation, tail entity로 표현된다. 가능한 조합은 많지만 실제 관찰된 fact는 일부이므로 graph는 sparse해지기 쉽다.',
+        highlight: '(head entity, relation, tail entity)',
+      },
+      {
+        title: 'Scoring Function',
+        body: 'Knowledge Graph Embedding 모델은 entity와 relation representation을 scoring function에 넣어 triplet plausibility를 계산한다. 맞는 fact의 score는 높이고 틀린 fact의 score는 낮추는 방향으로 학습한다.',
+        table: {
+          headers: ['입력', '학습 방향'],
+          rows: [
+            ['Positive triplet', '높은 score를 받도록 학습'],
+            ['Negative triplet', '낮은 score를 받도록 학습'],
+            ['Missing candidate', '후보별 score를 계산해 ranking'],
+          ],
+        },
+      },
+      {
+        title: '모델 계열',
+        body: 'Knowledge Graph Embedding은 entity와 relation을 어떻게 표현하고 scoring function을 어떻게 설계하느냐에 따라 여러 계열로 나뉜다.',
+        table: {
+          headers: ['계열', '핵심 직관', '예시'],
+          rows: [
+            [
+              'Translational Distance Model',
+              'head + relation이 tail과 가까워지도록 학습',
+              'TransE 계열',
+            ],
+            [
+              'Semantic Matching Model',
+              'head, relation, tail의 compatibility를 높임',
+              'RESCAL, DistMult, ComplEx 계열',
+            ],
+          ],
+        },
+      },
+      {
+        title: 'Link Prediction 평가',
+        body: '비어 있는 head, relation, tail 후보를 넣어 score를 계산하고 ranking한다. 정답 후보가 ranking에서 얼마나 위에 있는지가 주요 평가 기준이다.',
+        table: {
+          headers: ['Metric', '의미', '좋은 방향'],
+          rows: [
+            ['Mean Rank', '정답 후보의 평균 순위', '낮을수록 좋음'],
+            ['MRR', '정답 순위 역수의 평균', '높을수록 좋음'],
+            ['Hits@K', '정답이 상위 K개 후보 안에 든 비율', '높을수록 좋음'],
+          ],
+        },
+      },
+      {
+        title: '복잡한 Knowledge Graph',
+        body: '현실의 fact는 triplet 하나로 끝나지 않는 경우가 많다. Qualifier, 숫자, 이미지, 텍스트, 시간 정보를 함께 다루면 더 현실적인 graph가 되지만 embedding과 reasoning 문제도 복잡해진다.',
+        table: {
+          headers: ['형태', '포함 정보'],
+          rows: [
+            ['Hyper-relational KG', 'main triplet에 붙는 qualifier'],
+            ['Numerical KG', '수치 속성 또는 측정값'],
+            ['Multimodal KG', 'image, text, graph structure'],
+            ['Temporal KG', '시간에 따라 바뀌는 fact'],
+          ],
+        },
+      },
+      {
+        title: 'GraphRAG pipeline',
+        body: 'GraphRAG는 문서에서 Knowledge Graph를 구성한 뒤, 질문과 관련된 subgraph를 검색해 LLM prompt에 함께 넣는다. 핵심은 관련 node, edge, triplet, path를 적절히 고르는 retrieval 단계다.',
+        table: {
+          headers: ['단계', '역할'],
+          rows: [
+            ['KG Construction', 'entity와 relation을 추출해 graph 구성'],
+            ['Subgraph Retrieval', '질문과 관련된 node, path, triplet 검색'],
+            ['LLM Generation', '검색된 graph context를 근거로 답변 생성'],
+          ],
+        },
+      },
+    ],
+    quizIds: ['s04-q1', 's04-q2', 's04-q3', 's04-q4', 's04-q5'],
+    reflectionQuestions: [
+      'Knowledge Graph에서 triplet은 어떤 세 요소로 구성되는가?',
+      'Knowledge Graph Embedding에서 scoring function이 필요한 이유는 무엇인가?',
+      'Translational distance model과 semantic matching model은 무엇이 다른가?',
+      'Mean Rank, MRR, Hits@K는 각각 어떤 ranking 관점을 반영하는가?',
+      'Hyper-relational Knowledge Graph가 필요한 이유는 무엇인가?',
+      'GraphRAG에서 subgraph retrieval이 중요한 이유는 무엇인가?',
+    ],
+    projectConnections: [
+      '실내 내비게이션에서는 장소, 시설, 층, 매장, 접근성 정보를 entity로 두고 이동 가능성이나 포함 관계를 relation으로 둘 수 있다.',
+      '운영 문서와 매장 메타데이터를 Knowledge Graph로 묶으면 LLM 안내 응답을 단순 문서 검색보다 구조적으로 grounding할 수 있다.',
+      '새 매장이나 임시 동선이 추가되는 상황은 inductive reasoning과 연결된다. 매번 전체 모델을 재학습하지 않는 구조가 중요하다.',
+      'GraphRAG는 사용자의 질문과 관련된 장소 subgraph만 가져와 token 비용을 줄이고 답변 근거를 설명하는 방식으로 확장할 수 있다.',
+    ],
+  },
 ];
 
 export const getSessionById = (id: string | undefined) =>
@@ -829,9 +1155,11 @@ export type SessionSlot = {
   id: string;
   order: number;
   label: string;
-  status: SessionStatus | 'empty';
+  status: SessionStatus | 'deferred' | 'empty';
   session?: Session;
 };
+
+const deferredSessionIds = new Set(['05']);
 
 export const sessionSlots: SessionSlot[] = Array.from(
   { length: totalSessionCount },
@@ -844,7 +1172,7 @@ export const sessionSlots: SessionSlot[] = Array.from(
       id,
       order,
       label: `${order}차시`,
-      status: session?.status ?? 'empty',
+      status: session?.status ?? (deferredSessionIds.has(id) ? 'deferred' : 'empty'),
       session,
     };
   },
