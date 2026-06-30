@@ -121,3 +121,44 @@
 - Subgraph Retrieval: 질문과 관련된 부분 graph를 찾는 과정
 - Graph Database: node와 edge 중심으로 데이터를 저장하고 탐색하는 데이터베이스
 - Data Governance: 데이터의 보안, 품질, 접근 권한, 최신성, 책임 범위를 관리하는 체계
+
+## 6차시 주요 용어
+
+- Mobility Big Data: 사람, 차량, 항공기, 센서가 남기는 대규모 이동경로 데이터
+- Trajectory: 시간 순서대로 연결된 위치 기록
+- Smart Card Data: 대중교통 승하차 기록으로 구성된 mobility data
+- Location Inference: 직접 관측되지 않은 시간대의 위치를 주변 관측값과 규칙으로 추정하는 과정
+- Mobility Regularity: 같은 시간대에 같은 장소를 반복 방문하는 정도를 나타내는 지표
+- In-store Trajectory: WiFi나 Beacon 기반 센서로 기록한 매장 실내 동선
+- Dwell Time: 특정 구역에 머문 시간
+- Zone Ratio: 전체 체류 시간 중 특정 구역 체류 시간이 차지하는 비율
+- Revisit Prediction: 현재까지의 방문 기록과 동선 feature로 향후 재방문 여부를 예측하는 task
+- Spatial Stream Processing: 빠르게 들어오는 위치 stream에서 event를 탐지하는 처리 방식
+- Complex Event Processing: 여러 event와 규칙을 조합해 의미 있는 상황을 감지하는 기법
+- Digital Tacho Graph: 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천
+- Tactical Trajectory: 항공기나 추적 대상의 시간 순서 위치 기록
+- Latent Space: 모델이 입력 데이터를 내부적으로 표현하는 공간
+- Anomaly Detection: 정상 패턴에서 크게 벗어난 입력을 위험 또는 특이 상황으로 판단하는 task
+- Digital Twin: 현실 시스템의 상태와 동작을 데이터로 복제한 디지털 표현
+
+## 7차시 주요 용어
+
+- Infectious Disease Data Science: 감염병 대응에 필요한 예측, 자원 배분, 역학조사, 정책 평가를 데이터와 AI로 보조하는 접근
+- Imported Case Prediction: 해외에서 국내로 유입될 감염자 수와 추세를 예측하는 task
+- Infection Risk: 국가나 지역의 감염 확산 정도를 나타내는 시간 변화 신호
+- Inbound Flow: 특정 국가나 지역에서 목적지로 들어오는 사람의 흐름
+- Hi-COVIDNet: 해외 유입 COVID-19 확진자 수를 예측하기 위한 deep learning 모델
+- LSTM: 순서가 있는 데이터를 처리하며 과거 상태를 다음 계산에 반영하는 recurrent neural network 계열 모델
+- Fine-Grained EEM: 지역과 업종처럼 세밀한 단위에서 감염병의 경제 영향을 예측하는 모델링
+- COVID-EENet: 경제 활동 데이터와 집단감염 데이터를 결합해 지역-업종 단위 매출 변화 추세를 예측하는 framework
+- District-Business Pair: 특정 지역과 특정 업종의 조합
+- Economy View: 지역-업종의 평소 소비 패턴을 담는 feature 관점
+- Geography View: 지역 사이의 물리적, 사회적 가까움을 담는 feature 관점
+- Epidemic View: 집단감염 사례와 확산 강도를 담는 feature 관점
+- Microscopic Encoder: 세부 수준의 영향을 encoding하는 하위 구조
+- Macroscopic Aggregator: 세부 수준의 영향을 더 큰 관점으로 모아 예측에 반영하는 구조
+- Digital Contact Tracing: 위치나 접촉 데이터를 활용해 감염 가능 접촉과 이동 경로를 추정하는 공중보건 지원 방식
+- Cellular Trajectory: 스마트폰이 접속한 기지국 sequence로 표현된 이동 궤적
+- POI Reconstruction: 거친 위치 신호에서 실제 방문했을 가능성이 높은 point of interest를 추정하는 과정
+- Pincette: efficiency, periodicity, popularity view를 이용해 POI 방문 가능성을 추정하는 방법론
+- Privacy-Preserving Data Science: 분석 목적을 달성하면서 개인정보 노출을 줄이도록 설계하는 데이터 사이언스 접근

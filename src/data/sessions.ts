@@ -106,6 +106,14 @@ const whangInstructor: Instructor = {
   lab: 'Big Data Intelligence Lab',
 };
 
+const leeInstructor: Instructor = {
+  name: '이재길',
+  englishName: 'Jae-Gil Lee',
+  title: 'Professor',
+  affiliationKo: 'KAIST 전산학부',
+  affiliationEn: 'School of Computing, KAIST',
+};
+
 export const sessions: Session[] = [
   {
     id: '01',
@@ -1140,6 +1148,566 @@ export const sessions: Session[] = [
       '운영 문서와 매장 메타데이터를 Knowledge Graph로 묶으면 LLM 안내 응답을 단순 문서 검색보다 구조적으로 grounding할 수 있다.',
       '새 매장이나 임시 동선이 추가되는 상황은 inductive reasoning과 연결된다. 매번 전체 모델을 재학습하지 않는 구조가 중요하다.',
       'GraphRAG는 사용자의 질문과 관련된 장소 subgraph만 가져와 token 비용을 줄이고 답변 근거를 설명하는 방식으로 확장할 수 있다.',
+    ],
+  },
+  {
+    id: '06',
+    order: 6,
+    title: 'Mobility Big Data Analysis',
+    koreanTitle: '모빌리티 빅데이터 분석',
+    subtitle:
+      'Trajectory, Smart Card Data, In-store Sensors, Spatial Stream Processing, Anomaly Detection',
+    status: 'published',
+    instructor: leeInstructor,
+    summary:
+      '6차시는 사람, 차량, 항공기 같은 이동 주체가 남기는 trajectory data를 분석하는 흐름을 다룬다. 교통카드, 실내 동선, 자동차 운행기록, 비행항적 사례를 통해 raw mobility log를 feature와 prediction task로 바꾸는 과정을 정리한다.',
+    summaryLines: [
+      'Mobility Big Data는 스마트폰, 스마트카드, WiFi/Beacon, 내비게이션, 센서, 항적 기록처럼 시간에 따른 이동경로를 남기는 데이터에서 출발한다.',
+      '교통카드와 매장 실내 동선 사례는 이동 규칙성, 체류 시간, 구역별 관심, 재방문 가능성을 feature로 바꾸는 과정이 중요하다는 점을 보여준다.',
+      '차량 운행기록과 비행항적 사례는 실시간 공간 스트림 처리와 이상치 탐지를 통해 위험 상황을 조기에 감지하는 방향으로 확장된다.',
+    ],
+    coreFlow: [
+      'Mobility Big Data',
+      'Trajectory Data Sources',
+      'Smart Card Data',
+      'Location Inference',
+      'Mobility Regularity',
+      'In-store Trajectory',
+      'Dwell Time / Zone Ratio',
+      'Revisit Prediction',
+      'Spatial Stream Processing',
+      'Complex Event Processing',
+      'Digital Tacho Graph',
+      'Tactical Trajectory',
+      'Feature Engineering',
+      'Latent Space',
+      'Anomaly Detection',
+      'Digital Twin / Data Governance',
+    ],
+    coreFlowGroups: [
+      {
+        label: '데이터 원천',
+        layout: 'pipeline',
+        items: ['Mobility Big Data', 'Trajectory Data Sources'],
+      },
+      {
+        label: '대중교통 이동 패턴',
+        layout: 'pipeline',
+        items: ['Smart Card Data', 'Location Inference', 'Mobility Regularity'],
+      },
+      {
+        label: '실내 동선과 재방문',
+        layout: 'pipeline',
+        items: [
+          'In-store Trajectory',
+          'Dwell Time / Zone Ratio',
+          'Revisit Prediction',
+        ],
+      },
+      {
+        label: '공간 스트림과 항적',
+        layout: 'pipeline',
+        items: [
+          'Spatial Stream Processing',
+          'Complex Event Processing',
+          'Digital Tacho Graph',
+          'Tactical Trajectory',
+        ],
+      },
+      {
+        label: 'AI 판단과 운영',
+        layout: 'pipeline',
+        items: [
+          'Feature Engineering',
+          'Latent Space',
+          'Anomaly Detection',
+          'Digital Twin / Data Governance',
+        ],
+      },
+    ],
+    conceptCards: [
+      {
+        term: 'Mobility Big Data',
+        korean: '모빌리티 빅데이터',
+        description:
+          '사람, 차량, 항공기, 센서가 남기는 대규모 이동경로 데이터다. 위치, 시간, 속도, 체류, 교통수단, 센서 출처가 함께 붙을 수 있다.',
+        takeaway:
+          '단순 좌표 목록이 아니라 시간과 맥락이 결합된 trajectory data로 봐야 한다.',
+      },
+      {
+        term: 'Trajectory',
+        korean: '이동경로',
+        description:
+          '시간 순서대로 연결된 위치 기록이다. 이동 주체가 언제 어디에 있었는지를 sequence로 표현한다.',
+        takeaway:
+          'Timestamp, location, sampling gap, missing observation을 함께 고려해야 한다.',
+      },
+      {
+        term: 'Smart Card Data',
+        korean: '교통카드 데이터',
+        description:
+          '대중교통 승하차 기록으로 구성된 mobility data다. 승차와 하차 시점은 알 수 있지만 그 사이 위치는 별도 추정이 필요하다.',
+        takeaway:
+          'Boarding/alighting event를 시간대별 위치 리스트로 바꾸는 전처리가 중요하다.',
+      },
+      {
+        term: 'Location Inference',
+        korean: '위치 추정',
+        description:
+          '직접 관측되지 않은 시간대의 위치를 주변 관측값, 거리, 이동 규칙으로 추정하는 과정이다.',
+        takeaway:
+          '수집된 위치만으로는 부족한 시간 구간을 채워 분석 가능한 sequence를 만든다.',
+      },
+      {
+        term: 'Mobility Regularity',
+        korean: '이동 규칙성',
+        description:
+          '같은 시간대에 가장 자주 방문한 장소의 횟수를 해당 시간대 전체 방문 횟수로 나눈 값처럼 정의할 수 있는 반복성 지표다.',
+        takeaway:
+          '방문 지역이 다양해질수록 규칙성은 낮아지는 경향이 있다.',
+      },
+      {
+        term: 'In-store Trajectory',
+        korean: '매장 실내 동선',
+        description:
+          'WiFi나 Beacon 기반 센서로 매장 안에서 고객이 어느 구역에 얼마나 머무는지 기록한 이동 데이터다.',
+        takeaway:
+          '구역별 체류와 이동 순서는 관심 상품이나 재방문 가능성의 신호가 될 수 있다.',
+      },
+      {
+        term: 'Dwell Time',
+        korean: '체류 시간',
+        description:
+          '고객이나 이동 주체가 특정 구역에 머문 시간이다. 실내 동선 분석에서 중요한 행동 feature가 된다.',
+        takeaway:
+          '긴 체류가 항상 구매 의도를 뜻하지는 않지만 관심 신호로 활용할 수 있다.',
+      },
+      {
+        term: 'Revisit Prediction',
+        korean: '재방문 예측',
+        description:
+          '현재까지의 방문 기록과 동선 feature를 이용해 고객이 향후 다시 방문할지 예측하는 task다.',
+        takeaway:
+          '총 체류 시간, 구역별 체류 비율, 방문 시간, 유사 동선 여부 등이 입력 feature가 된다.',
+      },
+      {
+        term: 'Spatial Stream Processing',
+        korean: '공간 스트림 처리',
+        description:
+          '빠르게 들어오는 위치 stream에서 특정 규칙이나 공간 조건에 맞는 이벤트를 탐지하는 처리 방식이다.',
+        takeaway:
+          'Batch 분석과 달리 입력 지연, 실시간 판단, 분산 처리 구조를 함께 고려해야 한다.',
+      },
+      {
+        term: 'Complex Event Processing',
+        korean: '복합 이벤트 처리',
+        description:
+          '여러 stream event와 규칙을 조합해 의미 있는 상황을 감지하는 기법이다. 위치 stream과 polygon 조건을 결합할 수 있다.',
+        takeaway:
+          '단일 좌표가 아니라 시간과 공간 조건을 만족하는 사건을 찾아낸다.',
+      },
+      {
+        term: 'Digital Tacho Graph',
+        korean: '디지털 운행기록계',
+        description:
+          '버스, 택시, 화물차 같은 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천이다.',
+        takeaway:
+          '차량 위치, 속도, 주행거리, 시각 정보가 공간 stream 분석의 입력이 된다.',
+      },
+      {
+        term: 'Anomaly Detection',
+        korean: '이상치 탐지',
+        description:
+          '모델이 학습한 정상 패턴에서 크게 벗어난 입력을 위험 또는 특이 상황으로 판단하는 접근이다.',
+        takeaway:
+          '항적, 지형, 기상 feature를 함께 보면 단순 이동경로보다 문맥 있는 위험 판단이 가능하다.',
+      },
+    ],
+    visualNotes: [
+      {
+        title: 'Mobility Big Data 분석 흐름',
+        src: '/session-visuals/session-06-mobility-data-flow.svg',
+        alt: '모빌리티 데이터 원천이 이동경로 feature, 예측 task, 데이터 거버넌스가 필요한 활용으로 이어지는 흐름을 설명하는 도식',
+        caption:
+          '이동경로 원천 데이터를 feature, prediction task, governance-aware application으로 바꾸는 흐름을 정리했습니다.',
+      },
+      {
+        title: '이동 패턴 기반 위험 탐지',
+        src: '/session-visuals/session-06-risk-detection-flow.svg',
+        alt: '항적 데이터와 지형, 기상 context를 결합해 latent space에서 정상 패턴과 이상치를 구분하고 위험 판단으로 이어지는 흐름을 설명하는 도식',
+        caption:
+          '항적과 외부 context를 결합해 정상 패턴에서 벗어나는 이동을 위험 신호로 보는 구조를 복습용으로 정리했습니다.',
+      },
+    ],
+    intuitions: [
+      {
+        title: '현행: 이동 데이터 원천은 이미 넓다',
+        body: '스마트폰, 스마트카드, WiFi/Beacon, 내비게이션, 차량 운행기록, 레이더와 센서까지 다양한 시스템이 trajectory를 만든다. 문제는 데이터 양보다 어떤 맥락 feature로 바꾸느냐다.',
+      },
+      {
+        title: '알아둬야 할 지식: trajectory는 결측이 많다',
+        body: '현실의 mobility log는 모든 순간의 위치를 알려주지 않는다. Location Inference와 feature engineering을 통해 분석 가능한 시간대별 위치 표현으로 바꿔야 한다.',
+      },
+      {
+        title: '사전 학습: 예측 task를 먼저 구분한다',
+        body: '이동 규칙성을 측정하는 문제, 재방문 여부를 맞히는 classification, 정상 패턴에서 벗어난 이동을 찾는 anomaly detection은 서로 다른 평가 기준을 갖는다.',
+      },
+    ],
+    modelNotes: [
+      {
+        title: '모빌리티 데이터 원천',
+        body: '모빌리티 분석은 실외와 실내 모두에서 생기는 이동경로 데이터를 다룬다. 같은 위치 데이터라도 수집 원천에 따라 해상도, 누락, 프라이버시 위험이 달라진다.',
+        table: {
+          headers: ['원천', '주요 신호', '대표 활용'],
+          rows: [
+            ['Smart Card Data', '승차, 하차, 시간, 정류장', '시간대별 위치 추정, 이동 규칙성'],
+            ['WiFi / Beacon', '구역, 체류 시간, 방문 빈도', '실내 동선, 재방문 예측'],
+            ['DTG / Sensors', '위치, 속도, 주행거리, stream', '공간 이벤트 탐지, 교통 운영'],
+            ['Tactical Trajectory', '항적, 지형, 기상 context', '위험 예측, 이상치 탐지'],
+          ],
+        },
+      },
+      {
+        title: 'Mobility Regularity',
+        body: '이동 규칙성은 특정 시간대에 가장 자주 방문한 장소가 전체 방문에서 차지하는 비율로 이해할 수 있다. 값이 높으면 반복 패턴이 강하고, 값이 낮으면 방문 장소가 다양하다는 뜻이다.',
+        highlight: 'Mobility Regularity = most frequent place count / total visited place count',
+      },
+      {
+        title: '재방문 예측 feature',
+        body: '매장 실내 동선에서는 고객이 어디에 얼마나 머물렀는지, 어떤 시간대에 방문했는지, 과거 유사 동선이 있는지가 재방문 여부를 예측하는 신호가 된다.',
+        table: {
+          headers: ['Feature', '의미'],
+          rows: [
+            ['Total sensing time', '매장 내부에서 감지된 총 시간'],
+            ['Zone ratio', '구역별 체류 시간 비율'],
+            ['Outside sensing frequency', '매장 주변에서 감지된 빈도'],
+            ['Similar path', '동일 시간대 유사 동선 존재 여부'],
+          ],
+        },
+      },
+      {
+        title: '공간 stream과 위험 탐지',
+        body: '공간 stream processing은 빠르게 들어오는 위치 event를 처리하고, complex event processing은 규칙에 맞는 사건을 감지한다. 위험 예측에서는 trajectory와 context를 latent space로 옮겨 정상 분포에서 벗어나는 정도를 본다.',
+      },
+      {
+        title: '사전 학습 체크포인트',
+        body: '6차시를 이해하려면 time series, feature engineering, classification, anomaly detection, data governance의 기본 의미를 먼저 잡는 것이 좋다.',
+        table: {
+          headers: ['개념', '연결되는 질문'],
+          rows: [
+            ['Time Series', '위치가 시간 순서로 쌓일 때 어떤 순서 정보가 생기는가?'],
+            ['Feature Engineering', 'Raw log를 모델 입력으로 바꾸려면 무엇을 계산해야 하는가?'],
+            ['Classification', '재방문 여부와 위험 여부를 어떤 label로 볼 수 있는가?'],
+            ['Anomaly Detection', '정상 패턴에서 벗어난 이동을 어떻게 점수화할 수 있는가?'],
+            ['Data Governance', '이동경로 데이터는 어떤 프라이버시 위험을 갖는가?'],
+          ],
+        },
+      },
+    ],
+    quizIds: ['s06-q1', 's06-q2', 's06-q3', 's06-q4', 's06-q5'],
+    reflectionQuestions: [
+      '교통카드 데이터만으로 승객의 모든 위치를 알 수 없는 이유는 무엇인가?',
+      'Mobility Regularity는 어떤 방식으로 계산되고, 어떤 해석상 주의점이 있는가?',
+      '실내 동선에서 Dwell Time과 Zone Ratio는 왜 재방문 예측 feature가 될 수 있는가?',
+      'Spatial Stream Processing은 offline batch 분석과 무엇이 다른가?',
+      '항적 위험 예측에서 지형과 기상 context를 추가하는 이유는 무엇인가?',
+      '모빌리티 데이터 공개와 활용에서 Data Governance가 중요한 이유는 무엇인가?',
+    ],
+    projectConnections: [
+      '실내 내비게이션에서는 장소별 체류 시간과 이동 순서를 이용해 관심 구역 또는 혼잡 구역을 추정할 수 있다.',
+      '매장, 층, 게이트, 편의시설을 trajectory data와 연결하면 추천, 안내, 운영 분석으로 확장할 수 있다.',
+      '위치 stream을 실시간으로 처리하면 길찾기 실패, 비정상 체류, 혼잡 이벤트를 빠르게 감지할 수 있다.',
+      '모빌리티 데이터는 개인 식별 위험이 크므로 서비스 설계 단계에서 익명화와 접근 권한을 먼저 정해야 한다.',
+    ],
+    nextPreview: {
+      title: 'Data Science for Infectious Disease Response',
+      summary:
+        '7차시에서는 감염병 대응을 검역, 지역경제 피해 예측, 역학조사 문제로 나누고, 데이터 사이언스가 의사결정을 어떻게 보조하는지 정리한다.',
+      questions: [
+        '해외 유입 확진자 수를 예측할 때 infection risk와 inbound flow를 함께 보는 이유는 무엇인가?',
+        '지역경제 피해를 district-business pair 단위로 예측하면 어떤 장점이 있는가?',
+        '감염병 대응 데이터에서 프라이버시와 공익 사이의 균형은 어떻게 잡아야 하는가?',
+      ],
+      keyPoints: [
+        '검역은 imported case prediction과 제한된 자원 배분 문제로 볼 수 있다.',
+        '지역경제 피해는 경제, 지리, 감염병 feature를 결합한 fine-grained EEM으로 정리된다.',
+        '역학조사는 POI reconstruction과 privacy-aware data science 관점이 함께 필요하다.',
+      ],
+    },
+  },
+  {
+    id: '07',
+    order: 7,
+    title: 'Data Science for Infectious Disease Response',
+    koreanTitle: '감염병 대응을 위한 데이터 사이언스',
+    subtitle:
+      'Imported Case Prediction, COVID-EENet, Digital Contact Tracing, POI Reconstruction',
+    status: 'published',
+    instructor: leeInstructor,
+    summary:
+      '7차시는 감염병 대응을 검역, 재난지원금, 역학조사라는 세 문제로 나누고, 각 문제에서 데이터 사이언스와 AI가 어떤 의사결정을 보조하는지 다룬다.',
+    summaryLines: [
+      '감염병 대응 데이터 사이언스는 검역, 재난지원금, 역학조사를 서로 다른 예측 문제로 나누어 다룬다.',
+      'Hi-COVIDNet은 해외 국가별 Infection Risk와 Inbound Flow를 결합해 Imported Case Prediction을 수행하는 흐름으로 이해할 수 있다.',
+      'COVID-EENet과 Pincette 사례는 경제 피해 예측과 POI Reconstruction에서 세밀한 단위의 feature와 privacy-aware 설계가 중요하다는 점을 보여준다.',
+    ],
+    coreFlow: [
+      'Infectious Disease Data Science',
+      'Imported Case Prediction',
+      'Infection Risk',
+      'Inbound Flow',
+      'Hi-COVIDNet',
+      'Transformer / LSTM',
+      'Fine-Grained EEM',
+      'COVID-EENet',
+      'District-Business Pair',
+      'Economy / Geography / Epidemic View',
+      'Microscopic Encoder',
+      'Macroscopic Aggregator',
+      'Digital Contact Tracing',
+      'Cellular Trajectory',
+      'POI Reconstruction',
+      'Pincette',
+      'Privacy-Preserving Data Science',
+    ],
+    coreFlowGroups: [
+      {
+        label: '검역 예측',
+        layout: 'pipeline',
+        items: [
+          'Infectious Disease Data Science',
+          'Imported Case Prediction',
+          'Infection Risk',
+          'Inbound Flow',
+          'Hi-COVIDNet',
+          'Transformer / LSTM',
+        ],
+      },
+      {
+        label: '지역경제 피해 예측',
+        layout: 'pipeline',
+        items: [
+          'Fine-Grained EEM',
+          'COVID-EENet',
+          'District-Business Pair',
+          'Economy / Geography / Epidemic View',
+          'Microscopic Encoder',
+          'Macroscopic Aggregator',
+        ],
+      },
+      {
+        label: '역학조사와 프라이버시',
+        layout: 'pipeline',
+        items: [
+          'Digital Contact Tracing',
+          'Cellular Trajectory',
+          'POI Reconstruction',
+          'Pincette',
+          'Privacy-Preserving Data Science',
+        ],
+      },
+    ],
+    conceptCards: [
+      {
+        term: 'Infectious Disease Data Science',
+        korean: '감염병 데이터 사이언스',
+        description:
+          '감염병 대응에 필요한 예측, 자원 배분, 역학조사, 정책 평가 문제를 데이터와 AI로 보조하는 접근이다.',
+        takeaway:
+          '공중보건 의사결정을 돕지만, 개인정보와 사회적 영향까지 함께 고려해야 한다.',
+      },
+      {
+        term: 'Imported Case Prediction',
+        korean: '해외 유입 확진자 예측',
+        description:
+          '해외에서 국내로 유입될 감염자 수와 추세를 예측하는 task다. 검역 자원 배분과 연결된다.',
+        takeaway:
+          '감염 위험과 유입량을 함께 봐야 제한된 검역 자원을 더 잘 배치할 수 있다.',
+      },
+      {
+        term: 'Infection Risk',
+        korean: '감염 위험',
+        description:
+          '국가나 지역의 감염 확산 정도를 나타내는 시간 변화 신호다. 확진자, 검색어, 로밍, 항공편 같은 feature와 연결될 수 있다.',
+        takeaway:
+          '감염 위험은 고정값이 아니라 시간에 따라 변하는 spatio-temporal signal이다.',
+      },
+      {
+        term: 'Inbound Flow',
+        korean: '유입 흐름',
+        description:
+          '특정 국가나 지역에서 목적지로 들어오는 사람의 흐름이다. 검역 예측에서는 해외 감염 위험과 곱해져 유입 위험을 만든다.',
+        takeaway:
+          '위험한 지역이라도 유입량이 적으면 실제 imported case는 작을 수 있다.',
+      },
+      {
+        term: 'Hi-COVIDNet',
+        korean: 'Hi-COVIDNet',
+        description:
+          '해외 유입 COVID-19 확진자 수를 예측하기 위해 country-level과 continent-level representation을 구성하는 deep learning 모델이다.',
+        takeaway:
+          'Transformer, LSTM, concatenate layer를 이용해 감염 추세와 유입 흐름을 결합한다.',
+      },
+      {
+        term: 'LSTM',
+        korean: '장단기 기억 신경망',
+        description:
+          '순서가 있는 데이터를 처리하며 과거 상태를 다음 계산에 반영하는 recurrent neural network 계열 모델이다.',
+        takeaway:
+          '감염 추세처럼 시간 방향으로 누적되는 신호를 다룰 때 사용될 수 있다.',
+      },
+      {
+        term: 'Fine-Grained EEM',
+        korean: '세밀한 경제-역학 모델링',
+        description:
+          '지역과 업종처럼 세밀한 단위에서 감염병이 경제에 미치는 영향을 예측하는 Economic-Epidemiological Modeling이다.',
+        takeaway:
+          '소득이나 실업률 같은 coarse-grained 지표만으로는 지역별 피해 차이를 놓칠 수 있다.',
+      },
+      {
+        term: 'COVID-EENet',
+        korean: 'COVID-EENet',
+        description:
+          '경제 활동 데이터와 집단감염 데이터를 결합해 지역-업종 단위 매출 변화 추세를 예측하는 DNN 기반 framework다.',
+        takeaway:
+          '경제, 지리, 감염병 관점 feature를 함께 사용해 fine-grained impact를 예측한다.',
+      },
+      {
+        term: 'District-Business Pair',
+        korean: '지역-업종 쌍',
+        description:
+          '특정 지역과 특정 업종의 조합이다. COVID-EENet에서는 이 단위를 기준으로 매출 변화 추세를 예측한다.',
+        takeaway:
+          '같은 감염병 충격도 지역과 업종에 따라 경제 피해가 다르게 나타난다.',
+      },
+      {
+        term: 'Digital Contact Tracing',
+        korean: '디지털 역학조사',
+        description:
+          '위치나 접촉 데이터를 활용해 감염 가능 접촉과 이동 경로를 추정하는 공중보건 지원 방식이다.',
+        takeaway:
+          '정확도와 속도만큼 privacy-preserving design이 중요하다.',
+      },
+      {
+        term: 'POI Reconstruction',
+        korean: '방문 장소 재구성',
+        description:
+          '기지국 trajectory처럼 거친 위치 신호에서 실제 방문했을 가능성이 높은 point of interest를 추정하는 과정이다.',
+        takeaway:
+          '기지국 수준 위치를 건물 또는 장소 단위로 세밀화하는 문제로 볼 수 있다.',
+      },
+      {
+        term: 'Pincette',
+        korean: 'Pincette',
+        description:
+          'Efficiency, periodicity, popularity view를 이용해 cellular trajectory에서 POI 방문 가능성을 추정하는 방법론이다.',
+        takeaway:
+          '이동 경로의 효율성, 생활 패턴의 주기성, 장소의 대중성을 함께 본다.',
+      },
+    ],
+    visualNotes: [
+      {
+        title: '감염병 대응 데이터 사이언스의 세 문제',
+        src: '/session-visuals/session-07-disease-response-flow.svg',
+        alt: '검역, 지역경제 피해 예측, 역학조사라는 세 감염병 대응 문제와 각 예측 단위를 설명하는 도식',
+        caption:
+          '검역, 지역경제 피해 예측, 역학조사를 각각 다른 데이터 사이언스 문제로 나눠 정리했습니다.',
+      },
+      {
+        title: 'POI Reconstruction과 감염 위험 추정',
+        src: '/session-visuals/session-07-contact-tracing-flow.svg',
+        alt: '기지국 궤적에서 efficiency, periodicity, popularity view를 이용해 POI 방문 확률과 감염 위험 지수로 이어지는 흐름을 설명하는 도식',
+        caption:
+          '기지국 기반 trajectory를 POI 방문 가능성과 risk index로 바꾸는 흐름을 복습용으로 정리했습니다.',
+      },
+    ],
+    intuitions: [
+      {
+        title: '현행: 감염병 대응은 자원 배분 문제다',
+        body: '검역 인력, 재난지원금, 역학조사 자원은 항상 제한되어 있다. Data science는 어디에 먼저 집중할지 판단할 근거를 제공한다.',
+      },
+      {
+        title: '알아둬야 할 지식: 감염 위험은 시공간 신호다',
+        body: 'Infection Risk는 국가별 감염 상황, 이동량, 시간 변화가 결합된 signal이다. 단순 누적 확진자만 보는 것보다 spatio-temporal relationship을 함께 봐야 한다.',
+      },
+      {
+        title: '사전 학습: 성능과 프라이버시는 같이 본다',
+        body: 'Digital Contact Tracing은 빠르고 세밀한 추정을 가능하게 하지만, 위치 데이터가 개인 생활을 드러낼 수 있다. Privacy-preserving data science가 모델 설계의 일부가 되어야 한다.',
+      },
+    ],
+    modelNotes: [
+      {
+        title: '검역: Imported Case Prediction',
+        body: '해외 유입 확진자 예측은 국가별 infection risk와 목적지로 들어오는 inbound flow를 함께 보는 문제다. 어느 한쪽만으로는 실제 유입 위험을 충분히 설명하기 어렵다.',
+        highlight: 'Imported Risk ~= Infection Risk x Inbound Flow',
+      },
+      {
+        title: 'Hi-COVIDNet 구성',
+        body: 'Hi-COVIDNet은 country-level representation과 continent-level representation을 구성한다. Transformer는 감염 위험이 높은 기간에 주목하고, LSTM은 감염 추세의 시간적 흐름을 포착한다.',
+        table: {
+          headers: ['구성', '역할'],
+          rows: [
+            ['Daily epidemic signal', '확진자, 사망자, 검색어 같은 감염 추세 입력'],
+            ['Inbound flow', '로밍, 항공편 등 목적지 유입 흐름'],
+            ['Transformer', '위험도가 높은 시점에 주목'],
+            ['LSTM', '시간에 따른 감염 추세 반영'],
+            ['Prediction layer', '향후 imported case 수 예측'],
+          ],
+        },
+      },
+      {
+        title: '지역경제 피해 예측',
+        body: 'COVID-EENet은 district-business pair 단위로 매출 변화 추세를 예측한다. 경제 활동 데이터와 집단감염 데이터를 결합하고, economy, geography, epidemic view를 나눠 feature를 만든다.',
+        table: {
+          headers: ['View', '담는 정보'],
+          rows: [
+            ['Economy-view', '특정 지역-업종에서 소비가 평소 어떻게 일어나는가'],
+            ['Geography-view', '지역 사이의 물리적, 사회적 가까움'],
+            ['Epidemic-view', '집단감염 사례가 얼마나 강하게 영향을 미치는가'],
+          ],
+        },
+      },
+      {
+        title: '역학조사: POI Reconstruction',
+        body: '기지국 trajectory는 위치 해상도가 거칠다. Pincette는 efficiency, periodicity, popularity view를 결합해 실제 방문했을 가능성이 높은 POI를 추정한다.',
+        table: {
+          headers: ['View', '직관'],
+          rows: [
+            ['Efficiency', '사람은 이동 경로상 효율적인 장소를 방문할 가능성이 높다'],
+            ['Periodicity', '생활 패턴에는 시간과 장소의 반복성이 있다'],
+            ['Popularity', '대중적인 장소는 방문 후보가 될 가능성이 높다'],
+          ],
+        },
+      },
+      {
+        title: '사전 학습 체크포인트',
+        body: '7차시를 이해하려면 spatio-temporal data, Transformer/LSTM, feature engineering, POI reconstruction, privacy-preserving data science를 먼저 연결해 두는 것이 좋다.',
+        table: {
+          headers: ['개념', '연결되는 질문'],
+          rows: [
+            ['Spatio-Temporal Data', '감염 위험은 시간과 공간을 따라 어떻게 움직이는가?'],
+            ['Transformer / LSTM', '시간 의존성과 위험 시점을 어떻게 모델링하는가?'],
+            ['Feature Engineering', '경제, 지리, 감염병 view를 어떻게 분리해 입력으로 만드는가?'],
+            ['POI Reconstruction', '거친 위치 신호에서 실제 방문 장소를 어떻게 추정하는가?'],
+            ['Privacy-Preserving Data Science', '공익 목적 분석과 개인 권리 보호를 어떻게 함께 설계하는가?'],
+          ],
+        },
+      },
+    ],
+    quizIds: ['s07-q1', 's07-q2', 's07-q3', 's07-q4', 's07-q5'],
+    reflectionQuestions: [
+      'Imported Case Prediction에서 Infection Risk와 Inbound Flow를 함께 봐야 하는 이유는 무엇인가?',
+      'Hi-COVIDNet에서 Transformer와 LSTM은 각각 어떤 역할을 맡는가?',
+      'COVID-EENet이 지역과 업종을 묶은 district-business pair 단위로 예측하는 이유는 무엇인가?',
+      'Economy-view, Geography-view, Epidemic-view feature는 각각 어떤 정보를 담는가?',
+      '기지국 기반 trajectory에서 POI Reconstruction을 할 때 efficiency, periodicity, popularity view가 필요한 이유는 무엇인가?',
+      '감염병 대응 데이터 사이언스에서 프라이버시 설계가 모델 성능만큼 중요한 이유는 무엇인가?',
+    ],
+    projectConnections: [
+      '실내 공간 서비스에서도 감염병 대응처럼 이동, 체류, 혼잡 정보를 공익적 의사결정에 활용할 수 있다.',
+      '장소별 방문 가능성과 risk index를 다룰 때는 사용자의 위치 정보 최소화와 익명화가 먼저 설계되어야 한다.',
+      '상권 또는 매장 단위 분석에서는 지역-업종 쌍처럼 예측 단위를 세밀하게 정의하는 것이 중요하다.',
+      'LLM 기반 안내 시스템이 공공 안전 정보를 다룰 때는 검색 근거와 책임 있는 표현이 함께 필요하다.',
     ],
   },
 ];

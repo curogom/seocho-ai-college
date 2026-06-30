@@ -24,7 +24,7 @@ export const glossary: GlossaryEntry[] = [
     category: '개념',
     description:
       '사람의 지능적 행동처럼 보이는 문제 해결, 판단, 예측, 생성 등을 컴퓨터로 수행하려는 가장 넓은 범주의 분야.',
-    sessionIds: ['01'],
+    sessionIds: ['01', '06', '07'],
   },
   {
     term: 'Machine Learning',
@@ -32,7 +32,7 @@ export const glossary: GlossaryEntry[] = [
     category: '개념',
     description:
       '사람이 규칙을 직접 작성하는 대신, 데이터로부터 원하는 task를 수행하는 함수를 학습하는 방식.',
-    sessionIds: ['01'],
+    sessionIds: ['01', '06', '07'],
   },
   {
     term: 'Deep Learning',
@@ -121,7 +121,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['feature engineering'],
     description:
       '원본 데이터에서 문제 해결에 도움이 되는 새로운 입력값을 설계하거나 계산하는 작업.',
-    sessionIds: ['01'],
+    sessionIds: ['01', '06', '07'],
   },
   {
     term: 'Classification',
@@ -370,7 +370,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['transformer'],
     description:
       'Self-attention을 중심으로 token 간 관계를 계산하는 시퀀스 모델 구조. 현대 LLM의 핵심 기반이다.',
-    sessionIds: ['02'],
+    sessionIds: ['02', '07'],
   },
   {
     term: 'BERT',
@@ -793,7 +793,7 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['spatio-temporal graph', 'STG'],
     description:
       '공간적 연결과 시간에 따른 변화를 함께 표현하는 graph. 교통, 날씨, 센서 예측 같은 문제에 활용된다.',
-    sessionIds: ['03'],
+    sessionIds: ['03', '07'],
   },
   {
     term: 'Homophily',
@@ -1090,6 +1090,321 @@ export const glossary: GlossaryEntry[] = [
     aliases: ['data governance'],
     description:
       '데이터의 보안, 품질, 접근 권한, 최신성, 책임 범위를 관리하는 원칙과 운영 체계.',
-    sessionIds: ['04'],
+    sessionIds: ['04', '06', '07'],
+  },
+  {
+    term: 'Mobility Big Data',
+    korean: '모빌리티 빅데이터',
+    category: '개념',
+    aliases: ['mobility data', 'mobility big data'],
+    description:
+      '사람, 차량, 항공기, 센서가 남기는 대규모 이동경로 데이터. 위치, 시간, 속도, 체류, 교통수단 같은 맥락이 함께 붙는다.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Trajectory',
+    korean: '이동경로',
+    category: '핵심 요소',
+    aliases: ['trajectory', 'movement path'],
+    description:
+      '시간 순서대로 연결된 위치 기록. 이동 주체가 언제 어디에 있었는지를 sequence로 표현한다.',
+    sessionIds: ['06', '07'],
+  },
+  {
+    term: 'Smart Card Data',
+    korean: '교통카드 데이터',
+    category: '핵심 요소',
+    aliases: ['smart card data'],
+    description:
+      '대중교통 승차와 하차 기록으로 구성된 mobility data. 시간대별 위치 추정과 이동 규칙성 분석에 활용된다.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Location Inference',
+    korean: '위치 추정',
+    category: '기법',
+    aliases: ['location inference', 'location imputation'],
+    description:
+      '직접 관측되지 않은 시간대의 위치를 주변 관측값, 거리, 이동 규칙으로 추정하는 과정.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Mobility Regularity',
+    korean: '이동 규칙성',
+    category: '개념',
+    aliases: ['mobility regularity'],
+    description:
+      '같은 시간대에 가장 자주 방문한 장소의 횟수를 전체 방문 횟수로 나누는 방식 등으로 보는 반복 이동 패턴 지표.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'In-store Trajectory',
+    korean: '매장 실내 동선',
+    category: '핵심 요소',
+    aliases: ['in-store trajectory', 'indoor trajectory'],
+    description:
+      'WiFi나 Beacon 기반 센서로 매장 안에서 어느 구역에 얼마나 머무는지 기록한 이동 데이터.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Dwell Time',
+    korean: '체류 시간',
+    category: '핵심 요소',
+    aliases: ['dwell time'],
+    description:
+      '고객이나 이동 주체가 특정 구역에 머문 시간. 실내 동선 분석에서 관심도와 행동 패턴을 추정하는 feature가 된다.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Zone Ratio',
+    korean: '구역별 체류 비율',
+    category: '핵심 요소',
+    aliases: ['zone ratio'],
+    description:
+      '전체 체류 시간 중 특정 구역에서 머문 시간이 차지하는 비율. 구역별 관심도를 나타내는 feature로 쓸 수 있다.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Revisit Prediction',
+    korean: '재방문 예측',
+    category: '태스크',
+    aliases: ['revisit prediction'],
+    description:
+      '현재까지의 방문 기록과 동선 feature를 이용해 고객이 향후 다시 방문할지 예측하는 task.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Spatial Stream Processing',
+    korean: '공간 스트림 처리',
+    category: '기법',
+    aliases: ['spatial stream processing'],
+    description:
+      '빠르게 들어오는 위치 stream에서 특정 규칙이나 공간 조건에 맞는 이벤트를 탐지하는 처리 방식.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Complex Event Processing',
+    korean: '복합 이벤트 처리',
+    category: '기법',
+    aliases: ['CEP', 'complex event processing'],
+    description:
+      '여러 stream event와 규칙을 조합해 의미 있는 상황을 감지하는 기법. 공간 stream과 함께 쓰일 수 있다.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Digital Tacho Graph',
+    korean: '디지털 운행기록계',
+    category: '핵심 요소',
+    aliases: ['DTG', 'digital tacho graph'],
+    description:
+      '버스, 택시, 화물차 같은 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Tactical Trajectory',
+    korean: '전술 항적',
+    category: '핵심 요소',
+    aliases: ['tactical trajectory', 'flight track'],
+    description:
+      '항공기나 추적 대상의 시간 순서 위치 기록. 위험 예측에서는 지형, 기상 같은 context와 함께 해석한다.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Latent Space',
+    korean: '잠재공간',
+    category: '개념',
+    aliases: ['latent space'],
+    description:
+      '모델이 입력 데이터를 내부적으로 표현하는 공간. 정상 패턴과 이상 패턴의 거리나 확률 차이를 해석하는 데 쓰일 수 있다.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Anomaly Detection',
+    korean: '이상치 탐지',
+    category: '태스크',
+    aliases: ['anomaly detection'],
+    description:
+      '학습된 정상 패턴에서 크게 벗어난 입력을 위험 또는 특이 상황으로 판단하는 task.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Digital Twin',
+    korean: '디지털 트윈',
+    category: '개념',
+    aliases: ['digital twin'],
+    description:
+      '현실 시스템의 상태와 동작을 데이터로 복제해 분석, 예측, 운영 의사결정에 활용하는 디지털 표현.',
+    sessionIds: ['06'],
+  },
+  {
+    term: 'Infectious Disease Data Science',
+    korean: '감염병 데이터 사이언스',
+    category: '개념',
+    aliases: ['infectious disease data science', 'pandemic data science'],
+    description:
+      '감염병 대응에 필요한 예측, 자원 배분, 역학조사, 정책 평가 문제를 데이터와 AI로 보조하는 접근.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Imported Case Prediction',
+    korean: '해외 유입 확진자 예측',
+    category: '태스크',
+    aliases: ['imported case prediction', 'imported cases'],
+    description:
+      '해외에서 국내로 유입될 감염자 수와 추세를 예측하는 task. 검역 자원 배분과 연결된다.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Infection Risk',
+    korean: '감염 위험',
+    category: '개념',
+    aliases: ['infection risk'],
+    description:
+      '국가나 지역의 감염 확산 정도를 나타내는 시간 변화 신호. 확진자, 검색어, 로밍, 항공편 같은 feature와 연결될 수 있다.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Inbound Flow',
+    korean: '유입 흐름',
+    category: '핵심 요소',
+    aliases: ['inbound flow'],
+    description:
+      '특정 국가나 지역에서 목적지로 들어오는 사람의 흐름. 감염 위험과 결합해 유입 확진자 예측에 활용된다.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Hi-COVIDNet',
+    korean: 'Hi-COVIDNet',
+    category: '모델',
+    aliases: ['hi-covidnet'],
+    description:
+      '해외 유입 COVID-19 확진자 수를 예측하기 위해 country-level과 continent-level representation을 구성하는 deep learning 모델.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'LSTM',
+    korean: '장단기 기억 신경망',
+    category: '모델',
+    aliases: ['lstm', 'long short-term memory'],
+    description:
+      '순서가 있는 데이터를 처리하며 과거 상태를 다음 계산에 반영하는 recurrent neural network 계열 모델.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Fine-Grained EEM',
+    korean: '세밀한 경제-역학 모델링',
+    category: '기법',
+    aliases: ['fine-grained EEM', 'economic-epidemiological modeling'],
+    description:
+      '지역과 업종처럼 세밀한 단위에서 감염병이 경제에 미치는 영향을 예측하는 Economic-Epidemiological Modeling.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'COVID-EENet',
+    korean: 'COVID-EENet',
+    category: '모델',
+    aliases: ['covid-eenet'],
+    description:
+      '경제 활동 데이터와 집단감염 데이터를 결합해 지역-업종 단위 매출 변화 추세를 예측하는 DNN 기반 framework.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'District-Business Pair',
+    korean: '지역-업종 쌍',
+    category: '핵심 요소',
+    aliases: ['district-business pair'],
+    description:
+      '특정 지역과 특정 업종의 조합. 감염병 충격에 따른 경제 피해를 세밀하게 예측하는 단위가 된다.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Economy View',
+    korean: '경제 관점 feature',
+    category: '핵심 요소',
+    aliases: ['economy-view', 'economy view'],
+    description:
+      '특정 지역-업종에서 소비가 평소 어떻게 일어나는지를 담는 feature 관점.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Geography View',
+    korean: '지리 관점 feature',
+    category: '핵심 요소',
+    aliases: ['geography-view', 'geography view'],
+    description:
+      '지역 사이의 물리적, 사회적 가까움이나 공간적 연결을 담는 feature 관점.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Epidemic View',
+    korean: '감염병 관점 feature',
+    category: '핵심 요소',
+    aliases: ['epidemic-view', 'epidemic view'],
+    description:
+      '집단감염 사례와 확산 강도가 지역경제 또는 이동 위험에 얼마나 영향을 미치는지를 담는 feature 관점.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Microscopic Encoder',
+    korean: '미시 인코더',
+    category: '아키텍처',
+    aliases: ['microscopic encoder'],
+    description:
+      '개별 지역-업종 또는 감염 사례 수준의 세부 영향을 encoding하는 COVID-EENet의 하위 구조.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Macroscopic Aggregator',
+    korean: '거시 집계기',
+    category: '아키텍처',
+    aliases: ['macroscopic aggregator'],
+    description:
+      '세부 수준에서 계산된 영향을 업종이나 지역 전체 관점으로 모아 예측에 반영하는 구조.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Digital Contact Tracing',
+    korean: '디지털 역학조사',
+    category: '기법',
+    aliases: ['digital contact tracing'],
+    description:
+      '위치나 접촉 데이터를 활용해 감염 가능 접촉과 이동 경로를 추정하는 공중보건 지원 방식.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Cellular Trajectory',
+    korean: '기지국 기반 이동 궤적',
+    category: '핵심 요소',
+    aliases: ['cellular trajectory', 'base station trajectory'],
+    description:
+      '스마트폰이 접속한 기지국 sequence로 표현된 이동 궤적. 위치 해상도가 거칠어 POI 추정이 필요할 수 있다.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'POI Reconstruction',
+    korean: '방문 장소 재구성',
+    category: '기법',
+    aliases: ['POI reconstruction', 'point of interest reconstruction'],
+    description:
+      '기지국 trajectory처럼 거친 위치 신호에서 실제 방문했을 가능성이 높은 point of interest를 추정하는 과정.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Pincette',
+    korean: 'Pincette',
+    category: '모델',
+    aliases: ['pincette'],
+    description:
+      'Efficiency, periodicity, popularity view를 이용해 cellular trajectory에서 POI 방문 가능성을 추정하는 방법론.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Privacy-Preserving Data Science',
+    korean: '프라이버시 보존 데이터 사이언스',
+    category: '기법',
+    aliases: ['privacy-preserving data science', 'privacy aware data science'],
+    description:
+      '분석 목적을 달성하면서 개인정보 노출을 줄이기 위해 최소 수집, 익명화, 목적 제한, 접근 제어를 함께 설계하는 접근.',
+    sessionIds: ['07'],
   },
 ];

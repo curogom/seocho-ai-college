@@ -288,6 +288,146 @@ export const quizzes: Quiz[] = [
     explanation:
       'GraphRAG는 retrieval 대상을 graph structure로 확장해 grounding과 explainability를 높이려는 접근이다.',
   },
+  {
+    id: 's06-q1',
+    sessionId: '06',
+    question: 'Mobility Big Data의 설명으로 가장 적절한 것은?',
+    choices: [
+      '시간에 따른 위치와 이동 맥락이 함께 쌓이는 trajectory data다.',
+      '텍스트 token만 모은 문서 데이터다.',
+      '이미지 pixel만 저장한 데이터다.',
+      '모델 parameter만 저장한 파일이다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      '모빌리티 데이터는 위치, 시간, 속도, 체류, 교통수단 같은 이동 맥락이 결합된 trajectory data로 볼 수 있다.',
+  },
+  {
+    id: 's06-q2',
+    sessionId: '06',
+    question: '교통카드 데이터에서 Location Inference가 필요한 이유는?',
+    choices: [
+      '승하차 시점 사이의 모든 위치가 직접 관측되는 것은 아니기 때문에',
+      '교통카드 데이터에는 시간이 없기 때문에',
+      '위치 데이터는 항상 완전하기 때문에',
+      '승차와 하차 정보를 삭제하기 위해',
+    ],
+    answerIndex: 0,
+    explanation:
+      '승차와 하차 event는 관측되지만 그 사이 시간대의 위치는 추정 규칙과 전처리로 보완해야 한다.',
+  },
+  {
+    id: 's06-q3',
+    sessionId: '06',
+    question: 'Revisit Prediction에 사용할 수 있는 실내 동선 feature가 아닌 것은?',
+    choices: [
+      '구역별 체류 시간 비율',
+      '매장 내부에서 감지된 총 시간',
+      '방문 시간과 요일',
+      'LLM의 temperature 값',
+    ],
+    answerIndex: 3,
+    explanation:
+      '재방문 예측에서는 체류 시간, 구역별 비율, 방문 시간, 유사 동선 같은 행동 feature가 중요하다.',
+  },
+  {
+    id: 's06-q4',
+    sessionId: '06',
+    question: 'Spatial Stream Processing의 핵심 특징은?',
+    choices: [
+      '빠르게 들어오는 위치 stream에서 규칙에 맞는 event를 탐지한다.',
+      '모든 데이터를 종이에 적어 수동으로 분류한다.',
+      '시간 순서를 모두 제거하고 평균만 계산한다.',
+      '항상 이미지 분류 문제로만 처리한다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      '공간 stream 처리에서는 위치와 시간 event가 계속 들어오므로 실시간 판단과 규칙 기반 event 탐지가 중요하다.',
+  },
+  {
+    id: 's06-q5',
+    sessionId: '06',
+    question: '모빌리티 위험 예측에서 Data Governance가 중요한 이유는?',
+    choices: [
+      '이동경로가 개인 생활 패턴이나 민감 운영 정보를 드러낼 수 있기 때문에',
+      '위치 데이터에는 민감성이 전혀 없기 때문에',
+      '모델 정확도를 낮추기 위해',
+      '데이터를 모두 공개해야만 학습할 수 있기 때문에',
+    ],
+    answerIndex: 0,
+    explanation:
+      '이동경로 데이터는 개인, 차량, 시설, 안보 맥락을 노출할 수 있어 익명화, 접근 권한, 목적 제한이 필요하다.',
+  },
+  {
+    id: 's07-q1',
+    sessionId: '07',
+    question: 'Imported Case Prediction에서 Infection Risk와 Inbound Flow를 함께 보는 이유는?',
+    choices: [
+      '감염 위험과 실제 유입량이 함께 imported case 규모를 좌우하기 때문에',
+      '둘 중 하나는 항상 0이기 때문에',
+      '감염 위험은 위치와 무관하기 때문에',
+      '유입 흐름은 모델 입력으로 쓸 수 없기 때문에',
+    ],
+    answerIndex: 0,
+    explanation:
+      '감염 위험이 높아도 유입량이 적으면 실제 유입 확진자는 작을 수 있고, 반대로 유입량이 많으면 위험이 커질 수 있다.',
+  },
+  {
+    id: 's07-q2',
+    sessionId: '07',
+    question: 'Hi-COVIDNet에서 Transformer와 LSTM 역할 설명으로 적절한 것은?',
+    choices: [
+      'Transformer는 위험 시점에 주목하고, LSTM은 시간적 추세를 반영한다.',
+      'Transformer는 이미지를 압축하고, LSTM은 CSS를 생성한다.',
+      '둘 다 위치 데이터를 삭제하기 위한 규칙이다.',
+      'LSTM은 시간 순서를 전혀 사용하지 않는다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      '강의 자료 기준으로 Transformer는 감염 위험이 높은 기간을 강조하고, LSTM은 감염 추세의 temporal pattern을 포착하는 역할로 설명된다.',
+  },
+  {
+    id: 's07-q3',
+    sessionId: '07',
+    question: 'Fine-Grained EEM이 필요한 이유는?',
+    choices: [
+      '지역과 업종별 피해가 다르게 나타날 수 있기 때문에',
+      '모든 지역과 업종의 피해가 항상 같기 때문에',
+      '경제 데이터를 쓰면 안 되기 때문에',
+      '감염병 데이터에는 시간 정보가 없기 때문에',
+    ],
+    answerIndex: 0,
+    explanation:
+      '소득이나 실업률 같은 coarse-grained 지표만으로는 지역-업종 단위의 세밀한 경제 피해 차이를 보기 어렵다.',
+  },
+  {
+    id: 's07-q4',
+    sessionId: '07',
+    question: 'Pincette의 세 가지 view로 맞는 조합은?',
+    choices: [
+      'Efficiency, Periodicity, Popularity',
+      'Color, Font, Shadow',
+      'Prompt, Temperature, Token',
+      'Head, Relation, Tail',
+    ],
+    answerIndex: 0,
+    explanation:
+      'Pincette는 이동 경로 효율성, 생활 패턴의 주기성, 장소의 대중성을 함께 보고 POI 방문 가능성을 추정한다.',
+  },
+  {
+    id: 's07-q5',
+    sessionId: '07',
+    question: '감염병 대응 데이터 사이언스에서 Privacy-Preserving 설계가 중요한 이유는?',
+    choices: [
+      '건강, 위치, 소비, 이동 이력처럼 민감한 데이터가 함께 쓰일 수 있기 때문에',
+      '모든 데이터가 공개 데이터라서 보호가 필요 없기 때문에',
+      '예측 정확도를 무조건 0으로 만들기 위해',
+      '모델이 데이터를 보지 못하게 하기 위해',
+    ],
+    answerIndex: 0,
+    explanation:
+      '감염병 대응 데이터는 공익 목적이 있더라도 개인의 건강과 위치, 소비 이력에 닿을 수 있어 최소 수집과 목적 제한이 중요하다.',
+  },
 ];
 
 export const getQuizzesBySessionId = (sessionId: string) =>
