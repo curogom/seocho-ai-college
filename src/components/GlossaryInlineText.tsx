@@ -124,7 +124,7 @@ const inlineTerms = new Set([
   'Revisit Prediction',
   'Spatial Stream Processing',
   'Complex Event Processing',
-  'Digital Tacho Graph',
+  'Digital Tachograph',
   'Tactical Trajectory',
   'Latent Space',
   'Anomaly Detection',

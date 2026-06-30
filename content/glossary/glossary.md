@@ -135,7 +135,7 @@
 - Revisit Prediction: 현재까지의 방문 기록과 동선 feature로 향후 재방문 여부를 예측하는 task
 - Spatial Stream Processing: 빠르게 들어오는 위치 stream에서 event를 탐지하는 처리 방식
 - Complex Event Processing: 여러 event와 규칙을 조합해 의미 있는 상황을 감지하는 기법
-- Digital Tacho Graph: 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천
+- Digital Tachograph: 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천
 - Tactical Trajectory: 항공기나 추적 대상의 시간 순서 위치 기록
 - Latent Space: 모델이 입력 데이터를 내부적으로 표현하는 공간
 - Anomaly Detection: 정상 패턴에서 크게 벗어난 입력을 위험 또는 특이 상황으로 판단하는 task

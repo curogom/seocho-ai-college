@@ -15,7 +15,7 @@ School of Computing, KAIST
 
 ## Core Flow
 
-Mobility Big Data -> Trajectory Data Sources -> Smart Card Data -> Location Inference -> Mobility Regularity -> In-store Trajectory -> Dwell Time / Zone Ratio -> Revisit Prediction -> Spatial Stream Processing -> Complex Event Processing -> Digital Tacho Graph -> Tactical Trajectory -> Feature Engineering -> Latent Space -> Anomaly Detection -> Digital Twin / Data Governance
+Mobility Big Data -> Trajectory Data Sources -> Smart Card Data -> Location Inference -> Mobility Regularity -> In-store Trajectory -> Dwell Time / Zone Ratio -> Revisit Prediction -> Spatial Stream Processing -> Complex Event Processing -> Digital Tachograph -> Tactical Trajectory -> Feature Engineering -> Latent Space -> Anomaly Detection -> Digital Twin / Data Governance
 
 ## Visual Notes
 

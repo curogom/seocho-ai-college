@@ -1177,7 +1177,7 @@ export const sessions: Session[] = [
       'Revisit Prediction',
       'Spatial Stream Processing',
       'Complex Event Processing',
-      'Digital Tacho Graph',
+      'Digital Tachograph',
       'Tactical Trajectory',
       'Feature Engineering',
       'Latent Space',
@@ -1210,7 +1210,7 @@ export const sessions: Session[] = [
         items: [
           'Spatial Stream Processing',
           'Complex Event Processing',
-          'Digital Tacho Graph',
+          'Digital Tachograph',
           'Tactical Trajectory',
         ],
       },
@@ -1307,7 +1307,7 @@ export const sessions: Session[] = [
           '단일 좌표가 아니라 시간과 공간 조건을 만족하는 사건을 찾아낸다.',
       },
       {
-        term: 'Digital Tacho Graph',
+        term: 'Digital Tachograph',
         korean: '디지털 운행기록계',
         description:
           '버스, 택시, 화물차 같은 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천이다.',

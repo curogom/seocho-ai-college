@@ -1192,7 +1192,7 @@ export const glossary: GlossaryEntry[] = [
     sessionIds: ['06'],
   },
   {
-    term: 'Digital Tacho Graph',
+    term: 'Digital Tachograph',
     korean: '디지털 운행기록계',
     category: '핵심 요소',
     aliases: ['DTG', 'digital tacho graph'],
