@@ -1,0 +1,38 @@
+# 7차시 자료 정리 노트
+
+## 강의 정보
+
+- 제목: 감염병 대응을 위한 데이터 사이언스 연구
+- 일자: 2026년 6월 30일
+- 강의자: 이재길 교수, KAIST 전산학부
+
+## 핵심 흐름
+
+감염병 대응 데이터 사이언스는 검역, 재난지원금, 역학조사라는 세 문제로 정리된다. 각 문제는 서로 다른 데이터와 예측 단위를 갖지만, 제한된 자원으로 더 정확한 의사결정을 돕는다는 공통 목적을 가진다.
+
+검역 영역에서는 해외 유입 확진자 수를 예측한다. 해외 국가별 감염 위험과 국내 유입량을 함께 보고, 시간에 따라 변하는 감염 상황과 유입 흐름을 모델에 반영한다. Hi-COVIDNet은 Transformer, LSTM, concatenate layer를 조합해 country-level representation과 continent-level representation을 만든다.
+
+재난지원금 영역에서는 지역경제 피해를 세밀하게 예측한다. COVID-EENet은 경제 활동 데이터와 집단감염 데이터를 함께 보고, district-business pair 단위로 매출 감소 추세를 예측한다. 경제 관점, 지리 관점, 감염병 관점을 분리해 feature를 만들고, microscopic encoder와 macroscopic aggregator로 묶는다.
+
+역학조사 영역에서는 기지국 기반 이동 궤적에서 건물 단위 방문 가능성을 추정한다. Pincette는 efficiency-view, periodicity-view, popularity-view를 활용해 POI 방문 가능성을 재구성하고, 감염 위험도 산정이나 밀접 접촉자 통보에 연결할 수 있다.
+
+## 알아둘 지식
+
+- Imported Case Prediction은 해외 유입 확진자 수와 추세를 예측하는 task다.
+- Inbound Flow는 특정 국가나 지역에서 목적지로 들어오는 사람의 흐름이다.
+- Infection Risk는 국가별 확진자, 검색 신호, 로밍, 항공편 같은 시간 변화 요인을 반영한다.
+- Fine-Grained EEM은 지역과 업종처럼 세밀한 단위에서 경제 피해를 예측하는 economic-epidemiological modeling이다.
+- District-Business Pair는 특정 지역과 특정 업종의 조합이다.
+- POI Reconstruction은 기지국 궤적처럼 거친 위치 신호에서 실제 방문 장소를 추정하는 과정이다.
+- Digital Contact Tracing은 이동 데이터로 감염 가능 접촉을 찾는 접근이다.
+
+## 현행 관점
+
+감염병 대응에서 데이터는 빠른 자원 배분과 정책 판단에 도움을 주지만, 사생활 침해 위험을 함께 가진다. 따라서 예측 정확도뿐 아니라 데이터 최소 수집, 익명화, 목적 제한, 설명 가능성, 사후 검증이 같이 설계되어야 한다.
+
+## 사전 학습 포인트
+
+- 감염병 데이터는 시간, 공간, 사람 이동, 정책 반응이 결합된 spatio-temporal 문제로 볼 수 있다.
+- Transformer와 LSTM이 각각 어떤 종류의 시간 의존성을 다루는지 복습한다.
+- Feature Engineering을 경제 관점, 지리 관점, 감염병 관점으로 나누어 생각한다.
+- 위치 데이터 활용에서는 성능과 프라이버시 사이의 trade-off를 반드시 함께 본다.

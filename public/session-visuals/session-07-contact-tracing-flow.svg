@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">POI reconstruction and contact tracing flow</title>
+  <desc id="desc">Cellular trajectories are converted into POI visit probabilities using efficiency, periodicity, and popularity views.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8f7f2}
+      .ink{fill:#182129}
+      .muted{fill:#616b72}
+      .rust{fill:#a95736}
+      .teal{fill:#0d7f83}
+      .moss{fill:#4f6f5f}
+      .gold{fill:#c69b4a}
+      .card{fill:#fff;stroke:#d8d5ca;stroke-width:2}
+      .line{fill:none;stroke:#0d7f83;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .road{fill:none;stroke:#b9b5aa;stroke-width:5;stroke-linecap:round}
+      text{font-family:Arial, Helvetica, sans-serif}
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="560"/>
+  <text x="64" y="76" class="ink" font-size="37" font-weight="800">From Cellular Trajectory to POI Risk</text>
+  <text x="64" y="114" class="muted" font-size="21">Pincette-style reconstruction uses multiple views before risk estimation</text>
+
+  <rect class="card" x="72" y="176" width="238" height="194" rx="8"/>
+  <text x="104" y="224" class="teal" font-size="23" font-weight="800">Cellular</text>
+  <text x="104" y="256" class="teal" font-size="23" font-weight="800">Trajectory</text>
+  <path class="road" d="M112 318c40-54 78-32 112-70 24-26 42-22 58-8"/>
+  <circle cx="112" cy="318" r="9" fill="#0d7f83"/>
+  <circle cx="196" cy="278" r="9" fill="#0d7f83"/>
+  <circle cx="282" cy="240" r="9" fill="#0d7f83"/>
+
+  <rect class="card" x="400" y="136" width="250" height="274" rx="8"/>
+  <text x="434" y="184" class="teal" font-size="23" font-weight="800">Three Views</text>
+  <text x="434" y="232" class="ink" font-size="20">Efficiency</text>
+  <text x="434" y="272" class="ink" font-size="20">Periodicity</text>
+  <text x="434" y="312" class="ink" font-size="20">Popularity</text>
+  <text x="434" y="364" class="muted" font-size="18">candidate POIs are scored</text>
+
+  <rect class="card" x="740" y="176" width="238" height="194" rx="8"/>
+  <text x="772" y="224" class="teal" font-size="23" font-weight="800">POI Visit</text>
+  <text x="772" y="256" class="teal" font-size="23" font-weight="800">Probability</text>
+  <circle cx="810" cy="318" r="18" fill="#c69b4a"/>
+  <circle cx="868" cy="286" r="28" fill="#0d7f83"/>
+  <circle cx="922" cy="330" r="13" fill="#a95736"/>
+
+  <rect class="card" x="1060" y="176" width="164" height="194" rx="8"/>
+  <text x="1092" y="224" class="teal" font-size="23" font-weight="800">Risk</text>
+  <text x="1092" y="256" class="teal" font-size="23" font-weight="800">Index</text>
+  <text x="1092" y="316" class="ink" font-size="30" font-weight="800">0.87</text>
+
+  <path class="line" d="M310 274h90"/>
+  <path class="line" d="M650 274h90"/>
+  <path class="line" d="M978 274h82"/>
+  <path class="line" d="M366 274l-18-14v28z"/>
+  <path class="line" d="M706 274l-18-14v28z"/>
+  <path class="line" d="M1028 274l-18-14v28z"/>
+
+  <text x="168" y="474" class="ink" font-size="22" font-weight="700">Useful for public-health support, but it must be designed with privacy constraints from the start.</text>
+</svg>

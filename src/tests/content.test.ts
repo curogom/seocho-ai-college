@@ -113,6 +113,60 @@ describe('learning content', () => {
     }
   });
 
+  it('keeps session 06 mobility data terms in the glossary', () => {
+    const terms = new Set(glossary.map((entry) => entry.term));
+
+    for (const term of [
+      'Mobility Big Data',
+      'Trajectory',
+      'Smart Card Data',
+      'Location Inference',
+      'Mobility Regularity',
+      'In-store Trajectory',
+      'Dwell Time',
+      'Zone Ratio',
+      'Revisit Prediction',
+      'Spatial Stream Processing',
+      'Complex Event Processing',
+      'Digital Tachograph',
+      'Tactical Trajectory',
+      'Latent Space',
+      'Anomaly Detection',
+      'Digital Twin',
+      'Data Governance',
+    ]) {
+      expect(terms.has(term)).toBe(true);
+    }
+  });
+
+  it('keeps session 07 infectious disease data science terms in the glossary', () => {
+    const terms = new Set(glossary.map((entry) => entry.term));
+
+    for (const term of [
+      'Infectious Disease Data Science',
+      'Imported Case Prediction',
+      'Infection Risk',
+      'Inbound Flow',
+      'Hi-COVIDNet',
+      'LSTM',
+      'Fine-Grained EEM',
+      'COVID-EENet',
+      'District-Business Pair',
+      'Economy View',
+      'Geography View',
+      'Epidemic View',
+      'Microscopic Encoder',
+      'Macroscopic Aggregator',
+      'Digital Contact Tracing',
+      'Cellular Trajectory',
+      'POI Reconstruction',
+      'Pincette',
+      'Privacy-Preserving Data Science',
+    ]) {
+      expect(terms.has(term)).toBe(true);
+    }
+  });
+
   it('keeps model core elements in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
@@ -139,6 +193,8 @@ describe('learning content', () => {
       (entry) => entry.term === 'Knowledge Graph Embedding',
     );
     const graphRag = glossary.find((entry) => entry.term === 'GraphRAG');
+    const trajectory = glossary.find((entry) => entry.term === 'Trajectory');
+    const pincette = glossary.find((entry) => entry.term === 'Pincette');
 
     expect(sigmoid?.aliases).toContain('sigmoid');
     expect(dnn?.aliases).toContain('DNN');
@@ -146,6 +202,8 @@ describe('learning content', () => {
     expect(qwen?.description).toContain('3:1');
     expect(kge?.aliases).toContain('KGE');
     expect(graphRag?.aliases).toContain('Graph RAG');
+    expect(trajectory?.aliases).toContain('movement path');
+    expect(pincette?.aliases).toContain('pincette');
   });
 
   it('classifies every glossary term by category and session', () => {
@@ -210,13 +268,19 @@ describe('learning content', () => {
     expect(sessionSlots[2].id).toBe('03');
     expect(sessionSlots[3].id).toBe('04');
     expect(sessionSlots[4].id).toBe('05');
+    expect(sessionSlots[5].id).toBe('06');
+    expect(sessionSlots[6].id).toBe('07');
     expect(sessionSlots[15].id).toBe('16');
     expect(sessionSlots[1].session?.id).toBe('02');
     expect(sessionSlots[2].session?.id).toBe('03');
     expect(sessionSlots[3].session?.id).toBe('04');
+    expect(sessionSlots[5].session?.id).toBe('06');
+    expect(sessionSlots[6].session?.id).toBe('07');
     expect(sessionSlots[2].status).toBe('published');
     expect(sessionSlots[3].status).toBe('published');
     expect(sessionSlots[4].status).toBe('deferred');
+    expect(sessionSlots[5].status).toBe('published');
+    expect(sessionSlots[6].status).toBe('published');
     expect(sessionSlots[4].session).toBeUndefined();
   });
 
@@ -348,5 +412,72 @@ describe('learning content', () => {
     expect(sessionNote).toContain('GraphRAG');
     expect(sessionNote).not.toContain('resourcePath');
     expect(sessionNote).not.toContain('.pdf');
+  });
+
+  it('publishes session 06 mobility big data learning content', () => {
+    const session = getSessionById('06');
+    const sessionNote = readFileSync(
+      'content/sessions/06-mobility-big-data-analysis.md',
+      'utf8',
+    );
+
+    expect(session?.status).toBe('published');
+    expect(session?.title).toBe('Mobility Big Data Analysis');
+    expect(session?.instructor?.name).toBe('이재길');
+    expect(session?.instructor?.affiliationKo).toBe('KAIST 전산학부');
+    expect(session?.summaryLines).toHaveLength(3);
+    expect(session?.coreFlow).toContain('Mobility Big Data');
+    expect(session?.coreFlow).toContain('Spatial Stream Processing');
+    expect(session?.coreFlow).toContain('Anomaly Detection');
+    expect(session?.conceptCards.length).toBeGreaterThanOrEqual(12);
+    expect(session?.visualNotes).toHaveLength(2);
+    expect(session?.intuitions.length).toBeGreaterThan(0);
+    expect(session?.modelNotes.length).toBeGreaterThan(0);
+    expect(session?.quizIds).toHaveLength(5);
+    expect(session?.nextPreview?.title).toBe(
+      'Data Science for Infectious Disease Response',
+    );
+    expect(sessionNote).toContain('Mobility Big Data');
+    expect(sessionNote).toContain('Location Inference');
+    expect(sessionNote).toContain('Mobility Regularity');
+    expect(sessionNote).toContain('Revisit Prediction');
+    expect(sessionNote).toContain('Anomaly Detection');
+    expect(sessionNote).not.toContain('resourcePath');
+    expect(sessionNote).not.toContain('.pdf');
+    const sessionJson = JSON.stringify(session);
+    expect(sessionJson).not.toContain('resourcePath');
+    expect(sessionJson).not.toContain('.pdf');
+  });
+
+  it('publishes session 07 infectious disease data science learning content', () => {
+    const session = getSessionById('07');
+    const sessionNote = readFileSync(
+      'content/sessions/07-infectious-disease-data-science.md',
+      'utf8',
+    );
+
+    expect(session?.status).toBe('published');
+    expect(session?.title).toBe('Data Science for Infectious Disease Response');
+    expect(session?.instructor?.name).toBe('이재길');
+    expect(session?.instructor?.affiliationKo).toBe('KAIST 전산학부');
+    expect(session?.summaryLines).toHaveLength(3);
+    expect(session?.coreFlow).toContain('Imported Case Prediction');
+    expect(session?.coreFlow).toContain('COVID-EENet');
+    expect(session?.coreFlow).toContain('POI Reconstruction');
+    expect(session?.conceptCards.length).toBeGreaterThanOrEqual(12);
+    expect(session?.visualNotes).toHaveLength(2);
+    expect(session?.intuitions.length).toBeGreaterThan(0);
+    expect(session?.modelNotes.length).toBeGreaterThan(0);
+    expect(session?.quizIds).toHaveLength(5);
+    expect(sessionNote).toContain('Imported Case Prediction');
+    expect(sessionNote).toContain('Hi-COVIDNet');
+    expect(sessionNote).toContain('COVID-EENet');
+    expect(sessionNote).toContain('POI Reconstruction');
+    expect(sessionNote).toContain('Privacy-Preserving Data Science');
+    expect(sessionNote).not.toContain('resourcePath');
+    expect(sessionNote).not.toContain('.pdf');
+    const sessionJson = JSON.stringify(session);
+    expect(sessionJson).not.toContain('resourcePath');
+    expect(sessionJson).not.toContain('.pdf');
   });
 });

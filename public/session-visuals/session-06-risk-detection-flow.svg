@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">Mobility risk detection flow</title>
+  <desc id="desc">Track, terrain, and weather features are used to learn normal patterns and score risky anomalies.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8f7f2}
+      .ink{fill:#182129}
+      .muted{fill:#616b72}
+      .rust{fill:#a95736}
+      .moss{fill:#4f6f5f}
+      .gold{fill:#c69b4a}
+      .card{fill:#fff;stroke:#d8d5ca;stroke-width:2}
+      .soft{fill:#e6efed}
+      .line{fill:none;stroke:#4f6f5f;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      text{font-family:Arial, Helvetica, sans-serif}
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="560"/>
+  <text x="64" y="76" class="ink" font-size="37" font-weight="800">From Tracks to Risk Signals</text>
+  <text x="64" y="114" class="muted" font-size="21">mobility risk prediction depends on context enrichment and thresholding</text>
+
+  <rect class="card" x="72" y="170" width="220" height="130" rx="8"/>
+  <text x="104" y="216" class="rust" font-size="22" font-weight="800">Track Data</text>
+  <text x="104" y="254" class="ink" font-size="20">time, speed</text>
+  <text x="104" y="282" class="ink" font-size="20">altitude, position</text>
+
+  <rect class="card" x="72" y="336" width="220" height="130" rx="8"/>
+  <text x="104" y="382" class="rust" font-size="22" font-weight="800">Context</text>
+  <text x="104" y="420" class="ink" font-size="20">terrain</text>
+  <text x="104" y="448" class="ink" font-size="20">weather</text>
+
+  <rect class="card" x="382" y="238" width="230" height="150" rx="8"/>
+  <text x="416" y="286" class="rust" font-size="22" font-weight="800">Feature</text>
+  <text x="416" y="318" class="rust" font-size="22" font-weight="800">Engineering</text>
+  <text x="416" y="356" class="ink" font-size="19">trajectory + context</text>
+
+  <rect class="soft" x="710" y="132" width="260" height="318" rx="18"/>
+  <text x="744" y="184" class="moss" font-size="24" font-weight="800">Latent Space</text>
+  <ellipse cx="834" cy="300" rx="104" ry="72" fill="#fff" stroke="#4f6f5f" stroke-width="3"/>
+  <circle cx="802" cy="284" r="9" fill="#4f6f5f"/>
+  <circle cx="860" cy="318" r="9" fill="#4f6f5f"/>
+  <circle cx="830" cy="350" r="9" fill="#4f6f5f"/>
+  <circle cx="920" cy="214" r="12" fill="#a95736"/>
+  <text x="744" y="420" class="muted" font-size="18">normal pattern vs anomaly</text>
+
+  <rect class="card" x="1060" y="238" width="168" height="150" rx="8"/>
+  <text x="1090" y="286" class="rust" font-size="22" font-weight="800">Risk</text>
+  <text x="1090" y="318" class="rust" font-size="22" font-weight="800">Decision</text>
+  <text x="1090" y="356" class="ink" font-size="19">score + threshold</text>
+
+  <path class="line" d="M292 236c40 0 56 78 90 78"/>
+  <path class="line" d="M292 402c42 0 54-88 90-88"/>
+  <path class="line" d="M612 314h96"/>
+  <path class="line" d="M970 314h90"/>
+  <path class="line" d="M674 314l-18-14v28z"/>
+  <path class="line" d="M1026 314l-18-14v28z"/>
+
+  <text x="730" y="504" class="ink" font-size="21" font-weight="700">Risk is not only a model output; it needs expert thresholds and operational review.</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">Mobility big data analysis flow</title>
+  <desc id="desc">Mobility data sources are transformed into trajectory features, prediction tasks, and governance-aware applications.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7f4ed}
+      .ink{fill:#182129}
+      .muted{fill:#5f6870}
+      .rust{fill:#a95736}
+      .moss{fill:#4f6f5f}
+      .gold{fill:#c69b4a}
+      .sky{fill:#d8e6ea}
+      .card{fill:#fff;stroke:#d8d5ca;stroke-width:2}
+      .line{fill:none;stroke:#4f6f5f;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      .dash{fill:none;stroke:#c69b4a;stroke-width:3;stroke-linecap:round;stroke-dasharray:9 11}
+      text{font-family:Arial, Helvetica, sans-serif}
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="560" rx="0"/>
+  <text x="64" y="78" class="ink" font-size="38" font-weight="800">Mobility Big Data</text>
+  <text x="64" y="116" class="muted" font-size="21">raw trajectory signals become features, tasks, and governed services</text>
+
+  <rect class="card" x="64" y="168" width="248" height="170" rx="8"/>
+  <text x="92" y="214" class="rust" font-size="22" font-weight="800">Data Sources</text>
+  <text x="92" y="252" class="ink" font-size="20">Smart Card</text>
+  <text x="92" y="284" class="ink" font-size="20">WiFi / Beacon</text>
+  <text x="92" y="316" class="ink" font-size="20">DTG / Sensors</text>
+
+  <rect class="card" x="384" y="168" width="248" height="170" rx="8"/>
+  <text x="412" y="214" class="rust" font-size="22" font-weight="800">Trajectory</text>
+  <text x="412" y="252" class="ink" font-size="20">Location Inference</text>
+  <text x="412" y="284" class="ink" font-size="20">Hourly Location List</text>
+  <text x="412" y="316" class="ink" font-size="20">Dwell Time</text>
+
+  <rect class="card" x="704" y="168" width="248" height="170" rx="8"/>
+  <text x="732" y="214" class="rust" font-size="22" font-weight="800">Modeling Tasks</text>
+  <text x="732" y="252" class="ink" font-size="20">Mobility Regularity</text>
+  <text x="732" y="284" class="ink" font-size="20">Revisit Prediction</text>
+  <text x="732" y="316" class="ink" font-size="20">Anomaly Detection</text>
+
+  <rect class="card" x="1024" y="168" width="192" height="170" rx="8"/>
+  <text x="1052" y="214" class="rust" font-size="22" font-weight="800">Applications</text>
+  <text x="1052" y="252" class="ink" font-size="20">Transport</text>
+  <text x="1052" y="284" class="ink" font-size="20">Retail</text>
+  <text x="1052" y="316" class="ink" font-size="20">Safety</text>
+
+  <path class="line" d="M312 253H384"/>
+  <path class="line" d="M632 253H704"/>
+  <path class="line" d="M952 253h72"/>
+  <path class="line" d="M344 252l-18-14v28z"/>
+  <path class="line" d="M664 252l-18-14v28z"/>
+  <path class="line" d="M984 252l-18-14v28z"/>
+
+  <rect x="176" y="410" width="928" height="72" rx="8" fill="#182129"/>
+  <text x="220" y="455" fill="#f7f4ed" font-size="24" font-weight="800">Data Governance</text>
+  <text x="456" y="455" fill="#f7f4ed" font-size="20">privacy, access control, retention, purpose limitation</text>
+  <path class="dash" d="M188 395C310 350 470 350 610 392S900 440 1088 390"/>
+</svg>
