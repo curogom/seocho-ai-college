@@ -14,9 +14,9 @@ const routeDefinitions = [
 
 서초 AI 칼리지 수업 내용을 차시별로 정리하는 문서형 학습 노트입니다.
 
-Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data Science, Infectious Disease Data Science까지 이어지는 흐름을 누적해서 복습합니다.
+Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data Science, Infectious Disease Data Science, AGI/ASI Value Alignment까지 이어지는 흐름을 누적해서 복습합니다.
 
-현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding, 6-1차시 Mobility Big Data Analysis, 6-2차시 Data Science for Infectious Disease Response입니다.`,
+현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding, 6-1차시 Mobility Big Data Analysis, 6-2차시 Data Science for Infectious Disease Response, 7차시 AGI/ASI Value Alignment and Superalignment입니다.`,
   },
   {
     path: '/sessions',
@@ -34,7 +34,7 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data
 - 5차시: 휴강, 추후 보강 예정
 - 6-1차시: Mobility Big Data Analysis
 - 6-2차시: Data Science for Infectious Disease Response
-- 7차시: 자료 준비 전
+- 7차시: AGI/ASI Value Alignment and Superalignment
 
 새 차시는 같은 학습 구조에 맞춰 세션 데이터, 퀴즈, 용어, 시각 노트를 추가하는 방식으로 확장합니다.`,
   },
@@ -85,6 +85,14 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data
     description:
       'Imported case prediction, COVID-EENet, digital contact tracing, POI reconstruction을 중심으로 감염병 대응 데이터 사이언스를 정리합니다.',
     sourcePath: 'content/sessions/06-2-infectious-disease-data-science.md',
+  },
+  {
+    path: '/sessions/07',
+    title: '7차시 AGI/ASI Value Alignment and Superalignment',
+    koreanTitle: '인간 중심 AGI/ASI 가치 정렬과 슈퍼 정렬',
+    description:
+      'Human value, value-injected LLM, cultural value alignment, superalignment, scalable oversight, UniPRO 흐름을 정리합니다.',
+    sourcePath: 'content/sessions/07-agi-asi-value-alignment.md',
   },
   {
     path: '/glossary',

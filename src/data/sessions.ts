@@ -116,6 +116,15 @@ const leeInstructor: Instructor = {
   affiliationEn: 'School of Computing, KAIST',
 };
 
+const bakInstructor: Instructor = {
+  name: '박진영',
+  englishName: 'JinYeong Bak',
+  title: 'Professor',
+  affiliationKo: '성균관대학교',
+  affiliationEn: 'Sungkyunkwan University',
+  lab: 'Human Language Intelligence Lab',
+};
+
 export const sessions: Session[] = [
   {
     id: '01',
@@ -1745,6 +1754,336 @@ export const sessions: Session[] = [
       '장소별 방문 가능성과 risk index를 다룰 때는 사용자의 위치 정보 최소화와 익명화가 먼저 설계되어야 한다.',
       '상권 또는 매장 단위 분석에서는 지역-업종 쌍처럼 예측 단위를 세밀하게 정의하는 것이 중요하다.',
       'LLM 기반 안내 시스템이 공공 안전 정보를 다룰 때는 검색 근거와 책임 있는 표현이 함께 필요하다.',
+    ],
+  },
+  {
+    id: '07',
+    order: 7,
+    title: 'AGI/ASI Value Alignment and Superalignment',
+    koreanTitle: '인간 중심 AGI/ASI 가치 정렬과 슈퍼 정렬',
+    subtitle:
+      'Value-Injected LLMs, Cultural Alignment, Superalignment, Scalable Oversight, UniPRO',
+    status: 'published',
+    instructor: bakInstructor,
+    summary:
+      '7차시는 인간 가치가 LLM 응답과 안전성에 어떤 영향을 주는지에서 출발해, AGI/ASI 시대의 Superalignment와 scalable oversight 문제로 확장한다. 핵심은 모델 능력을 키우는 것과 인간 가치에 맞추는 것을 따로 보지 않고 함께 최적화해야 한다는 점이다.',
+    summaryLines: [
+      'Value Alignment는 LLM이 특정 human value distribution을 반영하도록 만드는 접근이지만, 정렬된 가치가 항상 안전한 결과를 보장하지는 않는다.',
+      '문화권별 가치 정렬은 survey 문항만으로는 부족하므로, open-ended text를 value codebook과 distribution으로 평가하려는 흐름이 등장한다.',
+      'Superalignment는 AGI/ASI처럼 인간 능력을 넘어서는 모델을 다룰 때 competence, conformity, scalable oversight를 함께 설계해야 하는 문제다.',
+    ],
+    coreFlow: [
+      'Human Value',
+      'Schwartz Theory of Basic Values',
+      'Value-Injected LLM',
+      'Value Alignment',
+      'Value Injection Method',
+      'Value-Safety Trade-off',
+      'Cultural Value Alignment',
+      'Value Codebook',
+      'DOVE',
+      'ANI / AGI / ASI',
+      'Superalignment',
+      'Capacity vs Capability',
+      'Sandwiching',
+      'Self-Enhancement',
+      'Weak-to-Strong Generalization',
+      'Scalable Oversight',
+      'Easy-to-Hard Generalization',
+      'UniPRO',
+      'Policy-Reward Co-evolution',
+    ],
+    coreFlowGroups: [
+      {
+        label: '가치 주입과 정렬',
+        layout: 'pipeline',
+        items: [
+          'Human Value',
+          'Schwartz Theory of Basic Values',
+          'Value-Injected LLM',
+          'Value Alignment',
+          'Value Injection Method',
+          'Value-Safety Trade-off',
+        ],
+      },
+      {
+        label: '문화 가치 평가',
+        layout: 'pipeline',
+        items: ['Cultural Value Alignment', 'Value Codebook', 'DOVE'],
+      },
+      {
+        label: 'AGI/ASI 정렬 문제',
+        layout: 'pipeline',
+        items: [
+          'ANI / AGI / ASI',
+          'Superalignment',
+          'Capacity vs Capability',
+          'Sandwiching',
+          'Self-Enhancement',
+          'Weak-to-Strong Generalization',
+        ],
+      },
+      {
+        label: '확장 가능한 감독',
+        layout: 'pipeline',
+        items: [
+          'Scalable Oversight',
+          'Easy-to-Hard Generalization',
+          'UniPRO',
+          'Policy-Reward Co-evolution',
+        ],
+      },
+    ],
+    conceptCards: [
+      {
+        term: 'Human Value',
+        korean: '인간 가치',
+        description:
+          '개인이 무엇을 중요하게 여기는지 나타내는 믿음, 선호, 판단 기준이다. LLM 응답의 태도, 우선순위, 조언 방식에 영향을 줄 수 있다.',
+        takeaway:
+          'AI alignment에서 value는 단일 정답이 아니라 사람과 집단마다 다른 distribution으로 다뤄야 한다.',
+      },
+      {
+        term: 'Schwartz Theory of Basic Values',
+        korean: 'Schwartz 기본 가치 이론',
+        description:
+          '사람의 가치를 10개 basic value와 4개 higher-order value로 설명하는 심리학 이론이다. 강의에서는 value distribution을 모델링하는 기반으로 사용되었다.',
+        takeaway:
+          'Benevolence, Universalism, Power, Security처럼 사람이 중요하게 여기는 축을 수치화할 수 있다.',
+      },
+      {
+        term: 'Value Alignment',
+        korean: '가치 정렬',
+        description:
+          'AI가 특정 사람이나 집단의 가치 분포를 반영해 답변하거나 행동하도록 맞추는 과정이다. 단순히 친절한 답변을 만드는 것보다 더 넓은 문제다.',
+        takeaway:
+          '모델의 utility가 인간의 value-driven action과 가까워지도록 만드는 것으로 이해할 수 있다.',
+      },
+      {
+        term: 'Value Injection Method',
+        korean: '가치 주입 방법',
+        description:
+          'LLM에 목표 value distribution을 주입해, 특정 가치관을 가진 사람이 보일 법한 주장이나 행동을 더 잘 예측하도록 만드는 접근이다.',
+        takeaway:
+          '개인이나 집단의 value distribution을 조건으로 넣으면 stance와 behavior prediction에 활용할 수 있다.',
+      },
+      {
+        term: 'Value-Safety Trade-off',
+        korean: '가치-안전 절충',
+        description:
+          '특정 가치에 맞춘 모델이 일부 안전 범주에서는 오히려 더 위험한 출력을 낼 수 있다는 문제다.',
+        takeaway:
+          '가치 정렬은 좋은 의도만으로 끝나지 않고 toxicity, bias, sensitive context 평가가 함께 필요하다.',
+      },
+      {
+        term: 'Cultural Value Alignment',
+        korean: '문화 가치 정렬',
+        description:
+          '국가나 문화권마다 다른 선호와 가치 표현을 LLM 응답이 얼마나 잘 반영하는지 평가하고 조정하는 문제다.',
+        takeaway:
+          '모든 문화권에 보편적으로 선호되는 하나의 답변이 있다고 가정하면 실제 사용 맥락을 놓칠 수 있다.',
+      },
+      {
+        term: 'Value Codebook',
+        korean: '가치 코드북',
+        description:
+          '문서에서 추출한 value expression을 더 일반적인 code로 묶어 value space를 구성하는 방식이다.',
+        takeaway:
+          '정해진 설문 문항이 아니라 open-ended text에서 드러난 가치를 분포로 비교할 수 있다.',
+      },
+      {
+        term: 'DOVE',
+        korean: 'DOVE',
+        description:
+          'Open-ended text를 value code distribution으로 바꾸고, 인간 문서와 LLM 응답의 문화 가치 정렬을 비교하는 평가 방법론이다.',
+        takeaway:
+          '문화권별 문서와 LLM 응답을 같은 value space에 올려 distribution 차이를 측정한다.',
+      },
+      {
+        term: 'AGI / ASI',
+        korean: '범용 인공지능 / 초지능',
+        description:
+          'AGI는 인간 수준의 일반 지능을 목표로 하는 AI, ASI는 인간을 넘어서는 능력을 가진 가설적 AI를 뜻한다.',
+        takeaway:
+          '모델 능력이 인간 평가자를 넘어서면 기존 alignment의 감독 구조가 약해진다.',
+      },
+      {
+        term: 'Superalignment',
+        korean: '슈퍼 정렬',
+        description:
+          'ASI 수준의 모델이 인간 가치와 사회적 이익에 맞게 작동하도록, 능력 향상과 정렬을 함께 최적화하려는 문제다.',
+        takeaway:
+          '인간을 정답 target으로만 두기 어려운 구간에서는 scalable oversight와 단계적 감독이 필요하다.',
+      },
+      {
+        term: 'Capacity vs Capability',
+        korean: '내재 지식과 수행 능력',
+        description:
+          'Capacity는 pretraining으로 내부화한 지식과 기술이고, capability는 post-training과 사용 맥락에서 실제 task를 수행하는 능력이다.',
+        takeaway:
+          'Superalignment에서는 모델이 무엇을 알고 있는지와 실제로 무엇을 할 수 있는지를 구분해야 한다.',
+      },
+      {
+        term: 'Weak-to-Strong Generalization',
+        korean: '약한 모델에서 강한 모델로의 일반화',
+        description:
+          '더 약한 감독자나 모델이 더 강한 모델을 지도해 능력을 끌어내려는 alignment 패러다임이다.',
+        takeaway:
+          '강한 모델이 약한 감독의 오류를 그대로 모방하거나 과적합할 수 있다는 한계가 있다.',
+      },
+      {
+        term: 'Scalable Oversight',
+        korean: '확장 가능한 감독',
+        description:
+          'AI 능력이 커져도 유효한 감독 신호를 제공하기 위한 방법론이다. 인간 직접 라벨이 느리거나 불안정한 hard task에서 특히 중요하다.',
+        takeaway:
+          '정답을 사람이 직접 판단하기 어려운 문제에서는 reward model, surrogate evaluation, step-level feedback이 필요하다.',
+      },
+      {
+        term: 'UniPRO',
+        korean: 'Unified Policy and Reward Optimization',
+        description:
+          '쉬운 문제의 라벨과 어려운 문제의 prompt를 함께 활용해 policy와 reward를 번갈아 업데이트하는 easy-to-hard generalization 접근이다.',
+        takeaway:
+          'Policy와 reward가 함께 변하는 on-policy 영역을 따라가도록 만들어 supervision bottleneck을 줄이려는 구조다.',
+      },
+    ],
+    visualNotes: [
+      {
+        title: '가치 정렬과 안전성 점검 흐름',
+        src: '/session-visuals/session-07-value-alignment-flow.svg',
+        alt: '인간 가치 분포가 value injection과 cultural evaluation을 거쳐 safety check로 이어지는 흐름을 설명하는 도식',
+        caption:
+          'Human value distribution을 LLM 응답에 주입하고, 문화권별 평가와 safety check를 함께 두는 구조를 복습용으로 정리했습니다.',
+      },
+      {
+        title: 'Superalignment와 확장 가능한 감독',
+        src: '/session-visuals/session-07-superalignment-oversight.svg',
+        alt: 'AGI와 ASI 구간에서 competence와 conformity를 병렬 최적화하고 policy와 reward를 함께 업데이트하는 흐름을 설명하는 도식',
+        caption:
+          'Superalignment를 competence, conformity, scalable oversight가 함께 움직이는 문제로 정리했습니다.',
+      },
+    ],
+    intuitions: [
+      {
+        title: '현행: alignment는 중립적인 스위치가 아니다',
+        body: 'Value Alignment는 모델을 더 친절하게 만드는 단순 후처리가 아니다. 어떤 가치 분포를 반영하느냐에 따라 stance, recommendation, refusal, safety risk가 달라질 수 있다.',
+      },
+      {
+        title: '알아둬야 할 지식: 문화권별 정답은 하나가 아니다',
+        body: '같은 질문도 문화권과 집단에 따라 선호되는 답변이 달라질 수 있다. Survey-style benchmark만으로는 실제 open-ended 사용에서 드러나는 value expression을 충분히 잡기 어렵다.',
+      },
+      {
+        title: '사전 학습: Superalignment는 감독의 확장 문제다',
+        body: 'AGI/ASI 구간에서는 인간 평가자가 항상 더 잘 안다는 가정이 약해진다. 따라서 쉬운 문제에서 얻은 감독 신호를 어려운 문제로 확장하고, policy와 reward를 함께 갱신하는 설계가 중요해진다.',
+      },
+    ],
+    modelNotes: [
+      {
+        title: '강의 구조',
+        body: '7차시는 다섯 개 연구 흐름을 연결해 value alignment가 왜 필요한지, 왜 위험할 수 있는지, AGI/ASI 단계에서는 어떤 감독 구조가 필요한지로 확장한다.',
+        table: {
+          headers: ['블록', '핵심 질문'],
+          rows: [
+            ['Value-Injected LLMs', 'LLM에 사람의 value distribution을 어떻게 반영할 것인가?'],
+            ['Unintended Harms', '가치 정렬이 toxicity와 bias를 키울 수도 있는가?'],
+            ['DOVE', 'Open-ended text에서 문화 가치 정렬을 어떻게 평가할 것인가?'],
+            ['Superalignment', '인간 능력을 넘어서는 AI를 어떻게 정렬할 것인가?'],
+            ['UniPRO', '쉬운 감독 신호를 어려운 task로 어떻게 확장할 것인가?'],
+          ],
+        },
+      },
+      {
+        title: 'Schwartz value와 VIM',
+        body: 'Schwartz Theory of Basic Values는 사람의 가치관을 여러 축의 distribution으로 표현한다. VIM은 이 distribution을 LLM에 주입해 특정 가치관을 가진 사람이 생성할 법한 argument, stance, behavior를 예측하려는 접근이다.',
+        table: {
+          headers: ['구성', '역할'],
+          rows: [
+            ['Value distribution', '사람이나 집단이 중요하게 여기는 가치의 분포'],
+            ['Prompt / Training signal', '모델이 반영해야 할 가치 조건'],
+            ['Generated stance', '조건을 반영한 주장, 의견, 행동 예측'],
+            ['Evaluation', '목표 가치 분포와 출력의 일치 정도 확인'],
+          ],
+        },
+      },
+      {
+        title: 'Value Alignment의 부작용',
+        body: '가치 정렬은 모델을 더 유용하게 만들 수 있지만, 특정 value profile이 safety category와 결합되면 toxicity나 bias가 증가할 수 있다. 따라서 alignment는 성능 지표와 안전 지표를 동시에 봐야 한다.',
+        table: {
+          headers: ['관점', '확인할 점'],
+          rows: [
+            ['Value consistency', '목표 가치가 출력에 실제로 반영되는가?'],
+            ['Safety risk', '민감한 질문에서 유해하거나 편향된 응답이 늘어나는가?'],
+            ['Context sensitivity', '특정 상황에서는 value를 억제하거나 재해석해야 하는가?'],
+          ],
+        },
+      },
+      {
+        title: 'DOVE와 문화 가치 평가',
+        body: 'DOVE는 문서에서 value expression을 뽑고 value codebook으로 mapping한 뒤, 문화권별 human document와 LLM response를 value distribution으로 비교한다. 핵심은 closed survey가 아니라 open-ended text에서 드러난 가치 표현을 평가한다는 점이다.',
+        table: {
+          headers: ['단계', '의미'],
+          rows: [
+            ['Value expression extraction', '문서에서 가치 표현을 짧고 일반적인 문장으로 추출'],
+            ['Codebook refinement', '유사한 code는 합치고 부족한 code는 나눠 value space 구성'],
+            ['Distribution comparison', '인간 문서와 LLM 응답의 value code 분포 차이 측정'],
+          ],
+        },
+      },
+      {
+        title: 'Alignment와 Superalignment',
+        body: '기존 alignment는 AI의 utility를 인간의 utility에 가깝게 맞추는 문제로 볼 수 있다. Superalignment에서는 ASI의 capacity가 인간을 크게 넘을 수 있으므로, 인간 utility를 단순 target으로 두기보다 capability와 capacity의 gap을 관리하는 방향이 필요하다.',
+        table: {
+          headers: ['구분', 'Alignment', 'Superalignment'],
+          rows: [
+            ['대상', 'ANI 또는 AGI 수준의 모델', 'ASI 수준까지 확장되는 모델'],
+            ['감독자 가정', '인간이 비교적 판단 가능', '인간 판단이 lower bound가 될 수 있음'],
+            ['핵심 위험', '편향, 유해성, 가치 불일치', '감독 실패, 기만, 능력-정렬 불균형'],
+          ],
+        },
+      },
+      {
+        title: '기존 alignment 패러다임의 한계',
+        body: 'Sandwiching, self-enhancement, weak-to-strong generalization은 모두 유용한 아이디어지만 ASI 구간에서는 충분하지 않을 수 있다. 강한 모델이 judge를 속이거나, 자기 편향을 증폭하거나, 약한 감독의 오류에 과적합할 수 있기 때문이다.',
+        table: {
+          headers: ['패러다임', '직관', '한계'],
+          rows: [
+            ['Sandwiching', '인간이 AI 제안을 판단하고 피드백', 'AI가 judge를 설득하거나 속일 수 있음'],
+            ['Self-Enhancement', 'AI가 스스로 답변을 개선', 'Echo chamber와 편향 증폭 가능'],
+            ['Weak-to-Strong', '약한 감독으로 강한 모델 지도', '약한 감독의 오류를 강한 모델이 모방할 수 있음'],
+          ],
+        },
+      },
+      {
+        title: 'UniPRO와 Easy-to-Hard Generalization',
+        body: 'UniPRO는 쉬운 데이터에는 라벨이 있고 어려운 데이터에는 prompt만 있는 상황에서, policy head와 reward head를 번갈아 업데이트한다. 고정된 reward가 hard distribution에서 OOD가 되는 문제를 줄이기 위해 policy와 reward가 함께 적응하도록 만든다.',
+        table: {
+          headers: ['구성', '역할'],
+          rows: [
+            ['Easy set', '라벨과 reasoning trace가 있는 학습 데이터'],
+            ['Hard set', '라벨 없이 prompt만 있는 어려운 문제'],
+            ['Policy head', '답변과 reasoning을 생성'],
+            ['Reward head', 'reasoning step별 점수와 feedback 제공'],
+            ['Alternating update', 'P-step과 R-step으로 policy와 reward를 함께 갱신'],
+          ],
+        },
+      },
+    ],
+    quizIds: ['s07-q1', 's07-q2', 's07-q3', 's07-q4', 's07-q5'],
+    reflectionQuestions: [
+      'Value Alignment가 단순히 모델을 더 안전하게 만드는 과정이라고만 볼 수 없는 이유는 무엇인가?',
+      'Schwartz Theory of Basic Values를 LLM 연구에 활용하면 어떤 장점이 있는가?',
+      '문화 가치 정렬을 survey-style 질문만으로 평가할 때 생길 수 있는 한계는 무엇인가?',
+      'Superalignment에서 인간 utility를 단순 target으로 두기 어려운 이유는 무엇인가?',
+      'Sandwiching, self-enhancement, weak-to-strong generalization은 각각 어떤 failure mode를 가질 수 있는가?',
+      'Easy-to-Hard Generalization에서 reward model이 고정되어 있으면 왜 supervision bottleneck이 생기는가?',
+      '실제 AI 제품에서 value alignment와 safety evaluation을 함께 설계하려면 어떤 로그나 평가 기준이 필요한가?',
+    ],
+    projectConnections: [
+      'LLM 기반 안내 서비스는 사용자 선호를 반영하더라도 안전, 공정성, 책임 있는 refusal 기준을 함께 가져야 한다.',
+      '문화권이나 사용자 집단별 추천을 다룰 때는 하나의 보편 답변이 아니라 value distribution과 context를 구분해야 한다.',
+      'RAG나 GraphRAG 응답 평가에서도 정답성뿐 아니라 가치 편향, 유해성, 근거 제시 여부를 별도 metric으로 둘 수 있다.',
+      'AI agent가 복잡한 task를 수행할수록 final answer만 채점하기보다 reasoning step, tool use, reward feedback을 함께 봐야 한다.',
     ],
   },
 ];
