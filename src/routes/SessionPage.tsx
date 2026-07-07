@@ -10,7 +10,7 @@ import { QuizCard } from '../components/QuizCard';
 import { Section } from '../components/Section';
 import { SessionVisuals } from '../components/SessionVisuals';
 import { getQuizzesBySessionId } from '../data/quizzes';
-import { getSessionById, sessions } from '../data/sessions';
+import { getSessionById, getSessionLabel, orderedSessions, sessions } from '../data/sessions';
 
 export function SessionPage() {
   const { sessionId } = useParams();
@@ -241,14 +241,18 @@ export function SessionPage() {
   }
 
   const quizzes = getQuizzesBySessionId(session.id);
-  const nextSession = sessions.find((item) => item.order === session.order + 1);
+  const orderedSessionIndex = orderedSessions.findIndex(
+    (item) => item.id === session.id,
+  );
+  const nextSession =
+    orderedSessionIndex >= 0 ? orderedSessions[orderedSessionIndex + 1] : undefined;
 
   return (
     <>
       <section className="border-b border-line bg-white">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-normal text-rust">
-            Session {session.id}
+            {getSessionLabel(session)}
           </p>
           <h1 className="mt-3 max-w-4xl text-4xl font-semibold leading-tight text-ink sm:text-5xl">
             {session.title}

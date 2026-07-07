@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { SessionSlot } from '../data/sessions';
+import type { Session, SessionSlot } from '../data/sessions';
+import { getSessionLabel } from '../data/sessions';
 
 const statusLabel: Record<SessionSlot['status'], string> = {
   published: '공개',
@@ -12,6 +13,27 @@ const statusLabel: Record<SessionSlot['status'], string> = {
 type SessionSlotCardProps = {
   slot: SessionSlot;
 };
+
+function SessionLinkRow({ session }: { session: Session }) {
+  return (
+    <div className="border-t border-line pt-4 first:border-t-0 first:pt-0">
+      <p className="text-xs font-semibold text-rust">{getSessionLabel(session)}</p>
+      <h2 className="mt-2 text-lg font-semibold text-ink">{session.title}</h2>
+      <p className="mt-1 text-sm font-medium text-moss">
+        {session.koreanTitle}
+      </p>
+      <p className="mt-3 line-clamp-3 text-sm leading-6 text-ink/70">
+        {session.summary}
+      </p>
+      <Link
+        className="mt-4 inline-flex rounded-md bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:bg-moss"
+        to={`/sessions/${session.id}`}
+      >
+        {session.status === 'published' ? '열기' : '예고 보기'}
+      </Link>
+    </div>
+  );
+}
 
 export function SessionSlotCard({ slot }: SessionSlotCardProps) {
   const session = slot.session;
@@ -27,7 +49,13 @@ export function SessionSlotCard({ slot }: SessionSlotCardProps) {
         </span>
       </div>
 
-      {session ? (
+      {slot.sessions.length > 1 ? (
+        <div className="mt-4 grid gap-4">
+          {slot.sessions.map((item) => (
+            <SessionLinkRow key={item.id} session={item} />
+          ))}
+        </div>
+      ) : session ? (
         <>
           <h2 className="mt-4 text-lg font-semibold text-ink">{session.title}</h2>
           <p className="mt-1 text-sm font-medium text-moss">
@@ -38,7 +66,7 @@ export function SessionSlotCard({ slot }: SessionSlotCardProps) {
           </p>
           <Link
             className="mt-5 inline-flex rounded-md bg-ink px-4 py-2 text-sm font-semibold text-paper transition hover:bg-moss"
-            to={`/sessions/${slot.id}`}
+            to={`/sessions/${session.id}`}
           >
             {session.status === 'published' ? '열기' : '예고 보기'}
           </Link>

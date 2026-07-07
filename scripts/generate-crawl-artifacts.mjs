@@ -16,7 +16,7 @@ const routeDefinitions = [
 
 Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data Science, Infectious Disease Data Science까지 이어지는 흐름을 누적해서 복습합니다.
 
-현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding, 6차시 Mobility Big Data Analysis, 7차시 Data Science for Infectious Disease Response입니다.`,
+현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding, 6-1차시 Mobility Big Data Analysis, 6-2차시 Data Science for Infectious Disease Response입니다.`,
   },
   {
     path: '/sessions',
@@ -32,8 +32,9 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data
 - 3차시: Graph Machine Learning
 - 4차시: Knowledge Graph Embedding
 - 5차시: 휴강, 추후 보강 예정
-- 6차시: Mobility Big Data Analysis
-- 7차시: Data Science for Infectious Disease Response
+- 6-1차시: Mobility Big Data Analysis
+- 6-2차시: Data Science for Infectious Disease Response
+- 7차시: 자료 준비 전
 
 새 차시는 같은 학습 구조에 맞춰 세션 데이터, 퀴즈, 용어, 시각 노트를 추가하는 방식으로 확장합니다.`,
   },
@@ -70,20 +71,20 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data
     sourcePath: 'content/sessions/04-knowledge-graph-embedding.md',
   },
   {
-    path: '/sessions/06',
-    title: '6차시 Mobility Big Data Analysis',
+    path: '/sessions/06-1',
+    title: '6-1차시 Mobility Big Data Analysis',
     koreanTitle: '모빌리티 빅데이터 분석',
     description:
       'Trajectory, smart card data, in-store sensor, spatial stream processing, anomaly detection을 중심으로 모빌리티 빅데이터 분석 흐름을 정리합니다.',
-    sourcePath: 'content/sessions/06-mobility-big-data-analysis.md',
+    sourcePath: 'content/sessions/06-1-mobility-big-data-analysis.md',
   },
   {
-    path: '/sessions/07',
-    title: '7차시 Data Science for Infectious Disease Response',
+    path: '/sessions/06-2',
+    title: '6-2차시 Data Science for Infectious Disease Response',
     koreanTitle: '감염병 대응을 위한 데이터 사이언스',
     description:
       'Imported case prediction, COVID-EENet, digital contact tracing, POI reconstruction을 중심으로 감염병 대응 데이터 사이언스를 정리합니다.',
-    sourcePath: 'content/sessions/07-infectious-disease-data-science.md',
+    sourcePath: 'content/sessions/06-2-infectious-disease-data-science.md',
   },
   {
     path: '/glossary',

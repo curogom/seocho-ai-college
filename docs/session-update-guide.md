@@ -27,8 +27,8 @@
 - 상단 메뉴: `홈 / 차시 / 용어 / 소개`
 - `차시` 메뉴: SelectBox 기반 빠른 이동 + 16차시 compact map
 - 전체 차시 인덱스: `/sessions`
-- 개별 차시: `/sessions/01`, `/sessions/02`, `/sessions/03`, `/sessions/04`, `/sessions/06`, `/sessions/07`
-- 05차시는 휴강으로 `추후 보강` 슬롯으로 표시하고, 08~16차시는 `sessionSlots`에서 대기 슬롯으로 표시한다.
+- 개별 차시: `/sessions/01`, `/sessions/02`, `/sessions/03`, `/sessions/04`, `/sessions/06-1`, `/sessions/06-2`
+- 05차시는 휴강으로 `추후 보강` 슬롯으로 표시하고, 06차시는 `6-1`, `6-2` 하위 노트로 표시하며, 07~16차시는 `sessionSlots`에서 대기 슬롯으로 표시한다.
 
 새 차시를 추가할 때는 `sessions` 배열에 해당 id를 추가하면 `/sessions`와 개별 세션 탐색 UI에 자동 반영된다.
 

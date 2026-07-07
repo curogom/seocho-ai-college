@@ -122,17 +122,20 @@
 - Graph Database: node와 edge 중심으로 데이터를 저장하고 탐색하는 데이터베이스
 - Data Governance: 데이터의 보안, 품질, 접근 권한, 최신성, 책임 범위를 관리하는 체계
 
-## 6차시 주요 용어
+## 6-1차시 주요 용어
 
 - Mobility Big Data: 사람, 차량, 항공기, 센서가 남기는 대규모 이동경로 데이터
 - Trajectory: 시간 순서대로 연결된 위치 기록
 - Smart Card Data: 대중교통 승하차 기록으로 구성된 mobility data
 - Location Inference: 직접 관측되지 않은 시간대의 위치를 주변 관측값과 규칙으로 추정하는 과정
+- Unknown Segment: 위치를 충분히 추정할 수 없어 명시적으로 모름으로 남기는 시간 구간
 - Mobility Regularity: 같은 시간대에 같은 장소를 반복 방문하는 정도를 나타내는 지표
 - In-store Trajectory: WiFi나 Beacon 기반 센서로 기록한 매장 실내 동선
 - Dwell Time: 특정 구역에 머문 시간
 - Zone Ratio: 전체 체류 시간 중 특정 구역 체류 시간이 차지하는 비율
 - Revisit Prediction: 현재까지의 방문 기록과 동선 feature로 향후 재방문 여부를 예측하는 task
+- Observation Window: 예측 시점까지 모델 입력으로 사용하는 관측 기간
+- Prediction Window: 예측 결과가 실제로 일어났는지 확인하는 미래 기간
 - Spatial Stream Processing: 빠르게 들어오는 위치 stream에서 event를 탐지하는 처리 방식
 - Complex Event Processing: 여러 event와 규칙을 조합해 의미 있는 상황을 감지하는 기법
 - Digital Tachograph: 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천
@@ -141,16 +144,18 @@
 - Anomaly Detection: 정상 패턴에서 크게 벗어난 입력을 위험 또는 특이 상황으로 판단하는 task
 - Digital Twin: 현실 시스템의 상태와 동작을 데이터로 복제한 디지털 표현
 
-## 7차시 주요 용어
+## 6-2차시 주요 용어
 
 - Infectious Disease Data Science: 감염병 대응에 필요한 예측, 자원 배분, 역학조사, 정책 평가를 데이터와 AI로 보조하는 접근
 - Imported Case Prediction: 해외에서 국내로 유입될 감염자 수와 추세를 예측하는 task
+- X / Y Definition: 무엇을 입력 feature로 보고 무엇을 예측 대상으로 둘지 정하는 과정
 - Infection Risk: 국가나 지역의 감염 확산 정도를 나타내는 시간 변화 신호
 - Inbound Flow: 특정 국가나 지역에서 목적지로 들어오는 사람의 흐름
 - Hi-COVIDNet: 해외 유입 COVID-19 확진자 수를 예측하기 위한 deep learning 모델
 - LSTM: 순서가 있는 데이터를 처리하며 과거 상태를 다음 계산에 반영하는 recurrent neural network 계열 모델
 - Fine-Grained EEM: 지역과 업종처럼 세밀한 단위에서 감염병의 경제 영향을 예측하는 모델링
 - COVID-EENet: 경제 활동 데이터와 집단감염 데이터를 결합해 지역-업종 단위 매출 변화 추세를 예측하는 framework
+- Aggregated Card Data: 개별 거래 내역이 아니라 지역, 업종, 성별, 연령대, 시간 단위로 묶은 결제 통계
 - District-Business Pair: 특정 지역과 특정 업종의 조합
 - Economy View: 지역-업종의 평소 소비 패턴을 담는 feature 관점
 - Geography View: 지역 사이의 물리적, 사회적 가까움을 담는 feature 관점
@@ -162,3 +167,4 @@
 - POI Reconstruction: 거친 위치 신호에서 실제 방문했을 가능성이 높은 point of interest를 추정하는 과정
 - Pincette: efficiency, periodicity, popularity view를 이용해 POI 방문 가능성을 추정하는 방법론
 - Privacy-Preserving Data Science: 분석 목적을 달성하면서 개인정보 노출을 줄이도록 설계하는 데이터 사이언스 접근
+- Privacy Trade-off: 데이터 정밀도와 개인정보 노출 위험 사이의 균형 문제
