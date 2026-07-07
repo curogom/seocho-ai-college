@@ -1780,6 +1780,26 @@ export type SessionSlot = {
 };
 
 const deferredSessionIds = new Set(['05']);
+
+export const getSessionSlotStatus = (
+  slotSessions: Pick<Session, 'status'>[],
+  slotId: string,
+): SessionSlot['status'] => {
+  if (slotSessions.length === 0) {
+    return deferredSessionIds.has(slotId) ? 'deferred' : 'empty';
+  }
+
+  if (slotSessions.some((session) => session.status === 'draft')) {
+    return 'draft';
+  }
+
+  if (slotSessions.some((session) => session.status === 'planned')) {
+    return 'planned';
+  }
+
+  return 'published';
+};
+
 const sessionsBySlotId = orderedSessions.reduce((map, session) => {
   const slotId = getSessionSlotId(session);
   const slotSessions = map.get(slotId) ?? [];
@@ -1802,7 +1822,7 @@ export const sessionSlots: SessionSlot[] = Array.from(
       id,
       order,
       label: `${order}차시`,
-      status: session?.status ?? (deferredSessionIds.has(id) ? 'deferred' : 'empty'),
+      status: getSessionSlotStatus(slotSessions, id),
       session,
       sessions: slotSessions,
     };
