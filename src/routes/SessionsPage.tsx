@@ -22,7 +22,7 @@ export function SessionsPage() {
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-ink/70">
             상단 메뉴에는 차시를 하나씩 늘리지 않고, 총 {totalSessionCount}
-            차시 슬롯을 이 화면에서 관리합니다. 실제 콘텐츠는 data 파일에
+            주차 기준으로 이 화면에서 관리합니다. 실제 콘텐츠는 data 파일에
             추가된 차시만 열립니다.
           </p>
         </div>
@@ -31,7 +31,7 @@ export function SessionsPage() {
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid gap-4 md:grid-cols-3">
           <div className="rounded-md border border-line bg-white p-5">
-            <p className="text-sm text-ink/60">총 차시</p>
+            <p className="text-sm text-ink/60">총 주차</p>
             <p className="mt-2 text-3xl font-semibold text-ink">
               {totalSessionCount}
             </p>
@@ -53,7 +53,7 @@ export function SessionsPage() {
         <Section
           eyebrow="Catalog"
           title="차시 카탈로그"
-          description="새 차시는 이 슬롯 중 하나에 세션 데이터, 퀴즈, 용어, 시각 노트를 추가하는 방식으로 확장합니다."
+          description="새 차시는 15주 과정 범위 안에서 세션 데이터, 퀴즈, 용어, 시각 노트를 추가하는 방식으로 확장합니다."
         >
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {sessionSlots.map((slot) => (

@@ -89,7 +89,7 @@ export type Session = {
   nextPreview?: NextPreview;
 };
 
-export const totalSessionCount = 16;
+export const totalSessionCount = 15;
 
 const parkInstructor: Instructor = {
   name: '박노성',

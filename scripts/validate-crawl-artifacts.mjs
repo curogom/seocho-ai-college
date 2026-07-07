@@ -9,7 +9,12 @@ const sourcePath = 'src/data/sessions.ts';
 const fixedRoutes = [
   {
     path: '/',
-    markers: ['AI College Learning Notes'],
+    markers: [
+      'AI College Learning Notes',
+      '2026년 5월',
+      '서초 AI 칼리지',
+      '15주',
+    ],
   },
   {
     path: '/sessions',

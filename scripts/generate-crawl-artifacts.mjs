@@ -14,6 +14,14 @@ const routeDefinitions = [
 
 서초 AI 칼리지 수업 내용을 차시별로 정리하는 문서형 학습 노트입니다.
 
+이 사이트는 KAIST와 함께하는 2026 서초 AI 칼리지 재직자 과정에서 다룬 강의 내용을 15주 과정 기준으로 정리하는 복습 노트입니다.
+
+재직자 과정 운영 시기는 2026년 5월 26일 시작, 9월 5일까지 총 15주 운영입니다. 교육 장소는 KAIST 도곡캠퍼스입니다.
+
+재직자 과정 교육 내용은 AI 최신 연구 동향과 AI 응용 분야별 기술 동향을 바탕으로 한 사례 중심 강의, 과제 기획, 문제 정의, 해결과 실제 적용 프로세스입니다.
+
+공식 출처: 2026 서초 AI 칼리지 재직자과정 참여자 모집 공지
+
 Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data Science, Infectious Disease Data Science, AGI/ASI Value Alignment까지 이어지는 흐름을 누적해서 복습합니다.
 
 현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding, 6-1차시 Mobility Big Data Analysis, 6-2차시 Data Science for Infectious Disease Response, 7차시 AGI/ASI Value Alignment and Superalignment입니다.`,
@@ -25,7 +33,7 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data
       '서초 AI 칼리지 전체 차시 카탈로그와 공개, 예고, 대기 상태를 확인합니다.',
     content: `# 전체 차시
 
-총 16차시 슬롯을 기준으로 운영합니다.
+총 15주차 기준으로 운영합니다.
 
 - 1차시: From Machine Learning to Deep Learning
 - 2차시: Large Language Models

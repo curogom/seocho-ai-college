@@ -10,6 +10,20 @@ import {
 } from '../data/sessions';
 
 describe('learning content', () => {
+  it('introduces the Seocho AI College program on the landing page and crawl content', () => {
+    const homePage = readFileSync('src/routes/HomePage.tsx', 'utf8');
+    const crawlScript = readFileSync('scripts/generate-crawl-artifacts.mjs', 'utf8');
+
+    for (const source of [homePage, crawlScript]) {
+      expect(source).toContain('서초 AI 칼리지');
+      expect(source).toContain('2026년 5월');
+      expect(source).toContain('재직자 과정');
+      expect(source).toContain('15주');
+      expect(source).toContain('AI 최신 연구 동향');
+      expect(source).toContain('AI 응용 분야별 기술 동향');
+    }
+  });
+
   it('includes the required session 01 instructor profile', () => {
     const session = getSessionById('01');
 
@@ -298,9 +312,9 @@ describe('learning content', () => {
     }
   });
 
-  it('keeps a fixed 16-session catalog independent from header navigation', () => {
-    expect(totalSessionCount).toBe(16);
-    expect(sessionSlots).toHaveLength(16);
+  it('keeps a fixed 15-week catalog independent from header navigation', () => {
+    expect(totalSessionCount).toBe(15);
+    expect(sessionSlots).toHaveLength(15);
     expect(sessionSlots[0].id).toBe('01');
     expect(sessionSlots[1].id).toBe('02');
     expect(sessionSlots[2].id).toBe('03');
@@ -308,7 +322,7 @@ describe('learning content', () => {
     expect(sessionSlots[4].id).toBe('05');
     expect(sessionSlots[5].id).toBe('06');
     expect(sessionSlots[6].id).toBe('07');
-    expect(sessionSlots[15].id).toBe('16');
+    expect(sessionSlots[14].id).toBe('15');
     expect(sessionSlots[1].session?.id).toBe('02');
     expect(sessionSlots[2].session?.id).toBe('03');
     expect(sessionSlots[3].session?.id).toBe('04');
