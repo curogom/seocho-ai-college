@@ -1461,4 +1461,202 @@ export const glossary: GlossaryEntry[] = [
       '더 정밀한 데이터가 더 높은 정확도를 줄 수 있지만 개인 생활 노출 위험도 키운다는 균형 문제.',
     sessionIds: ['06-2'],
   },
+  {
+    term: 'Human Value',
+    korean: '인간 가치',
+    category: '개념',
+    aliases: ['human value', 'human values'],
+    description:
+      '개인이 무엇을 중요하게 여기는지 나타내는 믿음, 선호, 판단 기준. LLM 응답의 태도와 우선순위에 영향을 줄 수 있다.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Schwartz Theory of Basic Values',
+    korean: 'Schwartz 기본 가치 이론',
+    category: '개념',
+    aliases: ['Schwartz values', 'basic values', 'Schwartz value'],
+    description:
+      '사람의 가치를 10개 basic value와 4개 higher-order value로 설명하는 심리학 이론.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Value-Injected LLM',
+    korean: '가치 주입 LLM',
+    category: '모델',
+    aliases: ['value injected LLM', 'value-injected model'],
+    description:
+      '특정 value distribution을 반영하도록 조건을 주거나 학습한 대형언어모델.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Value Alignment',
+    korean: '가치 정렬',
+    category: '학습 과정',
+    aliases: ['value alignment', 'alignment'],
+    description:
+      'AI의 응답이나 행동이 특정 사람이나 집단의 가치 분포와 가까워지도록 맞추는 과정.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Value Injection Method',
+    korean: '가치 주입 방법',
+    category: '기법',
+    aliases: ['VIM', 'value injection'],
+    description:
+      '목표 value distribution을 LLM에 반영해 stance, argument, behavior prediction을 수행하려는 방법.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Value-Safety Trade-off',
+    korean: '가치-안전 절충',
+    category: '개념',
+    aliases: ['value safety trade-off', 'value-safety risk'],
+    description:
+      '특정 가치 정렬이 유용성을 높일 수 있지만 toxicity, bias 같은 안전 위험을 키울 수도 있다는 균형 문제.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Cultural Value Alignment',
+    korean: '문화 가치 정렬',
+    category: '개념',
+    aliases: ['cultural alignment', 'culture alignment'],
+    description:
+      '국가나 문화권마다 다른 가치와 선호를 LLM 응답이 얼마나 잘 반영하는지 평가하고 조정하는 문제.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Value Codebook',
+    korean: '가치 코드북',
+    category: '핵심 요소',
+    aliases: ['value codebook', 'value code'],
+    description:
+      'Open-ended text에서 추출한 value expression을 일반적인 code로 묶어 value space를 구성한 것.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'DOVE',
+    korean: 'DOVE',
+    category: '기법',
+    aliases: ['Distributional Open-Ended Evaluation'],
+    description:
+      'Open-ended text를 value code distribution으로 변환해 인간 문서와 LLM 응답의 문화 가치 정렬을 비교하는 평가 방법론.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'ANI',
+    korean: '좁은 인공지능',
+    category: '개념',
+    aliases: ['Artificial Narrow Intelligence'],
+    description:
+      '특정 task나 좁은 범위에서 높은 성능을 보이는 specialized AI.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'AGI',
+    korean: '범용 인공지능',
+    category: '개념',
+    aliases: ['Artificial General Intelligence'],
+    description:
+      '여러 영역에서 인간 수준의 일반적인 지적 능력을 갖는 것을 목표로 하는 AI 개념.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'ASI',
+    korean: '초지능',
+    category: '개념',
+    aliases: ['Artificial Superintelligence'],
+    description:
+      '인간의 지적 능력을 넘어서는 것으로 가정되는 초고도 AI 개념.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Superalignment',
+    korean: '슈퍼 정렬',
+    category: '학습 과정',
+    aliases: ['superalignment', 'super alignment'],
+    description:
+      'ASI 수준의 모델이 인간 가치와 사회적 이익에 맞게 작동하도록 competence와 conformity를 함께 최적화하려는 문제.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Capacity',
+    korean: '내재 역량',
+    category: '개념',
+    aliases: ['model capacity', 'capacity'],
+    description:
+      'AI가 pretraining 등을 통해 내부화한 정보, 지식, 기술의 총량.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Capability',
+    korean: '수행 능력',
+    category: '개념',
+    aliases: ['model capability', 'capability'],
+    description:
+      'AI가 실제 task에서 기대 효용이나 성능으로 드러내는 수행 능력.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Sandwiching',
+    korean: '샌드위칭',
+    category: '기법',
+    aliases: ['sandwiching'],
+    description:
+      '인간이 AI 제안을 판단하고 피드백하며 감독 신호를 만드는 alignment 패러다임.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Self-Enhancement',
+    korean: '자기 개선',
+    category: '기법',
+    aliases: ['self enhancement', 'self-enhancement'],
+    description:
+      'AI가 인간 감독 없이 자기 답변이나 추론을 개선하도록 하는 alignment 접근.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Weak-to-Strong Generalization',
+    korean: '약한 모델에서 강한 모델로의 일반화',
+    category: '기법',
+    aliases: ['W2SG', 'weak to strong generalization'],
+    description:
+      '약한 감독자나 약한 모델이 만든 supervision으로 더 강한 모델의 능력을 끌어내려는 접근.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Scalable Oversight',
+    korean: '확장 가능한 감독',
+    category: '기법',
+    aliases: ['scalable oversight'],
+    description:
+      'AI 능력이 커져도 유효한 평가와 감독 신호를 제공하기 위한 방법론.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Easy-to-Hard Generalization',
+    korean: '쉬운 문제에서 어려운 문제로의 일반화',
+    category: '학습 과정',
+    aliases: ['E2HG', 'easy to hard generalization'],
+    description:
+      '쉬운 데이터에서 얻은 supervision을 라벨이 부족한 어려운 task로 확장하려는 학습 설정.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'UniPRO',
+    korean: 'Unified Policy and Reward Optimization',
+    category: '기법',
+    aliases: ['Unified Policy and Reward Optimization', 'unipro'],
+    description:
+      'Policy와 reward를 번갈아 업데이트해 hard prompt에서 supervision bottleneck을 줄이려는 easy-to-hard generalization 접근.',
+    sessionIds: ['07'],
+  },
+  {
+    term: 'Policy-Reward Co-evolution',
+    korean: '정책-보상 공동 진화',
+    category: '학습 과정',
+    aliases: ['policy reward co-evolution', 'policy-reward coevolution'],
+    description:
+      'Policy가 생성하는 분포 변화에 맞춰 reward도 함께 갱신되어 평가 신호의 신뢰성을 유지하는 과정.',
+    sessionIds: ['07'],
+  },
 ];

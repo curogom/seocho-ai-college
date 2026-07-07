@@ -428,6 +428,76 @@ export const quizzes: Quiz[] = [
     explanation:
       '감염병 대응 데이터는 공익 목적이 있더라도 개인의 건강, 위치, 소비 이력에 닿을 수 있다. 정확도와 프라이버시 사이의 trade-off를 줄이는 설계가 필요하다.',
   },
+  {
+    id: 's07-q1',
+    sessionId: '07',
+    question: 'Value Alignment 설명으로 가장 적절한 것은?',
+    choices: [
+      'AI가 특정 사람이나 집단의 value distribution을 반영하도록 맞추는 과정이다.',
+      '모델이 모든 질문에 같은 답변만 하도록 만드는 과정이다.',
+      'LLM의 token vocabulary를 삭제하는 과정이다.',
+      '이미지 분류 모델에서만 사용하는 filter 학습 과정이다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      '7차시에서는 Value Alignment를 AI의 출력이나 행동이 사람의 가치 분포와 가까워지도록 만드는 과정으로 정리한다.',
+  },
+  {
+    id: 's07-q2',
+    sessionId: '07',
+    question: 'Value-aligned LLM이 항상 더 안전하다고 단정하기 어려운 이유는?',
+    choices: [
+      '특정 가치 정렬이 toxicity나 bias 같은 안전 위험을 증가시킬 수 있기 때문에',
+      '가치 정렬 모델은 텍스트를 전혀 생성하지 않기 때문에',
+      '모든 value distribution이 완전히 동일하기 때문에',
+      '안전 평가는 모델 크기와 무관하게 항상 필요 없기 때문에',
+    ],
+    answerIndex: 0,
+    explanation:
+      '강의에서는 가치 정렬이 유용할 수 있지만 특정 value profile과 safety category 사이에 위험 상관이 생길 수 있음을 다룬다.',
+  },
+  {
+    id: 's07-q3',
+    sessionId: '07',
+    question: 'DOVE가 다루려는 평가 문제로 가장 적절한 것은?',
+    choices: [
+      'Open-ended text에서 드러나는 문화 가치 정렬을 value code distribution으로 비교하는 문제',
+      '이미지 픽셀의 RGB 평균만 계산하는 문제',
+      '교통카드 승하차 위치를 추정하는 문제',
+      'Knowledge Graph의 triplet score만 계산하는 문제',
+    ],
+    answerIndex: 0,
+    explanation:
+      'DOVE는 문서에서 value expression을 추출하고 value codebook으로 mapping해 문화권별 human text와 LLM response의 value distribution을 비교한다.',
+  },
+  {
+    id: 's07-q4',
+    sessionId: '07',
+    question: 'Superalignment에서 기존 alignment 정의만으로 부족해지는 이유는?',
+    choices: [
+      'ASI의 capacity와 capability가 인간 평가자의 판단 범위를 넘어설 수 있기 때문에',
+      'Superalignment는 그래프 데이터만 다루기 때문에',
+      'AGI와 ASI는 모델 능력과 전혀 관련이 없기 때문에',
+      '인간 utility를 항상 완벽하게 측정할 수 있기 때문에',
+    ],
+    answerIndex: 0,
+    explanation:
+      'Superalignment에서는 인간 능력을 넘어서는 모델을 다루므로 인간 utility를 단순 target으로 두는 alignment 정의만으로는 감독 문제가 남는다.',
+  },
+  {
+    id: 's07-q5',
+    sessionId: '07',
+    question: 'UniPRO와 Easy-to-Hard Generalization 설명으로 맞는 것은?',
+    choices: [
+      '쉬운 데이터의 supervision을 바탕으로 hard prompt에서 policy와 reward를 번갈아 갱신하려는 접근이다.',
+      '항상 reward model을 고정하고 업데이트하지 않는 방식이다.',
+      '라벨이 없는 hard data는 반드시 버리는 방식이다.',
+      '정렬 문제와 무관한 CSS 최적화 기법이다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      'UniPRO는 policy head와 reward head가 함께 적응하도록 alternating update를 사용해 hard task로 supervision을 확장하려는 접근이다.',
+  },
 ];
 
 export const getQuizzesBySessionId = (sessionId: string) =>

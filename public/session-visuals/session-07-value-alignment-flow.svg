@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">Value alignment evaluation flow</title>
+  <desc id="desc">Human value distributions are injected into LLMs, evaluated by value consistency, cultural alignment, and safety checks.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8f7f2}
+      .ink{fill:#182129}
+      .muted{fill:#616b72}
+      .rust{fill:#a95736}
+      .teal{fill:#0d7f83}
+      .moss{fill:#4f6f5f}
+      .gold{fill:#c69b4a}
+      .card{fill:#fff;stroke:#d8d5ca;stroke-width:2}
+      .soft{fill:#f1eee6;stroke:#d8d5ca;stroke-width:2}
+      .line{fill:none;stroke:#0d7f83;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+      text{font-family:Arial, Helvetica, sans-serif}
+    </style>
+  </defs>
+  <rect class="bg" width="1280" height="560"/>
+  <text x="64" y="74" class="ink" font-size="36" font-weight="800">Human Values to LLM Behavior</text>
+  <text x="64" y="112" class="muted" font-size="21">Alignment must be checked for consistency, culture, and safety risk</text>
+
+  <rect class="card" x="68" y="168" width="246" height="220" rx="8"/>
+  <text x="100" y="216" class="teal" font-size="24" font-weight="800">Human Value</text>
+  <text x="100" y="250" class="teal" font-size="24" font-weight="800">Distribution</text>
+  <rect class="soft" x="102" y="292" width="52" height="58" rx="6"/>
+  <rect class="soft" x="166" y="264" width="52" height="86" rx="6"/>
+  <rect class="soft" x="230" y="318" width="52" height="32" rx="6"/>
+  <text x="112" y="332" class="rust" font-size="18" font-weight="800">U</text>
+  <text x="176" y="332" class="rust" font-size="18" font-weight="800">B</text>
+  <text x="240" y="332" class="rust" font-size="18" font-weight="800">S</text>
+
+  <rect class="card" x="388" y="148" width="250" height="260" rx="8"/>
+  <text x="422" y="198" class="teal" font-size="24" font-weight="800">Value Injection</text>
+  <text x="422" y="238" class="ink" font-size="20">Prompt or training</text>
+  <text x="422" y="272" class="ink" font-size="20">sets target values</text>
+  <rect x="424" y="316" width="176" height="42" rx="21" fill="#0d7f83"/>
+  <text x="466" y="344" fill="#fff" font-size="19" font-weight="800">VIM</text>
+
+  <rect class="card" x="714" y="168" width="246" height="220" rx="8"/>
+  <text x="746" y="216" class="teal" font-size="24" font-weight="800">Aligned</text>
+  <text x="746" y="250" class="teal" font-size="24" font-weight="800">LLM Output</text>
+  <text x="746" y="302" class="ink" font-size="20">stance</text>
+  <text x="746" y="334" class="ink" font-size="20">argument</text>
+  <text x="746" y="366" class="ink" font-size="20">behavior signal</text>
+
+  <rect class="card" x="1034" y="128" width="186" height="300" rx="8"/>
+  <text x="1066" y="178" class="teal" font-size="23" font-weight="800">Evaluation</text>
+  <circle cx="1084" cy="230" r="10" fill="#4f6f5f"/>
+  <text x="1106" y="237" class="ink" font-size="18">Value fit</text>
+  <circle cx="1084" cy="280" r="10" fill="#c69b4a"/>
+  <text x="1106" y="287" class="ink" font-size="18">Culture</text>
+  <circle cx="1084" cy="330" r="10" fill="#a95736"/>
+  <text x="1106" y="337" class="ink" font-size="18">Safety</text>
+
+  <path class="line" d="M314 278h74"/>
+  <path class="line" d="M638 278h76"/>
+  <path class="line" d="M960 278h74"/>
+  <path class="line" d="M364 278l-18-14v28z"/>
+  <path class="line" d="M690 278l-18-14v28z"/>
+  <path class="line" d="M1010 278l-18-14v28z"/>
+
+  <text x="122" y="480" class="ink" font-size="22" font-weight="700">Value alignment is useful only when value consistency and safety checks move together.</text>
+</svg>

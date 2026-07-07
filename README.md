@@ -18,6 +18,7 @@
 | 04 | Knowledge Graph Embedding | Published |
 | 06-1 | Mobility Big Data Analysis | Published |
 | 06-2 | Data Science for Infectious Disease Response | Published |
+| 07 | AGI/ASI Value Alignment and Superalignment | Published |
 
 ## Core Features
 

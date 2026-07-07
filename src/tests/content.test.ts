@@ -168,6 +168,37 @@ describe('learning content', () => {
     }
   });
 
+  it('keeps session 07 alignment and superalignment terms in the glossary', () => {
+    const terms = new Set(glossary.map((entry) => entry.term));
+
+    for (const term of [
+      'Human Value',
+      'Schwartz Theory of Basic Values',
+      'Value-Injected LLM',
+      'Value Alignment',
+      'Value Injection Method',
+      'Value-Safety Trade-off',
+      'Cultural Value Alignment',
+      'Value Codebook',
+      'DOVE',
+      'ANI',
+      'AGI',
+      'ASI',
+      'Superalignment',
+      'Capacity',
+      'Capability',
+      'Sandwiching',
+      'Self-Enhancement',
+      'Weak-to-Strong Generalization',
+      'Scalable Oversight',
+      'Easy-to-Hard Generalization',
+      'UniPRO',
+      'Policy-Reward Co-evolution',
+    ]) {
+      expect(terms.has(term)).toBe(true);
+    }
+  });
+
   it('keeps model core elements in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
@@ -196,6 +227,10 @@ describe('learning content', () => {
     const graphRag = glossary.find((entry) => entry.term === 'GraphRAG');
     const trajectory = glossary.find((entry) => entry.term === 'Trajectory');
     const pincette = glossary.find((entry) => entry.term === 'Pincette');
+    const valueAlignment = glossary.find(
+      (entry) => entry.term === 'Value Alignment',
+    );
+    const unipro = glossary.find((entry) => entry.term === 'UniPRO');
 
     expect(sigmoid?.aliases).toContain('sigmoid');
     expect(dnn?.aliases).toContain('DNN');
@@ -205,6 +240,8 @@ describe('learning content', () => {
     expect(graphRag?.aliases).toContain('Graph RAG');
     expect(trajectory?.aliases).toContain('movement path');
     expect(pincette?.aliases).toContain('pincette');
+    expect(valueAlignment?.aliases).toContain('value alignment');
+    expect(unipro?.aliases).toContain('unipro');
   });
 
   it('classifies every glossary term by category and session', () => {
@@ -280,12 +317,12 @@ describe('learning content', () => {
       '06-1',
       '06-2',
     ]);
-    expect(sessionSlots[6].session).toBeUndefined();
+    expect(sessionSlots[6].session?.id).toBe('07');
     expect(sessionSlots[2].status).toBe('published');
     expect(sessionSlots[3].status).toBe('published');
     expect(sessionSlots[4].status).toBe('deferred');
     expect(sessionSlots[5].status).toBe('published');
-    expect(sessionSlots[6].status).toBe('empty');
+    expect(sessionSlots[6].status).toBe('published');
     expect(sessionSlots[4].session).toBeUndefined();
   });
 
@@ -500,5 +537,40 @@ describe('learning content', () => {
     const sessionJson = JSON.stringify(session);
     expect(sessionJson).not.toContain('resourcePath');
     expect(sessionJson).not.toContain('.pdf');
+  });
+
+  it('publishes session 07 AGI/ASI value alignment learning content', () => {
+    const session = getSessionById('07');
+    const sessionNote = readFileSync(
+      'content/sessions/07-agi-asi-value-alignment.md',
+      'utf8',
+    );
+
+    expect(session?.status).toBe('published');
+    expect(session?.title).toBe('AGI/ASI Value Alignment and Superalignment');
+    expect(session?.instructor?.name).toBe('박진영');
+    expect(session?.instructor?.affiliationKo).toBe('성균관대학교');
+    expect(session?.summaryLines).toHaveLength(3);
+    expect(session?.coreFlow).toContain('Value Alignment');
+    expect(session?.coreFlow).toContain('DOVE');
+    expect(session?.coreFlow).toContain('Superalignment');
+    expect(session?.coreFlow).toContain('UniPRO');
+    expect(session?.conceptCards.length).toBeGreaterThanOrEqual(12);
+    expect(session?.visualNotes).toHaveLength(2);
+    expect(session?.intuitions.length).toBeGreaterThan(0);
+    expect(session?.modelNotes.length).toBeGreaterThan(0);
+    expect(session?.quizIds).toHaveLength(5);
+    expect(sessionNote).toContain('Value Alignment');
+    expect(sessionNote).toContain('Schwartz Theory of Basic Values');
+    expect(sessionNote).toContain('Value-Safety Trade-off');
+    expect(sessionNote).toContain('Cultural Value Alignment');
+    expect(sessionNote).toContain('DOVE');
+    expect(sessionNote).toContain('Superalignment');
+    expect(sessionNote).toContain('Scalable Oversight');
+    expect(sessionNote).toContain('Easy-to-Hard Generalization');
+    expect(sessionNote).toContain('UniPRO');
+    expect(sessionNote).not.toContain('resourcePath');
+    expect(sessionNote).not.toContain('.pdf');
+    expect(JSON.stringify(session)).not.toContain('jy.bak');
   });
 });
