@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { glossary } from '../data/glossary';
 import {
   getSessionById,
+  getSessionSlotStatus,
   sessionSlots,
   sessions,
   totalSessionCount,
@@ -286,6 +287,20 @@ describe('learning content', () => {
     expect(sessionSlots[5].status).toBe('published');
     expect(sessionSlots[6].status).toBe('empty');
     expect(sessionSlots[4].session).toBeUndefined();
+  });
+
+  it('summarizes split-session slot status from every part', () => {
+    expect(
+      getSessionSlotStatus([{ status: 'published' }, { status: 'published' }], '06'),
+    ).toBe('published');
+    expect(
+      getSessionSlotStatus([{ status: 'published' }, { status: 'planned' }], '06'),
+    ).toBe('planned');
+    expect(
+      getSessionSlotStatus([{ status: 'published' }, { status: 'draft' }], '06'),
+    ).toBe('draft');
+    expect(getSessionSlotStatus([], '05')).toBe('deferred');
+    expect(getSessionSlotStatus([], '07')).toBe('empty');
   });
 
   it('publishes session 02 learning content', () => {
