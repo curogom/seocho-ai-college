@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import type { SessionSlot } from '../data/sessions';
-import { sessionSlots } from '../data/sessions';
+import type { Session } from '../data/sessions';
+import { getSessionLabel, orderedSessions, sessionSlots } from '../data/sessions';
 
 const navItems = [
   { to: '/', label: '홈' },
@@ -13,20 +13,22 @@ export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isSessionPickerOpen, setIsSessionPickerOpen] = useState(false);
-  const availableSlots = useMemo(
-    () => sessionSlots.filter((slot) => Boolean(slot.session)),
+  const availableSessions = useMemo(
+    () => orderedSessions.filter((session) => session.status !== 'draft'),
     [],
   );
   const activeSessionId = location.pathname.match(/^\/sessions\/([^/]+)/)?.[1];
-  const activeSlot = availableSlots.find((slot) => slot.id === activeSessionId);
-  const activeSlotIndex = activeSlot
-    ? availableSlots.findIndex((slot) => slot.id === activeSlot.id)
+  const activeSession = availableSessions.find(
+    (session) => session.id === activeSessionId,
+  );
+  const activeSessionIndex = activeSession
+    ? availableSessions.findIndex((session) => session.id === activeSession.id)
     : -1;
-  const previousSlot =
-    activeSlotIndex > 0 ? availableSlots[activeSlotIndex - 1] : undefined;
-  const nextSlot =
-    activeSlotIndex >= 0 && activeSlotIndex < availableSlots.length - 1
-      ? availableSlots[activeSlotIndex + 1]
+  const previousSession =
+    activeSessionIndex > 0 ? availableSessions[activeSessionIndex - 1] : undefined;
+  const nextSession =
+    activeSessionIndex >= 0 && activeSessionIndex < availableSessions.length - 1
+      ? availableSessions[activeSessionIndex + 1]
       : undefined;
 
   useEffect(() => {
@@ -42,14 +44,14 @@ export function Header() {
     navigate(`/sessions/${sessionId}`);
   }
 
-  function moveToSlot(slot: SessionSlot | undefined) {
-    if (!slot) return;
+  function moveToSession(session: Session | undefined) {
+    if (!session) return;
 
-    navigate(`/sessions/${slot.id}`);
+    navigate(`/sessions/${session.id}`);
   }
 
-  const sessionButtonLabel = activeSlot
-    ? `${activeSlot.order}차시`
+  const sessionButtonLabel = activeSession
+    ? getSessionLabel(activeSession)
     : location.pathname === '/sessions'
       ? '전체 차시'
       : '차시 선택';
@@ -83,8 +85,8 @@ export function Header() {
               className="grid min-h-9 w-9 place-items-center rounded-l-md text-lg font-semibold disabled:cursor-not-allowed disabled:opacity-35"
               type="button"
               aria-label="이전 차시"
-              disabled={!previousSlot}
-              onClick={() => moveToSlot(previousSlot)}
+              disabled={!previousSession}
+              onClick={() => moveToSession(previousSession)}
             >
               ‹
             </button>
@@ -101,8 +103,8 @@ export function Header() {
               className="grid min-h-9 w-9 place-items-center rounded-r-md text-lg font-semibold disabled:cursor-not-allowed disabled:opacity-35"
               type="button"
               aria-label="다음 차시"
-              disabled={!nextSlot}
-              onClick={() => moveToSlot(nextSlot)}
+              disabled={!nextSession}
+              onClick={() => moveToSession(nextSession)}
             >
               ›
             </button>
@@ -142,19 +144,22 @@ export function Header() {
                   차시 선택
                 </option>
                 <option value="all">전체 차시 보기</option>
-                {sessionSlots.map((slot) => (
-                  <option
-                    key={slot.id}
-                    value={slot.id}
-                    disabled={!slot.session}
-                  >
-                    {slot.id}.{' '}
-                    {slot.session?.koreanTitle ??
-                      (slot.status === 'deferred'
-                        ? '추후 보강 예정'
-                        : '자료 준비 전')}
-                  </option>
-                ))}
+                {sessionSlots.flatMap((slot) =>
+                  slot.sessions.length > 0
+                    ? slot.sessions.map((session) => (
+                        <option key={session.id} value={session.id}>
+                          {getSessionLabel(session)}. {session.koreanTitle}
+                        </option>
+                      ))
+                    : [
+                        <option key={slot.id} value={slot.id} disabled>
+                          {slot.id}.{' '}
+                          {slot.status === 'deferred'
+                            ? '추후 보강 예정'
+                            : '자료 준비 전'}
+                        </option>,
+                      ],
+                )}
               </select>
             </label>
           </div>

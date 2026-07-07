@@ -113,7 +113,7 @@ describe('learning content', () => {
     }
   });
 
-  it('keeps session 06 mobility data terms in the glossary', () => {
+  it('keeps session 06-1 mobility data terms in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
     for (const term of [
@@ -139,7 +139,7 @@ describe('learning content', () => {
     }
   });
 
-  it('keeps session 07 infectious disease data science terms in the glossary', () => {
+  it('keeps session 06-2 infectious disease data science terms in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
     for (const term of [
@@ -207,14 +207,14 @@ describe('learning content', () => {
   });
 
   it('classifies every glossary term by category and session', () => {
-    const slotIds = new Set(sessionSlots.map((slot) => slot.id));
+    const sessionIds = new Set(sessions.map((session) => session.id));
 
     for (const entry of glossary) {
       expect(entry.category.length).toBeGreaterThan(0);
       expect(entry.sessionIds.length).toBeGreaterThan(0);
 
       for (const sessionId of entry.sessionIds) {
-        expect(slotIds.has(sessionId)).toBe(true);
+        expect(sessionIds.has(sessionId)).toBe(true);
       }
     }
   });
@@ -274,13 +274,17 @@ describe('learning content', () => {
     expect(sessionSlots[1].session?.id).toBe('02');
     expect(sessionSlots[2].session?.id).toBe('03');
     expect(sessionSlots[3].session?.id).toBe('04');
-    expect(sessionSlots[5].session?.id).toBe('06');
-    expect(sessionSlots[6].session?.id).toBe('07');
+    expect(sessionSlots[5].session?.id).toBe('06-1');
+    expect(sessionSlots[5].sessions.map((session) => session.id)).toEqual([
+      '06-1',
+      '06-2',
+    ]);
+    expect(sessionSlots[6].session).toBeUndefined();
     expect(sessionSlots[2].status).toBe('published');
     expect(sessionSlots[3].status).toBe('published');
     expect(sessionSlots[4].status).toBe('deferred');
     expect(sessionSlots[5].status).toBe('published');
-    expect(sessionSlots[6].status).toBe('published');
+    expect(sessionSlots[6].status).toBe('empty');
     expect(sessionSlots[4].session).toBeUndefined();
   });
 
@@ -414,14 +418,15 @@ describe('learning content', () => {
     expect(sessionNote).not.toContain('.pdf');
   });
 
-  it('publishes session 06 mobility big data learning content', () => {
-    const session = getSessionById('06');
+  it('publishes session 06-1 mobility big data learning content', () => {
+    const session = getSessionById('06-1');
     const sessionNote = readFileSync(
-      'content/sessions/06-mobility-big-data-analysis.md',
+      'content/sessions/06-1-mobility-big-data-analysis.md',
       'utf8',
     );
 
     expect(session?.status).toBe('published');
+    expect(session?.partLabel).toBe('6-1차시');
     expect(session?.title).toBe('Mobility Big Data Analysis');
     expect(session?.instructor?.name).toBe('이재길');
     expect(session?.instructor?.affiliationKo).toBe('KAIST 전산학부');
@@ -449,14 +454,15 @@ describe('learning content', () => {
     expect(sessionJson).not.toContain('.pdf');
   });
 
-  it('publishes session 07 infectious disease data science learning content', () => {
-    const session = getSessionById('07');
+  it('publishes session 06-2 infectious disease data science learning content', () => {
+    const session = getSessionById('06-2');
     const sessionNote = readFileSync(
-      'content/sessions/07-infectious-disease-data-science.md',
+      'content/sessions/06-2-infectious-disease-data-science.md',
       'utf8',
     );
 
     expect(session?.status).toBe('published');
+    expect(session?.partLabel).toBe('6-2차시');
     expect(session?.title).toBe('Data Science for Infectious Disease Response');
     expect(session?.instructor?.name).toBe('이재길');
     expect(session?.instructor?.affiliationKo).toBe('KAIST 전산학부');

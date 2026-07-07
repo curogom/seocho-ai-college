@@ -67,6 +67,8 @@ export type SessionPreview = {
 export type Session = {
   id: string;
   order: number;
+  slotId?: string;
+  partLabel?: string;
   title: string;
   koreanTitle: string;
   subtitle: string;
@@ -1151,8 +1153,10 @@ export const sessions: Session[] = [
     ],
   },
   {
-    id: '06',
+    id: '06-1',
     order: 6,
+    slotId: '06',
+    partLabel: '6-1차시',
     title: 'Mobility Big Data Analysis',
     koreanTitle: '모빌리티 빅데이터 분석',
     subtitle:
@@ -1160,10 +1164,10 @@ export const sessions: Session[] = [
     status: 'published',
     instructor: leeInstructor,
     summary:
-      '6차시는 사람, 차량, 항공기 같은 이동 주체가 남기는 trajectory data를 분석하는 흐름을 다룬다. 교통카드, 실내 동선, 자동차 운행기록, 비행항적 사례를 통해 raw mobility log를 feature와 prediction task로 바꾸는 과정을 정리한다.',
+      '6-1차시는 사람, 차량, 항공기 같은 이동 주체가 남기는 trajectory data를 분석하는 흐름을 다룬다. 교통카드, 실내 동선, 자동차 운행기록, 비행항적 사례를 통해 raw mobility log를 feature와 prediction task로 바꾸는 과정을 정리한다.',
     summaryLines: [
       'Mobility Big Data는 스마트폰, 스마트카드, WiFi/Beacon, 내비게이션, 센서, 항적 기록처럼 시간에 따른 이동경로를 남기는 데이터에서 출발한다.',
-      '교통카드와 매장 실내 동선 사례는 이동 규칙성, 체류 시간, 구역별 관심, 재방문 가능성을 feature로 바꾸는 과정이 중요하다는 점을 보여준다.',
+      '교통카드와 매장 실내 동선 사례는 결측 위치 추정, 이동 규칙성, 체류 시간, 구역별 관심, 재방문 가능성을 feature로 바꾸는 과정이 중요하다는 점을 보여준다.',
       '차량 운행기록과 비행항적 사례는 실시간 공간 스트림 처리와 이상치 탐지를 통해 위험 상황을 조기에 감지하는 방향으로 확장된다.',
     ],
     coreFlow: [
@@ -1230,7 +1234,7 @@ export const sessions: Session[] = [
         term: 'Mobility Big Data',
         korean: '모빌리티 빅데이터',
         description:
-          '사람, 차량, 항공기, 센서가 남기는 대규모 이동경로 데이터다. 위치, 시간, 속도, 체류, 교통수단, 센서 출처가 함께 붙을 수 있다.',
+          '사람, 차량, 항공기, 센서가 남기는 대규모 이동경로 데이터다. 위치, 시간, 속도, 체류, 교통수단, 센서 출처가 함께 붙을 수 있고, 실제 이동은 물리적 비용이 들기 때문에 행동 의도를 강하게 드러낼 수 있다.',
         takeaway:
           '단순 좌표 목록이 아니라 시간과 맥락이 결합된 trajectory data로 봐야 한다.',
       },
@@ -1254,7 +1258,7 @@ export const sessions: Session[] = [
         term: 'Location Inference',
         korean: '위치 추정',
         description:
-          '직접 관측되지 않은 시간대의 위치를 주변 관측값, 거리, 이동 규칙으로 추정하는 과정이다.',
+          '직접 관측되지 않은 시간대의 위치를 주변 관측값, 거리, 이동 규칙으로 추정하는 과정이다. 근거가 부족한 구간은 unknown으로 남기는 것도 분석상 더 안전할 수 있다.',
         takeaway:
           '수집된 위치만으로는 부족한 시간 구간을 채워 분석 가능한 sequence를 만든다.',
       },
@@ -1262,7 +1266,7 @@ export const sessions: Session[] = [
         term: 'Mobility Regularity',
         korean: '이동 규칙성',
         description:
-          '같은 시간대에 가장 자주 방문한 장소의 횟수를 해당 시간대 전체 방문 횟수로 나눈 값처럼 정의할 수 있는 반복성 지표다.',
+          '같은 시간대에 가장 자주 방문한 장소의 횟수를 해당 시간대 전체 방문 횟수로 나눈 값처럼 정의할 수 있는 반복성 지표다. 출근 시간대와 점심 시간대처럼 생활 맥락에 따라 값의 의미가 달라질 수 있다.',
         takeaway:
           '방문 지역이 다양해질수록 규칙성은 낮아지는 경향이 있다.',
       },
@@ -1270,7 +1274,7 @@ export const sessions: Session[] = [
         term: 'In-store Trajectory',
         korean: '매장 실내 동선',
         description:
-          'WiFi나 Beacon 기반 센서로 매장 안에서 고객이 어느 구역에 얼마나 머무는지 기록한 이동 데이터다.',
+          'WiFi나 Beacon 기반 센서로 매장 안에서 고객이 어느 구역에 얼마나 머무는지 기록한 이동 데이터다. 직원, 청소 인력, 통로 통과처럼 고객 행동으로 보기 어려운 신호를 먼저 걸러야 한다.',
         takeaway:
           '구역별 체류와 이동 순서는 관심 상품이나 재방문 가능성의 신호가 될 수 있다.',
       },
@@ -1286,7 +1290,7 @@ export const sessions: Session[] = [
         term: 'Revisit Prediction',
         korean: '재방문 예측',
         description:
-          '현재까지의 방문 기록과 동선 feature를 이용해 고객이 향후 다시 방문할지 예측하는 task다.',
+          '현재까지의 방문 기록과 동선 feature를 이용해 고객이 향후 다시 방문할지 예측하는 task다. 관측 기간을 현재로 두고, 이후 기간의 실제 재방문 여부를 label로 삼는다.',
         takeaway:
           '총 체류 시간, 구역별 체류 비율, 방문 시간, 유사 동선 여부 등이 입력 feature가 된다.',
       },
@@ -1310,7 +1314,7 @@ export const sessions: Session[] = [
         term: 'Digital Tachograph',
         korean: '디지털 운행기록계',
         description:
-          '버스, 택시, 화물차 같은 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천이다.',
+          '버스, 택시, 화물차 같은 사업용 차량의 운행 기록을 남기는 장치와 데이터 원천이다. 사후 안전 평가뿐 아니라 실시간 stream으로 다루면 운영 의사결정에도 연결될 수 있다.',
         takeaway:
           '차량 위치, 속도, 주행거리, 시각 정보가 공간 stream 분석의 입력이 된다.',
       },
@@ -1318,7 +1322,7 @@ export const sessions: Session[] = [
         term: 'Anomaly Detection',
         korean: '이상치 탐지',
         description:
-          '모델이 학습한 정상 패턴에서 크게 벗어난 입력을 위험 또는 특이 상황으로 판단하는 접근이다.',
+          '모델이 학습한 정상 패턴에서 크게 벗어난 입력을 위험 또는 특이 상황으로 판단하는 접근이다. 실제 사고 데이터는 드물기 때문에 검증과 경보 기준에는 전문가 판단이 필요하다.',
         takeaway:
           '항적, 지형, 기상 feature를 함께 보면 단순 이동경로보다 문맥 있는 위험 판단이 가능하다.',
       },
@@ -1342,7 +1346,7 @@ export const sessions: Session[] = [
     intuitions: [
       {
         title: '현행: 이동 데이터 원천은 이미 넓다',
-        body: '스마트폰, 스마트카드, WiFi/Beacon, 내비게이션, 차량 운행기록, 레이더와 센서까지 다양한 시스템이 trajectory를 만든다. 문제는 데이터 양보다 어떤 맥락 feature로 바꾸느냐다.',
+        body: '스마트폰, 스마트카드, WiFi/Beacon, 내비게이션, 차량 운행기록, 레이더와 센서까지 다양한 시스템이 trajectory를 만든다. 실제 이동은 시간과 비용이 들기 때문에 행동 의도 신호가 강하지만, 그만큼 프라이버시 위험도 함께 커진다.',
       },
       {
         title: '알아둬야 할 지식: trajectory는 결측이 많다',
@@ -1368,13 +1372,25 @@ export const sessions: Session[] = [
         },
       },
       {
+        title: '교통카드 위치 추정',
+        body: '교통카드 데이터는 승차와 하차 event를 잘 알려주지만 모든 시간대의 위치를 직접 알려주지는 않는다. 앞뒤 승하차 기록, 거리, 시간 간격으로 머문 장소를 추정하고, 근거가 약한 구간은 unknown으로 남길 수 있다.',
+        table: {
+          headers: ['구간', '처리 관점'],
+          rows: [
+            ['승차-하차 사이', '대중교통 이동 중인 구간으로 해석'],
+            ['하차 후 다음 승차 전', '거리와 시간 조건이 맞으면 체류 장소로 추정'],
+            ['근거 부족 구간', '무리하게 채우지 않고 unknown 처리'],
+          ],
+        },
+      },
+      {
         title: 'Mobility Regularity',
-        body: '이동 규칙성은 특정 시간대에 가장 자주 방문한 장소가 전체 방문에서 차지하는 비율로 이해할 수 있다. 값이 높으면 반복 패턴이 강하고, 값이 낮으면 방문 장소가 다양하다는 뜻이다.',
+        body: '이동 규칙성은 특정 시간대에 가장 자주 방문한 장소가 전체 방문에서 차지하는 비율로 이해할 수 있다. 값이 높으면 반복 패턴이 강하고, 값이 낮으면 방문 장소가 다양하다는 뜻이다. 출근 시간대는 반복성이 높고, 점심 시간대는 목적지가 다양해 낮게 나올 수 있다.',
         highlight: 'Mobility Regularity = most frequent place count / total visited place count',
       },
       {
         title: '재방문 예측 feature',
-        body: '매장 실내 동선에서는 고객이 어디에 얼마나 머물렀는지, 어떤 시간대에 방문했는지, 과거 유사 동선이 있는지가 재방문 여부를 예측하는 신호가 된다.',
+        body: '매장 실내 동선에서는 고객이 어디에 얼마나 머물렀는지, 어떤 시간대에 방문했는지, 과거 유사 동선이 있는지가 재방문 여부를 예측하는 신호가 된다. 직원이나 통로 통과자 같은 noise를 제거하고, 관측 기간 이후의 실제 방문 여부를 label로 둔다.',
         table: {
           headers: ['Feature', '의미'],
           rows: [
@@ -1382,16 +1398,21 @@ export const sessions: Session[] = [
             ['Zone ratio', '구역별 체류 시간 비율'],
             ['Outside sensing frequency', '매장 주변에서 감지된 빈도'],
             ['Similar path', '동일 시간대 유사 동선 존재 여부'],
+            ['Visit timing', '평일, 주말, 시간대별 방문 패턴'],
           ],
         },
       },
       {
         title: '공간 stream과 위험 탐지',
-        body: '공간 stream processing은 빠르게 들어오는 위치 event를 처리하고, complex event processing은 규칙에 맞는 사건을 감지한다. 위험 예측에서는 trajectory와 context를 latent space로 옮겨 정상 분포에서 벗어나는 정도를 본다.',
+        body: '공간 stream processing은 빠르게 들어오는 위치 event를 처리하고, complex event processing은 규칙에 맞는 사건을 감지한다. 호출이 자주 들어오는 지역, 학교 주변 특정 시간대 속도 위험, 정상 항적에서 벗어난 움직임처럼 운영 판단으로 이어지는 event를 찾을 수 있다.',
+      },
+      {
+        title: '항적 이상치 검증',
+        body: '위험 예측에서는 trajectory와 context를 latent space로 옮겨 정상 분포에서 벗어나는 정도를 본다. 다만 사고 사례는 드물고 민감한 데이터도 많기 때문에, 모델 점수만으로 단정하기보다 전문가 기준치와 사후 검증을 함께 둬야 한다.',
       },
       {
         title: '사전 학습 체크포인트',
-        body: '6차시를 이해하려면 time series, feature engineering, classification, anomaly detection, data governance의 기본 의미를 먼저 잡는 것이 좋다.',
+        body: '6-1차시를 이해하려면 time series, feature engineering, classification, anomaly detection, data governance의 기본 의미를 먼저 잡는 것이 좋다.',
         table: {
           headers: ['개념', '연결되는 질문'],
           rows: [
@@ -1407,8 +1428,9 @@ export const sessions: Session[] = [
     quizIds: ['s06-q1', 's06-q2', 's06-q3', 's06-q4', 's06-q5'],
     reflectionQuestions: [
       '교통카드 데이터만으로 승객의 모든 위치를 알 수 없는 이유는 무엇인가?',
+      '관측되지 않은 위치를 추정할 때 unknown으로 남겨야 하는 구간은 어떤 경우인가?',
       'Mobility Regularity는 어떤 방식으로 계산되고, 어떤 해석상 주의점이 있는가?',
-      '실내 동선에서 Dwell Time과 Zone Ratio는 왜 재방문 예측 feature가 될 수 있는가?',
+      '실내 동선에서 고객 행동과 통로 통과, 직원 행동을 분리해야 하는 이유는 무엇인가?',
       'Spatial Stream Processing은 offline batch 분석과 무엇이 다른가?',
       '항적 위험 예측에서 지형과 기상 context를 추가하는 이유는 무엇인가?',
       '모빌리티 데이터 공개와 활용에서 Data Governance가 중요한 이유는 무엇인가?',
@@ -1422,7 +1444,7 @@ export const sessions: Session[] = [
     nextPreview: {
       title: 'Data Science for Infectious Disease Response',
       summary:
-        '7차시에서는 감염병 대응을 검역, 지역경제 피해 예측, 역학조사 문제로 나누고, 데이터 사이언스가 의사결정을 어떻게 보조하는지 정리한다.',
+        '6-2차시에서는 감염병 대응을 검역, 지역경제 피해 예측, 역학조사 문제로 나누고, 데이터 사이언스가 의사결정을 어떻게 보조하는지 정리한다.',
       questions: [
         '해외 유입 확진자 수를 예측할 때 infection risk와 inbound flow를 함께 보는 이유는 무엇인가?',
         '지역경제 피해를 district-business pair 단위로 예측하면 어떤 장점이 있는가?',
@@ -1436,8 +1458,10 @@ export const sessions: Session[] = [
     },
   },
   {
-    id: '07',
-    order: 7,
+    id: '06-2',
+    order: 6,
+    slotId: '06',
+    partLabel: '6-2차시',
     title: 'Data Science for Infectious Disease Response',
     koreanTitle: '감염병 대응을 위한 데이터 사이언스',
     subtitle:
@@ -1445,11 +1469,11 @@ export const sessions: Session[] = [
     status: 'published',
     instructor: leeInstructor,
     summary:
-      '7차시는 감염병 대응을 검역, 재난지원금, 역학조사라는 세 문제로 나누고, 각 문제에서 데이터 사이언스와 AI가 어떤 의사결정을 보조하는지 다룬다.',
+      '6-2차시는 감염병 대응을 검역, 재난지원금, 역학조사라는 세 문제로 나누고, 각 문제에서 데이터 사이언스와 AI가 어떤 의사결정을 보조하는지 다룬다.',
     summaryLines: [
       '감염병 대응 데이터 사이언스는 검역, 재난지원금, 역학조사를 서로 다른 예측 문제로 나누어 다룬다.',
-      'Hi-COVIDNet은 해외 국가별 Infection Risk와 Inbound Flow를 결합해 Imported Case Prediction을 수행하는 흐름으로 이해할 수 있다.',
-      'COVID-EENet과 Pincette 사례는 경제 피해 예측과 POI Reconstruction에서 세밀한 단위의 feature와 privacy-aware 설계가 중요하다는 점을 보여준다.',
+      'Hi-COVIDNet은 해외 국가별 Infection Risk와 Inbound Flow를 X로 보고 Imported Case 수를 Y로 예측하는 흐름으로 이해할 수 있다.',
+      'COVID-EENet과 Pincette 사례는 경제 피해 예측과 POI Reconstruction에서 세밀한 단위의 feature, 집계 데이터, privacy-aware 설계가 중요하다는 점을 보여준다.',
     ],
     coreFlow: [
       'Infectious Disease Data Science',
@@ -1520,7 +1544,7 @@ export const sessions: Session[] = [
         term: 'Imported Case Prediction',
         korean: '해외 유입 확진자 예측',
         description:
-          '해외에서 국내로 유입될 감염자 수와 추세를 예측하는 task다. 검역 자원 배분과 연결된다.',
+          '해외에서 국내로 유입될 감염자 수와 추세를 예측하는 task다. 출발 국가의 감염 상황과 유입 흐름을 X로 두고, 질병관리 통계의 해외 유입 확진자 수를 Y로 둘 수 있다.',
         takeaway:
           '감염 위험과 유입량을 함께 봐야 제한된 검역 자원을 더 잘 배치할 수 있다.',
       },
@@ -1560,7 +1584,7 @@ export const sessions: Session[] = [
         term: 'Fine-Grained EEM',
         korean: '세밀한 경제-역학 모델링',
         description:
-          '지역과 업종처럼 세밀한 단위에서 감염병이 경제에 미치는 영향을 예측하는 Economic-Epidemiological Modeling이다.',
+          '지역과 업종처럼 세밀한 단위에서 감염병이 경제에 미치는 영향을 예측하는 Economic-Epidemiological Modeling이다. 집계된 카드 소비 통계와 집단감염 정보를 함께 활용할 수 있다.',
         takeaway:
           '소득이나 실업률 같은 coarse-grained 지표만으로는 지역별 피해 차이를 놓칠 수 있다.',
       },
@@ -1584,7 +1608,7 @@ export const sessions: Session[] = [
         term: 'Digital Contact Tracing',
         korean: '디지털 역학조사',
         description:
-          '위치나 접촉 데이터를 활용해 감염 가능 접촉과 이동 경로를 추정하는 공중보건 지원 방식이다.',
+          '위치나 접촉 데이터를 활용해 감염 가능 접촉과 이동 경로를 추정하는 공중보건 지원 방식이다. 확진자가 급증하면 인터뷰와 수작업 확인만으로는 한계가 생긴다.',
         takeaway:
           '정확도와 속도만큼 privacy-preserving design이 중요하다.',
       },
@@ -1592,7 +1616,7 @@ export const sessions: Session[] = [
         term: 'POI Reconstruction',
         korean: '방문 장소 재구성',
         description:
-          '기지국 trajectory처럼 거친 위치 신호에서 실제 방문했을 가능성이 높은 point of interest를 추정하는 과정이다.',
+          '기지국 trajectory처럼 거친 위치 신호에서 실제 방문했을 가능성이 높은 point of interest를 추정하는 과정이다. 앞뒤 이동 맥락, 생활 반복성, 장소 대중성 같은 보조 신호가 필요하다.',
         takeaway:
           '기지국 수준 위치를 건물 또는 장소 단위로 세밀화하는 문제로 볼 수 있다.',
       },
@@ -1608,14 +1632,14 @@ export const sessions: Session[] = [
     visualNotes: [
       {
         title: '감염병 대응 데이터 사이언스의 세 문제',
-        src: '/session-visuals/session-07-disease-response-flow.svg',
+        src: '/session-visuals/session-06-infectious-disease-response-flow.svg',
         alt: '검역, 지역경제 피해 예측, 역학조사라는 세 감염병 대응 문제와 각 예측 단위를 설명하는 도식',
         caption:
           '검역, 지역경제 피해 예측, 역학조사를 각각 다른 데이터 사이언스 문제로 나눠 정리했습니다.',
       },
       {
         title: 'POI Reconstruction과 감염 위험 추정',
-        src: '/session-visuals/session-07-contact-tracing-flow.svg',
+        src: '/session-visuals/session-06-contact-tracing-flow.svg',
         alt: '기지국 궤적에서 efficiency, periodicity, popularity view를 이용해 POI 방문 확률과 감염 위험 지수로 이어지는 흐름을 설명하는 도식',
         caption:
           '기지국 기반 trajectory를 POI 방문 가능성과 risk index로 바꾸는 흐름을 복습용으로 정리했습니다.',
@@ -1624,7 +1648,7 @@ export const sessions: Session[] = [
     intuitions: [
       {
         title: '현행: 감염병 대응은 자원 배분 문제다',
-        body: '검역 인력, 재난지원금, 역학조사 자원은 항상 제한되어 있다. Data science는 어디에 먼저 집중할지 판단할 근거를 제공한다.',
+        body: '검역 인력, 재난지원금, 역학조사 자원은 항상 제한되어 있다. Data science는 무엇을 X로 보고 무엇을 Y로 예측할지 정의한 뒤, 어디에 먼저 집중할지 판단할 근거를 제공한다.',
       },
       {
         title: '알아둬야 할 지식: 감염 위험은 시공간 신호다',
@@ -1638,12 +1662,12 @@ export const sessions: Session[] = [
     modelNotes: [
       {
         title: '검역: Imported Case Prediction',
-        body: '해외 유입 확진자 예측은 국가별 infection risk와 목적지로 들어오는 inbound flow를 함께 보는 문제다. 어느 한쪽만으로는 실제 유입 위험을 충분히 설명하기 어렵다.',
+        body: '해외 유입 확진자 예측은 국가별 infection risk와 목적지로 들어오는 inbound flow를 함께 보는 문제다. 출발 국가의 감염 상황, 유입 흐름, 출발지-도착지 환경을 X로 두고, 질병관리 통계에서 확인되는 해외 유입 확진자 수를 Y로 둔다.',
         highlight: 'Imported Risk ~= Infection Risk x Inbound Flow',
       },
       {
         title: 'Hi-COVIDNet 구성',
-        body: 'Hi-COVIDNet은 country-level representation과 continent-level representation을 구성한다. Transformer는 감염 위험이 높은 기간에 주목하고, LSTM은 감염 추세의 시간적 흐름을 포착한다.',
+        body: 'Hi-COVIDNet은 country-level representation과 continent-level representation을 구성한다. Transformer는 감염 위험이 높은 기간에 주목하고, LSTM은 직전 2주처럼 시간에 따른 감염 추세의 흐름을 포착한다.',
         table: {
           headers: ['구성', '역할'],
           rows: [
@@ -1657,7 +1681,7 @@ export const sessions: Session[] = [
       },
       {
         title: '지역경제 피해 예측',
-        body: 'COVID-EENet은 district-business pair 단위로 매출 변화 추세를 예측한다. 경제 활동 데이터와 집단감염 데이터를 결합하고, economy, geography, epidemic view를 나눠 feature를 만든다.',
+        body: 'COVID-EENet은 district-business pair 단위로 매출 변화 추세를 예측한다. 개인 거래 내역이 아니라 지역, 업종, 성별, 연령대, 시간 단위의 집계 카드 통계를 사용하고, 2020년 매출과 2019년 같은 시점의 차이를 예측 대상으로 볼 수 있다.',
         table: {
           headers: ['View', '담는 정보'],
           rows: [
@@ -1668,8 +1692,20 @@ export const sessions: Session[] = [
         },
       },
       {
+        title: '역학조사의 privacy trade-off',
+        body: '정밀 GPS, 카드 사용 내역, 인터뷰 기록을 모두 결합하면 방문 장소를 더 정확히 파악할 수 있지만 개인 생활이 과도하게 노출될 수 있다. 기지국 trajectory 같은 더 거친 데이터로 필요한 추정을 수행하려는 이유가 여기에 있다.',
+        table: {
+          headers: ['데이터 수준', '장점', '주의점'],
+          rows: [
+            ['정밀 GPS / 카드 기록', '방문 장소 추정 정확도가 높다', '사생활 노출 위험이 크다'],
+            ['Cellular trajectory', '개인 세부 행적 노출을 줄일 수 있다', '건물 단위 추정이 어렵다'],
+            ['집계 통계', '정책 판단에 활용하기 쉽다', '개별 접촉 판단에는 부족하다'],
+          ],
+        },
+      },
+      {
         title: '역학조사: POI Reconstruction',
-        body: '기지국 trajectory는 위치 해상도가 거칠다. Pincette는 efficiency, periodicity, popularity view를 결합해 실제 방문했을 가능성이 높은 POI를 추정한다.',
+        body: '기지국 trajectory는 위치 해상도가 거칠다. Pincette는 앞뒤 이동 맥락과 지도 정보를 바탕으로 efficiency, periodicity, popularity view를 결합해 실제 방문했을 가능성이 높은 POI를 추정한다. 학습에는 동의 기반 GPS 패널처럼 정답 위치를 확인할 수 있는 ground truth가 필요하다.',
         table: {
           headers: ['View', '직관'],
           rows: [
@@ -1681,7 +1717,7 @@ export const sessions: Session[] = [
       },
       {
         title: '사전 학습 체크포인트',
-        body: '7차시를 이해하려면 spatio-temporal data, Transformer/LSTM, feature engineering, POI reconstruction, privacy-preserving data science를 먼저 연결해 두는 것이 좋다.',
+        body: '6-2차시를 이해하려면 spatio-temporal data, Transformer/LSTM, feature engineering, POI reconstruction, privacy-preserving data science를 먼저 연결해 두는 것이 좋다.',
         table: {
           headers: ['개념', '연결되는 질문'],
           rows: [
@@ -1694,12 +1730,13 @@ export const sessions: Session[] = [
         },
       },
     ],
-    quizIds: ['s07-q1', 's07-q2', 's07-q3', 's07-q4', 's07-q5'],
+    quizIds: ['s06-2-q1', 's06-2-q2', 's06-2-q3', 's06-2-q4', 's06-2-q5'],
     reflectionQuestions: [
       'Imported Case Prediction에서 Infection Risk와 Inbound Flow를 함께 봐야 하는 이유는 무엇인가?',
+      '감염병 대응 예측 문제에서 X와 Y를 먼저 정의해야 하는 이유는 무엇인가?',
       'Hi-COVIDNet에서 Transformer와 LSTM은 각각 어떤 역할을 맡는가?',
       'COVID-EENet이 지역과 업종을 묶은 district-business pair 단위로 예측하는 이유는 무엇인가?',
-      'Economy-view, Geography-view, Epidemic-view feature는 각각 어떤 정보를 담는가?',
+      '카드 소비 데이터를 개인 거래 내역이 아니라 집계 통계로 다루는 이유는 무엇인가?',
       '기지국 기반 trajectory에서 POI Reconstruction을 할 때 efficiency, periodicity, popularity view가 필요한 이유는 무엇인가?',
       '감염병 대응 데이터 사이언스에서 프라이버시 설계가 모델 성능만큼 중요한 이유는 무엇인가?',
     ],
@@ -1715,7 +1752,21 @@ export const sessions: Session[] = [
 export const getSessionById = (id: string | undefined) =>
   sessions.find((session) => session.id === id);
 
-export const publishedSessions = sessions.filter(
+export const getSessionSlotId = (session: Session) =>
+  session.slotId ?? session.id;
+
+export const getSessionLabel = (session: Session) =>
+  session.partLabel ?? `${session.order}차시`;
+
+export const orderedSessions = [...sessions].sort((left, right) => {
+  if (left.order !== right.order) {
+    return left.order - right.order;
+  }
+
+  return left.id.localeCompare(right.id, 'ko', { numeric: true });
+});
+
+export const publishedSessions = orderedSessions.filter(
   (session) => session.status === 'published',
 );
 
@@ -1725,16 +1776,27 @@ export type SessionSlot = {
   label: string;
   status: SessionStatus | 'deferred' | 'empty';
   session?: Session;
+  sessions: Session[];
 };
 
 const deferredSessionIds = new Set(['05']);
+const sessionsBySlotId = orderedSessions.reduce((map, session) => {
+  const slotId = getSessionSlotId(session);
+  const slotSessions = map.get(slotId) ?? [];
+
+  slotSessions.push(session);
+  map.set(slotId, slotSessions);
+
+  return map;
+}, new Map<string, Session[]>());
 
 export const sessionSlots: SessionSlot[] = Array.from(
   { length: totalSessionCount },
   (_, index) => {
     const order = index + 1;
     const id = String(order).padStart(2, '0');
-    const session = getSessionById(id);
+    const slotSessions = sessionsBySlotId.get(id) ?? [];
+    const session = slotSessions[0];
 
     return {
       id,
@@ -1742,6 +1804,7 @@ export const sessionSlots: SessionSlot[] = Array.from(
       label: `${order}차시`,
       status: session?.status ?? (deferredSessionIds.has(id) ? 'deferred' : 'empty'),
       session,
+      sessions: slotSessions,
     };
   },
 );

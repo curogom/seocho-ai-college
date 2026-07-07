@@ -16,8 +16,8 @@
 | 02 | Large Language Models | Published |
 | 03 | Graph Machine Learning | Published |
 | 04 | Knowledge Graph Embedding | Published |
-| 06 | Mobility Big Data Analysis | Published |
-| 07 | Data Science for Infectious Disease Response | Published |
+| 06-1 | Mobility Big Data Analysis | Published |
+| 06-2 | Data Science for Infectious Disease Response | Published |
 
 ## Core Features
 

@@ -290,7 +290,7 @@ export const quizzes: Quiz[] = [
   },
   {
     id: 's06-q1',
-    sessionId: '06',
+    sessionId: '06-1',
     question: 'Mobility Big Data의 설명으로 가장 적절한 것은?',
     choices: [
       '시간에 따른 위치와 이동 맥락이 함께 쌓이는 trajectory data다.',
@@ -304,7 +304,7 @@ export const quizzes: Quiz[] = [
   },
   {
     id: 's06-q2',
-    sessionId: '06',
+    sessionId: '06-1',
     question: '교통카드 데이터에서 Location Inference가 필요한 이유는?',
     choices: [
       '승하차 시점 사이의 모든 위치가 직접 관측되는 것은 아니기 때문에',
@@ -314,11 +314,11 @@ export const quizzes: Quiz[] = [
     ],
     answerIndex: 0,
     explanation:
-      '승차와 하차 event는 관측되지만 그 사이 시간대의 위치는 추정 규칙과 전처리로 보완해야 한다.',
+      '승차와 하차 event는 관측되지만 그 사이 시간대의 위치는 직접 관측되지 않는다. 앞뒤 기록으로 추정하되 근거가 약한 구간은 unknown으로 남길 수 있다.',
   },
   {
     id: 's06-q3',
-    sessionId: '06',
+    sessionId: '06-1',
     question: 'Revisit Prediction에 사용할 수 있는 실내 동선 feature가 아닌 것은?',
     choices: [
       '구역별 체류 시간 비율',
@@ -328,11 +328,11 @@ export const quizzes: Quiz[] = [
     ],
     answerIndex: 3,
     explanation:
-      '재방문 예측에서는 체류 시간, 구역별 비율, 방문 시간, 유사 동선 같은 행동 feature가 중요하다.',
+      '재방문 예측에서는 직원이나 통로 통과자 같은 noise를 제거한 뒤 체류 시간, 구역별 비율, 방문 시간, 유사 동선 같은 행동 feature를 사용한다.',
   },
   {
     id: 's06-q4',
-    sessionId: '06',
+    sessionId: '06-1',
     question: 'Spatial Stream Processing의 핵심 특징은?',
     choices: [
       '빠르게 들어오는 위치 stream에서 규칙에 맞는 event를 탐지한다.',
@@ -346,7 +346,7 @@ export const quizzes: Quiz[] = [
   },
   {
     id: 's06-q5',
-    sessionId: '06',
+    sessionId: '06-1',
     question: '모빌리티 위험 예측에서 Data Governance가 중요한 이유는?',
     choices: [
       '이동경로가 개인 생활 패턴이나 민감 운영 정보를 드러낼 수 있기 때문에',
@@ -359,8 +359,8 @@ export const quizzes: Quiz[] = [
       '이동경로 데이터는 개인, 차량, 시설, 안보 맥락을 노출할 수 있어 익명화, 접근 권한, 목적 제한이 필요하다.',
   },
   {
-    id: 's07-q1',
-    sessionId: '07',
+    id: 's06-2-q1',
+    sessionId: '06-2',
     question: 'Imported Case Prediction에서 Infection Risk와 Inbound Flow를 함께 보는 이유는?',
     choices: [
       '감염 위험과 실제 유입량이 함께 imported case 규모를 좌우하기 때문에',
@@ -370,11 +370,11 @@ export const quizzes: Quiz[] = [
     ],
     answerIndex: 0,
     explanation:
-      '감염 위험이 높아도 유입량이 적으면 실제 유입 확진자는 작을 수 있고, 반대로 유입량이 많으면 위험이 커질 수 있다.',
+      '출발 국가의 감염 위험과 국내 유입량을 X로 함께 봐야 질병관리 통계의 imported case 수라는 Y를 더 잘 예측할 수 있다.',
   },
   {
-    id: 's07-q2',
-    sessionId: '07',
+    id: 's06-2-q2',
+    sessionId: '06-2',
     question: 'Hi-COVIDNet에서 Transformer와 LSTM 역할 설명으로 적절한 것은?',
     choices: [
       'Transformer는 위험 시점에 주목하고, LSTM은 시간적 추세를 반영한다.',
@@ -387,8 +387,8 @@ export const quizzes: Quiz[] = [
       '강의 자료 기준으로 Transformer는 감염 위험이 높은 기간을 강조하고, LSTM은 감염 추세의 temporal pattern을 포착하는 역할로 설명된다.',
   },
   {
-    id: 's07-q3',
-    sessionId: '07',
+    id: 's06-2-q3',
+    sessionId: '06-2',
     question: 'Fine-Grained EEM이 필요한 이유는?',
     choices: [
       '지역과 업종별 피해가 다르게 나타날 수 있기 때문에',
@@ -398,11 +398,11 @@ export const quizzes: Quiz[] = [
     ],
     answerIndex: 0,
     explanation:
-      '소득이나 실업률 같은 coarse-grained 지표만으로는 지역-업종 단위의 세밀한 경제 피해 차이를 보기 어렵다.',
+      '소득이나 실업률 같은 coarse-grained 지표만으로는 지역-업종 단위의 세밀한 경제 피해 차이를 보기 어렵고, 집계 카드 데이터 같은 fine-grained 신호가 필요하다.',
   },
   {
-    id: 's07-q4',
-    sessionId: '07',
+    id: 's06-2-q4',
+    sessionId: '06-2',
     question: 'Pincette의 세 가지 view로 맞는 조합은?',
     choices: [
       'Efficiency, Periodicity, Popularity',
@@ -415,8 +415,8 @@ export const quizzes: Quiz[] = [
       'Pincette는 이동 경로 효율성, 생활 패턴의 주기성, 장소의 대중성을 함께 보고 POI 방문 가능성을 추정한다.',
   },
   {
-    id: 's07-q5',
-    sessionId: '07',
+    id: 's06-2-q5',
+    sessionId: '06-2',
     question: '감염병 대응 데이터 사이언스에서 Privacy-Preserving 설계가 중요한 이유는?',
     choices: [
       '건강, 위치, 소비, 이동 이력처럼 민감한 데이터가 함께 쓰일 수 있기 때문에',
@@ -426,7 +426,7 @@ export const quizzes: Quiz[] = [
     ],
     answerIndex: 0,
     explanation:
-      '감염병 대응 데이터는 공익 목적이 있더라도 개인의 건강과 위치, 소비 이력에 닿을 수 있어 최소 수집과 목적 제한이 중요하다.',
+      '감염병 대응 데이터는 공익 목적이 있더라도 개인의 건강, 위치, 소비 이력에 닿을 수 있다. 정확도와 프라이버시 사이의 trade-off를 줄이는 설계가 필요하다.',
   },
 ];
 
