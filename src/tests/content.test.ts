@@ -213,6 +213,31 @@ describe('learning content', () => {
     }
   });
 
+  it('keeps session 08 RAG terms in the glossary', () => {
+    const terms = new Set(glossary.map((entry) => entry.term));
+
+    for (const term of [
+      'Vector Database',
+      'Similarity Search',
+      'Approximate Nearest Neighbor Search',
+      'Retrieval-Augmented Generation',
+      'Chunking',
+      'Indexing',
+      'Retriever',
+      'Reranking',
+      'Query Rewriting',
+      'HyDE',
+      'Adaptive RAG',
+      'Corrective RAG',
+      'Self-RAG',
+      'Active Retrieval',
+      'DeepRAG',
+      'QuDAR',
+    ]) {
+      expect(terms.has(term)).toBe(true);
+    }
+  });
+
   it('keeps model core elements in the glossary', () => {
     const terms = new Set(glossary.map((entry) => entry.term));
 
@@ -586,5 +611,32 @@ describe('learning content', () => {
     expect(sessionNote).not.toContain('resourcePath');
     expect(sessionNote).not.toContain('.pdf');
     expect(JSON.stringify(session)).not.toContain('jy.bak');
+  });
+
+  it('adds session 08 RAG as a pre-study note with crawl content', () => {
+    const session = getSessionById('08');
+    const sessionNote = readFileSync(
+      'content/sessions/08-rag-llm-optimization.md',
+      'utf8',
+    );
+
+    expect(session?.status).toBe('planned');
+    expect(session?.title).toBe('Retrieval-Augmented Generation for LLMs');
+    expect(session?.instructor?.name).toBe('이재길');
+    expect(session?.coreFlow).toContain('Vector Database');
+    expect(session?.coreFlow).toContain('RAG');
+    expect(session?.coreFlow).toContain('Reranking');
+    expect(session?.coreFlow).toContain('Adaptive RAG');
+    expect(session?.visualNotes).toHaveLength(2);
+    expect(session?.preview?.assignments).toHaveLength(2);
+    expect(sessionNote).toContain('Retrieval-Augmented Generation');
+    expect(sessionNote).toContain('Approximate Nearest Neighbor Search');
+    expect(sessionNote).toContain('Naive RAG');
+    expect(sessionNote).toContain('Advanced RAG');
+    expect(sessionNote).toContain('Modular RAG');
+    expect(sessionNote).toContain('Adaptive RAG');
+    expect(sessionNote).toContain('QuDAR');
+    expect(sessionNote).not.toContain('resourcePath');
+    expect(sessionNote).not.toContain('.pdf');
   });
 });

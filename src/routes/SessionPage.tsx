@@ -141,11 +141,21 @@ export function SessionPage() {
             {session.instructor && <InstructorCard instructor={session.instructor} />}
           </div>
 
+          {session.visualNotes.length ? (
+            <Section
+              eyebrow="Visual Preview"
+              title="예습 도식"
+              description="수업 전에 RAG의 기본 파이프라인과 검색 최적화 지점을 한눈에 연결합니다."
+            >
+              <SessionVisuals visuals={session.visualNotes} />
+            </Section>
+          ) : null}
+
           {session.preview?.assignments?.length ? (
             <Section
               eyebrow="Pre-study"
               title="예습 노트"
-              description="수업 전에 관계 데이터를 그래프로 바라보는 감각을 먼저 잡습니다."
+              description="수업 전에 핵심 흐름과 개념을 먼저 잡습니다."
             >
               <div className="grid gap-4">
                 {session.preview.assignments.map((assignment) => (

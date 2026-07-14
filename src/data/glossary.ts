@@ -1659,4 +1659,148 @@ export const glossary: GlossaryEntry[] = [
       'Policy가 생성하는 분포 변화에 맞춰 reward도 함께 갱신되어 평가 신호의 신뢰성을 유지하는 과정.',
     sessionIds: ['07'],
   },
+  {
+    term: 'Vector Database',
+    korean: '벡터 데이터베이스',
+    category: '아키텍처',
+    aliases: ['vector database', 'vector store'],
+    description:
+      'Embedding vector와 원문, metadata를 저장하고 similarity search를 수행하는 데이터 저장소.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Similarity Search',
+    korean: '유사도 검색',
+    category: '기법',
+    aliases: ['similarity search', 'semantic search'],
+    description:
+      'Query와 문서를 vector로 표현한 뒤, 거리나 유사도 점수가 가까운 항목을 찾는 검색 방식.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Approximate Nearest Neighbor Search',
+    korean: '근사 최근접 이웃 검색',
+    category: '기법',
+    aliases: ['ANN', 'approximate nearest neighbor search'],
+    description:
+      '대규모 vector 집합에서 속도와 정확도를 절충해 가까운 후보를 빠르게 찾는 검색 방식.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Retrieval-Augmented Generation',
+    korean: '검색 증강 생성',
+    category: '아키텍처',
+    aliases: ['RAG', 'retrieval augmented generation'],
+    description:
+      '질문과 관련된 외부 문서를 검색해 LLM prompt에 함께 넣고, 근거 기반 답변을 생성하는 접근.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Chunking',
+    korean: '문서 분할',
+    category: '기법',
+    aliases: ['chunking', 'text splitting'],
+    description:
+      '긴 문서를 검색과 context window에 맞는 작은 단위로 나누는 과정.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Indexing',
+    korean: '색인 구축',
+    category: '학습 과정',
+    aliases: ['indexing', 'document indexing'],
+    description:
+      '문서를 chunk로 나누고 embedding과 metadata를 검색 가능한 저장소에 준비하는 오프라인 단계.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Retriever',
+    korean: '검색기',
+    category: '모델',
+    aliases: ['retriever'],
+    description:
+      '질문에 대해 검색 저장소에서 관련 문서나 chunk 후보를 가져오는 구성 요소.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Reranking',
+    korean: '재순위화',
+    category: '기법',
+    aliases: ['reranking', 'reranker'],
+    description:
+      '초기 검색 후보를 query-document 관련성으로 다시 점수화해 최종 context의 순서와 수를 정하는 단계.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Query Rewriting',
+    korean: '질의 재작성',
+    category: '기법',
+    aliases: ['query rewriting', 'query expansion'],
+    description:
+      '사용자 질문을 검색에 더 적합한 표현으로 바꾸거나 확장하는 pre-retrieval 최적화.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'HyDE',
+    korean: '가상 문서 기반 질의 확장',
+    category: '기법',
+    aliases: ['Hypothetical Document Embeddings', 'HyDE'],
+    description:
+      '질문에 대한 가상 답변 문서를 만든 뒤 그 문서의 embedding을 retrieval query로 사용하는 방법.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Adaptive RAG',
+    korean: '적응형 RAG',
+    category: '아키텍처',
+    aliases: ['adaptive RAG', 'adaptive retrieval'],
+    description:
+      '질문의 복잡도나 검색 신호에 따라 no, single, iterative retrieval 전략을 선택하는 RAG 접근.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Corrective RAG',
+    korean: '교정형 RAG',
+    category: '아키텍처',
+    aliases: ['CRAG', 'corrective RAG'],
+    description:
+      '검색 결과의 관련성이나 신뢰도를 평가하고, 부족할 때 보완 또는 재검색하는 RAG 접근.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Self-RAG',
+    korean: '자기 성찰 RAG',
+    category: '아키텍처',
+    aliases: ['self-RAG', 'self critique RAG'],
+    description:
+      'Retrieval 필요성, 근거의 유용성, 생성 답변을 모델이 스스로 비판하는 신호를 활용하는 RAG 접근.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Active Retrieval',
+    korean: '능동 검색',
+    category: '기법',
+    aliases: ['active retrieval'],
+    description:
+      '생성 도중 불확실성이나 다음 문장의 정보 필요성에 따라 추가 검색을 수행하는 방식.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'DeepRAG',
+    korean: '추론 결합 RAG',
+    category: '아키텍처',
+    aliases: ['deep RAG', 'DeepRAG'],
+    description:
+      '복잡한 질문을 하위 질문으로 나누고, 각 단계에서 내부 지식과 외부 검색의 사용을 선택하도록 학습하는 RAG 접근.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'QuDAR',
+    korean: '질의별 이중 관점 적응 검색',
+    category: '기법',
+    aliases: ['query-wise dual-perspective adaptive retrieval', 'QuDAR'],
+    description:
+      '질의별로 sparse/dense retrieval과 원본/확장 query 신호를 결합해 검색 전략을 조절하는 접근.',
+    sessionIds: ['08'],
+  },
 ];

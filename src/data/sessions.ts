@@ -2086,6 +2086,345 @@ export const sessions: Session[] = [
       'AI agent가 복잡한 task를 수행할수록 final answer만 채점하기보다 reasoning step, tool use, reward feedback을 함께 봐야 한다.',
     ],
   },
+  {
+    id: '08',
+    order: 8,
+    title: 'Retrieval-Augmented Generation for LLMs',
+    koreanTitle: '검색 증강 생성 기반 LLM 최적화',
+    subtitle:
+      'Vector Database, Retrieval-Augmented Generation, Reranking, Adaptive Retrieval',
+    status: 'planned',
+    instructor: leeInstructor,
+    summary:
+      '8차시는 Vector Database와 RAG의 기본 구조를 바탕으로, 검색 품질과 검색 필요 여부를 함께 최적화하는 Advanced RAG, Modular RAG, Adaptive RAG의 흐름을 예고한다.',
+    summaryLines: [
+      'RAG는 LLM의 파라미터에만 의존하지 않고, 질문에 맞는 외부 문서를 검색해 prompt에 넣는 방식이다.',
+      'Vector Database는 문서와 질문을 embedding으로 표현하고, similarity search로 관련 후보를 빠르게 찾는 기반이다.',
+      '최근 RAG는 단순 top-k 검색을 넘어 query rewriting, reranking, active retrieval, self-critique로 검색 자체를 조절한다.',
+    ],
+    coreFlow: [
+      'Vector Database',
+      'Embedding',
+      'Similarity Search',
+      'Approximate Nearest Neighbor Search',
+      'RAG',
+      'Chunking',
+      'Indexing',
+      'Retriever',
+      'Top-k Context',
+      'Generation',
+      'Naive RAG',
+      'Advanced RAG',
+      'Query Rewriting',
+      'HyDE',
+      'Reranking',
+      'Modular RAG',
+      'Active Retrieval',
+      'DeepRAG',
+      'Corrective RAG',
+      'Adaptive RAG',
+      'Self-RAG',
+      'QuDAR',
+    ],
+    coreFlowGroups: [
+      {
+        label: '검색 기반',
+        layout: 'pipeline',
+        items: [
+          'Vector Database',
+          'Embedding',
+          'Similarity Search',
+          'Approximate Nearest Neighbor Search',
+        ],
+      },
+      {
+        label: '기본 RAG 파이프라인',
+        layout: 'pipeline',
+        items: ['RAG', 'Chunking', 'Indexing', 'Retriever', 'Top-k Context', 'Generation'],
+      },
+      {
+        label: '검색 품질 최적화',
+        layout: 'branch',
+        items: [
+          'Naive RAG',
+          'Advanced RAG',
+          'Query Rewriting',
+          'HyDE',
+          'Reranking',
+        ],
+      },
+      {
+        label: '적응형 RAG',
+        layout: 'branch',
+        items: [
+          'Modular RAG',
+          'Active Retrieval',
+          'DeepRAG',
+          'Corrective RAG',
+          'Adaptive RAG',
+          'Self-RAG',
+          'QuDAR',
+        ],
+      },
+    ],
+    conceptCards: [
+      {
+        term: 'Vector Database',
+        korean: '벡터 데이터베이스',
+        description:
+          '문서, 이미지 등 객체의 embedding vector와 원문, metadata를 함께 저장하고 유사한 항목을 빠르게 찾는 데이터 저장소다.',
+        takeaway:
+          'RAG에서는 원문을 직접 검색하기 전에 문서와 질문을 같은 vector space에 놓는다.',
+      },
+      {
+        term: 'Embedding',
+        korean: '임베딩',
+        description:
+          '텍스트나 이미지의 의미적 특징을 여러 숫자로 표현한 vector다. 의미가 비슷한 항목은 vector space에서 가깝도록 학습한다.',
+        takeaway:
+          '검색 품질은 embedding model이 질문과 문서의 관련성을 얼마나 잘 보존하는지에 크게 좌우된다.',
+      },
+      {
+        term: 'Approximate Nearest Neighbor Search',
+        korean: '근사 최근접 이웃 검색',
+        description:
+          '대규모 vector 집합에서 정확한 전체 비교 대신 속도와 정확도를 절충해 가까운 후보를 빠르게 찾는 검색 방식이다.',
+        takeaway:
+          'RAG 검색은 보통 완전 탐색보다 ANN index를 사용해 latency를 관리한다.',
+      },
+      {
+        term: 'Retrieval-Augmented Generation',
+        korean: '검색 증강 생성',
+        description:
+          '질문에 맞는 외부 문서를 검색하고, 그 문맥과 질문을 함께 LLM에 넣어 답변을 생성하는 접근이다.',
+        takeaway:
+          'RAG의 핵심은 모델의 지식을 교체하는 것이 아니라, 답변 시점에 필요한 근거를 제공하는 것이다.',
+      },
+      {
+        term: 'Chunking',
+        korean: '문서 분할',
+        description:
+          '긴 문서를 검색과 context window에 맞는 작은 단위로 나누는 과정이다. 너무 작거나 큰 chunk 모두 검색 품질을 해칠 수 있다.',
+        takeaway:
+          'chunk 크기와 overlap은 retrieval recall, 문맥 완결성, token 비용 사이의 설계 변수다.',
+      },
+      {
+        term: 'Reranking',
+        korean: '재순위화',
+        description:
+          '초기 검색 후보를 query-document 관련성으로 다시 점수화해, LLM에 넣을 문서의 순서와 수를 정하는 단계다.',
+        takeaway:
+          '많이 찾는 것보다 정말 관련 있는 근거를 앞쪽 context에 놓는 것이 답변 품질에 중요하다.',
+      },
+      {
+        term: 'Query Rewriting',
+        korean: '질의 재작성',
+        description:
+          '사용자 질문을 검색에 더 적합한 표현으로 바꾸거나 확장하는 pre-retrieval 최적화다.',
+        takeaway:
+          'HyDE처럼 가상의 답변 문서를 만들어 검색 query로 쓰는 방식도 이 범주에 포함된다.',
+      },
+      {
+        term: 'Adaptive RAG',
+        korean: '적응형 RAG',
+        description:
+          '질문의 복잡도나 검색 신호에 따라 검색을 하지 않거나, 한 번만 하거나, 반복 검색하는 전략을 선택하는 접근이다.',
+        takeaway:
+          '모든 질문에 같은 개수의 문서를 붙이는 것은 비용과 오류를 함께 늘릴 수 있다.',
+      },
+      {
+        term: 'Corrective RAG',
+        korean: '교정형 RAG',
+        description:
+          '검색 결과의 신뢰도나 관련성을 평가해, 결과를 보완하거나 다른 검색 경로를 선택하는 RAG 접근이다.',
+        takeaway:
+          'retrieval 결과도 검증 대상이며, 관련 없는 문맥은 답변을 오히려 방해할 수 있다.',
+      },
+      {
+        term: 'Self-RAG',
+        korean: '자기 성찰 RAG',
+        description:
+          '모델이 retrieval 필요성, 근거의 유용성, 생성 답변을 스스로 비판하는 신호를 학습에 포함하는 접근이다.',
+        takeaway:
+          '검색, 생성, 비판을 분리된 고정 단계가 아니라 조절 가능한 판단 과정으로 본다.',
+      },
+      {
+        term: 'DeepRAG',
+        korean: '추론 결합 RAG',
+        description:
+          '복잡한 질문을 하위 질문으로 나누고 각 단계에서 외부 검색과 모델의 내부 지식을 선택하도록 학습하는 접근이다.',
+        takeaway:
+          '복잡한 질문에서는 한 번의 검색보다 reasoning 단계마다 필요한 근거를 찾는 구조가 필요할 수 있다.',
+      },
+      {
+        term: 'QuDAR',
+        korean: '질의별 이중 관점 적응 검색',
+        description:
+          '질의별로 keyword-based retrieval과 dense retrieval, 원본/확장 query의 신호를 결합해 검색 전략을 조절하는 접근이다.',
+        takeaway:
+          '하나의 retrieval 방식이 모든 질문에 최적이라는 가정을 피하는 최근의 적응형 검색 사례다.',
+      },
+    ],
+    visualNotes: [
+      {
+        title: 'RAG의 기본 파이프라인',
+        src: '/session-visuals/session-08-rag-pipeline.svg',
+        alt: '문서를 chunk로 분할하고 embedding과 vector database를 거쳐 관련 문맥을 검색해 LLM 답변을 생성하는 RAG 흐름 도식',
+        caption:
+          '문서 준비 단계의 indexing과 질의 시점의 retrieval, generation을 분리해 정리했습니다.',
+      },
+      {
+        title: '검색 품질을 조절하는 Advanced RAG',
+        src: '/session-visuals/session-08-adaptive-rag.svg',
+        alt: '질의 재작성, dense와 sparse 검색, reranking, retrieval 필요성 판단으로 이어지는 적응형 RAG 도식',
+        caption:
+          '검색 결과를 무조건 붙이지 않고, 질의와 근거 품질에 따라 검색 경로를 조절하는 흐름을 정리했습니다.',
+      },
+    ],
+    intuitions: [
+      {
+        title: '현행: RAG는 모델 지식을 최신 문서와 연결하는 응답 구조다',
+        body: 'LLM은 학습 이후 바뀐 정보나 비공개 문서를 자동으로 알지 못한다. RAG는 질문과 관련된 외부 근거를 답변 시점에 찾아 prompt에 제공해 이 한계를 보완한다.',
+      },
+      {
+        title: '알아둘 점: 검색 품질이 곧 답변 품질은 아니다',
+        body: '유사한 문서를 찾았더라도 문서가 질문에 실제로 답하는지, context의 앞뒤 배치가 적절한지, 서로 충돌하지 않는지를 별도로 점검해야 한다. reranking과 context 구성은 그 간극을 줄이는 단계다.',
+      },
+      {
+        title: '사전 학습: 검색을 선택하는 모델로 확장된다',
+        body: '복잡한 질문은 여러 번의 검색과 하위 질문 분해가 필요할 수 있고, 간단한 질문은 검색 없이도 해결할 수 있다. 최근 RAG 연구는 retrieval을 고정 단계가 아니라 필요에 따라 선택하는 정책으로 다룬다.',
+      },
+    ],
+    modelNotes: [
+      {
+        title: 'Vector Database와 similarity search',
+        body: '문서와 질문은 embedding model을 통해 vector로 바뀐다. query vector와 문서 vector의 거리를 cosine similarity, inner product, L2 distance 같은 metric으로 비교해 가까운 후보를 찾는다.',
+        table: {
+          headers: ['구성', '역할'],
+          rows: [
+            ['Document / Metadata', '검색할 원문과 출처, 권한, 날짜 같은 부가 정보'],
+            ['Embedding', '의미적 유사도 계산에 쓰는 vector 표현'],
+            ['ANN Index', '대규모 vector에서 후보를 빠르게 찾는 자료 구조'],
+            ['Similarity Metric', 'query와 문서가 얼마나 가까운지 계산하는 기준'],
+          ],
+        },
+      },
+      {
+        title: 'Naive RAG의 세 단계',
+        body: '기본 RAG는 indexing, retrieval, generation의 세 단계로 볼 수 있다. indexing은 문서를 chunk로 나누고 vector database에 저장하는 오프라인 단계다. run time에는 질문과 가까운 top-k chunk를 찾고, 질문과 함께 LLM prompt에 넣어 답변을 생성한다.',
+        table: {
+          headers: ['단계', '핵심 질문'],
+          rows: [
+            ['Indexing', '어떤 문서를 어떤 chunk와 embedding으로 저장할 것인가?'],
+            ['Retrieval', '이 질문에 가장 관련 있는 근거는 무엇인가?'],
+            ['Generation', '검색된 근거를 바탕으로 어떻게 답할 것인가?'],
+          ],
+        },
+      },
+      {
+        title: 'Advanced RAG와 Modular RAG',
+        body: 'Advanced RAG는 pre-retrieval의 query rewriting과 post-retrieval의 reranking, summary, fusion을 추가해 기본 체인을 보완한다. Modular RAG는 retrieve, rewrite, read, rerank, memory, routing 같은 기능을 상황에 맞게 조합하고 반복할 수 있게 확장한다.',
+        table: {
+          headers: ['구분', '핵심 변화'],
+          rows: [
+            ['Naive RAG', 'indexing, retrieval, generation을 순차적으로 실행'],
+            ['Advanced RAG', '질의와 검색 결과를 전후 단계에서 보정'],
+            ['Modular RAG', 'routing, memory, rewrite 등 모듈을 조합하고 반복 가능'],
+          ],
+        },
+      },
+      {
+        title: '왜 adaptive retrieval이 필요한가',
+        body: '긴 답변은 생성 중에도 추가 근거가 필요할 수 있고, 복잡한 질문은 하위 질문 분해와 reasoning을 요구한다. 반대로 관련 없는 문서를 고정 개수만큼 넣으면 모델이 가진 지식까지 방해할 수 있다. 그래서 Active RAG, DeepRAG, Corrective RAG, Adaptive RAG, Self-RAG는 언제 무엇을 검색할지 판단하는 방향으로 확장된다.',
+        table: {
+          headers: ['접근', '검색을 조절하는 방식'],
+          rows: [
+            ['Active Retrieval', '생성 중 불확실한 token이나 다음 문장에 따라 추가 검색'],
+            ['DeepRAG', '하위 질문마다 내부 지식 사용과 외부 검색을 선택'],
+            ['Corrective RAG', '검색 결과의 신뢰도에 따라 보완 또는 재검색'],
+            ['Adaptive RAG', '질문 복잡도에 따라 no/single/iterative retrieval 선택'],
+            ['Self-RAG', 'retrieval 필요성, 근거, 답변을 self-critique로 점검'],
+          ],
+        },
+      },
+    ],
+    quizIds: [],
+    reflectionQuestions: [
+      'RAG가 fine-tuning과 다른 점은 무엇이며, 각각 어떤 문제에 더 적합한가?',
+      '문서를 지나치게 크게 또는 작게 chunking하면 어떤 문제가 생길 수 있는가?',
+      '초기 vector search 뒤에 reranking이 필요한 이유는 무엇인가?',
+      '긴 문맥에 관련 문서를 많이 넣는 것이 항상 유리하지 않은 이유는 무엇인가?',
+      'Adaptive RAG가 no retrieval, single retrieval, iterative retrieval을 나누는 기준은 무엇일 수 있는가?',
+      '사내 문서 RAG를 만든다면 metadata filter, access control, 출처 표기를 어느 단계에 넣어야 하는가?',
+    ],
+    projectConnections: [
+      '사내 규정, 제품 문서, 회의록처럼 자주 바뀌는 정보를 답변에 반영할 때 RAG는 모델 재학습 비용을 줄이는 선택지가 될 수 있다.',
+      '검색 결과에는 문서 권한과 최신성 metadata를 함께 두어, 관련성뿐 아니라 접근 가능 여부와 유효 시점을 필터링해야 한다.',
+      'RAG 평가에서는 답변의 자연스러움만 보지 말고 retrieval recall, 근거의 관련성, citation 정확성, 응답 latency를 나누어 확인해야 한다.',
+    ],
+    preview: {
+      label: '8차시 예습',
+      heading: '검색과 생성을 분리해 이해하기',
+      summary:
+        '이번 차시는 LLM이 외부 지식을 어떻게 검색해 답변에 활용하는지 다룹니다. 먼저 vector database와 embedding search를 이해하고, 그 위에 indexing, retrieval, generation으로 구성된 RAG 파이프라인을 올려 보세요. 이후에는 query rewriting, reranking, adaptive retrieval이 왜 필요한지 연결하면 됩니다.',
+      keyPoints: [
+        '문서와 질문은 embedding으로 바뀌고, vector database는 관련 문서 후보를 similarity search로 찾는다.',
+        'RAG는 indexing, retrieval, generation을 분리하며, 답변 시점에 외부 근거를 prompt로 제공한다.',
+        '최근 RAG는 검색을 항상 수행하지 않고, 질의와 근거 품질에 따라 rewrite, rerank, retrieve, critique를 조절한다.',
+      ],
+      questions: [
+        'LLM이 답할 수 있는 질문인데도 RAG가 필요한 상황은 언제인가?',
+        'vector search의 top-k 결과와 최종 context가 같지 않을 수 있는 이유는 무엇인가?',
+        '모든 질문에 같은 retrieval 전략을 적용하면 어떤 문제가 생길 수 있는가?',
+      ],
+      assignments: [
+        {
+          title: 'RAG 파이프라인을 세 단계로 설명하기',
+          goal: '핵심 흐름',
+          body:
+            'RAG를 indexing, retrieval, generation으로 나누고 각 단계가 무엇을 입력받아 무엇을 넘기는지 한 문장씩 정리해 보세요.',
+          prompts: [
+            'Indexing: 문서는 어떤 단위로 나뉘고 무엇으로 저장되는가?',
+            'Retrieval: 질문은 어떤 표현으로 바뀌며 무엇을 찾는가?',
+            'Generation: LLM은 질문 외에 어떤 근거를 함께 받는가?',
+          ],
+          example: [
+            'Indexing은 문서를 검색 가능한 chunk로 나누고 embedding과 metadata를 vector store에 저장하는 단계다.',
+            'Retrieval은 질문을 embedding으로 바꾼 뒤, 의미적으로 가까운 top-k chunk를 찾는 단계다.',
+            'Generation은 질문과 검색된 근거를 함께 prompt에 넣어 LLM이 근거 기반 답변을 생성하는 단계다.',
+          ],
+        },
+        {
+          title: '검색 결과를 그대로 쓰면 안 되는 이유 찾기',
+          goal: '품질 판단',
+          body:
+            '질문과 비슷해 보이는 문서가 실제 답변에 도움이 되는지는 별도 문제입니다. reranking과 adaptive retrieval이 해결하려는 실패 사례를 생각해 보세요.',
+          prompts: [
+            '관련 없는 chunk가 많이 들어가면 답변은 어떻게 흔들릴 수 있는가?',
+            '긴 문맥에서 중요한 근거가 중간에 놓이면 어떤 문제가 생길 수 있는가?',
+            '검색 없이 모델의 내부 지식으로 답하는 편이 더 나은 질문은 무엇인가?',
+          ],
+          example: [
+            '초기 vector search는 의미적으로 유사하지만 질문의 핵심 조건을 놓친 문서를 섞을 수 있으므로, reranking으로 최종 context를 다시 정렬한다.',
+            '모든 질문에 고정된 top-k를 넣으면 불필요한 문맥과 token 비용이 늘고, 관련 없는 근거가 모델의 판단을 방해할 수 있다.',
+          ],
+        },
+      ],
+      focusQuestions: [
+        'ANN search가 정확한 전체 비교 대신 속도와 정확도를 절충하는 이유는 무엇인가?',
+        'HyDE의 가상 문서가 원래 query보다 retrieval에 유리할 수 있는 상황은 무엇인가?',
+        'Cross-encoder reranker와 bi-encoder retrieval은 계산 비용과 정확도에서 어떻게 다를까?',
+        'DeepRAG는 retrieval을 reasoning 과정에 어떻게 결합하는가?',
+        'Corrective RAG와 Self-RAG는 retrieval 결과의 어떤 실패를 줄이려 하는가?',
+        'QuDAR가 keyword-based/dense retrieval과 original/expanded query 신호를 함께 쓰는 이유는 무엇인가?',
+      ],
+      excludedTopics: [
+        '특정 vector database 제품의 운영 설정',
+        'embedding model fine-tuning 구현',
+        'RAG evaluation benchmark의 세부 수식',
+      ],
+    },
+  },
 ];
 
 export const getSessionById = (id: string | undefined) =>

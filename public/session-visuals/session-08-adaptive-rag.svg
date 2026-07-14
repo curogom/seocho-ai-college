@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Advanced and adaptive RAG flow</title>
+  <desc id="desc">A query is optionally rewritten, retrieved from sparse and dense indexes, reranked, and routed to no retrieval, single retrieval, or iterative retrieval depending on evidence quality and complexity.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a6573b" /></marker>
+    <style>
+      .bg{fill:#f8faf7}.card{fill:#fff;stroke:#d7ded2;stroke-width:2}.soft{fill:#eef3ec;stroke:#d7ded2;stroke-width:2}.ink{fill:#172026;font-family:Arial,Helvetica,sans-serif}.muted{fill:#5f676d;font-family:Arial,Helvetica,sans-serif}.rust{fill:#a6573b;font-family:Arial,Helvetica,sans-serif}.moss{fill:#3f6f5c;font-family:Arial,Helvetica,sans-serif}.line{stroke:#a6573b;stroke-width:3;fill:none;marker-end:url(#arrow)}.mossline{stroke:#3f6f5c;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="675"/>
+  <text x="70" y="72" class="rust" font-size="23" font-weight="700">ADVANCED RAG</text>
+  <text x="70" y="116" class="ink" font-size="34" font-weight="800">검색 결과와 검색 필요 여부를 함께 조절합니다</text>
+  <text x="70" y="151" class="muted" font-size="19">고정된 top-k 대신 질의 복잡도와 근거 품질에 따라 retrieval policy를 선택합니다.</text>
+
+  <rect x="70" y="220" width="180" height="104" rx="8" class="card"/>
+  <text x="102" y="264" class="ink" font-size="21" font-weight="800">User Query</text>
+  <text x="102" y="294" class="muted" font-size="15">intent + constraints</text>
+  <path d="M250 272H300" class="line"/>
+  <rect x="320" y="220" width="200" height="104" rx="8" class="soft"/>
+  <text x="350" y="264" class="ink" font-size="20" font-weight="800">Query Rewriting</text>
+  <text x="350" y="294" class="muted" font-size="15">rewrite / HyDE</text>
+  <path d="M520 272H570" class="line"/>
+  <rect x="590" y="200" width="235" height="144" rx="8" class="card"/>
+  <text x="624" y="244" class="ink" font-size="20" font-weight="800">Candidate Retrieval</text>
+  <text x="624" y="278" class="moss" font-size="16" font-weight="700">Sparse index</text>
+  <text x="624" y="306" class="moss" font-size="16" font-weight="700">Dense index</text>
+  <path d="M825 272H875" class="line"/>
+  <rect x="895" y="220" width="220" height="104" rx="8" class="soft"/>
+  <text x="936" y="264" class="ink" font-size="21" font-weight="800">Reranking</text>
+  <text x="936" y="294" class="muted" font-size="15">relevance + ordering</text>
+
+  <path d="M1005 324V389" class="mossline"/>
+  <rect x="815" y="408" width="380" height="100" rx="8" class="card"/>
+  <text x="850" y="450" class="ink" font-size="20" font-weight="800">Retrieval policy decision</text>
+  <text x="850" y="480" class="muted" font-size="16">complexity, confidence, evidence quality</text>
+
+  <path d="M900 508V550H260V573" class="mossline"/>
+  <path d="M1005 508V550V573" class="mossline"/>
+  <path d="M1110 508V550H950V573" class="mossline"/>
+  <rect x="115" y="590" width="290" height="58" rx="8" class="soft"/>
+  <text x="154" y="626" class="ink" font-size="18" font-weight="800">No retrieval</text>
+  <text x="286" y="626" class="muted" font-size="15">internal knowledge</text>
+  <rect x="465" y="590" width="290" height="58" rx="8" class="soft"/>
+  <text x="505" y="626" class="ink" font-size="18" font-weight="800">Single retrieval</text>
+  <text x="661" y="626" class="muted" font-size="15">grounded answer</text>
+  <rect x="815" y="590" width="290" height="58" rx="8" class="soft"/>
+  <text x="850" y="626" class="ink" font-size="18" font-weight="800">Iterative retrieval</text>
+  <text x="1033" y="626" class="muted" font-size="15">active / corrective</text>
+</svg>
