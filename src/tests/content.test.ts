@@ -644,6 +644,32 @@ describe('learning content', () => {
     );
     expect(session?.coreFlow).toContain('Hybrid Retrieval');
     expect(session?.visualNotes).toHaveLength(2);
+    expect(session?.resources).toEqual([
+      {
+        title: 'Chroma 기반 Embedding Retrieval 실습 (Google Colab)',
+        description:
+          'SciQ 과학 문제의 support 문서를 Chroma collection에 적재하고, 질문과 의미적으로 가까운 근거를 찾는 embedding retrieval 실습입니다. RAG에서 generation 이전의 retrieval 단계를 코드로 확인할 수 있습니다.',
+        href: 'https://colab.research.google.com/drive/1DU-dg8vs6cuYNoLbD8qnLO_GY-wc6tVu?usp=sharing',
+        learningSteps: [
+          {
+            title: '적재와 검색의 기본 흐름',
+            body: 'dataset의 support 문서 100개를 ids와 metadata로 collection.add()에 넣고, question을 query_texts로 전달해 가장 가까운 support를 찾습니다.',
+          },
+          {
+            title: 'Embedding 모델과 거리 함수 비교',
+            body: '강의 노트의 기본 all-MiniLM-L6-v2와 all-MiniLM-L12-v2를 비교해 보고, 새 collection에는 cosine 거리 기반 HNSW 공간을 지정해 결과와 distances가 어떻게 달라지는지 확인합니다.',
+          },
+          {
+            title: '검색 품질을 점검하는 방법',
+            body: 'n_results를 1에서 2 이상으로 늘려 정답 support가 포함되는지, distances가 낮아도 실제 질문에 답하는 근거인지 직접 비교합니다.',
+          },
+          {
+            title: '내 문서 RAG로 확장하기',
+            body: 'SciQ support 대신 문서 chunk를 넣고 metadata에 출처, 문서 버전, 권한 정보를 기록합니다. 운영 환경에서는 기본 ephemeral client 대신 영속 저장소와 문서 갱신 절차를 함께 설계합니다.',
+          },
+        ],
+      },
+    ]);
     expect(session?.intuitions.length).toBeGreaterThan(0);
     expect(session?.modelNotes.length).toBeGreaterThanOrEqual(6);
     expect(session?.quizIds).toHaveLength(5);
@@ -659,6 +685,8 @@ describe('learning content', () => {
     expect(sessionNote).toContain('ColBERT');
     expect(sessionNote).toContain('Self-Knowledge Guided Retrieval Augmentation');
     expect(sessionNote).toContain('HNSW');
+    expect(sessionNote).toContain('Chroma 기반 Embedding Retrieval 실습 (Google Colab)');
+    expect(sessionNote).toContain('실습에서 확인할 코드 흐름');
     expect(sessionNote).not.toContain('resourcePath');
     expect(sessionNote).not.toContain('.pdf');
   });

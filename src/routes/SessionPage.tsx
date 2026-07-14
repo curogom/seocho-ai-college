@@ -394,6 +394,50 @@ export function SessionPage() {
           </div>
         </Section>
 
+        {session.resources?.length ? (
+          <Section
+            eyebrow="Hands-on"
+            title="실습 참고"
+            description="강의에서 소개된 예제를 직접 실행하며 indexing과 retrieval 흐름을 확인합니다."
+          >
+            <div className="grid gap-4">
+              {session.resources.map((resource) => (
+                <article
+                  key={resource.href}
+                  className="rounded-md border border-line bg-white p-5"
+                >
+                  <p className="text-lg font-semibold text-ink">{resource.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-ink/70">
+                    {resource.description}
+                  </p>
+                  {resource.learningSteps?.length ? (
+                    <ol className="mt-5 grid gap-3 border-t border-line pt-4 sm:grid-cols-2">
+                      {resource.learningSteps.map((step, index) => (
+                        <li key={step.title} className="min-w-0">
+                          <p className="text-sm font-semibold text-ink">
+                            {index + 1}. {step.title}
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-ink/70">
+                            {step.body}
+                          </p>
+                        </li>
+                      ))}
+                    </ol>
+                  ) : null}
+                  <a
+                    className="mt-5 inline-flex text-sm font-semibold text-rust transition hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss focus-visible:ring-offset-2"
+                    href={resource.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Google Colab에서 열기
+                  </a>
+                </article>
+              ))}
+            </div>
+          </Section>
+        ) : null}
+
         <Section
           eyebrow="Project"
           title="개인 프로젝트 연결 메모"

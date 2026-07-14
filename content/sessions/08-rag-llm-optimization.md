@@ -80,6 +80,19 @@ QuDAR는 강의에서 소개된 질의별 hybrid retrieval 사례다. 원본 que
 | Self-RAG | retrieval 필요성, 근거, 답변을 self-critique로 점검 |
 | QuDAR | query form과 retriever 조합을 질의별로 hybridize |
 
+## 실습 참고
+
+- Chroma 기반 Embedding Retrieval 실습 (Google Colab): https://colab.research.google.com/drive/1DU-dg8vs6cuYNoLbD8qnLO_GY-wc6tVu?usp=sharing
+
+SciQ 과학 문제의 support 문서를 Chroma collection에 적재하고, 질문과 의미적으로 가까운 근거를 찾는 embedding retrieval 실습이다. RAG에서 generation 이전의 retrieval 단계를 코드로 확인할 수 있다.
+
+### 실습에서 확인할 코드 흐름
+
+1. dataset의 support 문서 100개를 ids와 metadata로 collection.add()에 넣고, question을 query_texts로 전달해 가장 가까운 support를 찾는다.
+2. 강의 노트의 기본 all-MiniLM-L6-v2와 all-MiniLM-L12-v2를 비교해 보고, 새 collection에는 cosine 거리 기반 HNSW 공간을 지정해 결과와 distances가 어떻게 달라지는지 확인한다.
+3. n_results를 1에서 2 이상으로 늘려 정답 support가 포함되는지, distances가 낮아도 실제 질문에 답하는 근거인지 직접 비교한다.
+4. SciQ support 대신 문서 chunk를 넣고 metadata에 출처, 문서 버전, 권한 정보를 기록한다. 운영 환경에서는 기본 ephemeral client 대신 영속 저장소와 문서 갱신 절차를 함께 설계한다.
+
 ## Reflection
 
 - Vector Database가 exact nearest neighbor search 대신 ANN index를 쓰는 이유는 무엇인가?
