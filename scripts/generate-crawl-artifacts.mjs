@@ -24,7 +24,7 @@ const routeDefinitions = [
 
 Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data Science, Infectious Disease Data Science, AGI/ASI Value Alignment까지 이어지는 흐름을 누적해서 복습합니다.
 
-현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding, 6-1차시 Mobility Big Data Analysis, 6-2차시 Data Science for Infectious Disease Response, 7차시 AGI/ASI Value Alignment and Superalignment입니다. 8차시는 Retrieval-Augmented Generation for LLMs 예습 노트로 공개되어 있습니다.`,
+현재 공개된 차시는 1차시 From Machine Learning to Deep Learning, 2차시 Large Language Models, 3차시 Graph Machine Learning, 4차시 Knowledge Graph Embedding, 6-1차시 Mobility Big Data Analysis, 6-2차시 Data Science for Infectious Disease Response, 7차시 AGI/ASI Value Alignment and Superalignment, 8차시 Retrieval-Augmented Generation for LLMs입니다.`,
   },
   {
     path: '/sessions',
@@ -43,7 +43,7 @@ Machine Learning에서 Deep Learning, LLM, Graph Machine Learning, Mobility Data
 - 6-1차시: Mobility Big Data Analysis
 - 6-2차시: Data Science for Infectious Disease Response
 - 7차시: AGI/ASI Value Alignment and Superalignment
-- 8차시: Retrieval-Augmented Generation for LLMs (예습 노트)
+- 8차시: Retrieval-Augmented Generation for LLMs
 
 새 차시는 같은 학습 구조에 맞춰 세션 데이터, 퀴즈, 용어, 시각 노트를 추가하는 방식으로 확장합니다.`,
   },

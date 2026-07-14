@@ -1800,7 +1800,110 @@ export const glossary: GlossaryEntry[] = [
     category: '기법',
     aliases: ['query-wise dual-perspective adaptive retrieval', 'QuDAR'],
     description:
-      '질의별로 sparse/dense retrieval과 원본/확장 query 신호를 결합해 검색 전략을 조절하는 접근.',
+      '원본/확장 query와 keyword-based/dense retrieval 신호를 질의별로 결합해 검색 전략을 조절하는 접근.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Query',
+    korean: '질의',
+    category: '핵심 요소',
+    aliases: ['query'],
+    description:
+      '사용자가 검색이나 답변을 요청하며 입력하는 질문. RAG에서는 document와 같은 embedding space로 변환된다.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Cosine Similarity',
+    korean: '코사인 유사도',
+    category: '함수',
+    aliases: ['cosine similarity'],
+    description:
+      '두 vector의 크기보다 방향이 얼마나 비슷한지 계산하는 유사도 metric. 값이 클수록 방향이 유사하다.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Product Quantization',
+    korean: '곱 양자화',
+    category: '기법',
+    aliases: ['PQ', 'product quantization'],
+    description:
+      '고차원 vector를 여러 부분으로 나누어 압축 표현함으로써 ANN index의 memory와 비교 비용을 줄이는 기법.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Locality-Sensitive Hashing',
+    korean: '지역성 민감 해싱',
+    category: '기법',
+    aliases: ['LSH', 'locality-sensitive hashing'],
+    description:
+      '가까운 vector가 같은 hash bucket에 들어갈 가능성을 높여 검색 범위를 줄이는 ANN 기법.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'HNSW',
+    korean: '계층적 항해 가능 소규모 세계 그래프',
+    category: '기법',
+    aliases: ['Hierarchical Navigable Small World'],
+    description:
+      '가까운 vector를 다층 graph로 연결하고 이웃을 따라 탐색해 빠른 ANN search를 수행하는 index 구조.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Bi-Encoder',
+    korean: '이중 인코더',
+    category: '모델',
+    aliases: ['bi-encoder'],
+    description:
+      'Query와 document를 각각 encoding해 vector similarity로 빠르게 후보를 검색하는 retriever 구조.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Cross-Encoder',
+    korean: '교차 인코더',
+    category: '모델',
+    aliases: ['cross-encoder'],
+    description:
+      'Query-document 쌍을 함께 Transformer에 넣어 더 정밀한 관련성 점수를 계산하는 reranker 구조.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'ColBERT',
+    korean: '지연 상호작용 검색',
+    category: '모델',
+    aliases: ['colbert', 'late interaction'],
+    description:
+      'Document representation을 미리 계산하고 query와의 token-level late interaction으로 효율과 정밀도를 절충하는 retrieval 모델.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Lost in the Middle',
+    korean: '중간 문맥 망각',
+    category: '개념',
+    aliases: ['lost in the middle'],
+    description:
+      '긴 LLM context에서 입력 중간의 관련 정보가 시작이나 끝의 정보보다 덜 활용될 수 있는 현상.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Self-Knowledge Guided Retrieval Augmentation',
+    korean: '자기 지식 기반 검색 제어',
+    category: '기법',
+    aliases: [
+      'self-knowledge guided retrieval augmentation',
+      'self-knowledge guided retrieval',
+      'self knowledge',
+    ],
+    description:
+      '외부 검색 결과가 실제로 답변에 도움이 되는지 모델의 자기 지식을 활용해 판단하고 retrieval을 조절하는 접근.',
+    sessionIds: ['08'],
+  },
+  {
+    term: 'Hybrid Retrieval',
+    korean: '하이브리드 검색',
+    category: '기법',
+    aliases: ['hybrid retrieval', 'keyword-based retrieval'],
+    description:
+      '정확한 용어 일치에 강한 keyword-based retrieval과 의미적 유사성에 강한 dense retrieval을 결합하는 방식.',
     sessionIds: ['08'],
   },
 ];

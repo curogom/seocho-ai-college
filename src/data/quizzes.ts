@@ -498,6 +498,76 @@ export const quizzes: Quiz[] = [
     explanation:
       'UniPRO는 policy head와 reward head가 함께 적응하도록 alternating update를 사용해 hard task로 supervision을 확장하려는 접근이다.',
   },
+  {
+    id: 's08-q1',
+    sessionId: '08',
+    question: 'Vector Database가 Approximate Nearest Neighbor Search를 사용하는 주된 이유는?',
+    choices: [
+      '고차원 vector 전체를 매번 정확히 비교하는 비용을 줄이기 위해',
+      '모든 document를 삭제하기 위해',
+      'LLM이 embedding을 사용하지 않게 만들기 위해',
+      'query 없이 답변을 생성하기 위해',
+    ],
+    answerIndex: 0,
+    explanation:
+      'ANN search는 PQ, LSH, HNSW 같은 index로 후보 탐색 범위를 줄여 retrieval latency와 정확도를 절충한다.',
+  },
+  {
+    id: 's08-q2',
+    sessionId: '08',
+    question: 'Naive RAG의 기본 흐름으로 가장 적절한 것은?',
+    choices: [
+      'Indexing -> Retrieval -> Generation',
+      'Generation -> Indexing -> Retrieval',
+      'Reranking -> Model training -> Indexing',
+      'Fine-tuning -> Image classification -> Retrieval',
+    ],
+    answerIndex: 0,
+    explanation:
+      'Indexing에서 문서를 chunk와 embedding으로 준비하고, retrieval에서 관련 근거를 찾은 뒤, generation에서 질문과 근거를 함께 LLM에 입력한다.',
+  },
+  {
+    id: 's08-q3',
+    sessionId: '08',
+    question: '초기 bi-encoder retrieval 뒤에 Cross-encoder reranking을 추가하는 이유는?',
+    choices: [
+      '빠른 후보 검색 뒤에 query-document 쌍의 관련성을 더 정밀하게 평가하기 위해',
+      'document embedding을 모두 삭제하기 위해',
+      '검색 없이 모델 parameter만 바꾸기 위해',
+      'context 길이를 무한대로 만들기 위해',
+    ],
+    answerIndex: 0,
+    explanation:
+      'Bi-encoder는 빠르게 후보를 가져오고, Cross-encoder는 제한된 후보에 대해 더 비싼 full Transformer inference로 관련성을 정밀하게 다시 평가한다.',
+  },
+  {
+    id: 's08-q4',
+    sessionId: '08',
+    question: 'Adaptive RAG의 설명으로 가장 적절한 것은?',
+    choices: [
+      '질문 복잡도에 따라 no retrieval, single retrieval, iterative retrieval을 선택한다.',
+      '모든 질문에 항상 같은 top-k 문서를 넣는다.',
+      '검색 결과의 관련성을 평가하지 않는다.',
+      'LLM이 외부 문서를 절대 사용하지 못하게 한다.',
+    ],
+    answerIndex: 0,
+    explanation:
+      '단순한 질문은 검색이 불필요할 수 있고, 복잡한 질문은 여러 단계의 검색과 reasoning이 필요할 수 있으므로 retrieval 전략을 동적으로 선택한다.',
+  },
+  {
+    id: 's08-q5',
+    sessionId: '08',
+    question: 'QuDAR가 다루는 핵심 문제는 무엇인가?',
+    choices: [
+      '질의별로 원본/확장 query와 keyword-based/dense retrieval을 어떻게 결합할지 선택하는 문제',
+      'LLM의 vocabulary를 줄이는 문제',
+      '이미지의 RGB 값을 압축하는 문제',
+      'RAG에서 metadata를 제거하는 문제',
+    ],
+    answerIndex: 0,
+    explanation:
+      'QuDAR는 하나의 query form이나 retriever가 모든 질문에 최적이라는 가정을 피하고, 네 가지 retrieval 신호를 질의별로 hybridize한다.',
+  },
 ];
 
 export const getQuizzesBySessionId = (sessionId: string) =>

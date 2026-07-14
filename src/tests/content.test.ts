@@ -233,6 +233,17 @@ describe('learning content', () => {
       'Active Retrieval',
       'DeepRAG',
       'QuDAR',
+      'Query',
+      'Cosine Similarity',
+      'Product Quantization',
+      'Locality-Sensitive Hashing',
+      'HNSW',
+      'Bi-Encoder',
+      'Cross-Encoder',
+      'ColBERT',
+      'Lost in the Middle',
+      'Self-Knowledge Guided Retrieval Augmentation',
+      'Hybrid Retrieval',
     ]) {
       expect(terms.has(term)).toBe(true);
     }
@@ -613,22 +624,30 @@ describe('learning content', () => {
     expect(JSON.stringify(session)).not.toContain('jy.bak');
   });
 
-  it('adds session 08 RAG as a pre-study note with crawl content', () => {
+  it('publishes session 08 RAG learning content from the lecture', () => {
     const session = getSessionById('08');
     const sessionNote = readFileSync(
       'content/sessions/08-rag-llm-optimization.md',
       'utf8',
     );
 
-    expect(session?.status).toBe('planned');
+    expect(session?.status).toBe('published');
     expect(session?.title).toBe('Retrieval-Augmented Generation for LLMs');
     expect(session?.instructor?.name).toBe('이재길');
     expect(session?.coreFlow).toContain('Vector Database');
     expect(session?.coreFlow).toContain('RAG');
     expect(session?.coreFlow).toContain('Reranking');
     expect(session?.coreFlow).toContain('Adaptive RAG');
+    expect(session?.coreFlow).toContain('Cross-Encoder');
+    expect(session?.coreFlow).toContain(
+      'Self-Knowledge Guided Retrieval Augmentation',
+    );
+    expect(session?.coreFlow).toContain('Hybrid Retrieval');
     expect(session?.visualNotes).toHaveLength(2);
-    expect(session?.preview?.assignments).toHaveLength(2);
+    expect(session?.intuitions.length).toBeGreaterThan(0);
+    expect(session?.modelNotes.length).toBeGreaterThanOrEqual(6);
+    expect(session?.quizIds).toHaveLength(5);
+    expect(session?.preview).toBeUndefined();
     expect(sessionNote).toContain('Retrieval-Augmented Generation');
     expect(sessionNote).toContain('Approximate Nearest Neighbor Search');
     expect(sessionNote).toContain('Naive RAG');
@@ -636,6 +655,10 @@ describe('learning content', () => {
     expect(sessionNote).toContain('Modular RAG');
     expect(sessionNote).toContain('Adaptive RAG');
     expect(sessionNote).toContain('QuDAR');
+    expect(sessionNote).toContain('Cross-encoder');
+    expect(sessionNote).toContain('ColBERT');
+    expect(sessionNote).toContain('Self-Knowledge Guided Retrieval Augmentation');
+    expect(sessionNote).toContain('HNSW');
     expect(sessionNote).not.toContain('resourcePath');
     expect(sessionNote).not.toContain('.pdf');
   });

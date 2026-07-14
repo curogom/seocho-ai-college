@@ -2093,20 +2093,23 @@ export const sessions: Session[] = [
     koreanTitle: '검색 증강 생성 기반 LLM 최적화',
     subtitle:
       'Vector Database, Retrieval-Augmented Generation, Reranking, Adaptive Retrieval',
-    status: 'planned',
+    status: 'published',
     instructor: leeInstructor,
     summary:
-      '8차시는 Vector Database와 RAG의 기본 구조를 바탕으로, 검색 품질과 검색 필요 여부를 함께 최적화하는 Advanced RAG, Modular RAG, Adaptive RAG의 흐름을 예고한다.',
+      '8차시는 Vector Database에서 RAG의 기본 파이프라인을 거쳐, 검색 전략과 근거 품질을 동적으로 제어하는 Advanced RAG 연구 흐름까지 다룬다.',
     summaryLines: [
-      'RAG는 LLM의 파라미터에만 의존하지 않고, 질문에 맞는 외부 문서를 검색해 prompt에 넣는 방식이다.',
-      'Vector Database는 문서와 질문을 embedding으로 표현하고, similarity search로 관련 후보를 빠르게 찾는 기반이다.',
-      '최근 RAG는 단순 top-k 검색을 넘어 query rewriting, reranking, active retrieval, self-critique로 검색 자체를 조절한다.',
+      'Vector Database는 content와 query를 같은 embedding space에 놓고, ANN index로 관련 후보를 빠르게 찾는 RAG의 검색 기반이다.',
+      'RAG는 indexing, retrieval, generation으로 구성되며, chunking, metadata, reranking이 최종 답변에 들어갈 근거의 품질을 좌우한다.',
+      '최근 RAG는 query rewriting, hybrid retrieval, active retrieval, self-critique를 통해 언제 무엇을 검색할지 동적으로 선택하는 방향으로 확장된다.',
     ],
     coreFlow: [
       'Vector Database',
       'Embedding',
+      'Query',
       'Similarity Search',
+      'Cosine Similarity',
       'Approximate Nearest Neighbor Search',
+      'PQ / LSH / HNSW',
       'RAG',
       'Chunking',
       'Indexing',
@@ -2118,12 +2121,16 @@ export const sessions: Session[] = [
       'Query Rewriting',
       'HyDE',
       'Reranking',
+      'Cross-Encoder',
+      'ColBERT',
       'Modular RAG',
       'Active Retrieval',
       'DeepRAG',
       'Corrective RAG',
       'Adaptive RAG',
       'Self-RAG',
+      'Self-Knowledge Guided Retrieval Augmentation',
+      'Hybrid Retrieval',
       'QuDAR',
     ],
     coreFlowGroups: [
@@ -2133,8 +2140,11 @@ export const sessions: Session[] = [
         items: [
           'Vector Database',
           'Embedding',
+          'Query',
           'Similarity Search',
+          'Cosine Similarity',
           'Approximate Nearest Neighbor Search',
+          'PQ / LSH / HNSW',
         ],
       },
       {
@@ -2151,6 +2161,8 @@ export const sessions: Session[] = [
           'Query Rewriting',
           'HyDE',
           'Reranking',
+          'Cross-Encoder',
+          'ColBERT',
         ],
       },
       {
@@ -2163,6 +2175,8 @@ export const sessions: Session[] = [
           'Corrective RAG',
           'Adaptive RAG',
           'Self-RAG',
+          'Self-Knowledge Guided Retrieval Augmentation',
+          'Hybrid Retrieval',
           'QuDAR',
         ],
       },
@@ -2185,12 +2199,28 @@ export const sessions: Session[] = [
           '검색 품질은 embedding model이 질문과 문서의 관련성을 얼마나 잘 보존하는지에 크게 좌우된다.',
       },
       {
+        term: 'Query',
+        korean: '질의',
+        description:
+          '사용자가 검색이나 답변을 요청하며 입력하는 질문이다. 녹취에서 발음에 따라 퀴리로 전사된 부분은 표준 표기인 query로 정리한다.',
+        takeaway:
+          '문서와 query는 같은 embedding model로 변환해야 의미적 거리를 비교할 수 있다.',
+      },
+      {
         term: 'Approximate Nearest Neighbor Search',
         korean: '근사 최근접 이웃 검색',
         description:
           '대규모 vector 집합에서 정확한 전체 비교 대신 속도와 정확도를 절충해 가까운 후보를 빠르게 찾는 검색 방식이다.',
         takeaway:
           'RAG 검색은 보통 완전 탐색보다 ANN index를 사용해 latency를 관리한다.',
+      },
+      {
+        term: 'PQ / LSH / HNSW',
+        korean: '벡터 색인 전략',
+        description:
+          'Product Quantization, Locality-Sensitive Hashing, HNSW는 고차원 vector에서 가까운 후보를 빠르게 찾기 위해 검색 범위를 줄이거나 vector를 압축하는 대표 전략이다.',
+        takeaway:
+          '벡터 DB는 정확도뿐 아니라 retrieval latency와 memory cost까지 함께 관리한다.',
       },
       {
         term: 'Retrieval-Augmented Generation',
@@ -2215,6 +2245,14 @@ export const sessions: Session[] = [
           '초기 검색 후보를 query-document 관련성으로 다시 점수화해, LLM에 넣을 문서의 순서와 수를 정하는 단계다.',
         takeaway:
           '많이 찾는 것보다 정말 관련 있는 근거를 앞쪽 context에 놓는 것이 답변 품질에 중요하다.',
+      },
+      {
+        term: 'Cross-Encoder / ColBERT',
+        korean: '정밀 재순위화 모델',
+        description:
+          'Cross-encoder는 query와 문서를 함께 Transformer에 넣어 정밀한 관련성 점수를 계산한다. ColBERT는 문서 표현을 미리 계산하고 late interaction을 사용해 정확도와 비용을 절충한다.',
+        takeaway:
+          '빠른 bi-encoder retrieval 뒤에 더 비싼 reranker를 제한된 후보에만 적용하는 2단계 구조가 흔하다.',
       },
       {
         term: 'Query Rewriting',
@@ -2249,6 +2287,14 @@ export const sessions: Session[] = [
           '검색, 생성, 비판을 분리된 고정 단계가 아니라 조절 가능한 판단 과정으로 본다.',
       },
       {
+        term: 'Self-Knowledge Guided Retrieval Augmentation',
+        korean: '자기 지식 기반 검색 제어',
+        description:
+          '외부 문맥을 넣었을 때 실제로 도움이 되는지 판단해, 관련 있지만 유용하지 않은 문서가 답변을 방해하는 상황을 줄이려는 접근이다.',
+        takeaway:
+          '검색 결과의 관련성과 답변에 대한 실제 유용성은 서로 다른 평가 대상이다.',
+      },
+      {
         term: 'DeepRAG',
         korean: '추론 결합 RAG',
         description:
@@ -2260,7 +2306,7 @@ export const sessions: Session[] = [
         term: 'QuDAR',
         korean: '질의별 이중 관점 적응 검색',
         description:
-          '질의별로 keyword-based retrieval과 dense retrieval, 원본/확장 query의 신호를 결합해 검색 전략을 조절하는 접근이다.',
+          '강의에서 소개된 QuDAR는 keyword-based/dense retrieval과 원본/확장 query의 네 가지 신호를 질의별로 결합해 검색 전략을 조절한다.',
         takeaway:
           '하나의 retrieval 방식이 모든 질문에 최적이라는 가정을 피하는 최근의 적응형 검색 사례다.',
       },
@@ -2283,15 +2329,15 @@ export const sessions: Session[] = [
     ],
     intuitions: [
       {
-        title: '현행: RAG는 모델 지식을 최신 문서와 연결하는 응답 구조다',
+        title: 'RAG는 LLM을 대체하는 것이 아니라 답변 근거를 보완한다',
         body: 'LLM은 학습 이후 바뀐 정보나 비공개 문서를 자동으로 알지 못한다. RAG는 질문과 관련된 외부 근거를 답변 시점에 찾아 prompt에 제공해 이 한계를 보완한다.',
       },
       {
-        title: '알아둘 점: 검색 품질이 곧 답변 품질은 아니다',
+        title: '검색 결과의 관련성과 답변 근거의 유용성은 다르다',
         body: '유사한 문서를 찾았더라도 문서가 질문에 실제로 답하는지, context의 앞뒤 배치가 적절한지, 서로 충돌하지 않는지를 별도로 점검해야 한다. reranking과 context 구성은 그 간극을 줄이는 단계다.',
       },
       {
-        title: '사전 학습: 검색을 선택하는 모델로 확장된다',
+        title: '검색은 고정된 단계가 아니라 선택 정책이 된다',
         body: '복잡한 질문은 여러 번의 검색과 하위 질문 분해가 필요할 수 있고, 간단한 질문은 검색 없이도 해결할 수 있다. 최근 RAG 연구는 retrieval을 고정 단계가 아니라 필요에 따라 선택하는 정책으로 다룬다.',
       },
     ],
@@ -2306,6 +2352,19 @@ export const sessions: Session[] = [
             ['Embedding', '의미적 유사도 계산에 쓰는 vector 표현'],
             ['ANN Index', '대규모 vector에서 후보를 빠르게 찾는 자료 구조'],
             ['Similarity Metric', 'query와 문서가 얼마나 가까운지 계산하는 기준'],
+          ],
+        },
+      },
+      {
+        title: 'ANN index와 유사도 계산',
+        body: '고차원 vector에서 모든 후보와 거리를 비교하면 비용이 커진다. 강의에서는 PQ, LSH, HNSW처럼 근사 검색을 빠르게 만드는 index를 소개했다. cosine similarity는 vector의 방향이 비슷한지를 보는 대표 metric이고, inner product와 L2 distance도 저장소와 모델에 따라 사용된다.',
+        table: {
+          headers: ['기법', '검색을 빠르게 만드는 직관'],
+          rows: [
+            ['Product Quantization', 'vector를 압축해 memory와 비교 비용을 줄임'],
+            ['Locality-Sensitive Hashing', '가까운 vector가 같은 bucket에 들어갈 가능성을 높여 탐색 범위를 줄임'],
+            ['HNSW', '가까운 vector를 graph edge로 연결해 이웃을 따라 탐색'],
+            ['Cosine Similarity', 'vector의 크기보다 방향의 유사도를 기준으로 비교'],
           ],
         },
       },
@@ -2334,6 +2393,18 @@ export const sessions: Session[] = [
         },
       },
       {
+        title: 'Reranking과 긴 문맥 문제',
+        body: '초기 retrieval은 넓은 후보를 빠르게 가져오는 역할이고, reranking은 query와 문서의 실제 관련성을 다시 계산해 최종 context를 정한다. 강의에서는 긴 context의 시작과 끝 정보가 더 잘 활용되는 Lost in the Middle 현상도 함께 다루었다.',
+        table: {
+          headers: ['방식', '특징', '절충점'],
+          rows: [
+            ['Bi-encoder retrieval', 'query와 문서를 각각 embedding해 빠르게 후보 검색', '정밀한 상호작용은 제한적'],
+            ['Cross-encoder', 'query-document 쌍을 함께 입력해 관련성 점수 계산', '정확도는 높지만 후보마다 inference 비용 발생'],
+            ['ColBERT', '문서 표현을 미리 계산하고 late interaction으로 비교', '속도와 정밀도 사이의 중간 지점'],
+          ],
+        },
+      },
+      {
         title: '왜 adaptive retrieval이 필요한가',
         body: '긴 답변은 생성 중에도 추가 근거가 필요할 수 있고, 복잡한 질문은 하위 질문 분해와 reasoning을 요구한다. 반대로 관련 없는 문서를 고정 개수만큼 넣으면 모델이 가진 지식까지 방해할 수 있다. 그래서 Active RAG, DeepRAG, Corrective RAG, Adaptive RAG, Self-RAG는 언제 무엇을 검색할지 판단하는 방향으로 확장된다.',
         table: {
@@ -2347,8 +2418,21 @@ export const sessions: Session[] = [
           ],
         },
       },
+      {
+        title: 'QuDAR의 질의별 hybrid retrieval',
+        body: 'QuDAR는 원본 query와 확장 query, keyword-based retrieval과 dense retrieval에서 나온 네 가지 결과를 질의별로 결합한다. 강의에서는 reciprocal rank fusion, 신뢰도 기반 가중치, LLM scoring처럼 결과 순서를 합치는 방법을 비교했다.',
+        table: {
+          headers: ['신호', '역할'],
+          rows: [
+            ['Original query', '질문의 정확한 표현과 entity를 보존'],
+            ['Expanded query', '원문 표현만으로 찾기 어려운 관련 문맥을 넓힘'],
+            ['Keyword-based retrieval', '정확한 용어와 희소한 키워드 일치에 강함'],
+            ['Dense retrieval', '표현이 달라도 의미가 가까운 문서 탐색에 강함'],
+          ],
+        },
+      },
     ],
-    quizIds: [],
+    quizIds: ['s08-q1', 's08-q2', 's08-q3', 's08-q4', 's08-q5'],
     reflectionQuestions: [
       'RAG가 fine-tuning과 다른 점은 무엇이며, 각각 어떤 문제에 더 적합한가?',
       '문서를 지나치게 크게 또는 작게 chunking하면 어떤 문제가 생길 수 있는가?',
@@ -2362,68 +2446,6 @@ export const sessions: Session[] = [
       '검색 결과에는 문서 권한과 최신성 metadata를 함께 두어, 관련성뿐 아니라 접근 가능 여부와 유효 시점을 필터링해야 한다.',
       'RAG 평가에서는 답변의 자연스러움만 보지 말고 retrieval recall, 근거의 관련성, citation 정확성, 응답 latency를 나누어 확인해야 한다.',
     ],
-    preview: {
-      label: '8차시 예습',
-      heading: '검색과 생성을 분리해 이해하기',
-      summary:
-        '이번 차시는 LLM이 외부 지식을 어떻게 검색해 답변에 활용하는지 다룹니다. 먼저 vector database와 embedding search를 이해하고, 그 위에 indexing, retrieval, generation으로 구성된 RAG 파이프라인을 올려 보세요. 이후에는 query rewriting, reranking, adaptive retrieval이 왜 필요한지 연결하면 됩니다.',
-      keyPoints: [
-        '문서와 질문은 embedding으로 바뀌고, vector database는 관련 문서 후보를 similarity search로 찾는다.',
-        'RAG는 indexing, retrieval, generation을 분리하며, 답변 시점에 외부 근거를 prompt로 제공한다.',
-        '최근 RAG는 검색을 항상 수행하지 않고, 질의와 근거 품질에 따라 rewrite, rerank, retrieve, critique를 조절한다.',
-      ],
-      questions: [
-        'LLM이 답할 수 있는 질문인데도 RAG가 필요한 상황은 언제인가?',
-        'vector search의 top-k 결과와 최종 context가 같지 않을 수 있는 이유는 무엇인가?',
-        '모든 질문에 같은 retrieval 전략을 적용하면 어떤 문제가 생길 수 있는가?',
-      ],
-      assignments: [
-        {
-          title: 'RAG 파이프라인을 세 단계로 설명하기',
-          goal: '핵심 흐름',
-          body:
-            'RAG를 indexing, retrieval, generation으로 나누고 각 단계가 무엇을 입력받아 무엇을 넘기는지 한 문장씩 정리해 보세요.',
-          prompts: [
-            'Indexing: 문서는 어떤 단위로 나뉘고 무엇으로 저장되는가?',
-            'Retrieval: 질문은 어떤 표현으로 바뀌며 무엇을 찾는가?',
-            'Generation: LLM은 질문 외에 어떤 근거를 함께 받는가?',
-          ],
-          example: [
-            'Indexing은 문서를 검색 가능한 chunk로 나누고 embedding과 metadata를 vector store에 저장하는 단계다.',
-            'Retrieval은 질문을 embedding으로 바꾼 뒤, 의미적으로 가까운 top-k chunk를 찾는 단계다.',
-            'Generation은 질문과 검색된 근거를 함께 prompt에 넣어 LLM이 근거 기반 답변을 생성하는 단계다.',
-          ],
-        },
-        {
-          title: '검색 결과를 그대로 쓰면 안 되는 이유 찾기',
-          goal: '품질 판단',
-          body:
-            '질문과 비슷해 보이는 문서가 실제 답변에 도움이 되는지는 별도 문제입니다. reranking과 adaptive retrieval이 해결하려는 실패 사례를 생각해 보세요.',
-          prompts: [
-            '관련 없는 chunk가 많이 들어가면 답변은 어떻게 흔들릴 수 있는가?',
-            '긴 문맥에서 중요한 근거가 중간에 놓이면 어떤 문제가 생길 수 있는가?',
-            '검색 없이 모델의 내부 지식으로 답하는 편이 더 나은 질문은 무엇인가?',
-          ],
-          example: [
-            '초기 vector search는 의미적으로 유사하지만 질문의 핵심 조건을 놓친 문서를 섞을 수 있으므로, reranking으로 최종 context를 다시 정렬한다.',
-            '모든 질문에 고정된 top-k를 넣으면 불필요한 문맥과 token 비용이 늘고, 관련 없는 근거가 모델의 판단을 방해할 수 있다.',
-          ],
-        },
-      ],
-      focusQuestions: [
-        'ANN search가 정확한 전체 비교 대신 속도와 정확도를 절충하는 이유는 무엇인가?',
-        'HyDE의 가상 문서가 원래 query보다 retrieval에 유리할 수 있는 상황은 무엇인가?',
-        'Cross-encoder reranker와 bi-encoder retrieval은 계산 비용과 정확도에서 어떻게 다를까?',
-        'DeepRAG는 retrieval을 reasoning 과정에 어떻게 결합하는가?',
-        'Corrective RAG와 Self-RAG는 retrieval 결과의 어떤 실패를 줄이려 하는가?',
-        'QuDAR가 keyword-based/dense retrieval과 original/expanded query 신호를 함께 쓰는 이유는 무엇인가?',
-      ],
-      excludedTopics: [
-        '특정 vector database 제품의 운영 설정',
-        'embedding model fine-tuning 구현',
-        'RAG evaluation benchmark의 세부 수식',
-      ],
-    },
   },
 ];
 
